@@ -53,7 +53,7 @@ The drop-in UI form will auto-populate in the HTML container that you specified,
 pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
     container: 'dropin-ui',
     type: 'eligibility',
-    styles: 'styles.css',
+    styles: 'http://www.example.com/styles.css',
     values: {
         'trading_partner_id': 'MOCKPAYER'
     },
