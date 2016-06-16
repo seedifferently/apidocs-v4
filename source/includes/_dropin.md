@@ -9,8 +9,9 @@ The PokitDok Drop-in UI enables anyone to add eligibility checks to their own we
 
 ## 1. Get Drop-in Token
 First you will need to <a href='https://platform.pokitdok.com/signup' target='_blank'>sign up for a PokitDok Platform account</a>
-and generate a `Drop-In Token` from the Platform dashboard <a href='https://me.pokitdok.com:5002/dashboard#/dropin' target='_blank'>Drop-In UI</a> page, where you will need
-to provide the hostname of the website where you'll be using the drop-in UI, as well as select the type of drop-in UI widget you'll be using.
+and generate a `Drop-In Token` from the Platform dashboard <a href='https://platform.pokitdok.com/dashboard#/dropin' target='_blank'>Drop-In UI</a> page, where you will need
+to provide the hostname of the website where you'll be using the drop-in UI, as well as select the type of drop-in UI widget you'll be using. In regards to the provided hostname
+it needs to be the exact page that you intend on embedding the widget (i.e.- `https://pokitdok.com/page/with/widget` not `https://pokitdok.com/`).
 
 
 ## 2. Include JS File
@@ -87,7 +88,7 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 
 Name              | Description
 ------------------|--------------------------------------------------------------------------------------
-container         | The id of the HTML container that the drop-in UI will be housed in.
+container         | The id of the HTML container that the drop-in UI will be housed in
 type              | The only type of drop-in UI currently supported is `eligibility`
 styles            | URL pointing to a css file to override styles with
 values            | An object of values that the form will pre-populate with
