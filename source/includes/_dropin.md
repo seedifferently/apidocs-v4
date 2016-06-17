@@ -58,6 +58,7 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
         'trading_partner_id': 'MOCKPAYER'
     },
     autoSubmit: true,
+    resetButton: true,
     onFormSuccess: function() {
         // do stuff here
     },
@@ -93,5 +94,6 @@ type              | The only type of drop-in UI currently supported is `eligibil
 styles            | URL pointing to a css file to override styles with
 values            | An object of values that the form will pre-populate with
 autoSubmit        | False by default; boolean indicating that form should submit automatically once all fields are filled
+resetButton       | False by default; boolean indicating that a button should show that allows form to be reset once submitted (allows for multiple eligibility checks without reloading page)
 onFormSuccess     | Function that gets called when the form has been submitted successfully
 onFormLoad        | Function that gets called when the form has been loaded successfully
