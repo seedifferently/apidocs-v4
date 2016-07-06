@@ -433,11 +433,11 @@ The /pharmacy/formulary response contains the following fields:
 | prior_auth            | {boolean} | Does the drug require a prior authorization?                                                       |
 | step_therapy          | {boolean} | Does the drug require step therapy?                                                                |
 | quantity_limit        | {boolean} | Does this drug have a quantity limit?                                                              |
-| limit_amount | {string}  | Quantity limit amount associated with this drug. The unit of measure is specific to the drug type. |
-| limit_days   | {integer} | Quantity limit days associated with this drug. E.g. 30                                             |
-| retail.oop_30_day        | {string} | Estimated out of pocket cost for 30 day supply of drug at an in-network retail pharmacy                                                            |
-| retail.total_cost_30_day | {string} | Estimated total cost of drug for 30 day supply of drug at an in-network retail pharmacy (average insurance negotiated rate with pharmacy)          |
-| retail.ins_pay_30_day    | {string} | Estimated amount insurance covers for 30 day supply of drug at an in-network retail pharmacy    |
-| mail.oop_90_day          | {string} | Estimated out of pocket cost for 90 day supply of drug at an in-network mail order pharmacy                                                        |
-| mail.total_cost_90_day   | {string} | Estimated total cost of drug for 90 day supply of drug at an in-network mail order pharmacy (average insurance negotiated rate with pharmacy)      |
-| mail.ins_pay_90_day      | {string} | Estimated amount insurance covers for 90 day supply of drug at an in-network mail order pharmacy |
+| limit_amount | {string}  | Optional: Quantity limit amount associated with this drug. The unit of measure is specific to the drug type. |
+| limit_days   | {integer} | Optional: Quantity limit days associated with this drug. E.g. 30                                             |
+| retail.oop_30_day        | {string} | Optional: Estimated out of pocket cost for 30 day supply of drug at an in-network retail pharmacy                                                            |
+| retail.total_cost_30_day | {string} | Optional: Estimated total cost of drug for 30 day supply of drug at an in-network retail pharmacy (average insurance negotiated rate with pharmacy)          |
+| retail.ins_pay_30_day    | {string} | Optional: Estimated amount insurance covers for 30 day supply of drug at an in-network retail pharmacy    |
+| mail.oop_90_day          | {string} | Optional: Estimated out of pocket cost for 90 day supply of drug at an in-network mail order pharmacy                                                        |
+| mail.total_cost_90_day   | {string} | Optional: Estimated total cost of drug for 90 day supply of drug at an in-network mail order pharmacy (average insurance negotiated rate with pharmacy)      |
+| mail.ins_pay_90_day      | {string} | Optional: Estimated amount insurance covers for 90 day supply of drug at an in-network mail order pharmacy |
