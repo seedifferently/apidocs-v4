@@ -1,10 +1,9 @@
 # Drop-in UI
-The PokitDok Drop-in UI enables anyone to add eligibility checks to their own website with a fully styled and functional UI.
+The PokitDok Drop-in UI enables anyone to add functionality like eligibility checks or out-of-pocket cost estimation to their own website with a fully styled and functional UI.
 
-* Patient eligibility in seconds
 * One simple drop-in with full customization
 * All major insurance carriers
-* Detailed info including deductible status and co-pays
+* Detailed eligibility info including deductible status and co-pays
 
 
 ## 1. Get Drop-in Token
@@ -45,6 +44,49 @@ Call the `pokitdok.dropin` function, using your PokitDok Platform `Drop-In Token
 
 The drop-in UI form will auto-populate in the HTML container that you specified, and you can run eligibility checks right away.
 
+## Types
+There are two types of drop-in UIs to choose from:
+
+### Eligibility
+
+> Eligibility example with minimum required options:
+
+```javascript
+pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
+    container: 'dropin-ui',
+    type: 'eligibility'
+}
+```
+
+Displays a form that requires first & last name, birth date, insurance provider, and member id.
+Returns eligibility information in an easy to read format with detailed info including deductible status and co-pays.
+
+### Calculator
+
+<aside class="warning">
+an array of 'procedures' is required for the drop-in UI calculator to work.
+</aside>
+
+> Calculator example with minimum required options:
+
+```javascript
+pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
+    container: 'dropin-ui',
+    type: 'calculator',
+    procedures: [
+        {
+            'name': 'Test Procedure',
+            'specialty': 'Test Specialty',
+            'cpt_code': 'xxxxx'
+        }
+    ]
+}
+```
+
+Displays a form that requires all the same fields as the eligibility type, with an added required procedure field.
+Returns an out of pocket cost estimation based on average insurance prices for the procedure that was selected, as well as
+eligibility information in an easy to read format with detailed info including deductible status and co-pays.
+
 ## Options
 
 > Example with options:
@@ -52,11 +94,18 @@ The drop-in UI form will auto-populate in the HTML container that you specified,
 ```javascript
 pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
     container: 'dropin-ui',
-    type: 'eligibility',
+    type: 'calculator',
     styles: 'http://www.example.com/styles.css',
     values: {
         'trading_partner_id': 'MOCKPAYER'
     },
+    procedures: [
+        {
+            'name': 'Test Procedure',
+            'specialty': 'Test Specialty',
+            'cpt_code': 'xxxxx'
+        }
+    ],
     autoSubmit: true,
     resetButton: true,
     onFormSuccess: function() {
@@ -68,23 +117,25 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 }
 ```
 
-> Full list of values available to pre-populate:
+> Example of all fields pre-populated using `values` option:
 
-```javascript
+```json
+
 {
-    'member': {
-        'first_name': 'Jane',
-        'last_name': 'Doe',
-        // (Insurance Member ID)
-        'id': '123456789',
-        'birth_date': '1970-01-01'
-    }
-    'trading_partner_id': 'MOCKPAYER'
+    "member": {
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "123456789",
+        "birth_date": "1970-01-01"
+    },
+    "trading_partner_id": "MOCKPAYER",
+    "procedure": "xxxxx"
 }
 ```
 
 <aside class="warning">
-'container' and 'type' are required options for the drop-in UI to work.
+'container' and 'type' are required options for the drop-in UI to work.<BR>
+'procedures' is required for the calculator type drop-in.
 </aside>
 
 Name              | Description
@@ -93,6 +144,7 @@ container         | The id of the HTML container that the drop-in UI will be hou
 type              | The only type of drop-in UI currently supported is `eligibility`
 styles            | URL pointing to a css file to override styles with
 values            | An object of values that the form will pre-populate with
+procedures        | An array of procedures to populate the procedure dropdown with
 autoSubmit        | False by default; boolean indicating that form should submit automatically once all fields are filled
 resetButton       | False by default; boolean indicating that a button should show that allows form to be reset once submitted (allows for multiple eligibility checks without reloading page)
 onFormSuccess     | Function that gets called when the form has been submitted successfully
