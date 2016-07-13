@@ -410,8 +410,6 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.licenses                     | {array}   | Optional: CMS-NPI license information                                                                                    |
 | provider.licenses.number              | {string}  | Optional: License number                                                                                                 |
 | provider.licenses.state               | {string}  | Optional: License state                                                                                                  |
-| provider.licenses.year                | {string}  | Optional: License year                                                                                                   |
-| provider.licenses.role                | {string}  | Optional/Deprecated: License role                                                                                        |
 | provider.licensures                   | {array}   | Optional: State licensure information                                                                                    |
 | provider.licensures.as_of_date        | {string}  | Optional: Licensure as of date. In ISO8601 format (YYYY-MM-DD).                                                          |
 | provider.licensures.expiration_date   | {string}  | Optional: Licensure expiration date. In ISO8601 format (YYYY-MM-DD).                                                     |
