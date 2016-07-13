@@ -87,6 +87,13 @@ Displays a form that requires all the same fields as the eligibility type, with 
 Returns an out of pocket cost estimation based on average insurance prices for the procedure that was selected, as well as
 eligibility information in an easy to read format with detailed info including deductible status and co-pays.
 
+#### Calculator Specific Options:
+
+Name              | Description
+------------------|--------------------------------------------------------------------------------------
+procedures        | An array of procedures to populate the procedure dropdown with
+values.procedure  | The procedure that will be auto-selected once the form loads
+
 ## Options
 
 > Example with options:
@@ -94,18 +101,11 @@ eligibility information in an easy to read format with detailed info including d
 ```javascript
 pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
     container: 'dropin-ui',
-    type: 'calculator',
+    type: 'eligibility',
     styles: 'http://www.example.com/styles.css',
     values: {
         'trading_partner_id': 'MOCKPAYER'
     },
-    procedures: [
-        {
-            'name': 'Test Procedure',
-            'specialty': 'Test Specialty',
-            'cpt_code': 'xxxxx'
-        }
-    ],
     autoSubmit: true,
     resetButton: true,
     onFormSuccess: function() {
@@ -144,7 +144,6 @@ container         | The id of the HTML container that the drop-in UI will be hou
 type              | The only type of drop-in UI currently supported is `eligibility`
 styles            | URL pointing to a css file to override styles with
 values            | An object of values that the form will pre-populate with
-procedures        | An array of procedures to populate the procedure dropdown with
 autoSubmit        | False by default; boolean indicating that form should submit automatically once all fields are filled
 resetButton       | False by default; boolean indicating that a button should show that allows form to be reset once submitted (allows for multiple eligibility checks without reloading page)
 onFormSuccess     | Function that gets called when the form has been submitted successfully
