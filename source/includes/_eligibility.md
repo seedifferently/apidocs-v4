@@ -1253,12 +1253,12 @@ a CPT code:
                         "message": "Pre-Existing may apply"
                     }
                 ],
-                      "additional_information": [
-                            {
-                                "code_list_qualifier_code": "mutually_defined",
-                                "industry_code": "outpatient_hospital"
-                            }
-                        ],
+                "additional_information": [
+                    {
+                        "code_list_qualifier_code": "mutually_defined",
+                        "industry_code": "outpatient_hospital"
+                    }
+                ],
                 "service_type_codes": [
                     "98"
                 ],
@@ -1953,26 +1953,26 @@ The /eligibility/ response contains the following fields:
 
 | Field                                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| client_id                                           | The unique identifier associated with the client making the eligibility request.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| client_id                                           | The unique identifier associated with the client making the eligibility request.                                                                                                                                                                                                                                                                                                                                                                                                     |
 | coverage.active                                     | A boolean value that is true when the member has active coverage. It is false when membership information could not be returned or when inactive coverage is indicated by the trading partner.                                                                                                                                                                                                                                                                                        |
 | coverage.additional_information.code_category       | Specifies the situation to which the code applies.
 
 
-						|
+					      |
 | coverage.additional_information.code_list_qualifier_code | Identifies the industry code list specified.  Possible values are mutually_defined (most common), nature_of_injury_code, ncii_nature_of_injury_code.
 
 
-						|
+					      |
 | coverage.additional_information.industry_code       | Code value defined based on industry code list specified in code_list_qualifier_code.  Reference code source 284 for ncii_nature_of_injury_code, code source 407 for nature_of_injury_code and code source 237 for mutually_defined.
 
 
-						|
+					      |
 
 | coverage.additional_information.message	      | Free-form message text used to describe the injured body part(s).
 
 
-						|
-| coverage.coverage_details                           | Additional information relating to the coverage.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+					      |
+| coverage.coverage_details                           | Additional information relating to the coverage.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | coverage.coverage_details.status                    | The status of the coverage.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | coverage.coverage_details.group_or_policy_number    | The group or policy number associated with the coverage.                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | coverage.coverage_details.plan_description          | The product name or special program name for the insurance plan. This is often the brand or marketing name for the plan.                                                                                                                                                                                                                                                                                                                                                              |
