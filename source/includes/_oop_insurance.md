@@ -592,15 +592,14 @@ client.request('/oop/insurance-estimate', method='post', params={
 *Available modes of operation: real-time*
 
 The Out-of-Pokit (OOP) Insurance Estimate endpoint takes advantage of industry standard calculation methods
-and our eligibility endpoint to provide an estimate of what consumers can expect to pay out of their pocket
-for a set of services.
+and our eligibility endpoint to provide an estimate of what consumers may expect to pay out of pocket for a set of services.
 
 Available OOP Insurance Endpoints:
 
 | Endpoint                  | HTTP Method | Description                                                                                     |
 |:--------------------------|:------------|:------------------------------------------------------------------------------------------------|
-| /oop/insurance-load-price | POST        | Load trading partner specific prices for a procedure set into our collection of prices          |
-| /oop/insurance-estimate   | POST        | Return expected out of pocket cost for procedure prices using a consumer's eligibility response |
+| /oop/insurance-load-price | POST        | Loads procedure prices for a specific trading partner                                           |
+| /oop/insurance-estimate   | POST        | Returns estimated out of pocket cost and eligibility information for a given procedure          |
 
 Trading partners may choose to use our OOP Insurance Price Load endpoint to load their procedure prices into our system.
 Those prices will then be used by the /oop/insurance-estimate to calculate out of pocket cost.
