@@ -560,7 +560,7 @@ client.request('/oop/insurance-estimate', method='post', params={
         },
         "provider": {
             "first_name": "JEROME",
-            "last_name": "JEROME AYA-AY",
+            "last_name": "AYA-AY",
             "npi": "1467560003"
         },
         "service_type_codes": [
