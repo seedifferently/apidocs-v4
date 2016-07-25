@@ -601,8 +601,7 @@ Available OOP Insurance Endpoints:
 | /oop/insurance-load-price | POST        | Loads procedure prices for a specific trading partner                                           |
 | /oop/insurance-estimate   | POST        | Returns estimated out of pocket cost and eligibility information for a given procedure          |
 
-Trading partners may choose to use our OOP Insurance Price Load endpoint to load their procedure prices into our system.
-Those prices will then be used by the /oop/insurance-estimate to calculate out of pocket cost.
+The /oop/insurance-load-price endpoint is used to load pricing data that is used in the /oop-insurance-estimate endpoint's calculations.
 
 The /oop/insurance-load-price endpoint accepts the following parameters:
 
@@ -613,15 +612,9 @@ The /oop/insurance-load-price endpoint accepts the following parameters:
 | price.amount       | {string} | The price of the bundle of procedures in the cpt_bundle                                       |
 | price.currency     | {string} | Optional: The denomination of the currency of the price.amount. Defaults to 'USD'             |
 
-The successful /oop/insurance-load-price response contains the same fields that were passed to it, along with activity tracking information.
+The /oop/insurance-load-price response contains the aforementioned fields and activity tracking meta data.
 
 The /oop/insurance-estimate endpoint accepts the following parameters:
-
-While the endpoint accepts a five-digit zip code, only the first three digits
-are significant. This is because the index is only granular to the first three
-digits of the zip code, commonly called a "geozip" or a "ZIP Code Prefix". These
-three digits refer to the geographical regions surrounding major cities or
-metropolitan areas. There are approximately 900 "geozips" in the United States.
 
 | Parameter                             | Type     | Description                                                                                                                                                                        |
 |:--------------------------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -634,6 +627,12 @@ metropolitan areas. There are approximately 900 "geozips" in the United States.
 | eligibility.member.birth_date         | {string} | The named insured’s birth date as specified on their policy. May be omitted if member.id is provided. In ISO8601 format (YYYY-MM-DD).                                              |
 | eligibility.member.id                 | {string} | The named insured’s member identifier. May be omitted if member.birth_date is provided.                                                                                            |
 | zip_code                              | {string} | Optional: Used as a back up price data source if the trading partner has not loaded data for the chosen cpt_bundle. Hits the Insurance Prices endpoint to get prices based on area |
+
+While the endpoint accepts a five-digit zip code, only the first three digits
+are significant. This is because the index is only granular to the first three
+digits of the zip code, commonly called a "geozip" or a "ZIP Code Prefix". These
+three digits refer to the geographical regions surrounding major cities or
+metropolitan areas. There are approximately 900 "geozips" in the United States.
 
 The /oop/insurance-estimate response contains the following fields:
 
