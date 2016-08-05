@@ -319,5 +319,5 @@ result_history.result | {dict} | The result associated with the result.
 result_history.record_dt | {datetime} | The date time associated with the result. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).
 state | {dict} | Current state of this Activity.
 transition_path | {array} | The list of state transitions that will be used for this Activity.
-units_of_work | {int} | The number of 'units of work' that the activity is operating on. This will typically be 1 for real-time requests like /eligibility/. When uploading batch X12 files via the /files/ endpoint, this will be the number of ‘transactions’ within that file. For example, if a client application POSTs a file of 20 eligibility requests to the /files/ API, the units_of_work value for that activity will be 20 after the X12 file has been analyzed. If an activity does show a value greater than 1 for units_of_work, the client application can fetch detailed information about each one of the activities processing those units of work by using the /activities/?parent_id=<activity_id> API.
+units_of_work | {int} | The number of 'units of work' that the activity is operating on. This will typically be 1 for real-time requests like /eligibility/.
 

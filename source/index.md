@@ -28,7 +28,6 @@ includes:
   - claimstatus
   - eligibility
   - enrollmentsnapshot
-  - files
   - icdconvert
   - identity
   - insuranceprices

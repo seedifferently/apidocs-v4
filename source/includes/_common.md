@@ -3,7 +3,7 @@
 ## Client generic request handlers
 To guarantee clients have reliable access to the newest PokitDok endpoints,
 a generic request handler is built into most clients. This allows for the sending
-of files and JSON payloads to any PokitDok endpoint for any given CRUD operation.
+of JSON payloads to any PokitDok endpoint for any given CRUD operation.
 
 > Example calls using the generic request handler:
 
@@ -35,29 +35,6 @@ client.request("/identity/4d04d8dc-3d0b-4ea1-8add-4dbc9619e1ae", "PUT", nil, 'up
 client.request("/identity/4d04d8dc-3d0b-4ea1-8add-4dbc9619e1ae", "PUT", ExampleRequests.UpdateIdentityRequest);
 ```
 
-> Example call sending a file using the generic request handler:
-
-```shell
-# Curl requests are already formatted as 'General Request' methods
-```
-
-```python
-client.request("/files/", "POST", 'enrollment.834', 'MOCKPAYER')
-```
-
-```ruby
-client.request("/files/", "POST", 'enrollment.834', { trading_partner_id: 'MOCKPAYER' })
-```
-
-```csharp
- client.request(
-    "/enrollment/snapshot",
-    "../../tests/files/acme_inc_add_subscriber.834",
-    "file",
-    "application/EDI-X12",
-    postData
-);
-```
 
 ## Collection Parameters
 The below query parameters can be added to collection requests from endpoints
