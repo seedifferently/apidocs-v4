@@ -76,7 +76,6 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
     procedures: [
         {
             'name': 'Test Procedure',
-            'specialty': 'Test Specialty',
             'cpt_code': 'xxxxx'
         }
     ]
@@ -85,14 +84,17 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 
 Displays a form that requires all the same fields as the eligibility type, with an added required procedure field.
 Returns an out of pocket cost estimation based on average insurance prices for the procedure that was selected, as well as
-eligibility information in an easy to read format with detailed info including deductible status and co-pays.
+eligibility information. Displays in an easy to read format with detailed info including deductible status and co-pays.
 
 #### Calculator Specific Options:
 
-Name              | Description
-------------------|--------------------------------------------------------------------------------------
-procedures        | An array of procedures to populate the procedure dropdown with
-values.procedure  | The procedure that will be auto-selected once the form loads
+Name                    | Description
+------------------------|--------------------------------------------------------------------------------------
+procedures              | An array of procedures to populate the procedure dropdown with
+values.procedure        | The procedure that will be auto-selected once the form loads
+showPriceRange          | Show insurance price and out-of-pocket estimate results as a range of prices rather than an average
+showCalculatorMessages  | Show a message below the out-of-pocket results explaining how calculation was made
+eligibilityResultsFirst | On results page, show eligibility results first and out-of-pocket results below that
 
 ## Options
 
