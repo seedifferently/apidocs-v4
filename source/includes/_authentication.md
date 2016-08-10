@@ -32,11 +32,6 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN"
 https://platform.pokitdok.com/api/v4/activities/5317f51527a27620f2ec7533
 ```
 
-All calls to the PokitDok API are encrypted over HTTPS. Access to the API is
-controlled via OAuth2 (for more information, reference "OAuth 2.0 Authorization
-Framework" [here](http://tools.ietf.org/html/rfc6749).) The cURL tab contains a quick example
-authenticating at the command line using cURL and making a call to the Activities API.
-
 ```python
 # not using the PokitDok Python client library
 import requests
@@ -57,8 +52,36 @@ headers={'Authorization': 'Bearer ' + access_token}).json()
 # using https://github.com/pokitdok/pokitdok-python
 import pokitdok
 
-client = pokitdok.api.connect('<your client id>', '<your client secret>')
+client = pokitdok.api.connect('your_client_id', 'your_client_secret')
 ```
+
+```ruby
+# using https://github.com/pokitdok/pokitdok-ruby
+require 'pokitdok'
+client = PokitDok::PokitDok.new("your_client_id", "your_client_secret")
+```
+
+```csharp
+// using https://github.com/pokitdok/pokitdok-csharp
+using pokitdokcsharp;
+
+PlatformClient client = new PlatformClient("your_client_id", "your_client_secret");
+```
+
+```java
+// using https://github.com/pokitdok/pokitdok-java
+import com.pokitdok.PokitDok;
+
+PokitDok client = new PokitDok("your_client_id", "your_client_secret");
+client.connect();
+```
+
+
+All calls to the PokitDok API are encrypted over HTTPS. Access to the API is
+controlled via OAuth2 (for more information, reference "OAuth 2.0 Authorization
+Framework" [here](http://tools.ietf.org/html/rfc6749).) The cURL tab contains a quick example
+authenticating at the command line using cURL and making a call to the Activities API.
+
 
 The Python tab contains an example of authentication from scratch using Python
 and the requests library. Note that if you use one of our client libraries,
