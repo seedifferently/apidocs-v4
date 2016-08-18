@@ -389,7 +389,7 @@ The /providers/ endpoint accepts the following search parameters:
 | state             | {string} | Name of U.S. state in which to search for providers (e.g. "CA" or "SC")                                                                             |
 | zipcode           | {string} | Geographic center point in which to search for providers (e.g. "94401")                                                                             |
 | sort              | {string} | Accepted values include 'distance' (default) or 'rank'.  'distance' sort requires city & state or zipcode parameters otherwise sort will be 'rank'. |
-| entity_types      | {string} | The entity type of the provider. Possibilities are individual, organization, and individual,organization.                                           |
+| entity_types      | {string} | The desired provider entity type(s), as a comma-separated string.  Possibilities are 'individual', 'organization', and 'individual,organization'.   |
 
 The response from the /providers/ endpoints contain the following fields:
 
@@ -397,12 +397,12 @@ The response from the /providers/ endpoints contain the following fields:
 |:--------------------------------------|:----------|:-------------------------------------------------------------------------------------------------------------------------|
 | provider.birth_date                   | {string}  | Optional: The provider's birth year. In ISO8601 format (YYYY-MM-DD).                                                     |
 | provider.board_certifications         | {array}   | Optional: The provider's board certifications                                                                            |
-| provider.board_subcertifications      | {array}   | Optional/Deprecated: The provider's board sub-certifications                                                             |
 | provider.degree                       | {string}  | Optional: The provider's degree ("MD" or "DO")                                                                           |
 | provider.description                  | {string}  | Optional: (verified providers only) Provider full-text description                                                       |
 | provider.education                    | {dict}    | Optional: The provider's medical school information                                                                      |
 | provider.education.medical_school     | {string}  | Optional: Provider's medical school                                                                                      |
 | provider.education.graduation_year    | {string}  | Optional: Provider's graduation year                                                                                     |
+| provider.entity_type                  | {string}  | The entity type of the provider. Possibilities are 'individual' and 'organization'                                       |
 | provider.fax                          | {string}  | Optional: The provider's fax number                                                                                      |
 | provider.first_name                   | {string}  | Optional: The provider's first name                                                                                      |
 | provider.gender                       | {string}  | Optional: The provider's gender                                                                                          |
@@ -439,9 +439,6 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.residencies.institution_name | {string}  | Optional: Institution name                                                                                               |
 | provider.residencies.type             | {string}  | Optional: Education type.  One of: ('Medical School', 'Residency','Internship', 'Fellowship', 'College Attended')        |
 | provider.residencies.to_year          | {string}  | Optional: Graduation year                                                                                                |
-| provider.residencies.from_year        | {string}  | Optional/Deprecated: Start year                                                                                          |
-| provider.residencies.city             | {string}  | Optional/Deprecated: Residency city                                                                                      |
-| provider.residencies.specialty        | {string}  | Optional/Deprecated: Residency specialty                                                                                 |
 | provider.specialty                    | {array}   | Optional: List of specialties from the specialty taxonomy associated with the provider                                   |
 | provider.specialty_primary            | {array}   | Optional: List of provider's primary specialties                                                                         |
 | provider.specialty_secondary          | {array}   | Optional: List of provider's secondary specialties                                                                       |
@@ -453,4 +450,3 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.twitter_url                  | {string}  | Optional: (verified providers only) Provider Twitter URL                                                                 |
 | provider.website_url                  | {string}  | Optional: (verified providers only) Provider website URL                                                                 |
 | distance                              | {string}  | Optional: When sort is 'distance' (default) this is the distance from the city & state or zipcode centroid               |
-| entity_type                           | {string}  | The entity type of the provider. Possibilities are individual and organization.                                          |
