@@ -393,20 +393,20 @@ The /providers/ endpoint accepts the following search parameters:
 
 The response from the /providers/ endpoints contain the following fields:
 
-| Field                                 | Type      | Description                                                                                                    | Required/Optional |
+| Field                                 | Type      | Description                                                                                                    | Presence |
 |:--------------------------------------|:----------|:---------------------------------------------------------------------------------------------------------------|:------------------|
-| provider.birth_date                   | {string}  | The provider's birth year. In ISO8601 format (YYYY-MM-DD).                                                     | Optional when entity_type is 'individual' |
-| provider.board_certifications         | {array}   | The provider's board certifications                                                                            | Optional when entity_type is 'individual' |
-| provider.degree                       | {string}  | The provider's degree ("MD" or "DO")                                                                           | Optional when entity_type is 'individual' |
+| provider.birth_date                   | {string}  | The provider's birth year. In ISO8601 format (YYYY-MM-DD).                                                     | Optional (when entity_type is 'individual') |
+| provider.board_certifications         | {array}   | The provider's board certifications                                                                            | Optional (when entity_type is 'individual') |
+| provider.degree                       | {string}  | The provider's degree ("MD" or "DO")                                                                           | Optional (when entity_type is 'individual') |
 | provider.description                  | {string}  | Provider description                                                                                           | Optional |
-| provider.education                    | {dict}    | The provider's medical school information                                                                      | Optional when entity_type is 'individual' |
+| provider.education                    | {dict}    | The provider's medical school information                                                                      | Optional (when entity_type is 'individual') |
 | provider.education.medical_school     | {string}  | Provider's medical school                                                                                      | Required |
 | provider.education.graduation_year    | {string}  | Provider's graduation year                                                                                     | Optional |
-| provider.entity_type                  | {string}  | The entity type of the provider. Possibilities are 'individual' and 'organization'                             | Required |
+| provider.entity_type                  | {string}  | The entity type of the provider. Possibilities are 'individual') and 'organization')                           | Required |
 | provider.fax                          | {string}  | The provider's fax number                                                                                      | Optional |
-| provider.first_name                   | {string}  | The provider's first name                                                                                      | Required when entity_type is 'individual' |
+| provider.first_name                   | {string}  | The provider's first name                                                                                      | Required (when entity_type is 'individual') |
 | provider.gender                       | {string}  | The provider's gender                                                                                          | Optional |
-| provider.last_name                    | {string}  | The provider's last name                                                                                       | Required when entity_type is 'individual' |
+| provider.last_name                    | {string}  | The provider's last name                                                                                       | Required (when entity_type is 'individual') |
 | provider.licenses                     | {array}   | CMS-NPI license information                                                                                    | Optional |
 | provider.licenses.number              | {string}  | License number                                                                                                 | Optional |
 | provider.licenses.state               | {string}  | License state                                                                                                  | Optional |
@@ -431,11 +431,11 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.locations.suite              | {string}  | Address suite																								     | Optional |
 | provider.middle_name                  | {string}  | The provider's middle name or initial                                                                          | Optional |
 | provider.npi                          | {string}  | The provider's NPI                                                                                             | Optional |
-| provider.organization_name            | {string}  | The business practice name                                                                                     | Required when entity_type is 'organization' |
-| provider.other_organization_name      | {string}  | The business practice's other name                                                                             | Optional when entity_type is 'organization' |
+| provider.organization_name            | {string}  | The business practice name                                                                                     | Required (when entity_type is 'organization') |
+| provider.other_organization_name      | {string}  | The business practice's other name                                                                             | Optional (when entity_type is 'organization') |
 | provider.phone                        | {string}  | The provider's phone number                                                                                    | Optional |
 | provider.prefix                       | {string}  | The provider's prefix (Mr., Mrs., Dr., etc)                                                                    | Optional |
-| provider.residencies                  | {array}   | Provider residency and education information                                                                   | Optional when entity_type is 'individual' |
+| provider.residencies                  | {array}   | Provider residency and education information                                                                   | Optional (when entity_type is 'individual') |
 | provider.residencies.institution_name | {string}  | Institution name                                                                                               | Required |
 | provider.residencies.type             | {string}  | Education type.  One of: ('Medical School', 'Residency','Internship', 'Fellowship', 'College Attended')        | Required |
 | provider.residencies.to_year          | {string}  | Graduation year                                                                                                | Optional |
@@ -444,5 +444,5 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.specialty_secondary          | {array}   | List of provider's secondary specialties                                                                       | Required |
 | provider.suffix                       | {string}  | The provider's suffix (MD, Jr., etc)                                                                           | Optional |
 | provider.uuid                         | {uuid}    | The provider's unique PokitDok Platform identifier                                                             | Required |
-| provider.website_url                  | {string}  | (verified providers only) Provider website URL                                                                 | Optional when entity_type is 'organization' |
-| distance                              | {string}  | When sort is 'distance' (default) this is the distance from the city & state or zipcode centroid               | Optional when sort is 'distance' |
+| provider.website_url                  | {string}  | (verified providers only) Provider website URL                                                                 | Optional (when entity_type is 'organization') |
+| distance                              | {string}  | When sort is 'distance' (default) this is the distance from the city & state or zipcode centroid               | Optional (when sort is 'distance') |
