@@ -33,15 +33,15 @@ client.pharmacyNetwork("1427382266", params);
 > Example searching for in-network pharmacies by plan and zip code:
 
 ```shell
-curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json"  'https://platform.pokitdok.com/api/v4/pharmacy/network?trading_partner_id=medicare_national&plan_number=S5820003&zipcode=07097&radius=1mi'
+curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json"  'https://platform.pokitdok.com/api/v4/pharmacy/network?trading_partner_id=medicare_national&plan_number=S5820003&zipcode=07030&radius=1mi'
 ```
 
 ```python
-client.pharmacy_network(trading_partner_id='medicare_national', plan_number='S5820003' , zipcode='07097', radius='1mi')
+client.pharmacy_network(trading_partner_id='medicare_national', plan_number='S5820003' , zipcode='07030', radius='1mi')
 ```
 
 ```ruby
-client.pharmacy_network(trading_partner_id: 'medicare_national', plan_number: 'S5820003' , zipcode: '07097', radius: '1mi')
+client.pharmacy_network(trading_partner_id: 'medicare_national', plan_number: 'S5820003' , zipcode: '07030', radius: '1mi')
 ```
 
 ```csharp
@@ -49,7 +49,7 @@ client.pharmacyNetwork(
                     new Dictionary<string, string> {
                       {"trading_partner_id", "medicare_national"},
                       {"plan_number", "S5820003"},
-                      {"zipcode", "07097"},
+                      {"zipcode", "07030"},
                       {"radius", "1mi"}
                   });
 ```
@@ -58,7 +58,7 @@ client.pharmacyNetwork(
 Map<String, Object> params = new HashMap<String, Object>();
 params.put("trading_partner_id", "medicare_national");
 params.put("plan_number", "S5820003");
-params.put("zipcode", "07097");
+params.put("zipcode", "07030");
 params.put("radius", "1mi");
 client.pharmacyNetwork(params);
 ```
@@ -69,23 +69,23 @@ client.pharmacyNetwork(params);
 {
     "data": [
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "307 1st St"
-                ], 
-                "city": "Hoboken", 
-                "country": "US", 
+                ],
+                "city": "Hoboken",
+                "country": "US",
                 "geo_location": [
-                    -74.03467, 
+                    -74.03467,
                     40.738
-                ], 
-                "phone": "2014207777", 
-                "state": "NJ", 
+                ],
+                "phone": "2014207777",
+                "state": "NJ",
                 "zipcode": "07030"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "HOBOKEN DRUGS", 
+            },
+            "mail": false,
+            "pharmacy_name": "HOBOKEN DRUGS",
             "retail": true
         }
     ]
@@ -99,241 +99,241 @@ client.pharmacyNetwork(params);
 {
     "data": [
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "165 Erie St"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.04339, 
+                    -74.04339,
                     40.72829
-                ], 
-                "phone": "2019631903", 
-                "state": "NJ", 
+                ],
+                "phone": "2019631903",
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "NEWPORT PHARMACEUTICAL SERVICES INC", 
+            },
+            "mail": false,
+            "pharmacy_name": "NEWPORT PHARMACEUTICAL SERVICES INC",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "204 Washington St Apt 1B"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.03771, 
+                    -74.03771,
                     40.71469
-                ], 
-                "phone": "2013335189", 
-                "state": "NJ", 
+                ],
+                "phone": "2013335189",
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "HOOK PHARMACY", 
+            },
+            "mail": false,
+            "pharmacy_name": "HOOK PHARMACY",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "325 7th St"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.04907, 
+                    -74.04907,
                     40.72638
-                ], 
-                "phone": "2016538378", 
-                "state": "NJ", 
+                ],
+                "phone": "2016538378",
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "SLM PHARMACY INC", 
+            },
+            "mail": false,
+            "pharmacy_name": "SLM PHARMACY INC",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "110 Newark Ave"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.04271, 
+                    -74.04271,
                     40.71997
-                ], 
-                "phone": "2014330108", 
-                "state": "NJ", 
+                ],
+                "phone": "2014330108",
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "DUANE READE", 
+            },
+            "mail": false,
+            "pharmacy_name": "DUANE READE",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "400 Marin Blvd"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.03995, 
+                    -74.03995,
                     40.72313
-                ], 
-                "state": "NJ", 
+                ],
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "INSERRA SUPERMARKETS INC", 
+            },
+            "mail": false,
+            "pharmacy_name": "INSERRA SUPERMARKETS INC",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "355 Grand St"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.05094, 
+                    -74.05094,
                     40.71591
-                ], 
-                "phone": "2019152166", 
-                "state": "NJ", 
+                ],
+                "phone": "2019152166",
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "LSC PHARMACY SERVICES, INC", 
+            },
+            "mail": false,
+            "pharmacy_name": "LSC PHARMACY SERVICES, INC",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "501 Jersey Ave"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.04745, 
+                    -74.04745,
                     40.71944
-                ], 
-                "phone": "2014358112", 
-                "state": "NJ", 
+                ],
+                "phone": "2014358112",
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "NORMANS PHARMACY INC", 
+            },
+            "mail": false,
+            "pharmacy_name": "NORMANS PHARMACY INC",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "52 River Dr S"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.032139, 
+                    -74.032139,
                     40.727533
-                ], 
-                "phone": "2012161166", 
-                "state": "NJ", 
+                ],
+                "phone": "2012161166",
+                "state": "NJ",
                 "zipcode": "07310"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "DUANE READE", 
+            },
+            "mail": false,
+            "pharmacy_name": "DUANE READE",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "52 Essex St"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.03595, 
+                    -74.03595,
                     40.71295
-                ], 
-                "state": "NJ", 
+                ],
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "DOWNTOWN CHEMISTS CORP", 
+            },
+            "mail": false,
+            "pharmacy_name": "DOWNTOWN CHEMISTS CORP",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "129 Newark Ave"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.04401, 
+                    -74.04401,
                     40.72019
-                ], 
-                "phone": "2013332223", 
-                "state": "NJ", 
+                ],
+                "phone": "2013332223",
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "FENNY PHARMACY LLC", 
+            },
+            "mail": false,
+            "pharmacy_name": "FENNY PHARMACY LLC",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "172 Newark Ave"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.0453, 
+                    -74.0453,
                     40.72129
-                ], 
-                "phone": "2014323300", 
-                "state": "NJ", 
+                ],
+                "phone": "2014323300",
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "TRANQUIL PHARM INC", 
+            },
+            "mail": false,
+            "pharmacy_name": "TRANQUIL PHARM INC",
             "retail": true
-        }, 
+        },
         {
-            "in_network": true, 
+            "in_network": true,
             "location": {
                 "address_lines": [
                     "75 Bright St"
-                ], 
-                "city": "Jersey City", 
-                "country": "US", 
+                ],
+                "city": "Jersey City",
+                "country": "US",
                 "geo_location": [
-                    -74.04841, 
+                    -74.04841,
                     40.71719
-                ], 
-                "phone": "2013324488", 
-                "state": "NJ", 
+                ],
+                "phone": "2013324488",
+                "state": "NJ",
                 "zipcode": "07302"
-            }, 
-            "mail": false, 
-            "pharmacy_name": "CARRY PHARMACY INC", 
+            },
+            "mail": false,
+            "pharmacy_name": "CARRY PHARMACY INC",
             "retail": true
         }
     ]
@@ -347,11 +347,11 @@ The In-Network Pharmacy Endpoint returns in-network pharmacies for a plan.
 | /pharmacy/network/     | GET         | Get a list of pharmacies meeting certain search criteria                 |
 | /pharmacy/network/{id} | GET         | Retrieve the data for a specified pharmacy; the ID is the provider’s NPI |
 
-To use the In-Network Pharmacy Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number PBP number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility. 
- 
+To use the In-Network Pharmacy Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number PBP number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility.
+
 A list of pharmacies will be returned for a given location and radius. The in-network pharmacy endpoint defaults to retail pharmacies.
 
-The response will include details about the pharmacy such as name, address, phone number, etc. 
+The response will include details about the pharmacy such as name, address, phone number, etc.
 
 The /pharmacy/network endpoint accepts the following parameters:
 
