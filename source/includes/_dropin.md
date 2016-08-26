@@ -4,6 +4,7 @@ The PokitDok Drop-in UI enables anyone to add functionality like eligibility che
 * One simple drop-in with full customization
 * All major insurance carriers
 * Detailed eligibility info including deductible status and co-pays
+* Out-of-pocket cost estimation based on location and eligibility information
 
 
 ## 1. Get Drop-in Token
@@ -19,7 +20,7 @@ provide the base URL of the site that you intend on embedding the widget (i.e.- 
 <script src="https://platform.pokitdok.com/sdk/dropin.min.js"></script>
 ```
 
-Include the `pd-dropin.min.js` file in your website.
+Include the `dropin.min.js` file in your website.
 
 
 ## 3. Add HTML Container
@@ -42,7 +43,7 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 
 Call the `pokitdok.dropin` function, using your PokitDok Platform `Drop-In Token` and <a href='/#options'>options</a>.
 
-The drop-in UI form will auto-populate in the HTML container that you specified, and you can run eligibility checks right away.
+The drop-in UI form will auto-populate in the HTML container that you specified.
 
 ## Types
 There are two types of drop-in UIs to choose from:
@@ -82,19 +83,21 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 }
 ```
 
-Displays a form that requires all the same fields as the eligibility type, with an added required procedure field.
-Returns an out of pocket cost estimation based on average insurance prices for the procedure that was selected, as well as
-eligibility information. Displays in an easy to read format with detailed info including deductible status and co-pays.
+Displays a form that requires all the same fields as the eligibility type, with an added required procedure field and geolocation functionality
+for closest possible price estimation. Returns an out of pocket cost estimation based on average insurance prices and location information for the procedure that was selected, as well as
+eligibility. Displays in an easy to read format with detailed info including deductible status and co-pays.
 
 #### Calculator Specific Options:
 
-Name                    | Description
-------------------------|--------------------------------------------------------------------------------------
-procedures              | An array of procedures to populate the procedure dropdown with
-values.procedure        | The procedure that will be auto-selected once the form loads
-showPriceRange          | Show insurance price and out-of-pocket estimate results as a range of prices rather than an average
-showCalculatorMessages  | Show a message below the out-of-pocket results explaining how calculation was made
-eligibilityResultsFirst | On results page, show eligibility results first and out-of-pocket results below that
+Name                    | Type                    | Default  | Description
+------------------------|-------------------------|----------|--------------------------------------------------------------------------------------
+procedures              | Array                   | Null     | Procedure(s) to populate the procedure dropdown with; `name` and `cpt_code` are required
+procedures.name         | String                  | Null     | The name of the procedure that will show in the form dropdown
+procedures.cpt_code     | String/Array (cpt code) | Null     | Either an array of associated CPT Codes or a string of a single CPT Code for the procedure
+values.procedure        | String/Array (cpt code) | Null     | The procedure that will be auto-selected once the form loads
+showPriceRange          | Boolean                 | False    | Show insurance price and out-of-pocket estimate results as a range of prices rather than an average
+showCalculatorMessages  | Boolean                 | False    | Show a message below the out-of-pocket results explaining how calculation was made
+eligibilityResultsFirst | Boolean                 | False    | On results page, show eligibility results first and out-of-pocket results below that
 
 ## Options
 
@@ -107,6 +110,10 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
     styles: 'http://www.example.com/styles.css',
     values: {
         'trading_partner_id': 'MOCKPAYER'
+    },
+    pieChartColors: {
+        'fill': '#000000',
+        'background': '#333333'
     },
     autoSubmit: true,
     resetButton: true,
@@ -131,7 +138,12 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
         "birth_date": "1970-01-01"
     },
     "trading_partner_id": "MOCKPAYER",
-    "procedure": "xxxxx"
+    "procedure": "xxxxx",
+    "provider": {
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    }
 }
 ```
 
@@ -140,13 +152,17 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 'procedures' is required for the calculator type drop-in.
 </aside>
 
-Name              | Description
-------------------|--------------------------------------------------------------------------------------
-container         | The id of the HTML container that the drop-in UI will be housed in
-type              | The only type of drop-in UI currently supported is `eligibility`
-styles            | URL pointing to a css file to override styles with
-values            | An object of values that the form will pre-populate with
-autoSubmit        | False by default; boolean indicating that form should submit automatically once all fields are filled
-resetButton       | False by default; boolean indicating that a button should show that allows form to be reset once submitted (allows for multiple eligibility checks without reloading page)
-onFormSuccess     | Function that gets called when the form has been submitted successfully
-onFormLoad        | Function that gets called when the form has been loaded successfully
+Name                      | Type                | Default  | Description
+--------------------------|---------------------|----------|--------------------------------------------------------------------------------------
+container                 | String              | Null     | The id of the HTML container that the drop-in UI will be housed in
+type                      | String              | Null     | Set the desired functionality of the drop-in; either `eligibility` or `calculator`
+styles                    | String (url)        | Null     | URL pointing to a css file to overwrite styles
+pieChartColors            | Object              | Null     | Change the colors of the pie chart in the eligibility results
+pieChartColors.fill       | String (hex color)  | Null     | Color of the filled-in section of the pie chart on the eligibility results
+pieChartColors.background | String (hex color)  | Null     | Color of the background section of the pie chart on the eligibility results
+values                    | Object              | Null     | An object of values that the form will pre-populate with
+values.provider           | Object              | Null     | NPI to use for eligibility checks
+autoSubmit                | Boolean             | False    | Form should submit automatically once all fields are filled
+resetButton               | Boolean             | False    | A button should show that allows form to be reset once submitted
+onFormSuccess             | Function            | Null     | Call when the form has been submitted successfully
+onFormLoad                | Function            | Null     | Call when the form has been loaded successfully
