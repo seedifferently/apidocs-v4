@@ -131,6 +131,7 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 ```json
 
 {
+    "zip_code": "94401",
     "member": {
         "first_name": "Jane",
         "last_name": "Doe",
