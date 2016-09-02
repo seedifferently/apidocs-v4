@@ -85,6 +85,7 @@ client.pharmacyNetwork(params);
                 "zipcode": "07030"
             },
             "mail": false,
+            "npi": "1427382266",
             "pharmacy_name": "HOBOKEN DRUGS",
             "retail": true
         }
@@ -102,238 +103,61 @@ client.pharmacyNetwork(params);
             "in_network": true,
             "location": {
                 "address_lines": [
-                    "165 Erie St"
+                    "59 Washington St Court St Plz"
                 ],
-                "city": "Jersey City",
-                "country": "US",
+                "city": "Hoboken",
                 "geo_location": [
-                    -74.04339,
-                    40.72829
+                    -74.032718,
+                    40.74409
                 ],
-                "phone": "2019631903",
+                "phone": "2017981889",
                 "state": "NJ",
-                "zipcode": "07302"
+                "zipcode": "07030"
             },
             "mail": false,
-            "pharmacy_name": "NEWPORT PHARMACEUTICAL SERVICES INC",
+            "npi": "1578655056",
+            "pharmacy_name": "New Jersey Cvs Pharmacy Llc",
             "retail": true
         },
         {
             "in_network": true,
             "location": {
                 "address_lines": [
-                    "204 Washington St Apt 1B"
+                    "210 14th St"
                 ],
-                "city": "Jersey City",
-                "country": "US",
+                "city": "Hoboken",
                 "geo_location": [
-                    -74.03771,
-                    40.71469
+                    -74.02829,
+                    40.75364
                 ],
-                "phone": "2013335189",
+                "phone": "4017651500",
                 "state": "NJ",
-                "zipcode": "07302"
+                "zipcode": "07030"
             },
             "mail": false,
-            "pharmacy_name": "HOOK PHARMACY",
+            "npi": "1801919907",
+            "pharmacy_name": "New Jersey Cvs Pharmacy Llc",
             "retail": true
         },
         {
             "in_network": true,
             "location": {
                 "address_lines": [
-                    "325 7th St"
+                    "1320 Shipyard Ln",
+                    "Suite 3-4"
                 ],
-                "city": "Jersey City",
-                "country": "US",
+                "city": "Hoboken",
                 "geo_location": [
-                    -74.04907,
-                    40.72638
+                    -74.024709,
+                    40.751996
                 ],
-                "phone": "2016538378",
+                "phone": "2018760040",
                 "state": "NJ",
-                "zipcode": "07302"
+                "zipcode": "07030"
             },
             "mail": false,
-            "pharmacy_name": "SLM PHARMACY INC",
-            "retail": true
-        },
-        {
-            "in_network": true,
-            "location": {
-                "address_lines": [
-                    "110 Newark Ave"
-                ],
-                "city": "Jersey City",
-                "country": "US",
-                "geo_location": [
-                    -74.04271,
-                    40.71997
-                ],
-                "phone": "2014330108",
-                "state": "NJ",
-                "zipcode": "07302"
-            },
-            "mail": false,
-            "pharmacy_name": "DUANE READE",
-            "retail": true
-        },
-        {
-            "in_network": true,
-            "location": {
-                "address_lines": [
-                    "400 Marin Blvd"
-                ],
-                "city": "Jersey City",
-                "country": "US",
-                "geo_location": [
-                    -74.03995,
-                    40.72313
-                ],
-                "state": "NJ",
-                "zipcode": "07302"
-            },
-            "mail": false,
-            "pharmacy_name": "INSERRA SUPERMARKETS INC",
-            "retail": true
-        },
-        {
-            "in_network": true,
-            "location": {
-                "address_lines": [
-                    "355 Grand St"
-                ],
-                "city": "Jersey City",
-                "country": "US",
-                "geo_location": [
-                    -74.05094,
-                    40.71591
-                ],
-                "phone": "2019152166",
-                "state": "NJ",
-                "zipcode": "07302"
-            },
-            "mail": false,
-            "pharmacy_name": "LSC PHARMACY SERVICES, INC",
-            "retail": true
-        },
-        {
-            "in_network": true,
-            "location": {
-                "address_lines": [
-                    "501 Jersey Ave"
-                ],
-                "city": "Jersey City",
-                "country": "US",
-                "geo_location": [
-                    -74.04745,
-                    40.71944
-                ],
-                "phone": "2014358112",
-                "state": "NJ",
-                "zipcode": "07302"
-            },
-            "mail": false,
-            "pharmacy_name": "NORMANS PHARMACY INC",
-            "retail": true
-        },
-        {
-            "in_network": true,
-            "location": {
-                "address_lines": [
-                    "52 River Dr S"
-                ],
-                "city": "Jersey City",
-                "country": "US",
-                "geo_location": [
-                    -74.032139,
-                    40.727533
-                ],
-                "phone": "2012161166",
-                "state": "NJ",
-                "zipcode": "07310"
-            },
-            "mail": false,
-            "pharmacy_name": "DUANE READE",
-            "retail": true
-        },
-        {
-            "in_network": true,
-            "location": {
-                "address_lines": [
-                    "52 Essex St"
-                ],
-                "city": "Jersey City",
-                "country": "US",
-                "geo_location": [
-                    -74.03595,
-                    40.71295
-                ],
-                "state": "NJ",
-                "zipcode": "07302"
-            },
-            "mail": false,
-            "pharmacy_name": "DOWNTOWN CHEMISTS CORP",
-            "retail": true
-        },
-        {
-            "in_network": true,
-            "location": {
-                "address_lines": [
-                    "129 Newark Ave"
-                ],
-                "city": "Jersey City",
-                "country": "US",
-                "geo_location": [
-                    -74.04401,
-                    40.72019
-                ],
-                "phone": "2013332223",
-                "state": "NJ",
-                "zipcode": "07302"
-            },
-            "mail": false,
-            "pharmacy_name": "FENNY PHARMACY LLC",
-            "retail": true
-        },
-        {
-            "in_network": true,
-            "location": {
-                "address_lines": [
-                    "172 Newark Ave"
-                ],
-                "city": "Jersey City",
-                "country": "US",
-                "geo_location": [
-                    -74.0453,
-                    40.72129
-                ],
-                "phone": "2014323300",
-                "state": "NJ",
-                "zipcode": "07302"
-            },
-            "mail": false,
-            "pharmacy_name": "TRANQUIL PHARM INC",
-            "retail": true
-        },
-        {
-            "in_network": true,
-            "location": {
-                "address_lines": [
-                    "75 Bright St"
-                ],
-                "city": "Jersey City",
-                "country": "US",
-                "geo_location": [
-                    -74.04841,
-                    40.71719
-                ],
-                "phone": "2013324488",
-                "state": "NJ",
-                "zipcode": "07302"
-            },
-            "mail": false,
-            "pharmacy_name": "CARRY PHARMACY INC",
+            "npi": "1295845972",
+            "pharmacy_name": "Rite Aid Of New Jersey Inc",
             "retail": true
         }
     ]
