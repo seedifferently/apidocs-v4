@@ -410,13 +410,11 @@ A formulary is a list of medications that are approved for coverage by an insura
 
 This endpoint returns tier level and restrictions such as prior authorization, step therapy, and quantity limit. Only Medicare Part C and D plans are currently available.
 
-Medications can also have restrictions on their coverage such as prior authorization, step therapy, and quantity limit.
-
 | Endpoint            | HTTP Method | Description                        |
 |:--------------------|:------------|:-----------------------------------|
 | /pharmacy/formulary | GET         | Determine drug coverage for member |
 
-To use the Pharmacy Formulary Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number PBP number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility.
+To use the Pharmacy Formulary Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility.
 
 A medication for which coverage is being determined will need to be specified. This can be done using the drug name, NDC, or RXCUI. A drug name can include the name of the medication, strength, and form. For example, SIMVASTATIN 10 MG TABLET. Simvastatin is the drug name. 10 MG is the strength. Simvastatin can come in other strengths (5mg, 10mg, 20mg, 40mg, and 80mg). The form of this medication is tablet. Some drugs will come in multiple forms. Other examples are capsule, solution, suspension, lotion, cream, etc. The brand name of simvastatin is Zocor. You can search for a drug with just the brand or generic name or any combination of drug +/- strength +/- form.
 
