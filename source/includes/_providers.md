@@ -162,6 +162,7 @@ client.providers(query)
   {
     "distance": 2.0202967583329134,
     "provider": {
+      "entity_type": "organization",
       "fax": "8645821269",
       "locations": [
         {
@@ -185,8 +186,8 @@ client.providers(query)
       "other_organization_name": "Piedmont Rheumatology",
       "phone": "8645827892",
       "specialty": [
-        "Internal Medicine",
-        "Rheumatology"
+        "Rheumatology",
+        "Internal Medicine"
       ],
       "specialty_primary": [
         "Rheumatology"
@@ -207,6 +208,13 @@ client.providers(query)
         "graduation_year": 1997,
         "medical_school": "Sri Devaraj Urs Medical College"
       },
+      "entity_type": "individual",
+      "facilities": [
+        {
+          "npi": "1669425963",
+          "organization_name": "Mary Black Memorial Hospital"
+        }
+      ],
       "fax": "8645821582",
       "first_name": "Muthamma",
       "gender": "Female",
@@ -219,7 +227,7 @@ client.providers(query)
       ],
       "licensures": [
         {
-          "expiration_date": "2017-06-25",
+          "expiration_date": "2017-06-30",
           "number": "28487",
           "state": "SC",
           "status": "active",
@@ -273,8 +281,8 @@ client.providers(query)
         }
       ],
       "specialty": [
-        "Internal Medicine",
-        "Rheumatology"
+        "Rheumatology",
+        "Internal Medicine"
       ],
       "specialty_primary": [
         "Rheumatology"
@@ -290,6 +298,7 @@ client.providers(query)
     "distance": 2.037465294795502,
     "provider": {
       "degree": "MD",
+      "entity_type": "individual",
       "fax": "8645821582",
       "first_name": "KEVIN",
       "gender": "Male",
@@ -342,8 +351,8 @@ client.providers(query)
       "phone": "8645827892",
       "prefix": "DR",
       "specialty": [
-        "Internal Medicine",
-        "Rheumatology"
+        "Rheumatology",
+        "Internal Medicine"
       ],
       "specialty_primary": [
         "Rheumatology"
@@ -403,6 +412,10 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.education                    | {dict}    | Optional: The provider's medical school information                                                                      |
 | provider.education.medical_school     | {string}  | Optional: Provider's medical school                                                                                      |
 | provider.education.graduation_year    | {string}  | Optional: Provider's graduation year                                                                                     |
+| provider.entity_type                  | {string}  | Required: Provider entity type ("individual" or "organization")                                                          |
+| provider.facilities                   | {array}   | Optional: Providers' affiliated facilities                                                                               |
+| provider.facilities.organization_name | {string}  | Required: Facility organization name                                                                                     |
+| provider.facilities.npi               | {string}  | Optional: Facility NPI                                                                                                   |
 | provider.fax                          | {string}  | Optional: The provider's fax number                                                                                      |
 | provider.first_name                   | {string}  | Optional: The provider's first name                                                                                      |
 | provider.gender                       | {string}  | Optional: The provider's gender                                                                                          |
@@ -428,7 +441,7 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.locations.zipcode            | {string}  | Zip code                                                                                                                 |
 | provider.locations.county             | {string}  | County                                                                                                                   |
 | provider.locations.role               | {list}    | Optional: Address role(s). One or both of: ('mailing' or 'practice').  When missing the address is the practice address. |
-| provider.locations.suite              | {string}  | Optional: Address suite																								                                                   |
+| provider.locations.suite              | {string}  | Optional: Address suite																								   |
 | provider.middle_name                  | {string}  | Optional: The provider's middle name or initial                                                                          |
 | provider.npi                          | {string}  | The provider's NPI                                                                                                       |
 | provider.organization_name            | {string}  | Optional: The business practice name                                                                                     |
@@ -453,4 +466,4 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.twitter_url                  | {string}  | Optional: (verified providers only) Provider Twitter URL                                                                 |
 | provider.website_url                  | {string}  | Optional: (verified providers only) Provider website URL                                                                 |
 | distance                              | {string}  | Optional: When sort is 'distance' (default) this is the distance from the city & state or zipcode centroid               |
-| entity_type                           | {string}  | The entity type of the provider. Possibilities are individual and organization.                                          |
+
