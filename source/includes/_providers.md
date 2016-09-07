@@ -159,211 +159,211 @@ client.providers(query)
 
 ```json
 [
-    {
-      "distance": 2.0202967583329134,
-      "provider": {
-        "entity_type": "organization",
-        "fax": "8645821269",
-        "locations": [
-          {
-            "address_lines": [
-              "1770 Skylyn Dr"
-            ],
-            "city": "Spartanburg",
-            "county": "Spartanburg",
-            "fax": "8645821269",
-            "geo_location": [
-              -81.892414,
-              34.980127
-            ],
-            "phone": "8645827892",
-            "state": "SC",
-            "zipcode": "29307"
-          }
-        ],
-        "npi": "1588809198",
-        "organization_name": "Mary Black Physicians Group LLC",
-        "other_organization_name": "Piedmont Rheumatology",
-        "phone": "8645827892",
-        "specialty": [
-          "Rheumatology",
-          "Internal Medicine"
-        ],
-        "specialty_primary": [
-          "Rheumatology"
-        ],
-        "specialty_secondary": [
-          "Allopathic and Osteopathic Physicians (MD/DO)"
-        ],
-        "uuid": "03d41ad4-4744-425c-882f-4136bf5d5d86",
-        "verified": false
-      }
-    },
-    {
-      "distance": 2.0202967583329134,
-      "provider": {
-        "birth_date": "1971",
-        "degree": "MD",
-        "education": {
-          "graduation_year": 1997,
-          "medical_school": "Sri Devaraj Urs Medical College"
-        },
-        "entity_type": "individual",
-        "facilities": [
-          {
-            "npi": "1669425963",
-            "organization_name": "Mary Black Memorial Hospital"
-          }
-        ],
-        "fax": "8645821582",
-        "first_name": "Muthamma",
-        "gender": "Female",
-        "last_name": "Machimada",
-        "licenses": [
-          {
-            "number": "28487",
-            "state": "SC"
-          }
-        ],
-        "licensures": [
-          {
-            "expiration_date": "2017-06-30",
-            "number": "28487",
-            "state": "SC",
-            "status": "active",
-            "verified": "Y"
-          }
-        ],
-        "locations": [
-          {
-            "address_lines": [
-              "1770 Skylyn Dr"
-            ],
-            "city": "Spartanburg",
-            "county": "Spartanburg",
-            "fax": "8645821582",
-            "geo_location": [
-              -81.892414,
-              34.980127
-            ],
-            "phone": "8645827892",
-            "state": "SC",
-            "zipcode": "29307"
-          },
-          {
-            "address_lines": [
-              "1650 Skylyn Dr",
-              "Suite 220"
-            ],
-            "city": "Spartanburg",
-            "county": "Spartanburg",
-            "geo_location": [
-              -81.894438,
-              34.977198
-            ],
-            "state": "SC",
-            "suite": "220",
-            "zipcode": "29307"
-          }
-        ],
-        "middle_name": "J",
-        "npi": "1699725986",
-        "phone": "8645827892",
-        "residencies": [
-          {
-            "institution_name": "University Mo Columbia School Medicine",
-            "type": "Residency"
-          },
-          {
-            "institution_name": "Sri Devaraj Urs Medical College",
-            "to_year": 1997,
-            "type": "Medical School"
-          }
-        ],
-        "specialty": [
-          "Rheumatology",
-          "Internal Medicine"
-        ],
-        "specialty_primary": [
-          "Rheumatology"
-        ],
-        "specialty_secondary": [
-          "Physician"
-        ],
-        "uuid": "e3f3690d-b49b-458f-b83c-f159b7a18b6e",
-        "verified": false
-      }
-    },
-    {
-      "distance": 2.037465294795502,
-      "provider": {
-        "degree": "MD",
-        "entity_type": "individual",
-        "fax": "8645821582",
-        "first_name": "KEVIN",
-        "gender": "Male",
-        "last_name": "TRACY",
-        "licenses": [
-          {
-            "number": "14815",
-            "state": "SC"
-          }
-        ],
-        "locations": [
-          {
-            "address_lines": [
-              "PO Box 277827"
-            ],
-            "city": "Atlanta",
-            "country": "US",
-            "geo_location": [
-              -84.47405,
-              33.844371
-            ],
-            "phone": "8642538080",
-            "role": [
-              "mailing"
-            ],
-            "state": "GA",
-            "zipcode": "30384"
-          },
-          {
-            "address_lines": [
-              "1770 Skylyn Dr"
-            ],
-            "city": "Spartanburg",
-            "country": "US",
-            "fax": "8645821582",
-            "geo_location": [
-              -81.89268,
-              34.97982
-            ],
-            "phone": "8645827892",
-            "role": [
-              "practice"
-            ],
-            "state": "SC",
-            "zipcode": "29307"
-          }
-        ],
-        "middle_name": "PATRICK",
-        "npi": "1215993159",
-        "phone": "8645827892",
-        "prefix": "DR",
-        "specialty": [
-          "Rheumatology",
-          "Internal Medicine"
-        ],
-        "specialty_primary": [
-          "Rheumatology"
-        ],
-        "specialty_secondary": [
-          "Internal Medicine"
-        ],
-        "uuid": "bd67dda2-51c2-4325-999f-73052b372885",
-        "verified": false
-      }
+  {
+    "distance": 2.0202967583329134,
+    "provider": {
+      "entity_type": "organization",
+      "fax": "8645821269",
+      "locations": [
+        {
+          "address_lines": [
+            "1770 Skylyn Dr"
+          ],
+          "city": "Spartanburg",
+          "county": "Spartanburg",
+          "fax": "8645821269",
+          "geo_location": [
+            -81.892414,
+            34.980127
+          ],
+          "phone": "8645827892",
+          "state": "SC",
+          "zipcode": "29307"
+        }
+      ],
+      "npi": "1588809198",
+      "organization_name": "Mary Black Physicians Group LLC",
+      "other_organization_name": "Piedmont Rheumatology",
+      "phone": "8645827892",
+      "specialty": [
+        "Rheumatology",
+        "Internal Medicine"
+      ],
+      "specialty_primary": [
+        "Rheumatology"
+      ],
+      "specialty_secondary": [
+        "Allopathic and Osteopathic Physicians (MD/DO)"
+      ],
+      "uuid": "03d41ad4-4744-425c-882f-4136bf5d5d86",
+      "verified": false
     }
+  },
+  {
+    "distance": 2.0202967583329134,
+    "provider": {
+      "birth_date": "1971",
+      "degree": "MD",
+      "education": {
+        "graduation_year": 1997,
+        "medical_school": "Sri Devaraj Urs Medical College"
+      },
+      "entity_type": "individual",
+      "facilities": [
+        {
+          "npi": "1669425963",
+          "organization_name": "Mary Black Memorial Hospital"
+        }
+      ],
+      "fax": "8645821582",
+      "first_name": "Muthamma",
+      "gender": "Female",
+      "last_name": "Machimada",
+      "licenses": [
+        {
+          "number": "28487",
+          "state": "SC"
+        }
+      ],
+      "licensures": [
+        {
+          "expiration_date": "2017-06-30",
+          "number": "28487",
+          "state": "SC",
+          "status": "active",
+          "verified": "Y"
+        }
+      ],
+      "locations": [
+        {
+          "address_lines": [
+            "1770 Skylyn Dr"
+          ],
+          "city": "Spartanburg",
+          "county": "Spartanburg",
+          "fax": "8645821582",
+          "geo_location": [
+            -81.892414,
+            34.980127
+          ],
+          "phone": "8645827892",
+          "state": "SC",
+          "zipcode": "29307"
+        },
+        {
+          "address_lines": [
+            "1650 Skylyn Dr",
+            "Suite 220"
+          ],
+          "city": "Spartanburg",
+          "county": "Spartanburg",
+          "geo_location": [
+            -81.894438,
+            34.977198
+          ],
+          "state": "SC",
+          "suite": "220",
+          "zipcode": "29307"
+        }
+      ],
+      "middle_name": "J",
+      "npi": "1699725986",
+      "phone": "8645827892",
+      "residencies": [
+        {
+          "institution_name": "University Mo Columbia School Medicine",
+          "type": "Residency"
+        },
+        {
+          "institution_name": "Sri Devaraj Urs Medical College",
+          "to_year": 1997,
+          "type": "Medical School"
+        }
+      ],
+      "specialty": [
+        "Rheumatology",
+        "Internal Medicine"
+      ],
+      "specialty_primary": [
+        "Rheumatology"
+      ],
+      "specialty_secondary": [
+        "Physician"
+      ],
+      "uuid": "e3f3690d-b49b-458f-b83c-f159b7a18b6e",
+      "verified": false
+    }
+  },
+  {
+    "distance": 2.037465294795502,
+    "provider": {
+      "degree": "MD",
+      "entity_type": "individual",
+      "fax": "8645821582",
+      "first_name": "KEVIN",
+      "gender": "Male",
+      "last_name": "TRACY",
+      "licenses": [
+        {
+          "number": "14815",
+          "state": "SC"
+        }
+      ],
+      "locations": [
+        {
+          "address_lines": [
+            "PO Box 277827"
+          ],
+          "city": "Atlanta",
+          "country": "US",
+          "geo_location": [
+            -84.47405,
+            33.844371
+          ],
+          "phone": "8642538080",
+          "role": [
+            "mailing"
+          ],
+          "state": "GA",
+          "zipcode": "30384"
+        },
+        {
+          "address_lines": [
+            "1770 Skylyn Dr"
+          ],
+          "city": "Spartanburg",
+          "country": "US",
+          "fax": "8645821582",
+          "geo_location": [
+            -81.89268,
+            34.97982
+          ],
+          "phone": "8645827892",
+          "role": [
+            "practice"
+          ],
+          "state": "SC",
+          "zipcode": "29307"
+        }
+      ],
+      "middle_name": "PATRICK",
+      "npi": "1215993159",
+      "phone": "8645827892",
+      "prefix": "DR",
+      "specialty": [
+        "Rheumatology",
+        "Internal Medicine"
+      ],
+      "specialty_primary": [
+        "Rheumatology"
+      ],
+      "specialty_secondary": [
+        "Internal Medicine"
+      ],
+      "uuid": "bd67dda2-51c2-4325-999f-73052b372885",
+      "verified": false
+    }
+  }
 ]
 ```
 
