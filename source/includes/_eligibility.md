@@ -2183,6 +2183,21 @@ The /eligibility/ response contains the following fields:
 | gender                     | The subscriber’s gender as specified on their policy. Possible values include: 'female', 'male', and 'unknown'. 'unknown' will be returned when gender is not specified in the trading partner's eligibility data or when the trading partner explicitly returns a value of 'unknown'.           |
 | relationship               | The subscriber's relationship.                                                                                                                                                                                                                                                                   |
 | group_number               | Group number for the subscriber.                                                                                                                                                                                                                                                                 |
+| military_personnel_information | Information pertaining to the subscriber's military service.  This information may be returned for dependents as well.  Uses the military personnel information [object](#eligibility-military).
+										|
+<a name="eligibility-military"></a>
+###Military Personnel Information Object
+
+| Parameter                  | Description                                                                                                                                                                                                                                                                                      |
+|:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| information_status         | The status of the subscriber's military information.  (ex: partial, current, prior)                                                                                                                                                                                   				                                |
+| employment_status          | The status of the subscriber's military employment.  (ex: active_reserve, contractor, retired_military_usa)                                                                                                                                                                                    |
+| government_service_affiliation     | The government service affiliation of the subscriber. (ex: air_force, army, navy)                                                                                                                                                                                                          |
+| description                | Used to clarify the exact military unit.                                                                                                                                                                                                                                                           |
+| rank                       | The subscriber's military rank.                                                                                                                                                                                                                                                                    |
+| start_date                 | The start date defined for military service.                                                                                                                                                                                                                                                       |
+| end_date                   | The end date defined for military service.                                                                                                                                                                                                                                                         |
+
 
 <a name="eligibility-delivery"></a>
 ###Delivery object:
