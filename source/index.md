@@ -45,6 +45,7 @@ includes:
   - common
   - apicallbacks
   - apidashboard
+  - dropin
 
 search: true
 

@@ -3,29 +3,29 @@
 > Example request to determine pharmacy plan information:
 
 ```shell
-curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json"  'https://platform.pokitdok.com/api/v4/pharmacy/plans?trading_partner_id=medicare_national&plan_number=S5884114'
+curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json"  'https://platform.pokitdok.com/api/v4/pharmacy/plans?trading_partner_id=medicare_national&plan_number=S5820003'
 ```
 
 ```python
-client.pharmacy_plans(trading_partner_id='medicare_national', plan_number='S5884114')
+client.pharmacy_plans(trading_partner_id='medicare_national', plan_number='S5820003')
 ```
 
 ```ruby
-client.pharmacy_plans(trading_partner_id:'medicare_national', plan_number:'S5884114')
+client.pharmacy_plans(trading_partner_id:'medicare_national', plan_number:'S5820003')
 ```
 
 ```csharp
 client.pharmacyPlans(
                   new Dictionary<string, string> {
                     {"trading_partner_id", "medicare_national"},
-                    {"plan_number", "S5884114"}
+                    {"plan_number", "S5820003"}
                 });
 ```
 
 ```java
 Map<String, Object> params = new HashMap<String, Object>();
 params.put("trading_partner_id", "medicare_national");
-params.put("plan_number", "S5884114");
+params.put("plan_number", "S5820003");
 client.pharmacyPlans(params);
 ```
 
@@ -34,49 +34,56 @@ client.pharmacyPlans(params);
 ```json
 {
     "data": [
-    	{
-        "deductible": {
-            "amount": "360.00",
-            "currency": "USD"
-        },
-        "initial_coverage_limit": {
-            "amount": "3310.00",
-            "currency": "USD"
-        },
-        "mail": {
-            "tier_four_90_day_coins": "0.3",
-            "tier_one_90_day_copay": {
+        {
+            "deductible": {
                 "amount": "0.00",
                 "currency": "USD"
             },
-            "tier_three_90_day_coins": "0.15",
-            "tier_two_90_day_copay": {
-                "amount": "0.00",
-                "currency": "USD"
-            }
-        },
-        "plan_name": "Humana Preferred Rx Plan (PDP)",
-        "plan_number": "S5884114",
-        "premium": {
-            "amount": "27.30",
-            "currency": "USD"
-        },
-        "retail": {
-            "tier_five_30_day_coins": "0.25",
-            "tier_four_30_day_coins": "0.35",
-            "tier_one_30_day_copay": {
-                "amount": "1.00",
+            "initial_coverage_limit": {
+                "amount": "3310.00",
                 "currency": "USD"
             },
-            "tier_three_30_day_coins": "0.2",
-            "tier_two_30_day_copay": {
-                "amount": "2.00",
+            "mail": {
+                "tier_five_90_day_coins": "0.33",
+                "tier_four_90_day_coins": "0.4",
+                "tier_one_90_day_copay": {
+                    "amount": "0.00",
+                    "currency": "USD"
+                },
+                "tier_three_90_day_copay": {
+                    "amount": "90.00",
+                    "currency": "USD"
+                },
+                "tier_two_90_day_copay": {
+                    "amount": "0.00",
+                    "currency": "USD"
+                }
+            },
+            "plan_name": "AARP MedicareRx Preferred (PDP)",
+            "plan_number": "S5820003",
+            "premium": {
+                "amount": "65.80",
                 "currency": "USD"
-            }
-        },
-        "trading_partner_id": "medicare_national"
-    }
-  ]
+            },
+            "retail": {
+                "tier_five_30_day_coins": "0.33",
+                "tier_four_30_day_coins": "0.4",
+                "tier_one_30_day_copay": {
+                    "amount": "4.00",
+                    "currency": "USD"
+                },
+                "tier_three_30_day_copay": {
+                    "amount": "35.00",
+                    "currency": "USD"
+                },
+                "tier_two_30_day_copay": {
+                    "amount": "8.00",
+                    "currency": "USD"
+                }
+            },
+            "trading_partner_id": "medicare_national"
+        }
+    ]
 }
 ```
 
@@ -91,7 +98,7 @@ Available Pharmacy Plans Endpoints:
 |:---------------|:------------|:----------------------------------------|
 | /pharmacy/plans | GET         | Determine pharmacy plan info for member |
 
-To use the Pharmacy Plans Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number PBP number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility. 
+To use the Pharmacy Plans Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number PBP number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility.
 
 The /pharmacy/plans endpoint accepts the following parameters:
 
@@ -102,7 +109,7 @@ The /pharmacy/plans endpoint accepts the following parameters:
 
 The Pharmacy Plans Endpoint allows you to dive into the member’s drug benefit and discover details about the plan.
 
-Medicare drug plans have different phases of coverage, including deductible, initial coverage, gap coverage, and catastrophic coverage. Each phase has a different out of pocket cost for covered medications. The copays included in the Pharmacy Plan Endpoint are for the member during the Initial Coverage Phase. 
+Medicare drug plans have different phases of coverage, including deductible, initial coverage, gap coverage, and catastrophic coverage. Each phase has a different out of pocket cost for covered medications. The copays included in the Pharmacy Plan Endpoint are for the member during the Initial Coverage Phase.
 Medications are grouped into tiers or levels. Plans may have several tiers and the copay for a drug depends on which tier the drug is in. Usually the lower tiers contain less expensive medications and the higher tiers are reserved for more expensive medications. Each tier level will have either a copay or coinsurance associated with it. The copay will be a dollar amount that the member will be responsible for paying out of pocket. Ex. retail_30_day_tier_1_copay The co-insurance will be a percentage of the total cost of the drug that the member will pay out of pocket. Ex. retail_30_day_tier_4_coins
 
 The /pharmacy/plans response contains the following fields:
