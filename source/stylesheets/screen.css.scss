@@ -441,6 +441,13 @@ html, body {
 
     td {
       padding: 10px;
+      /* For Firefox */
+      white-space: pre-wrap;
+      word-break: break-all;
+
+      /* For Chrome and IE */
+      word-wrap: break-word;
+      min-width: 100px;
     }
 
     tr:last-child {
