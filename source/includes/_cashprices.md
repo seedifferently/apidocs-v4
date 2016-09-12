@@ -78,24 +78,24 @@ metropolitan areas. There are approximately 900 "geozips" in the United States.
 
 The /prices/cash endpoint accepts the following parameters:
 
-| Parameter| Type     | Description                                |
-|:---------|:---------|:-------------------------------------------|
-| cpt_code | {string} | The CPT code of the procedure in question  |
-| zip_code | {string} | Zip code in which to search for procedures |
+| Parameter| Type     | Description                                | Presence |
+|:---------|:---------|:-------------------------------------------|:---------|
+| cpt_code | {string} | The CPT code of the procedure in question  | Required |
+| zip_code | {string} | Zip code in which to search for procedures | Required |
 
 The /prices/cash response contains the following fields:
 
-| Field                  | Type      | Description                                                               |
-|:-----------------------|:----------|:--------------------------------------------------------------------------|
-| average_price          | {decimal} | The average cash price for the procedure                                  |
-| cpt_code               | {string}  | The CPT code of the procedure                                             |
-| pokitdok_procedure_urn | {string}  | A URN that uniquely identifies the procedure                              |
-| procedure_description  | {string}  | The description of the procedure                                          |
-| geo_zip_area           | {string}  | The three character zip code tabulation area code                         |
-| high_price             | {decimal} | The maximum price for the procedure                                       |
-| low_price              | {decimal} | The lowest price for the procedure                                        |
-| median_price           | {decimal} | The median price for the procedure                                        |
-| standard_deviation     | {decimal} | The standard deviation, or variation measure, of prices for the procedure |
+| Field                  | Type      | Description                                                               | Presence |
+|:-----------------------|:----------|:--------------------------------------------------------------------------|:---------|
+| average_price          | {decimal} | The average cash price for the procedure                                  | Required |
+| cpt_code               | {string}  | The CPT code of the procedure                                             | Required |
+| pokitdok_procedure_urn | {string}  | A URN that uniquely identifies the procedure                              | Required |
+| procedure_description  | {string}  | The description of the procedure                                          | Required |
+| geo_zip_area           | {string}  | The three character zip code tabulation area code                         | Required |
+| high_price             | {decimal} | The maximum price for the procedure                                       | Required |
+| low_price              | {decimal} | The lowest price for the procedure                                        | Required |
+| median_price           | {decimal} | The median price for the procedure                                        | Required |
+| standard_deviation     | {decimal} | The standard deviation, or variation measure, of prices for the procedure | Required |
 
 Currently the Cash Prices endpoint only supports the top fifty procedures. A list of these procedures and their corresponding cpt_codes can be seen below.
 

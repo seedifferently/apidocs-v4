@@ -120,15 +120,15 @@ Available Medical Procedure Code Endpoints:
 
 The /mpc/ endpoint accepts the following parameters:
 
-| Parameter   | Type     | Description                                                                      |
-|:------------|:---------|:---------------------------------------------------------------------------------|
-| name        | {string} | Search medical procedure information by consumer friendly name                   |
-| description | {string} | A partial or full description to be used to locate medical procedure information |
+| Parameter   | Type     | Description                                                                      | Presence |
+|:------------|:---------|:---------------------------------------------------------------------------------|:---------|
+| name        | {string} | Search medical procedure information by consumer friendly name                   | Optional |
+| description | {string} | A partial or full description to be used to locate medical procedure information | Optional |
 
 The /mpc/ response contains the following fields:
 
-| Field       | Type     | Description                                        |
-|:------------|:---------|:---------------------------------------------------|
-| code        | {string} | The procedure code                                 |
-| name        | {string} | A consumer friendly name for the medical procedure |
-| description | {string} | The medical procedure's clinical description       |
+| Field       | Type     | Description                                        | Presence |
+|:------------|:---------|:---------------------------------------------------|:---------|
+| code        | {string} | The procedure code                                 | Required |
+| name        | {string} | A consumer friendly name for the medical procedure | Required |
+| description | {string} | The medical procedure's clinical description       | Optional |
