@@ -158,9 +158,14 @@ client.request('/oop/insurance-estimate', method='post', params={
        "coinsurance": ["0.0"],
        "deductible": "2983.57",
        "estimate": ["130"],
+       "high_price": {"amount": "244.6", "currency": "USD"},
+       "low_price": {"amount": "84.24", "currency": "USD"},
+       "lower_estimate": ["84"],
        "max_oop": "2983.57",
+       "messages": ["Deductible of 2983.57 has not been met."],
        "price": {"amount": "130.3855", "currency": "USD"},
-       "service_type_codes": [["98"]]
+       "service_type_codes": [["98"]],
+       "upper_estimate": ["245"]
     },
     "eligibility": {
         "client_id": "<client_id>",
@@ -602,6 +607,8 @@ Available OOP Insurance Endpoints:
 | /oop/insurance-estimate   | POST        | Returns estimated out of pocket cost and eligibility information for a given procedure          |
 
 The /oop/insurance-load-price endpoint is used to load pricing data that is used in the /oop-insurance-estimate endpoint's calculations.
+The /oop/insurance-load-price endpoint may also be used to retrieve pricing data, specific to the client that loaded it.
+Sending a request that includes only the trading_partner_id and cpt_bundle parameters will either return the currently loaded price or, if no price has been loaded, return an error response.
 
 The /oop/insurance-load-price endpoint accepts the following parameters:
 
