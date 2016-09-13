@@ -612,28 +612,30 @@ Sending a request that includes only the trading_partner_id and cpt_bundle param
 
 The /oop/insurance-load-price endpoint accepts the following parameters:
 
-| Parameter          | Type     | Description                                                                                   |
-|:-------------------|:---------|:----------------------------------------------------------------------------------------------|
-| trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the Trading Partners endpoint.    |
-| cpt_bundle         | {array}  | Collection of {string} CPT codes which would be billed as a bundle with a single price        |
-| price.amount       | {string} | The price of the bundle of procedures in the cpt_bundle                                       |
-| price.currency     | {string} | Optional: The denomination of the currency of the price.amount. Defaults to 'USD'             |
+| Parameter          | Type     | Description                                                                                   | Presence |
+|:-------------------|:---------|:----------------------------------------------------------------------------------------------|:------------------|
+| trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the Trading Partners endpoint.    | Required |
+| cpt_bundle         | {array}  | Collection of {string} CPT codes which would be billed as a bundle with a single price        | Required |
+| price.amount       | {string} | The price of the bundle of procedures in the cpt_bundle                                       | Optional (include to load price, do not include to retrieve price) |
+| price.currency     | {string} | Optional: The denomination of the currency of the price.amount. Defaults to 'USD'             | Optional (include to load price, do not include to retrieve price) |
 
 The /oop/insurance-load-price response contains the aforementioned fields and activity tracking meta data.
 
 The /oop/insurance-estimate endpoint accepts the following parameters:
 
-| Parameter                             | Type     | Description                                                                                                                                                                        |
-|:--------------------------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| trading_partner_id                    | {string} | Unique id for the intended trading partner, as specified by the Trading Partners endpoint.                                                                                         |
-| cpt_bundle                            | {array}  | Collection of {string} CPT codes which would be billed as a bundle with a single price                                                                                             |
-| eligibility.provider.npi              | {string} | The NPI for the provider.                                                                                                                                                          |
-| eligibility.provider.organization_name| {string} | The provider’s name when the provider is an organization.                                                                                                                          |
-| eligibility.member.first_name         | {string} | The named insured’s first name as specified on their policy.                                                                                                                       |
-| eligibility.member.last_name          | {string} | The named insured’s last name as specified on their policy.                                                                                                                        |
-| eligibility.member.birth_date         | {string} | The named insured’s birth date as specified on their policy. May be omitted if member.id is provided. In ISO8601 format (YYYY-MM-DD).                                              |
-| eligibility.member.id                 | {string} | The named insured’s member identifier. May be omitted if member.birth_date is provided.                                                                                            |
-| zip_code                              | {string} | Optional: Used as a back up price data source if the trading partner has not loaded data for the chosen cpt_bundle. Hits the Insurance Prices endpoint to get prices based on area |
+| Parameter                             | Type     | Description                                                                                                                                                                        | Presence |
+|:--------------------------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|
+| trading_partner_id                    | {string} | Unique id for the intended trading partner, as specified by the Trading Partners endpoint.                                                                                         | Required |
+| cpt_bundle                            | {array}  | Collection of {string} CPT codes which would be billed as a bundle with a single price                                                                                             | Required |
+| eligibility.provider.npi              | {string} | The NPI for the provider.                                                                                                                                                          | Optional |
+| eligibility.provider.organization_name| {string} | The provider’s name when the provider is an organization.                                                                                                                          | Optional |
+| eligibility.member.first_name         | {string} | The named insured’s first name as specified on their policy.                                                                                                                       | Optional |
+| eligibility.member.last_name          | {string} | The named insured’s last name as specified on their policy.                                                                                                                        | Optional |
+| eligibility.member.birth_date         | {string} | The named insured’s birth date as specified on their policy. May be omitted if member.id is provided. In ISO8601 format (YYYY-MM-DD).                                              | Optional |
+| eligibility.member.id                 | {string} | The named insured’s member identifier. May be omitted if member.birth_date is provided.                                                                                            | Optional |
+| zip_code                              | {string} | Optional: Used as a back up price data source if the trading partner has not loaded data for the chosen cpt_bundle. Hits the Insurance Prices endpoint to get prices based on area | Optional |
+
+If eligibility information is not provided, generated eligibility data will be used, and a less accurate out of pocket estimate may be generated.
 
 While the endpoint accepts a five-digit zip code, only the first three digits
 are significant. This is because the index is only granular to the first three
@@ -643,14 +645,21 @@ metropolitan areas. There are approximately 900 "geozips" in the United States.
 
 The /oop/insurance-estimate response contains the following fields:
 
-| Field                                                 | Description                                                                                                                                                                     |
-|:------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| calculation.coinsurance                               | Collection of coinsurance values used to calculate estimate. Number of coinsurances returned will depend on eligibility response and will equal number of estimates returned.   |
-| calculation.deductible                                | Deductible returned from eligibility response and used in calculation                                                                                                           |
-| calculation.estimate                                  | Collection of out of pocket cost estimates                                                                                                                                      |
-| calculation.max_oop                                   | Max out of pocket cost returned from eligibility response                                                                                                                       |
-| calculation.price.amount                              | Base price of cpt bundle returned from either the trading partner loaded prices or the Insurance Prices endpoint based on zip code                                              |
-| calculation.price.currency                            | The denomination of the currency of the calculation.price.amount                                                                                                                |
-| calculation.service_type_codes                        | Collection of collections of service type codes that correspond to coinsurance and estimate collections                                                                         |
-| eligibility                                           | Full eligibility response from eligibility endpoint. See eligibility documentation above for more information                                                                   |
+| Field                                                 | Description                                                                                                                                                                     | Presence |
+|:------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|
+| calculation.coinsurance                               | Collection of coinsurance values used to calculate estimate. Number of coinsurances returned will depend on eligibility response and will equal number of estimates returned.   | Required |
+| calculation.deductible                                | Deductible returned from eligibility response and used in calculation                                                                                                           | Required |
+| calculation.estimate                                  | Collection of out of pocket cost estimates based on price.amount                                                                                                                | Required |
+| calculation.high_price.amount                         | High end price of cpt bundle returned from either the trading partner loaded prices or the Insurance Prices endpoint based on zip code                                          | Required |
+| calculation.high_price.currency                       | The denomination of the currency of the calculation.high_price.amount                                                                                                           | Required |
+| calculation.low_price.amount                          | Low end price of cpt bundle returned from either the trading partner loaded prices or the Insurance Prices endpoint based on zip code                                           | Required |
+| calculation.low_price.currency                        | The denomination of the currency of the calculation.low_price.amount                                                                                                            | Required |
+| calculation.lower_estimate                            | Collection of out of pocket cost estimates based on low_price.amount                                                                                                            | Required |
+| calculation.max_oop                                   | Max out of pocket cost returned from eligibility response                                                                                                                       | Required |
+| calculation.messages                                  | Collection of messages that describe factors that influenced the estimate calculation                                                                                           | Optional |
+| calculation.price.amount                              | Base price of cpt bundle returned from either the trading partner loaded prices or the Insurance Prices endpoint based on zip code                                              | Required |
+| calculation.price.currency                            | The denomination of the currency of the calculation.price.amount                                                                                                                | Required |
+| calculation.service_type_codes                        | Collection of collections of service type codes that correspond to coinsurance and estimate collections                                                                         | Required |
+| calculation.upper_estimate                            | Collection of out of pocket cost estimates based on high_price.amount                                                                                                           | Required |
+| eligibility                                           | Full eligibility response from eligibility endpoint. See eligibility documentation above for more information                                                                   | Required |
 
