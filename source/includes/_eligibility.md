@@ -2543,7 +2543,6 @@ Most common reject_reasons on the eligibility response with description:
 | invalid_subscriber_id           | subscriber id not found                                                                                                                                |
 | invalid_subscriber_insured_id   | subscriber id not found                                                                                                                                |
 | invalid_subscriber_insured_name | subscriber name not found                                                                                                                              |
-| invalid_subscriber_insured_name | subscriber name not found                                                                                                                              |
 | subscriber_insured_not_found    | subscriber not found                                                                                                                                   |
 | patient_birth_date_mismatch     | birth date does not match subscriber found                                                                                                             |
 | unable_to_respond_now           | trading partner is experiencing downtime and not able to complete request.  if this is a known outage the response meta section and PokitDok [status page](https://pokitdok.com/status/) will have more details.|
