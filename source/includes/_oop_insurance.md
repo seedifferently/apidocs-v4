@@ -661,5 +661,5 @@ The /oop/insurance-estimate response contains the following fields:
 | calculation.price.currency                            | The denomination of the currency of the calculation.price.amount                                                                                                                | Required |
 | calculation.service_type_codes                        | Collection of collections of service type codes that correspond to coinsurance and estimate collections                                                                         | Required |
 | calculation.upper_estimate                            | Collection of out of pocket cost estimates based on high_price.amount                                                                                                           | Required |
-| eligibility                                           | Full eligibility response from eligibility endpoint. See eligibility documentation above for more information                                                                   | Required |
+| eligibility                                           | Full eligibility response from eligibility endpoint. See [eligibility documentation](#eligibility) above for more information                                                                   | Required |
 
