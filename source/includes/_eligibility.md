@@ -1036,6 +1036,64 @@ a CPT code:
 }
 ```
 
+> Example eligibility response when the trading partner returns multiple reject reason codes and cannot process the request:
+
+```json
+{
+    "client_id": "<client id>",
+    "coverage": {
+        "active": false,
+        "cannot_process": [
+            {
+                "messages": [
+                    {
+                        "message": "Payer cannot process the specified service types."
+                    }
+                ],
+                "service_types": [
+                    "health_benefit_plan_coverage"
+                ],
+                "service_type_codes": [
+                    "30"
+                ]
+            }
+        ]
+    },
+    "follow_up_action": "correct_and_resubmit",
+    "reject_reason": "provider_not_on_file",
+    "subscriber": {
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "id": "W000000000",
+        "last_name": "Doe"
+        "rejections": [
+            {
+                "valid_request": false,
+                "reject_reason": "invalid_date_of_service",
+                "follow_up_action": "correct_and_resubmit"
+            },
+            {
+                "valid_request": false,
+                "reject_reason": "patient_birth_date_mismatch",
+                "follow_up_action": "correct_and_resubmit"
+            },
+            {
+                "valid_request": false,
+                "reject_reason": "death_precedes_date_of_service",
+                "follow_up_action": "resubmission_not_allowed"
+            }
+        ]
+    },
+    "valid_request": false,
+    "trading_partner_id": "MOCKPAYER",
+    "pharmacy": {
+        "is_eligible": false
+    },
+}
+```
+
+
+
 > Sample eligibility response for a successfully executed eligibility request:
 
 ```json
@@ -2108,7 +2166,9 @@ The /eligibility/ response contains the following fields:
 | dependent.last_name                                 | The dependent's last name.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | dependent.id                                        | The dependent's unique identifier.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | dependent.relationship                              | The dependent's relationship.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| payer                                               | The payer returned by the trading partner for the eligibility request. Uses the payer [object](#eligibility-payer).                                                                                                                                                                                                                                                                                                                                                                   |
+| dependent.rejections                                | Reject reasons related to errors in the dependent section of the eligibility submission.                                                                                                                                                                                                                                                                     |
+| payer                                               | The payer returned by the trading partner for the eligibility request. Uses the payer [object](#eligibility-payer).                                                                                                                                                                                                                                                                                                                                                                |
+| payer.rejections                                    | Reject reasons related to errors in the payer section of the eligibility submission.                                                                                                                                                                                                                                                                     |
 | pharmacy.benefits_manager                           | The pharmacy benefits manager information.                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | pharmacy.benefit_date                               | The benefit date associated with the pharmacy. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                                                                                                                                                                                                                                        |
 | pharmacy.benefits_manager.name                      | The name of the entity that is responsible for managing pharmacy benefits.                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -2129,9 +2189,11 @@ The /eligibility/ response contains the following fields:
 | provider.last_name                                  | The provider’s last name when the provider is an individual.                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | provider.suffix                                     | The provider’s suffix when the provider is an individual.                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | provider.pin                                        | The provider’s personal identification number.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| provider.organization_name                          | The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                                                                                                                                                                                                                                                                                                                  |
-| reject_reason                                       | When a trading partner is unable to provide eligibility information for an eligibility request, they will provide a reject reason. A full list of reasons and their description is included [below](#reject-reason).                                                                                                                                                                                                                                                                  |
+| provider.organization_name                          | The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                                                                                                                                                                                  |
+| provider.rejections                                 | Reject reasons related to errors in the provider section of the eligibility submission.                                                                                                                                                                                                                                                                     |
+| reject_reason                                       | When a trading partner is unable to provide eligibility information for an eligibility request, they will provide a reject reason. A full list of reasons and their description is included [below](#reject-reason).                                                                                                                                                                                                                                                        |
 | subscriber                                          | The subscriber associated with the eligibility request. Uses the subscriber [object](#eligibility-subscriber).                                                                                                                                                                                                                                                                                                                                                                        |
+| subscriber.rejections                               | Reject reasons related to errors in the subscriber section of the eligibility submission.                                                                                                                                                                                                                                                                     |
 | trading_partner_id                                  | Unique id for the trading partner used to process the request.                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | service_types                                       | The service type(s) the eligibility request is being made against. A full listing of possible service_types values is included [below](#service-type).                                                                                                                                                                                                                                                                                                                                |
 | service_type_codes                                  | The service type codes the eligibility request is being made against. A full listing of possible service_type_codes values is included [below](#service-type).                                                                                                                                                                                                                                                                                                                        |
@@ -2542,7 +2604,6 @@ Most common reject_reasons on the eligibility response with description:
 							          |
 | invalid_subscriber_id           | subscriber id not found                                                                                                                                |
 | invalid_subscriber_insured_id   | subscriber id not found                                                                                                                                |
-| invalid_subscriber_insured_name | subscriber name not found                                                                                                                              |
 | invalid_subscriber_insured_name | subscriber name not found                                                                                                                              |
 | subscriber_insured_not_found    | subscriber not found                                                                                                                                   |
 | patient_birth_date_mismatch     | birth date does not match subscriber found                                                                                                             |
