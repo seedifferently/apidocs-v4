@@ -179,28 +179,31 @@ The response will include details about the pharmacy such as name, address, phon
 
 The /pharmacy/network endpoint accepts the following parameters:
 
-| Parameter          | Type     | Description                                                                                                                                                    |
-|:-------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](https://platform.pokitdok.com/documentation/v4/#trading-partners) endpoint. |
-| plan_number        | {string} | Member’s plan identification number. Note: If unknown can use X12 270/271 eligibility                                                                          |
-| zipcode            | {string} | Zip code for location                                                                                                                                          |
-| radius             | {string} | Radius of area (miles)                                                                                                                                         |
-| pharmacy_name      | {string} | Name of pharmacy                                                                                                                                               |
-| state              | {string} | Name of U.S. state in which to search for providers (e.g. “CA” or “SC”)                                                                                        |
-| sort               | {string} | Accepted values include ‘distance’ (default) or 'rank’. 'distance’ sort requires city & state or zipcode parameters otherwise sort will be 'rank’.             |
+| Parameter          | Type     | Description                                                                                                                                                    | Presence |
+|:-------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|
+| trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](https://platform.pokitdok.com/documentation/v4/#trading-partners) endpoint. | Required |
+| plan_number        | {string} | Member’s plan identification number. Note: If unknown can use X12 270/271 eligibility                                                                          | Either plan_number or plan_name must be present |
+| plan_name          | {string} | Name of prescription drug plan                                                                                                                                 | Either plan_number or plan_name must be present |
+| zipcode            | {string} | Zip code for location                                                                                                                                          | Optional |
+| radius             | {string} | Radius of area (miles)                                                                                                                                         | Optional |
+| pharmacy_name      | {string} | Name of pharmacy                                                                                                                                               | Optional |
+| state              | {string} | Name of U.S. state in which to search for providers (e.g. “CA” or “SC”)                                                                                        | Optional |
+| sort               | {string} | Accepted values include ‘distance’ (default) or 'rank’. 'distance’ sort requires city & state or zipcode parameters otherwise sort will be 'rank’.             | Optional |
 
 The /pharmacy/network response contains the following fields:
 
-| Field                            | Type      | Description                            |
-|:---------------------------------|:----------|:---------------------------------------|
-| pharmacy.pharmacy_name           | {string}  | Name of pharmacy                       |
-| pharmacy.locations.address_lines | {array}   | Address lines                          |
-| pharmacy.locations.city          | {string}  | City                                   |
-| pharmacy.locations.country       | {string}  | Optional: Country                      |
-| pharmacy.locations.geo_location  | {array}   | GeoJSON array of [longitude, latitude] |
-| pharmacy.locations.phone         | {string}  | Optional: Phone number                 |
-| pharmacy.locations.state         | {string}  | State                                  |
-| pharmacy.locations.zipcode       | {string}  | Zip code                               |
-| pharmacy.mail                    | {boolean} | Is location a mail order pharmacy?     |
-| pharmacy.retail                  | {boolean} | Is location a mail order pharmacy?     |
+| Field                            | Type      | Description                            | Presence |
+|:---------------------------------|:----------|:---------------------------------------|:---------|
+| pharmacy.pharmacy_name           | {string}  | Name of pharmacy                       | Required |
+| pharmacy.npi                     | {string}  | NPI of pharmacy                        | Required |
+| pharmacy.in_network              | {boolean} | True if pharmacy is in-network         | Required |
+| pharmacy.locations.address_lines | {array}   | Address lines                          | Optional |
+| pharmacy.locations.city          | {string}  | City                                   | Optional |
+| pharmacy.locations.country       | {string}  | Country                                | Optional |
+| pharmacy.locations.geo_location  | {array}   | GeoJSON array of [longitude, latitude] | Optional |
+| pharmacy.locations.phone         | {string}  | Phone number                           | Optional |
+| pharmacy.locations.state         | {string}  | State                                  | Optional |
+| pharmacy.locations.zipcode       | {string}  | Zip code                               | Optional |
+| pharmacy.mail                    | {boolean} | Is location a mail order pharmacy?     | Optional |
+| pharmacy.retail                  | {boolean} | Is location a retail order pharmacy?   | Optional |
 

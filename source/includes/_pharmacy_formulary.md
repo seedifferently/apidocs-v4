@@ -430,30 +430,31 @@ The field include_plans may be used if you would like to include an overview of 
 
 The /pharmacy/formulary endpoint accepts the following parameters:
 
-| Parameter          | Type     | Description                                                                                                                                                    |
-|:-------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| trading_partner_id | {string} | Unique id for the intended [trading partner](https://platform.pokitdok.com/documentation/v4/#trading-partners), as specified by the Trading Partners endpoint. |
-| plan_number        | {string} | Member’s plan identification number. Note: If unknown can use X12 270/271 eligibility                                                                          |
-| drug               | {string} | Name of medication, strength, and form. Note: Strength and form are optional                                                                                   |
-| ndc                | {string} | National drug code: a unique 11-digit, 3-segment number used to identify medication                                                                            |
-| rxcui | {string} | An RxNorm concept unique identifier for a drug  |
-| include_plans | {boolean} | If set to true, will return pharmacy plan info in response |
+| Parameter          | Type      | Description                                                                                                                                                    | Presence |
+|:-------------------|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|
+| trading_partner_id | {string}  | Unique id for the intended trading partner, as specified by the [Trading Partners](https://platform.pokitdok.com/documentation/v4/#trading-partners) endpoint. | Required |
+| plan_number        | {string}  | Member’s plan identification number. Note: If unknown can use X12 270/271 eligibility    | Either plan_number or plan_name must be present |
+| plan_name          | {string}  | Name of prescription drug plan                                                           | Either plan_number or plan_name must be present |
+| drug               | {string}  | Name of medication, strength, and form. Note: Strength and form are optional             | Either drug, ndc, or rxcui must be present      |
+| ndc                | {string}  | National drug code: a unique 11-digit, 3-segment number used to identify medication      | Either drug, ndc, or rxcui must be present      |
+| rxcui              | {string}  | An RxNorm concept unique identifier for a drug                                           | Either drug, ndc, or rxcui must be present      |
+| include_plans      | {boolean} | If set to true, will return pharmacy plan info in response                               | Optional                                        |
 
 The /pharmacy/formulary response contains the following fields:
 
-| Field                 | Type      | Description                                                                                        |
-|:----------------------|:----------|:---------------------------------------------------------------------------------------------------|
-| drug                  | {string}  | The full drug name (name + strength + form)                                                        |
-| tier                  | {short}   | The level the drug fall under on the formulary                                                     |
-| tier_name             | {string}  | The name associated with the tier level                                                            |
-| prior_auth            | {boolean} | Does the drug require a prior authorization?                                                       |
-| step_therapy          | {boolean} | Does the drug require step therapy?                                                                |
-| quantity_limit        | {boolean} | Does this drug have a quantity limit?                                                              |
-| limit_amount | {string}  | Optional: Quantity limit amount associated with this drug. The unit of measure is specific to the drug type. |
-| limit_days   | {integer} | Optional: Quantity limit days associated with this drug. E.g. 30                                             |
-| retail.oop_30_day        | {string} | Optional: Estimated out of pocket cost for 30 day supply of drug at an in-network retail pharmacy                                                            |
-| retail.total_cost_30_day | {string} | Optional: Estimated total cost of drug for 30 day supply of drug at an in-network retail pharmacy (average insurance negotiated rate with pharmacy)          |
-| retail.ins_pay_30_day    | {string} | Optional: Estimated amount insurance covers for 30 day supply of drug at an in-network retail pharmacy    |
-| mail.oop_90_day          | {string} | Optional: Estimated out of pocket cost for 90 day supply of drug at an in-network mail order pharmacy                                                        |
-| mail.total_cost_90_day   | {string} | Optional: Estimated total cost of drug for 90 day supply of drug at an in-network mail order pharmacy (average insurance negotiated rate with pharmacy)      |
-| mail.ins_pay_90_day      | {string} | Optional: Estimated amount insurance covers for 90 day supply of drug at an in-network mail order pharmacy |
+| Field                    | Type      | Description                                                                                                                                   | Presence |
+|:-------------------------|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------|:---------|
+| drug                     | {string}  | The full drug name (name + strength + form)                                                                                                   | Required |
+| tier                     | {short}   | The level the drug fall under on the formulary                                                                                                | Required |
+| tier_name                | {string}  | The name associated with the tier level                                                                                                       | Required |
+| prior_auth               | {boolean} | Does the drug require a prior authorization?                                                                                                  | Optional |
+| step_therapy             | {boolean} | Does the drug require step therapy?                                                                                                           | Optional |
+| quantity_limit           | {boolean} | Does this drug have a quantity limit?                                                                                                         | Optional |
+| limit_amount             | {string}  | Quantity limit amount associated with this drug. The unit of measure is specific to the drug type.                                            | Optional |
+| limit_days               | {integer} | Quantity limit days associated with this drug. E.g. 30                                                                                        | Optional |
+| retail.oop_30_day        | {string}  | Estimated out of pocket cost for 30 day supply of drug at an in-network retail pharmacy                                                       | Optional |
+| retail.total_cost_30_day | {string}  | Estimated total cost of drug for 30 day supply of drug at an in-network retail pharmacy (average insurance negotiated rate with pharmacy)     | Optional |
+| retail.ins_pay_30_day    | {string}  | Estimated amount insurance covers for 30 day supply of drug at an in-network retail pharmacy                                                  | Optional |
+| mail.oop_90_day          | {string}  | Estimated out of pocket cost for 90 day supply of drug at an in-network mail order pharmacy                                                   | Optional |
+| mail.total_cost_90_day   | {string}  | Estimated total cost of drug for 90 day supply of drug at an in-network mail order pharmacy (average insurance negotiated rate with pharmacy) | Optional |
+| mail.ins_pay_90_day      | {string}  | Estimated amount insurance covers for 90 day supply of drug at an in-network mail order pharmacy                                              | Optional |
