@@ -1319,6 +1319,40 @@ a CPT code:
                 ]
             }
         ],
+	"benefit_related_entities": [
+           {
+             "address": {
+                 "address_lines": [
+                     "123 TEST ROAD"
+                 ], 
+                 "city": "LITTLE TOWN", 
+                 "state": "CA", 
+                 "zipcode": "12345"
+             }, 
+             "contacts": [
+                 {
+                     "phone": "8001234567"
+                 }
+             ], 
+             "entity_identifier_code": "primary_care_provider", 
+             "entity_type": "organization", 
+             "first_name": "JANET", 
+             "middle_name": "E", 
+             "organization_name": "DOE",
+             "provider_code": "admitting"
+           }, 
+           {
+             "contacts": [
+                 {
+                     "name": "PAYERC BENEFITS HOTLINE", 
+                     "phone": "8006762583"
+                 }
+             ], 
+             "entity_identifier_code": "plan_sponsor", 
+             "entity_type": "organization", 
+             "organization_name": "PAYERC"
+           }
+        ], 
         "deductibles": [
             {
                 "benefit_amount": {
@@ -2006,7 +2040,8 @@ The /eligibility/ response contains the following fields:
 | Field                                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | client_id                                           | The unique identifier associated with the client making the eligibility request.                                                                                                                                                                                                                                                                                                                                                                                                      |
-| coverage.active                                     | A boolean value that is true when the member has active coverage. It is false when membership information could not be returned or when inactive coverage is indicated by the trading partner.                                                                                                                                                                                                                                                                                        |
+| coverage.active                                     | A boolean value that is true when the member has active coverage. It is false when membership information could not be returned or when inactive coverage is indicated by the trading partner.                                                                                                                                                                                                                                                                                      |
+| benefit_related_entities                   | Identifies additional entities associated with eligibility and benefits.  Uses the benefit related entities [object](#benefit-related-entities).                                                                                                                                                                                                                                                                                                                                  |
 | coverage.coverage_details                           | Additional information relating to the coverage.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | coverage.coverage_details.status                    | The status of the coverage.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | coverage.coverage_details.group_or_policy_number    | The group or policy number associated with the coverage.                                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -2221,7 +2256,7 @@ The /eligibility/ response contains the following fields:
 | fax                        | The fax of the payer.                                                                 |
 
 <a name="eligibility-address"></a>
-###Address object:
+###Address Object:
 
 | Field                                 | Description                                                                                                       |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
@@ -2262,7 +2297,7 @@ The /eligibility/ response contains the following fields:
 
 
 <a name="eligibility-delivery"></a>
-###Delivery object:
+###Delivery Object:
 
 | Field                                 | Description                                                                                                                                                                               |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2276,7 +2311,7 @@ The /eligibility/ response contains the following fields:
 | quantity_qualifier                    | The qualifier used to indicate the quantity type. (e.g. visits, month, hours, units, days)                                                                                                |   
 
 <a name="eligibility-monetary-amount"></a>
-###Monetary amount object:
+###Monetary Amount Object:
 
 | Field                                 | Description                                                                                                                                                                               |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2291,6 +2326,32 @@ The /eligibility/ response contains the following fields:
 | limit                                 | Monetary limit value associated with a deductible. Uses the monetary amount [object](#eligibility-monetary-amount).                                                                       |
 | applied                               | Monetary value applied to a deductible. Uses the monetary amount [object](#eligibility-monetary-amount).                                                                                  |
 | remaining                             | Monetary value remaining related to a deductible. Uses the monetary amount [object](#eligibility-monetary-amount).                                                                        |
+
+
+<a name="benefit-related-entities"></a>
+###Benefit Related Entities Object:
+
+| Field                                 | Description                                                                                                                                                                               |
+|:--------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| entity_identifier_code                | Identifies entity as organization, physical location, property or individual.															  |
+| entity_type                           | Defines the entity as either a person or non-person.							                                                                            	          |
+| first_name                            | The first name of the entity if the entity is identified as an individual.			                                                            	                  		  |
+| middle_name	                        | The middle name of the entity if the entity is identified as an individual.															  |
+| last_name                             | The last name of the entity if the entity is identified as an individual.                                                                              		     			      |
+| organization_name                     | The name of the organization if the entity is identified as non-person.
+														  |
+| suffix	                        | The suffix of the entity if the entity is identified as an individual.															  |
+| id_qualifier                          | Indicates the code set being used for for the id (ex: centers_for_medicare_medicaid_npi, federal_taxpayer_identification, facility_identification).                     |
+| id                                    | The identification code for the entity.
+														  |
+| relationship_code                     | The benefit related entity's relationship to the patient.																	  |
+| address                               | The address for the entity.  Uses the address [object](#eligibility-address).                                                                          				              |
+| contacts                              | The contact information for the entity.
+                                                                     				                  |
+| provider_code                         | Identifies the type of provider (ex: admitting, consulting, hospital).                                                                       						             |
+| taxonomy_code                         | The taxonomy code for the entity.
+                                                            						          |
+
 
 <a name="procedure-id-qualifier"></a>
 Full list of possible procedure_id_qualifier values that may be used in the eligiblity request or returned in an eligibility response:
