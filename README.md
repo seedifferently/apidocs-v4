@@ -15,6 +15,10 @@ This repository contains developer docs for the [PokitDok APIs](https://platform
  4. If you do not have a docker host setup already:
      1. Use setup script to create docker-machine: `sh setup-osx.sh`
      2. Look at your docker-machine IP: `docker-machine ip apidocs`
+        
+        If you are on Mac:
+        1. Run `docker-machine env apidocs` to verify the environment variables created by `sh setup-osx.sh`.
+        2. Run the commented out command from sdout to finish configuring your shell (should look something like `eval $(docker-machine env apidocs)`)
  5. Start local server: `docker run -it -p 8080:4567 -v $PWD:/app ruby:2.3 /app/serve.sh`
 
 If you are using docker-machine:
