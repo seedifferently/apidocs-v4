@@ -279,7 +279,7 @@ Map<String, Object> results = client.scheduleSlots(query);
     "appointment_type": "AT1",
     "start_date": "2014-12-25T15:09:34.197709",
     "end_date": "2014-12-25T16:09:34.197717",
-    "booked": false
+    "status": "open"
 }
 ```
 
@@ -360,7 +360,7 @@ client.appointments(query);
         "birth_date": "1970-01-25",
         "email": "john@johndoe.com"
       },
-      "booked": true,
+      "status": "booked",
       "provider_scheduler_uuid": "8b21efa4-8535-11e4-a6cb-0800272e8da1",
       "start_date": "2014-12-25T15:09:34.197709",
       "end_date": "2014-12-25T16:09:34.197717"
@@ -407,7 +407,7 @@ client.appointments("bf8440b1-fd20-4994-bb28-e3981833e796");
         "birth_date": "1970-01-25",
         "email": "john@johndoe.com"
       },
-      "booked": true,
+      "status": "booked",
       "provider_scheduler_uuid": "8b21efa4-8535-11e4-a6cb-0800272e8da1",
       "start_date": "2014-12-25T15:09:34.197709",
       "end_date": "2014-12-25T16:09:34.197717"
@@ -505,7 +505,7 @@ Map<String, Object> results = client.bookAppointment("ef987691-0a19-447f-814d-f8
       "birth_date": "1970-01-25",
       "email": "john@hondoe.com"
     },
-    "booked": true,
+    "status": "booked",
     "description": "Welcome to M0d3rN Healthcare",
     "provider_scheduler_uuid": "e781c97c-8535-11e4-b0b3-0800272e8da1",
     "start_date": "2014-12-25T15:12:09.176207",
@@ -548,7 +548,7 @@ client.book_appointment('ef987691-0a19-447f-814d-f8f3abbf4859', query);
 {
     "appointment_id": "AAMWKTXGVGWB",
     "appointment_type": "OV1",
-    "booked": false,
+    "status": "open",
     "description": "Welcome to M0d3rN Healthcare",
     "provider_scheduler_uuid": "956a9e10-8536-11e4-ba5d-0800272e8da1",
     "start_date": "2014-12-25T15:17:00.948099",
@@ -589,20 +589,25 @@ restrict access to provider's PM systems and user's personal information.
 
 Available Scheduling Endpoints:
 
-| Endpoint                            | HTTP Method | Description                                                                                       | Scope                     | 
-|:------------------------------------|:------------|:--------------------------------------------------------------------------------------------------|:--------------------------|
-| /schedule/schedulers/               | GET         | Get a list of supported scheduling systems and their UUIDs and descriptions.                      |                           |
-| /schedule/schedulers/{uuid}         | GET         | Retrieve the data for a specified scheduling system.                                              |                           |
-| /schedule/appointmenttypes/         | GET         | Get a list of appointment types, their UUIDs, and descriptions.                                   |                           |
-| /schedule/appointmenttypes/{uuid}   | GET         | Retrieve the data for a specified appointment type.                                               |                           |
+| Endpoint                            | HTTP Method | Description                                                                  | Scope                             | 
+|:------------------------------------|:------------|:-----------------------------------------------------------------------------|:----------------------------------|
+| /schedule/schedulers/               | GET         | Get a list of supported scheduling systems and their UUIDs and descriptions. |                                   |
+| /schedule/schedulers/{uuid}         | GET         | Retrieve the data for a specified scheduling system.                         |                                   |
 
 The /schedule/schedulers response includes the following fields:
 
-| Field            | Type           | Description                                             |
-|:-----------------|:---------------|:--------------------------------------------------------|
-| scheduler_uuid   | {uuid}         | The scheduler's unique identifier.                      |
-| name             | {string}       | The name of the provider.                               |
-| description      | {string}       | Brief description of the scheduling system.             |
+| Field            | Type           | Description                                                                                                            |
+|:-----------------|:---------------|:-----------------------------------------------------------------------------------------------------------------------|
+| scheduler_uuid   | {uuid}         | The scheduler's unique identifier.                                                                                     |
+| name             | {string}       | The name of the provider.                                                                                              |
+| description      | {string}       | Brief description of the scheduling system.                                                                            |
+| methods_payloads | {object}       | Conveys messaging information utilized by the Scheduling system, such as SOAP envelopes, message headers/footers, etc. |
+
+
+| Endpoint                            | HTTP Method | Description                                                     | Scope                             | 
+|:------------------------------------|:------------|:--------------------------------------------------------------- |:----------------------------------|
+| /schedule/appointmenttypes/         | GET         | Get a list of appointment types, their UUIDs, and descriptions. |                                   |
+| /schedule/appointmenttypes/{uuid}   | GET         | Retrieve the data for a specified appointment type.             |                                   |
 
 The /schedule/appointmenttypes/ response includes the following fields:
 
@@ -614,6 +619,7 @@ The /schedule/appointmenttypes/ response includes the following fields:
 | description             | {string}       | Brief description of the appointment.                                              |
 | category_id             | {string}       | The category identifier associated with the appointment type                       |
 | duration                | {int}          | Duration of the appointment in minutes.                                            |
+| owner_id                | {string}       | The Platform application associated with the appointment type.                     |
 
 
 | Endpoint                            | HTTP Method | Description                                                                                       | Scope                     | 
@@ -645,13 +651,13 @@ The /schedule/slots/ POST endpoint accepts the following parameters:
 | start_date       | {datetime}     | The beginning date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).       |
 | end_date         | {datetime}     | The ending date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).          |
 
-| Endpoint                                      | HTTP Method | Description                                                                                                                                       | Scope          |
-|:----------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|:---------------|
-| /schedule/appointments/                       | GET         | Query for open appointment slots (using pd_provider_uuid and location) or booked appointments (using patient_uuid) given query parameters.        | user_schedule  |
-| /schedule/appointments/{pd_appointment_uuid}  | GET         | Query for an open appointment slot or a booked appointment given a specific {pd_appointment_uuid}, the (PokitDok unique appointment identifier).  | user_schedule  |
-| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Book appointment for an open slot. Post data contains patient attributes and description.                                                         | user_schedule  |
-| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Update appointment description.                                                                                                                   | user_schedule  |
-| /schedule/appointments/{pd_appointment_uuid}  | DELETE      | Cancel appointment given its {pd_appointment_uuid}.                                                                                               | user_schedule  |
+| Endpoint                                      | HTTP Method | Description                                                                                                                                       | Scope                               |
+|:----------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------|
+| /schedule/appointments/                       | GET         | Query for appointments. business_schedule scope requests include pd_provider_uuid and location. user_schedule requests include  patient_uuid      | user_schedule or business_schedule  |
+| /schedule/appointments/{pd_appointment_uuid}  | GET         | Query for an open appointment slot or a booked appointment given a specific {pd_appointment_uuid}, the (PokitDok unique appointment identifier).  | user_schedule                       |
+| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Book appointment for an open slot. Post data contains patient attributes and description.                                                         | user_schedule                       |
+| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Update appointment description.                                                                                                                   | user_schedule                       |
+| /schedule/appointments/{pd_appointment_uuid}  | DELETE      | Cancel appointment given its {pd_appointment_uuid}.                                                                                               | user_schedule                       |
 
 The /schedule/appointments/ endpoint accepts the following parameters:
 
@@ -669,16 +675,18 @@ The /schedule/appointments/{pd_appointment_uuid} endpoint for booking an appoint
 | Field                   | Type           | Description                                                                                    |
 |:------------------------|:---------------|:-----------------------------------------------------------------------------------------------|
 | pd_appointment_uuid     | {uuid}         | The PokitDok unique identifier for the appointment.                                            |
-| booked                  | {boolean}      | Whether or not the appointment has been booked.                                                |
+| status                  | {string}       | The appointment status: open, booked, or completed.                                            |
 | patient                 | {object}       | Patient associated with the appointment. Uses the patient [object](#scheduling_patient_object).| 
 | description             | {string}       | Brief description of the appointment.                                                          |
 
-The /schedule/appointments/{pd_appointment_uuid} endpoint for updating an appointment description accepts the following parameters:
+The /schedule/appointments/{pd_appointment_uuid} endpoint for either updating an appointment description or marking a booked appointment as completed.
+The endpoint accepts the following parameters:
 
 | Field                   | Type           | Description                                                                                    |
 |:------------------------|:---------------|:-----------------------------------------------------------------------------------------------|
 | pd_appointment_uuid     | {uuid}         | The PokitDok unique identifier for the appointment.                                            |
 | description             | {string}       | Brief description of the appointment.                                                          |
+| mark_completed          | {string}       | Marks a booked appointment as completed.                                                       |                                           
 
 Both the /schedule/slots/ (POST) and /schedule/appointments (GET/PUT) endpoints' response includes the following fields:
 
@@ -690,7 +698,7 @@ Both the /schedule/slots/ (POST) and /schedule/appointments (GET/PUT) endpoints'
 | appointment_type        | {string}       | The "appointment_type" used to identify a specific appointment procedure/category.                         |
 | start_date              | {datetime}     | The beginning date and UTC time of the appointment query. In ISO8601 format (YYYYY-MM-DDThh:mm:ss.ssssss). |
 | end_date                | {datetime}     | The ending date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).     |
-| booked                  | {boolean}      | Whether or not the appointment has been booked.                                                            |
+| status                  | {string}       | The appointment status: open, booked, or completed.                                                        |
 | patient                 | {object}       | Patient associated with the appointment. Uses the patient [object](#scheduling_patient_object).            |  
 | description             | {string}       | Brief description of the appointment.                                                                      |
 
