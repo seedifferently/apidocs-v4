@@ -30,6 +30,7 @@ includes:
   - enrollmentsnapshot
   - icdconvert
   - identity
+  - identityproof
   - insuranceprices
   - mpc
   - oop_insurance
