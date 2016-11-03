@@ -81,7 +81,11 @@ client.pharmacyPlans(params);
                     "currency": "USD"
                 }
             },
-            "trading_partner_id": "medicare_national"
+            "trading_partner_id": "medicare_national",
+            "zipcodes": [
+                "29401",
+                "94401"
+            ]
         }
     ]
 }
@@ -120,6 +124,7 @@ The /pharmacy/plans response contains the following fields:
 | plan_name                      | {string} | Name of prescription drug plan                                                                 | Required |
 | plan_number                    | {string} | Member’s plan identification number.                                                           | Required |
 | trading_partner_id             | {string} | Unique id for the intended trading partner, as specified by the Trading Partners Endpoint      | Required |
+| zipcodes                       | {array}  | A list of zipcodes (strings) for the plan                                                      | Optional |
 | premium                        | {string} | Monthly premium - amount member pays per month for coverage                                    | Optional |
 | deductible                     | {string} | The amount the member must pay out of pocket before initial coverage begins                    | Optional |
 | initial_coverage_limit         | {string} | The total drug cost before the member reaches the donut hole (coverage gap)                    | Optional |
