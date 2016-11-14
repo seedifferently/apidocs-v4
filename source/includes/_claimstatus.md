@@ -97,6 +97,25 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claimsStatus(query);
 ```
 
+```swift
+let data = [
+    "patient": [
+        "birth_date": "1970-01-25",
+        "first_name": "JANE",
+        "last_name": "DOE",
+        "id": "1234567890"
+    ],
+    "provider": [
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003"
+    ],
+    "service_date": "2014-01-25",
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.claimsStatus(params: data)
+```
+
 > Example claim status request when the patient is not the subscriber on the insurance policy:
 
 ```shell
@@ -225,6 +244,31 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claimsStatus(query);
 ```
 
+```swift
+let data = [
+    "patient": [
+        "birth_date": "2000-01-25",
+        "first_name": "JOHN",
+        "last_name": "DOE",
+        "id": "1234567890"
+    ],
+    "provider": [
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003"
+    ],
+    "service_date": "2014-01-25",
+    "subscriber": [
+        "birth_date": "1970-01-25",
+        "first_name": "JANE",
+        "last_name": "DOE",
+        "id": "1234567890"
+    ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.claimsStatus(params: data)
+```
+
 > Example claim status request when the claim service period covers several days:
 
 ```shell
@@ -327,6 +371,26 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claimsStatus(query);
 ```
 
+```swift
+let data = [
+    "patient": [
+        "birth_date": "1970-01-25",
+        "first_name": "JANE",
+        "last_name": "DOE",
+        "id": "1234567890"
+    ],
+    "provider": [
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003"
+    ],
+    "service_date": "2014-01-25",
+    "service_end_date": "2014-01-25",
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.claimsStatus(params: data)
+```
+
 > Example claim status request using a claim tracking id to refine the search:
 
 ```shell
@@ -427,6 +491,26 @@ buf.append("}");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claimsStatus(query);
+```
+
+```swift
+let data = [
+    "patient": [
+        "birth_date": "1970-01-25",
+        "first_name": "JANE",
+        "last_name": "DOE",
+        "id": "1234567890"
+    ],
+    "provider": [
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003"
+    ],
+    "service_date": "2014-01-25",
+    "tracking_id": "ABC12345",
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.claimsStatus(params: data)
 ```
 
 > Example claims status response when the trading partner is unable to locate

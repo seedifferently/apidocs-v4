@@ -13,6 +13,7 @@ These libraries are hosted on
 | Java                | [pokitdok-java](https://github.com/pokitdok/pokitdok-java)       |
 | C#                  | [pokitdok-csharp](https://github.com/pokitdok/pokitdok-csharp)   |
 | NodeJS              | [pokitdok-nodejs](https://github.com/pokitdok/pokitdok-nodejs)   |
+| Swift               | [pokitdok-swift](https://github.com/pokitdok/pokitdok-swift)     |
 
 The following sections go into further detail on the underlying details of
 connecting directly to the PokitDok API. This is of use if you're implementing

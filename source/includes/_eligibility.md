@@ -93,6 +93,24 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
 ```
 
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.eligibility(params: data)
+```
+
 > Example eligibility request to determine general health benefit coverage using the `no_first_name_search` search option:
 
 ```shell
@@ -180,6 +198,23 @@ buf.append("}");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
+```
+
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "last_name": "Doe",
+        "id": "W000000000"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.eligibility(params: data)
 ```
 
 > Example eligibility request to determine general health benefit coverage using the `no_birth_date_search` search option:
@@ -271,6 +306,23 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
 ```
 
+```swift
+let data = [
+    "member": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.eligibility(params: data)
+```
+
 > Example eligibility request to determine general health benefit coverage using the `no_name_search` search option:
 
 ```shell
@@ -353,6 +405,22 @@ buf.append("}");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
+```
+
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "id": "W000000000"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.eligibility(params: data)
 ```
 
 > Example eligibility request to determine general health benefit coverage using the `no_id_search` search option:
@@ -442,6 +510,23 @@ buf.append("}");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
+```
+
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "last_name": "Doe"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.eligibility(params: data)
 ```
 
 > Example eligibility request to determine general health benefit coverage when a member has a specific group number value assigned:
@@ -544,6 +629,25 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
 ```
 
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000",
+        "group_number": "123456"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.eligibility(params: data)
+```
+
 > Example eligibility request when operating on behalf of a member and a specific provider is not yet known:
 
 ```shell
@@ -611,6 +715,19 @@ buf.append("}");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
+```
+
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.eligibility(params: data)
 ```
 
 > Some trading partners support eligibility requests using specific service type codes. Here's an example using a service type code to request eligibility information:
@@ -712,6 +829,25 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
 ```
 
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "service_types": [ "emergency_services" ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.eligibility(params: data)
+```
+
 > Some trading partners support eligibility requests using a CPT code. Here's an example using a CPT code to request eligibility information:
 
 ```shell
@@ -809,6 +945,25 @@ buf.append("}");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
+```
+
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "cpt_code": "81291",
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.eligibility(params: data)
 ```
 
 > Example eligibility request using custom application data for easy handling of asynchronous responses:
@@ -927,6 +1082,29 @@ buf.append("");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.eligibility(query);
+```
+
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "trading_partner_id": "MOCKPAYER",
+    "application_data": [
+        "patient_id": "ABC1234XYZ",
+        "location_id": 123,
+        "transaction_uuid": "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"
+    ]
+] as [String:Any]
+try client.eligibility(params: data)
 ```
 
 > Example eligibility response when the trading partner is unable to respond at this time:
