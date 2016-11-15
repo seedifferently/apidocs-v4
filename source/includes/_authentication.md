@@ -85,6 +85,13 @@ let client = try Pokitdok(token: "your-access-token")
 
 // Using client id and client secret
 let client = try Pokitdok(clientId: "your_client_id", clientSecret: "your_client_secret")
+
+/*
+It is highly recommended that you do not release an iOS app with your Client ID and Client Secret
+strings baked into the app, as they may be vulnerable to exposure there. A suitable alternative
+would be to utilize an external identity service that authenticates your users and requests
+an access token that can then be returned to your app to utilize.
+*/
 ```
 
 

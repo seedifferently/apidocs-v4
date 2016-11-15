@@ -429,7 +429,7 @@ let data = [
     "last_name": "Whitmire",
     "gender": "male"
 ] as [String:Any]
-let client.identity(params: data)
+try client.identity(params: data)
 ```
 
 > Query for identity record history:

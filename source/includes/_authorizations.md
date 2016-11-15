@@ -260,7 +260,7 @@ let data = [
             ]
         ],
         "type": "diagnostic_medical"
-    },
+    ],
     "patient": [
         "birth_date": "1970-01-25",
         "first_name": "JANE",

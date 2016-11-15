@@ -146,7 +146,7 @@ client.request(endpoint, method, data);
 
 ```swift
 let data = ["transition": "cancel"] as [String: Any]
-try client.activities(activityID: "5362b5a064da150ef6f2526c", params: data)
+try client.activities(activityId: "5362b5a064da150ef6f2526c", params: data)
 ```
 
 > Example response: 

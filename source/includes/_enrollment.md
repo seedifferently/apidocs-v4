@@ -440,19 +440,19 @@ let data = [
                         "status": "Unknown"
                     ]
                 ],
-                "late_enrollment": False,
+                "late_enrollment": "false",
                 "maintenance_type": "Addition"
             ],
             [
                 "begin_date": "2015-01-25",
                 "benefit_type": "Dental",
-                "late_enrollment": False,
+                "late_enrollment": "false",
                 "maintenance_type": "Addition"
             ],
             [
                 "begin_date": "2015-01-25",
                 "benefit_type": "Vision",
-                "late_enrollment": False,
+                "late_enrollment": "false",
                 "maintenance_type": "Addition"
             ]
         ],
@@ -470,7 +470,7 @@ let data = [
         "first_name": "JOHN",
         "gender": "Male",
         "group_or_policy_number": "123456001",
-        "handicapped": False,
+        "handicapped": "false",
         "last_name": "DOE",
         "maintenance_reason": "Active",
         "maintenance_type": "Addition",
@@ -479,8 +479,8 @@ let data = [
         "relationship": "Self",
         "ssn": "123456789",
         "subscriber_number": "123456789",
-        "substance_abuse": False,
-        "tobacco_use": False
+        "substance_abuse": "false",
+        "tobacco_use": "false"
     ],
     "trading_partner_id": "MOCKPAYER"
 ] as [String:Any]
@@ -771,7 +771,7 @@ let data = [
                 [
                     "begin_date": "2014-01-25",
                     "benefit_type": "Health",
-                    "late_enrollment": False,
+                    "late_enrollment": "false",
                     "maintenance_type": "Addition"
                 ]
             ],
@@ -780,7 +780,7 @@ let data = [
             "first_name": "JAMES",
             "gender": "Male",
             "group_or_policy_number": "123456001",
-            "handicapped": False,
+            "handicapped": "false",
             "last_name": "DOE",
             "maintenance_reason": "Initial Enrollment",
             "maintenance_type": "Addition",
@@ -792,8 +792,8 @@ let data = [
             "ssn": "987654321",
             "student_status": "Full-time",
             "subscriber_number": "123456789",
-            "substance_abuse": False,
-            "tobacco_use": False
+            "substance_abuse": "false",
+            "tobacco_use": "false"
         ]
     ],
     "master_policy_number": "ABCD012354",
@@ -806,10 +806,10 @@ let data = [
     ],
     "subscriber": [
         "contacts": [],
-        "handicapped": False,
+        "handicapped": "false",
         "member_id": "987654321",
-        "substance_abuse": False,
-        "tobacco_use": False
+        "substance_abuse": "false",
+        "tobacco_use": "false"
     ],
     "trading_partner_id": "MOCKPAYER",
 ] as [String:Any]
@@ -1013,7 +1013,7 @@ let data = [
         "employment_status": "Terminated",
         "first_name": "JOHN",
         "group_or_policy_number": "123456001",
-        "handicapped": False,
+        "handicapped": "false",
         "last_name": "DOE",
         "maintenance_reason": "Termination of Employment",
         "maintenance_type": "Cancellation or Termination",
@@ -1022,8 +1022,8 @@ let data = [
         "relationship": "Self",
         "ssn": "123456788",
         "subscriber_number": "123456789",
-        "substance_abuse": False,
-        "tobacco_use": False
+        "substance_abuse": "false",
+        "tobacco_use": "false"
     ],
     "trading_partner_id": "MOCKPAYER",
 ] as [String:Any]

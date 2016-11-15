@@ -385,10 +385,10 @@ client.appointments(query);
 
 ```swift
 let data = [
-    appointment_type: "SS1",
-    start_date: "2015-01-25T08:00:00",
-    end_date: "2015-01-25T17:00:00",
-    patient_uuid: "8ae236ff-9ccc-44b0-8717-42653cd719d0"
+    "appointment_type": "SS1",
+    "start_date": "2015-01-25T08:00:00",
+    "end_date": "2015-01-25T17:00:00",
+    "patient_uuid": "8ae236ff-9ccc-44b0-8717-42653cd719d0"
 ] as [String:Any]
 try client.appointments(params: data)
 ```

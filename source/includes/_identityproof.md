@@ -121,7 +121,7 @@ let data = [
    "phone": "555-555-5555",
    "address" : [
         "street1" : "1400 Anyhoo Avenue",
-        "street2" : "Apt 15"
+        "street2" : "Apt 15",
         "city" : "Springfield",
         "state_or_province" : "IL",
         "postal_code" : "90210",
