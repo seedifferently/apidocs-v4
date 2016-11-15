@@ -31,6 +31,15 @@ params.put("drug", "simvastatin");
 Map<String, Object> response = client.pharmacyFormulary(params);
 ```
 
+```swift
+let data = [
+    "trading_partner_id": "medicare_national",
+    "plan_number": "S5820003",
+    "drug": "simvastatin"
+] as [String:Any]
+try client.pharmacyFormulary(params: data)
+```
+
 > Example request to determine drug coverage using NDC:
 
 ```shell
@@ -60,6 +69,15 @@ params.put("trading_partner_id", "medicare_national");
 params.put("plan_number", "S5820003");
 params.put("ndc", "00006073554");
 Map<String, Object> response = client.pharmacyFormulary(params);
+```
+
+```swift
+let data = [
+    "trading_partner_id": "medicare_national",
+    "plan_number": "S5820003",
+    "ndc": "00006073554"
+] as [String:Any]
+try client.pharmacyFormulary(params: data)
 ```
 
 > Sample Pharmacy Formulary API response when searching for a drug name (SIMVASTATIN) :

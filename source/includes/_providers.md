@@ -24,6 +24,10 @@ query.put("npi", "1467560003");
 client.providers(query)
 ```
 
+```swift
+try client.providers(npi: "1467560003")
+```
+
 >Example Response:
 
 ```json
@@ -153,6 +157,15 @@ query.put("specialty", "rheumatology");
 query.put("radius", "3mi");
 
 client.providers(query)
+```
+
+```swift
+let data = [
+    "zipcode": "29307",
+    "specialty": "rheumatology",
+    "radius": "3mi"
+] as [String: Any]
+try client.providers(params: data)
 ```
 
 >Example response:

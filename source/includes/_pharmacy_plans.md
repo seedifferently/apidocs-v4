@@ -29,6 +29,14 @@ params.put("plan_number", "S5820003");
 client.pharmacyPlans(params);
 ```
 
+```swift
+let data = [
+    "trading_partner_id": "medicare_national",
+    "plan_number": "S5820003",
+] as [String:Any]
+try client.pharmacyPlans(params: data)
+```
+
 > Example pharmacy plan response for a member with Medicare Part D:
 
 ```json

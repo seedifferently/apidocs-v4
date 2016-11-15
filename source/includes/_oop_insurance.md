@@ -47,6 +47,17 @@ client.request('/oop/insurance-load-price', method='post', params={
 ```java
 ```
 
+```swift
+let data = [
+    "trading_partner_id": "MOCKPAYER",
+    "cpt_bundle":["99385"],
+    "price": [
+        "amount": "750"
+    ]
+] as [String:Any]
+try client.oopLoadPrice(params: data)
+```
+
 > Example Response from /oop/insurance-load-price:
 
 ```json
@@ -148,6 +159,28 @@ client.request('/oop/insurance-estimate', method='post', params={
 ```
 
 ```java
+```
+
+```swift
+let data = [
+    "trading_partner_id" :"MOCKPAYER",
+    "cpt_bundle":["99385"],
+    "zip_code": "29412",
+    "eligibility": [
+           "provider": [
+                "first_name": "JEROME",
+                "last_name": "AYA-AY",
+                "npi": "1467560003"
+           ],
+           "member": [
+               "birth_date": "1970-01-25",
+               "first_name": "Jane",
+               "last_name": "Doe",
+               "id": "W000000000"
+           ]
+     ]
+] as [String:Any]
+try client.oopEstimate(params: data)
 ```
 
 >Example Response from /oop/insurance-estimate:

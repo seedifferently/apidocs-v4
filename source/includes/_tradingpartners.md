@@ -21,6 +21,10 @@ client.trading_partners
 client.tradingPartners();
 ```
 
+```swift
+try client.tradingPartners()
+```
+
 >Example response (for a more complete response please use the test application):
 
 ```json
@@ -80,6 +84,10 @@ client.trading_partners('aetna')
 
 ```java
 client.trading_partners({ trading_partner_id: 'aetna' })
+```
+
+```swift
+try client.tradingPartners(tradingPartnerId: "aetna")
 ```
 
 > Example response:

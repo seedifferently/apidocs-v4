@@ -30,6 +30,10 @@ query.put("cpt_code", "90658");
 client.insurancePrices(query);
 ```
 
+```swift
+try client.insurancePrices(cptCode: "90658", zipCode: "94401")
+```
+
 >Example Response:
 
 ```json

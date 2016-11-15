@@ -6,7 +6,7 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/a
 ```
 
 ```python
-pd.payers()
+client.payers()
 ```
 
 ```csharp
@@ -14,11 +14,15 @@ client.payers();
 ```
 
 ```ruby
-pd.payers
+client.payers
 ```
 
 ```java
-pd.payers();
+client.payers();
+```
+
+```swift
+try client.payers()
 ```
 
 *Available modes of operation: real-time*
