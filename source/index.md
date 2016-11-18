@@ -47,6 +47,7 @@ includes:
   - apicallbacks
   - apidashboard
   - dropin
+  - raw_x12_support
 
 search: true
 
