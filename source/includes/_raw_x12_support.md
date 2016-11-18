@@ -117,6 +117,8 @@ ISA*00*          *00*          *00*X12            *00*X12            *161025*190
 When submitting raw X12 transactions to the platform, you'll need to specify the PokitDok trading partner
 id value in the NM109 segment element where you'd include a payer id with other clearinghouse services.
 This ensures your raw X12 transactions are routed properly for processing.
+Please review our <a href="https://platform.pokitdok.com/tradingpartners">trading partners list</a> for 
+valid trading partner id values.
 If NM109 is not populated with an available PokitDok trading partner id value, an error like the below will be returned:
 
 ```
