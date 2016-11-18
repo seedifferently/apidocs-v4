@@ -58,7 +58,6 @@ class S3_Deployer():
         # Backup from bucket to backup directory
         if self.backup is None: return
 
-        file_paths = []
         bucket_objects = self.client.list_objects(Bucket=self.bucket)
         if not bucket_objects.has_key('Contents'):
             self.empty_bucket = True
@@ -84,7 +83,8 @@ class S3_Deployer():
             try:
                 self.client.download_file(self.bucket, remote_path, local_path)
                 print "File Downloaded: " + remote_path
-            except OSError: pass # trying to download directory, pass
+            except OSError:
+                pass # trying to download directory, pass
         print "Backup Complete.\n"
 
     def deploy_to_bucket(self, bucket_subdir=""):
@@ -96,9 +96,11 @@ class S3_Deployer():
             remote_path = (bucket_subdir + os.sep + local_path.replace(self.directory, "")).strip(os.sep)
             try:
                 print "remote: " + remote_path
-                self.client.upload_file(local_path, self.bucket, remote_path, ExtraArgs={'ACL': 'public-read', 'ContentType': self.get_mimetype(remote_path)})
+                self.client.upload_file(local_path, self.bucket, remote_path,
+                                        ExtraArgs={'ACL': 'public-read', 'ContentType': self.get_mimetype(remote_path)})
                 print "uploaded: " + local_path
-            except botocore.exceptions.ClientError: raise AccessDenied()
+            except botocore.exceptions.ClientError:
+                raise AccessDenied()
             except:
                 print "UPLOAD FAILURE: " + local_path
                 errors += 1
@@ -134,7 +136,8 @@ class S3_Deployer():
         for local_path in self.get_file_paths(self.backup_subdir):
             remote_path = local_path.replace(self.backup_subdir,"")
             try:
-                self.client.upload_file(local_path, self.bucket, remote_path, ExtraArgs={'ACL': 'public-read', 'ContentType': self.get_mimetype(remote_path)})
+                self.client.upload_file(local_path, self.bucket, remote_path,
+                                        ExtraArgs={'ACL': 'public-read', 'ContentType': self.get_mimetype(remote_path)})
                 print "reverted: " + local_path
             except:
                 print "FAILURE: " + local_path
@@ -163,7 +166,8 @@ class S3_Deployer():
         base = mimetypes.guess_type(filename)[0]
         if base is None:
             extension = filename.split('.')[-1]
-            if extension == 'ttf': base = 'application/x-font-ttf'
+            if extension == 'ttf':
+                base = 'application/x-font-ttf'
         return base
 
 
