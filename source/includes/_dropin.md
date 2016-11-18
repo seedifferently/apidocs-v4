@@ -41,7 +41,7 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 })
 ```
 
-Call the `pokitdok.dropin` function, using your PokitDok Platform `Drop-In Token` and <a href='/#options'>options</a>.
+Call the `pokitdok.dropin` function, using your PokitDok Platform `Drop-In Token` and <a href='#options'>options</a>.
 
 The drop-in UI form will auto-populate in the HTML container that you specified.
 
