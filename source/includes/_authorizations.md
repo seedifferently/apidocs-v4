@@ -424,6 +424,9 @@ If the authorization request is sent using a real-time interface, an authorizati
 | suffix                            | The suffix for the provider.                                                                         |
 | tax_id                            | The federal tax id for the provider billing for services. For individual providers, this may be the tax id of the medical practice or organization where a provider works.                                                                        |
 | phone                             | The phone number for the provider.                                                                         |
+| fax                               | The fax number for the provider. |
+| email                             | The e-mail for the provider. |
+| url                               | The website URL for the provider. |
 | taxonomy_code                     | The taxonomy code for the provider.                                                                         |
 | npi                               | The NPI for the provider.                                                                                                                                                              |
 | organization_name                 | The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                   |
