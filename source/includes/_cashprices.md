@@ -29,6 +29,10 @@ query.put("cpt_code", "99385");
 Map<String, Object> results = client.cashPrices(query);
 ```
 
+```swift
+try client.cashPrices(cptCode: "99385", zipCode: "29412")
+```
+
 > Example response:
 
 ```json

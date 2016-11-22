@@ -158,6 +158,36 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.createIdentity(query);
 ```
 
+```swift
+let data = [
+    "prefix": "Mr.",
+    "first_name": "Oscar",
+    "middle_name": "Harold",
+    "last_name": "Whitmire",
+    "suffix": "IV",
+    "birth_date": "2000-05-25",
+    "gender": "male",
+    "email": "oscar@pokitdok.com",
+    "phone": "555-555-5555",
+    "secondary_phone": "333-333-4444",
+    "address": [
+        "address_lines": ["1400 Anyhoo Avenue"],
+        "city": "Springfield",
+        "state": "IL",
+        "zipcode": "90210"
+    ],
+    "identifiers": [
+        [
+            "location": [-121.93831, 37.53901],
+            "provider_uuid": "1917f12b-fb6a-4016-93bc-adeb83204c83",
+            "system_uuid": "967d207f-b024-41cc-8cac-89575a1f6fef",
+            "value": "W90100-IG-88"
+        ]
+    ]
+] as [String:Any]
+try client.createIdentity(params: data)
+```
+
 > Example updating an identity resource
 
 ```shell
@@ -314,6 +344,36 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.updateIdentity(query);
 ```
 
+```swift
+let data = [
+    "prefix": "Mr.",
+    "first_name": "Oscar",
+    "middle_name": "Harold",
+    "last_name": "Whitmire",
+    "suffix": "IV",
+    "birth_date": "2000-05-25",
+    "gender": "male",
+    "email": "oscar@pokitdok.com",
+    "phone": "555-555-5555",
+    "secondary_phone": "333-333-4444",
+    "address": [
+        "address_lines": ["1400 Anyhoo Avenue"],
+        "city": "Springfield",
+        "state": "IL",
+        "zipcode": "90210"
+    ],
+    "identifiers": [
+        [
+            "location": [-121.93831, 37.53901],
+            "provider_uuid": "1917f12b-fb6a-4016-93bc-adeb83204c83",
+            "system_uuid": "967d207f-b024-41cc-8cac-89575a1f6fef",
+            "value": "W90100-IG-88"
+        ]
+    ]
+] as [String:Any]
+try client.updateIdentity(identityUuid: "881bc095-2068-43cb-9783-cce630364122", params: data)
+```
+
 > Query for a single identity resource
 
 ```shell
@@ -334,6 +394,10 @@ client.identity(identity_uuid: "881bc095-2068-43cb-9783-cce630364122")
 
 ```java
 client.identity("881bc095-2068-43cb-9783-cce630364122");
+```
+
+```swift
+try client.identity(identityUuid: "881bc095-2068-43cb-9783-cce630364122")
 ```
 
 > Query for one or more identity resources using parameters:
@@ -359,6 +423,15 @@ client.identity(
 });
 ```
 
+```swift
+let data = [
+    "first_name": "Oscar",
+    "last_name": "Whitmire",
+    "gender": "male"
+] as [String:Any]
+try client.identity(params: data)
+```
+
 > Query for identity record history:
 
 ```shell
@@ -379,6 +452,10 @@ client.identityHistory("881bc095-2068-43cb-9783-cce630364122");
 
 ```java
 client.identityHistory("881bc095-2068-43cb-9783-cce630364122");
+```
+
+```swift
+try client.identityHistory(identityUuid: "881bc095-2068-43cb-9783-cce630364122")
 ```
 
 **Available modes of operation: real-time.**

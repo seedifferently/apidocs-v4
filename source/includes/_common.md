@@ -23,6 +23,10 @@ client.request("/eligibility/", "POST", nil, 'eligibility_request.json')
 client.request("/eligibility/", "POST", ExampleRequests.EligibilityRequest);
 ```
 
+```swift
+try client.request(path: "/eligibility/", method: "POST", params: ExampleRequests.EligibilityRequest)
+```
+
 ```python
 client.request("/identity/4d04d8dc-3d0b-4ea1-8add-4dbc9619e1ae", "PUT", ExampleRequests.UpdateIdentityRequest)
 ```
@@ -107,6 +111,10 @@ See cURL example.
 See cURL example.
 ```
 
+```swift
+See cURL example.
+```
+
 > Insufficient credits
 
 ```shell
@@ -134,6 +142,10 @@ See cURL example.
 ```
 
 ```java
+See cURL example.
+```
+
+```swift
 See cURL example.
 ```
 
@@ -165,6 +177,10 @@ See cURL example.
 ```
 
 ```java
+See cURL example.
+```
+
+```swift
 See cURL example.
 ```
 
@@ -223,6 +239,10 @@ See cURL example.
 ```
 
 ```java
+See cURL example.
+```
+
+```swift
 See cURL example.
 ```
 

@@ -26,6 +26,10 @@ client.claimsConvert('test_claim.837')
 client.claimsConvert("test_claim.837");
 ```
 
+```swift
+try client.claimsCovert(x12ClaimsFilePath: "test_claim.837")
+```
+
 > Example claims convert response when a single claim is included in the uploaded X12 837 file
 
 ```json

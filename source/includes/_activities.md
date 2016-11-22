@@ -21,6 +21,10 @@ client.activities();
 client.activities();
 ```
 
+```swift
+try client.activities()
+```
+
 > Example response:
 
 ```json
@@ -70,6 +74,10 @@ client.activities("5362b5a064da150ef6f2526c");
 HashMap<String, String> params = new HashMap<String, String>();
 params.add("activity_id", "5362b5a064da150ef6f2526c");
 client.activities(params);
+```
+
+```swift
+try client.activities(activityId: "5362b5a064da150ef6f2526c")
 ```
 
 > Example response:
@@ -134,6 +142,11 @@ client.request(endpoint, method, data);
 
 ```java
 // Currently not supported in this language.
+```
+
+```swift
+let data = ["transition": "cancel"] as [String: Any]
+try client.activities(activityId: "5362b5a064da150ef6f2526c", params: data)
 ```
 
 > Example response: 

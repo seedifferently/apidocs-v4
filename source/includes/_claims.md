@@ -245,6 +245,56 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
 ```
 
+```swift
+let data = [
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+    "subscriber": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-25",
+        "gender": "female"
+    ],
+    "claim": [
+        "total_charge_amount": 60.0,
+        "service_lines": [
+            [
+                "procedure_code": "99213",
+                "charge_amount": 60.0,
+                "unit_count": 1.0,
+                "diagnosis_codes": [
+                    "J10.1"
+                ],
+                "service_date": "2016-01-25"
+            ]
+        ]
+    ]
+] as [String:Any]
+try client.claims(params: data)
+```
+
 > Example response:
 
 ```json
@@ -680,6 +730,71 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
 ```
 
+```swift
+let data = [
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+    "patient": [
+        "first_name": "John",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1971-01-25",
+        "gender": "male",
+        "relationship": "child"
+    ],
+    "subscriber": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-25",
+        "gender": "female"
+    ],
+    "claim": [
+        "total_charge_amount": 100.0,
+        "service_lines": [
+            [
+                "procedure_code": "99201",
+                "procedure_modifier_codes": ["GT"],
+                "charge_amount": 100.0,
+                "unit_count": 1.0,
+                "diagnosis_codes": [
+                    "J10.1"
+                ],
+                "service_date": "2016-01-25"
+            ]
+        ]
+    ]
+] as [String:Any]
+try client.claims(params: data)
+```
+
 > Sample Claims request that includes custom application data for easy handling
 of asynchronous responses:
 
@@ -951,6 +1066,61 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
 ```
 
+```swift
+let data = [
+    "application_data": [
+        "patient_id": "ABC1234XYZ",
+        "location_id": 123,
+        "transaction_uuid": "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"
+    ],
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+    "subscriber": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-25",
+        "gender": "female"
+    ],
+    "claim": [
+        "total_charge_amount": 60.0,
+        "service_lines": [
+            [
+                "procedure_code": "99213",
+                "charge_amount": 60.0,
+                "unit_count": 1.0,
+                "diagnosis_codes": [
+                    "J10.1"
+                ],
+                "service_date": "2016-01-25"
+            ]
+        ]
+    ]
+] as [String:Any]
+try client.claims(params: data)
+```
+
 > Sample Claims Request using the patient paid amount to report a cash payment
 encounter for contributing toward a member's deductible:
 
@@ -1208,6 +1378,58 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
 ```
 
+```swift
+let data = [
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "1703 John B White Blvd, Unit A"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+    "subscriber": [
+        "first_name": "JOHN",
+        "last_name": "DOE",
+        "member_id": "W199000000",
+        "address": [
+            "address_lines": ["123 MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-25",
+        "gender": "male"
+    ],
+    "claim": [
+        "place_of_service": "office",
+        "total_charge_amount": 150.0,
+        "patient_paid_amount": 150.0,
+        "service_lines": [
+            [
+                "procedure_code": "11100",
+                "charge_amount": 150.00,
+                "unit_count": 1.0,
+                "diagnosis_codes": [
+                    "L90.9"
+                ],
+                "service_date": "2016-03-25"
+            ]
+        ]
+    ]
+] as [String:Any]
+try client.claims(params: data)
+```
+
 > Sample Claims request when using procedure modifier codes. This example uses
 the "GT" modifier ("via interactive audio and video telecommunications
 systems") which would be suitable for telehealth applications:
@@ -1460,6 +1682,57 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
 ```
 
+```swift
+let data = [
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+    "subscriber": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-25",
+        "gender": "female"
+    ],
+    "claim": [
+        "total_charge_amount": 100.0,
+        "service_lines": [
+            [
+                "procedure_code": "99201",
+                "procedure_modifier_codes": ["GT"],
+                "charge_amount": 100.0,
+                "unit_count": 1.0,
+                "diagnosis_codes": [
+                    "W51.XXXA"
+                ],
+                "service_date": "2016-05-25"
+            ]
+        ]
+    ]
+] as [String:Any]
+try client.claims(params: data)
+```
+
 > Sample Claims request submitting a claim with an application's callback_url specified:
 
 ```shell
@@ -1709,6 +1982,57 @@ buf.append("}");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
+```
+
+```swift
+let data = [
+    "callback_url": "https://yourapp.com/claims/status",
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+    "subscriber": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-25",
+        "gender": "female"
+    ],
+    "claim": [
+        "total_charge_amount": 60.0,
+        "service_lines": [
+            [
+                "procedure_code": "99213",
+                "charge_amount": 60.0,
+                "unit_count": 1.0,
+                "diagnosis_codes": [
+                    "W53.21XA"
+                ],
+                "service_date": "2016-05-25"
+            ]
+        ]
+    ]
+] as [String:Any]
+try client.claims(params: data)
 ```
 
 > Sample Institutional claim for continuing/hospice care:
@@ -2132,6 +2456,93 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
 ```
 
+```swift
+let data = [
+  "billing_provider": [
+    "address": [
+      "address_lines": [
+        "100 New Street"
+      ],
+      "city": "New Town",
+      "state": "CA",
+      "zipcode": "941001001"
+    ],
+    "npi": "1467560003",
+    "organization_name": "TEST FACILITY,LLC",
+    "taxonomy_code": "251G00000X",
+    "tax_id": "123456789"
+  ],
+  "claim": [
+    "admission_date": "2016-02-25",
+    "statement_date": "2016-04-25",
+    "statement_end_date": "2016-04-25",
+    "admission_type": "elective",
+    "admission_source": "not_available",
+    "patient_status": "still_patient",
+    "attending_provider": [
+      "npi": "1467560003",
+      "first_name": "JEAN",
+      "last_name": "SMITH",
+      "taxonomy_code": "251G00000X"
+    ],
+    "claim_frequency": "interim_continuing_claims",
+    "direct_payment": "y",
+    "information_release": "informed_consent",
+    "medical_record_number": "661",
+    "facility_type": "nonhospital_based_hospice",
+    "plan_participation": "assigned",
+    "occurrence_information": [
+      [
+        "occurrence_type": "hospice_certification",
+        "occurrence_date": "2013-03-25"
+      ]
+    ],
+    "value_information": [
+      [
+        "value_type": "service_furnished_location_number",
+        "value": "36420"
+      ]
+    ],
+    "service_lines": [
+      [
+        "charge_amount": "4000",
+        "diagnosis_codes": [
+          "29411"
+        ],
+        "procedure_code": "Q5002",
+        "revenue_code": "0651",
+        "service_date": "2016-04-25",
+        "unit_count": "31",
+        "unit_type": "days",
+        "provider_control_number": "6750000"
+      ]
+    ],
+    "total_charge_amount": "4000"
+  ],
+  "subscriber": [
+    "address": [
+      "address_lines": [
+        "1234 MAIN AVE"
+      ],
+      "city": "NEW TOWN",
+      "state": "CA",
+      "zipcode": "941001001"
+    ],
+    "birth_date": "1930-07-25",
+    "claim_filing_code": "medicare_part_a",
+    "first_name": "JOHN",
+    "gender": "male",
+    "last_name": "SMITH",
+    "member_id": "R12345678",
+    "payer_responsibility": "primary"
+  ],
+  "trading_partner_id": "MOCKPAYER",
+  "transaction_code": "chargeable"
+] as [String:Any]
+try client.claims(params: data)
+```
+
+
 > Claims request registering a callback_url and requesting a mock claim payment callback.
 Your application will receive two callbacks.  The first will contain a claims acknowledgement result.
 The second will contain a mock claim payment where 85% of the charged amount is paid, 5% is adjusted
@@ -2399,6 +2810,60 @@ buf.append("}");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
+```
+
+```swift
+let data = [
+    "callback_url": "https://your-application.com/callback/1234",
+    "application_data": [
+        "mock_claim_payment": True
+    ],
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+    "subscriber": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-25",
+        "gender": "female"
+    ],
+    "claim": [
+        "total_charge_amount": 60.0,
+        "service_lines": [
+            [
+                "procedure_code": "99213",
+                "charge_amount": 60.0,
+                "unit_count": 1.0,
+                "diagnosis_codes": [
+                    "W56.22XA"
+                ],
+                "service_date": "2016-05-25"
+            ]
+        ]
+    ]
+] as [String:Any]
+try client.claims(params: data)
 ```
 
 > Claims request containing information for rendering provider.
@@ -2681,6 +3146,63 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
 ```
 
+```swift
+let data = [
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+    "subscriber": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-25",
+        "gender": "female"
+    ],
+    "claim": [
+        "total_charge_amount": 60.0,
+        "rendering_provider": [
+              "npi": "1467560003",
+              "first_name": "JANE",
+              "last_name": "DOE",
+              "taxonomy_code": "207N00000X"
+
+        ],
+        "service_lines": [
+            [
+                "procedure_code": "99213",
+                "charge_amount": 60.0,
+                "unit_count": 1.0,
+                "diagnosis_codes": [
+                    "V91.35"
+                ],
+                "service_date": "2016-05-25"
+            ]
+        ]
+    ]
+] as [String:Any]
+try client.claims(params: data)
+```
+
 > Sample Claims request for sending service date range, using service date and service end date:
 
 ```shell
@@ -2938,6 +3460,59 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.claims(query);
 ```
 
+```swift
+let data = [
+  "transaction_code": "chargeable",
+  "trading_partner_id": "MOCKPAYER",
+  "billing_provider": [
+    "taxonomy_code": "207Q00000X",
+    "first_name": "Jerome",
+    "last_name": "Aya-Ay",
+    "npi": "1467560003",
+    "address": [
+      "address_lines": [
+        "8311 WARREN H ABERNATHY HWY"
+      ],
+      "city": "SPARTANBURG",
+      "state": "SC",
+      "zipcode": "29301"
+    ],
+    "tax_id": "123456789"
+  ],
+  "subscriber": [
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "member_id": "W000000000",
+    "address": [
+      "address_lines": [
+        "123 N MAIN ST"
+      ],
+      "city": "SPARTANBURG",
+      "state": "SC",
+      "zipcode": "29301"
+    ],
+    "birth_date": "1970-01-25",
+    "gender": "female"
+  ],
+  "claim": [
+    "total_charge_amount": 60.0,
+    "service_lines": [
+      [
+        "procedure_code": "99213",
+        "charge_amount": 60.0,
+        "unit_count": 1.0,
+        "diagnosis_codes": [
+          "X35.XXXD"
+        ],
+        "service_date": "2016-04-25",
+        "service_end_date": "2016-05-25"
+      ]
+    ]
+  ]
+] as [String:Any]
+try client.claims(params: data)
+```
+
 
 > Sample Claims request for sending COB (Coordination of Benefits) between two payers for Payer A.
 
@@ -3061,9 +3636,129 @@ client.claims({
     }
 
 })
-
 ```
 
+```swift
+let data = [
+    "trading_partner_id": "MOCKPAYER",
+    "transaction_code": "chargeable",
+    "receiver": [
+        "organization_name": "MOCKRECEIVER",
+        "id": "MOCKRECEIVER"
+    ],
+    "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+    "subscriber": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-01",
+        "gender": "female",
+        "payer_responsibility": "primary"
+    ],
+    "claim": [
+        "direct_payment": "y",
+        "medical_record_number": "000000000",
+        "information_release": "informed_consent",
+        "patient_signature_on_file": True,
+        "provider_signature": True,
+        "plan_participation": "assigned",
+        "claim_frequency": "original",
+        "patient_control_number": "01010101010101",
+        "place_of_service": "office",
+        "total_charge_amount": "100.0",
+        "patient_paid_amount": "100.0",
+        "onset_date": "2015-10-03",
+        "service_lines": [
+            [
+                "procedure_code": "99213",
+                "charge_amount": "40.0",
+                "unit_count": "1.0",
+                "diagnosis_codes": [
+                    "J020"
+                ],
+                "service_date": "2015-10-03",
+                "unit_type": "units"
+            ],
+            [
+                "procedure_code": "87072",
+                "charge_amount": "15.0",
+                "unit_count": "1.0",
+                "diagnosis_codes": [
+                    "J020"
+                ],
+                "service_date": "2015-10-03",
+                "unit_type": "units"
+            ],
+            [
+                "procedure_code": "99214",
+                "charge_amount": "35.0",
+                "unit_count": "1.0",
+                "diagnosis_codes": [
+                    "Z1159"
+                ],
+                "service_date": "2015-10-10",
+                "unit_type": "units"
+            ],
+            [
+                "procedure_code": "86663",
+                "charge_amount": "10.0",
+                "unit_count": "1.0",
+                "diagnosis_codes": [
+                    "Z1159"
+                ],
+                "service_date": "2015-10-10",
+                "unit_type": "units"
+            ]
+        ],
+        "prior_authorization_number": "0A02d"
+    ],
+    "coordination_of_benefits": [
+        "trading_partner_id": "MOCKPAYER",
+        "subscriber": [
+            "group_number": "000111000111",
+            "first_name": "Danny",
+            "last_name": "Hairloss",
+            "ssn": "01001011111",
+            "member_id": "111222111222",
+            "address": [
+                "address_lines": ["712 Yvonne Drive"],
+                "city": "Goodlettsville",
+                "state": "TN",
+                "zipcode": "37072"
+            ],
+            "birth_date": "1986-09-22",
+            "gender": "male",
+            "relationship": "self",
+            "payer_responsibility": "secondary"
+        ],
+        "other_payer": [
+            "organization_name": "MOCKPAYER B",
+            "id": "000002"
+        ]
+    ]
+] as [String:Any]
+try client.claims(params: data)
+```
 
 > Sample Claims request for sending COB (Coordination of Benefits) between two payers for Payer B.
 
@@ -3241,6 +3936,183 @@ client.claims({
 
   }
 })
+```
+
+```swift
+let data = [
+  "trading_partner_id": "MOCKPAYER",
+  "transaction_code": "chargeable",
+  "receiver": [
+    "organization_name": "MOCKRECEIVER",
+    "id": "MOCKRECEIVER"
+  ],
+  "billing_provider": [
+        "taxonomy_code": "207Q00000X",
+        "first_name": "Jerome",
+        "last_name": "Aya-Ay",
+        "npi": "1467560003",
+        "address": [
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "tax_id": "123456789"
+    ],
+  "subscriber": [
+    "group_number": "000111000111",
+    "first_name": "Danny",
+    "last_name": "Hairloss",
+    "ssn": "01001011111",
+    "member_id": "111222111222",
+    "address": [
+      "address_lines": [
+        "712 Yvonne Drive"
+      ],
+      "city": "Goodlettsville",
+      "state": "TN",
+      "zipcode": "37072"
+    ],
+    "birth_date": "1986-09-22",
+    "gender": "male",
+    "payer_responsibility": "secondary"
+  ],
+  "claim": [
+    "direct_payment": "y",
+    "medical_record_number": "000000000",
+    "information_release": "informed_consent",
+    "patient_signature_on_file": True,
+    "provider_signature": True,
+    "plan_participation": "assigned",
+    "claim_frequency": "original",
+    "patient_control_number": "01010101010101",
+    "place_of_service": "office",
+    "total_charge_amount": "50.0",
+    "patient_paid_amount": "50.0",
+    "onset_date": "2015-10-03",
+    "service_lines": [
+      [
+        "procedure_code": "99213",
+        "charge_amount": "40.0",
+        "unit_count": "1.0",
+        "diagnosis_codes": [
+          "J020"
+        ],
+        "service_date": "2015-10-03",
+        "unit_type": "units"
+      ],
+      [
+        "procedure_code": "87072",
+        "charge_amount": "5",
+        "unit_count": "1.0",
+        "diagnosis_codes": [
+          "J020"
+        ],
+        "service_date": "2015-10-03",
+        "unit_type": "units"
+      ],
+      [
+        "procedure_code": "99214",
+        "charge_amount": "3",
+        "unit_count": "1.0",
+        "diagnosis_codes": [
+          "Z1159"
+        ],
+        "service_date": "2015-10-10",
+        "unit_type": "units"
+      ],
+      [
+        "procedure_code": "86663",
+        "charge_amount": "2",
+        "unit_count": "1.0",
+        "diagnosis_codes": [
+          "Z1159"
+        ],
+        "service_date": "2015-10-10",
+        "unit_type": "units"
+      ]
+    ],
+    "prior_authorization_number": "0A02d"
+  ],
+  "coordination_of_benefits": [
+   "trading_partner_id": "MOCKPAYER",
+   "subscriber": [
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "member_id": "W000000000",
+        "address": [
+            "address_lines": ["123 N MAIN ST"],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        ],
+        "birth_date": "1970-01-01",
+        "gender": "female"
+        "relationship": "self",
+        "payer_responsibility": "primary",
+        "patient_signature_source": "patient",
+        "authorize_payment_to_billing_provider": "yes",
+        "release_of_information_code": "informed_consent"
+    ],
+      "birth_date": "1943-05-01",
+      "gender": "male",
+      "relationship": "self",
+      "payer_responsibility": "primary",
+      "patient_signature_source": "patient",
+      "authorize_payment_to_billing_provider": "yes",
+      "release_of_information_code": "informed_consent"
+    ],
+    "claim_level_adjustments": [
+      "claim_adjustment_group_code": "other_adjustments",
+      "adjustments": [
+        [
+          "claim_adjustment_reason_code": "1",
+          "adjustment_amount": "2.00",
+          "adjustment_quantity": "3"
+        ],
+        [
+          "claim_adjustment_reason_code": "4",
+          "adjustment_amount": "5.00",
+          "adjustment_quantity": "6"
+        ]
+      ],
+      "payer_amount_paid": "200.50",
+      "amount_owed": "150.50"
+    ],
+    "line_level_adjustments": [
+      "adjustments": [
+        [
+          "adjustment_amount": 1000.00,
+          "adjustment_quantity": 1,
+          "cpt_code": "83839",
+          "product_id": "12345",
+          "procedure_modifiers": ["A", "B", "C", "D"],
+          "procedure_code_description": "Testing Testing",
+          "adjustment_information": [
+            [
+              "claim_adjustment_group_code": "patient_responsibility",
+              "claim_adjustment_reason_code": "1",
+              "adjustment_amount": "2.00",
+              "adjustment_quantity": "3"
+            ],
+            [
+              "claim_adjustment_group_code": "contractual_obligations",
+              "claim_adjustment_reason_code": "4",
+              "adjustment_amount": "5.00",
+              "adjustment_quantity": "6"
+            ]
+          ],
+          "date_paid": "2015-10-10",
+          "remaining_patient_liability": "200"
+        ]
+      ]
+    ]
+
+  ]
+] as [String:Any]
+try client.claims(params: data)
 ```
 
 

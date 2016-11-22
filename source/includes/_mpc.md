@@ -24,6 +24,10 @@ query.put("code", "office");
 client.mpc(query);
 ```
 
+```swift
+try client.mpc(code: "99213")
+```
+
 >Example Response:
 
 ```json
@@ -60,6 +64,10 @@ HashMap<String, String>() query = new HashMap<String, String>();
 query.put("name", "office");
 
 client.mpc(query);
+```
+
+```swift
+try client.mpc(name: "office")
 ```
 
 > Example Response:

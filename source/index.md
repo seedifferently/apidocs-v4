@@ -10,6 +10,7 @@ language_tabs:
   - java: Java
   #- haskell: Haskell
   #- lua: Lua
+  - swift: Swift
 
 toc_footers:
   - <a href='https://platform.pokitdok.com/signup' target='_blank'>Sign Up for a Free API Key</a>

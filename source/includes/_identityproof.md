@@ -106,6 +106,31 @@ client.request('/identity/proof/questions/generate/', method='post', params={
 ```java
 ```
 
+```swift
+let data = [
+   "first_name": "Oscar",
+   "middle_name": "Harold",
+   "last_name": "Whitmire",
+   "ssn": "123456789",
+   "birth_date": [
+        "year": 1989,
+        "month": 12,
+        "day": 07
+   ],
+   "email": "oscar@pokitdok.com",
+   "phone": "555-555-5555",
+   "address" : [
+        "street1" : "1400 Anyhoo Avenue",
+        "street2" : "Apt 15",
+        "city" : "Springfield",
+        "state_or_province" : "IL",
+        "postal_code" : "90210",
+        "country_code" : "US"
+   ]
+] as [String:Any]
+try client.request(path: "/identity/proof/questions/generate/", method: "POST", params: data)
+```
+
 PokitDok's Identity Proof API allows providers to validate and verify patient provided information against identity
 records maintained by government agencies, credit bureaus, and insurance companies.
 
@@ -254,6 +279,15 @@ client.request('/identity/proof/questions/score/', method='post', params={
 ```
 
 ```java
+```
+
+```swift
+let data = [
+    "questionnaire_id": "a9ec1381-5ad6-499b-a3a6-644ece186363",
+    "question_id": 1,
+    "answer": 2
+] as [String:Any]
+try client.request(path: "/identity/proof/questions/score/", method: "POST", params: data)
 ```
 
 #### Failure

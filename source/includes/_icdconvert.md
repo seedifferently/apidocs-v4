@@ -22,6 +22,10 @@ client.icd_convert({code: '250.12'})
 client.icdConvert("250.12");
 ```
 
+```swift
+try client.icdConvert(code: "250.12")
+```
+
 > Example ICD convert response
 
 ```json

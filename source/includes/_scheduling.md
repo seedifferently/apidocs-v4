@@ -23,6 +23,10 @@ client.schedulers
 client.schedulers();
 ```
 
+```swift
+try client.schedulers()
+```
+
 > Response:
 
 ```json
@@ -67,6 +71,10 @@ client.schedulers({scheduler_uuid: '967d207f-b024-41cc-8cac-89575a1f6fef'})
 client.schedulers("967d207f-b024-41cc-8cac-89575a1f6fef");
 ```
 
+```swift
+try client.schedulers(schedulerUuid: "967d207f-b024-41cc-8cac-89575a1f6fef")
+```
+
 > Response:
 
 ```json
@@ -99,6 +107,10 @@ client.appointment_types
 
 ```java
 client.appointmentTypes();
+```
+
+```swift
+try client.appointmentTypes()
 ```
 
 > Response:
@@ -142,6 +154,10 @@ client.appointment_types({appointment_type_uuid: 'ef987693-0a19-447f-814d-f8f3ab
 
 ```java
 client.appointmentTypes('ef987693-0a19-447f-814d-f8f3abbf4860');
+```
+
+```swift
+try client.appointmentTypes(appointmentTypeUuid: "a3a45130-4adb-4d2c-9411-85a9d9ac4aa2")
 ```
 
 > Response:
@@ -196,6 +212,15 @@ client.request(endpoint, method, data);
 
 ```java
 // Currently not supported in this language.
+```
+
+```swift
+let data = [
+    "pd_patient_uuid": "2773f6ff-00cb-460f-823f-5ff2208511e7",
+    "pd_provider_uuid": "b691b7f9-bfa8-486d-a689-214ae47ea6f8",
+    "location": [32.788110, -79.932364]
+] as [String:Any]
+try client.request(path: "/schedule/patient/", method: "POST", params: data)
 ```
 
 > Response:
@@ -269,6 +294,17 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.scheduleSlots(query);
 ```
 
+```swift
+let data = [
+    "pd_provider_uuid": "b691b7f9-bfa8-486d-a689-214ae47ea6f8",
+    "location": [32.788110, -79.932364],
+    "appointment_type": "AT1",
+    "start_date": "2014-12-25T15:09:34.197709",
+    "end_date": "2014-12-25T16:09:34.197717"
+] as [String:Any]
+try client.scheduleSlots(params: data)
+```
+
 > Response:
 
 ```json
@@ -307,6 +343,10 @@ client.request(endpoint, method);
 // Currently not supported in this language.
 ```
 
+```swift
+try client.request(path: "/schedule/slots/ab21e95b-8fa6-41d4-98b9-9a1f6fcff0d2", method: "DELETE")
+```
+
 > Example scheduling request used to query for open slots and booked appointments:
 
 ```shell
@@ -341,6 +381,16 @@ query.put("end_date", "2015-01-25T17:00:00");
 query.put("patient_uuid", "8ae236ff-9ccc-44b0-8717-42653cd719d0");
 
 client.appointments(query);
+```
+
+```swift
+let data = [
+    "appointment_type": "SS1",
+    "start_date": "2015-01-25T08:00:00",
+    "end_date": "2015-01-25T17:00:00",
+    "patient_uuid": "8ae236ff-9ccc-44b0-8717-42653cd719d0"
+] as [String:Any]
+try client.appointments(params: data)
 ```
 
 > Response:
@@ -388,6 +438,10 @@ client.appointments({appointment_uuid: 'ef987691-0a19-447f-814d-f8f3abbf4859'})
 
 ```java
 client.appointments("bf8440b1-fd20-4994-bb28-e3981833e796");
+```
+
+```swift
+try client.appointments(appointmentUuid: "bf8440b1-fd20-4994-bb28-e3981833e796")
 ```
 
 > Response:
@@ -490,6 +544,21 @@ JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
 Map<String, Object> results = client.bookAppointment("ef987691-0a19-447f-814d-f8f3abbf4859", query);
 ```
 
+```swift
+let data = [
+    "patient": [
+        "uuid": "500ef469-2767-4901-b705-425e9b6f7f83",
+        "email": "john@hondoe.com",
+        "phone": "800-555-1212",
+        "birth_date": "1970-01-25",
+        "first_name": "John",
+        "last_name": "Doe"
+    ],
+    "description": "Welcome to M0d3rN Healthcare"
+] as [String:Any]
+try client.bookAppointment(appointmentUuid: "ef987691-0a19-447f-814d-f8f3abbf4859", params: data)
+```
+
 > Response:
 
 ```json
@@ -542,6 +611,13 @@ query.put("description", "Welcome to M0d3rN Healthcare");
 client.book_appointment('ef987691-0a19-447f-814d-f8f3abbf4859', query);
 ```
 
+```swift
+let data = [
+    "description": "Welcome to M0d3rN Healthcare"
+] as [String:Any]
+try client.updateAppointment(appointmentUuid: "ef987691-0a19-447f-814d-f8f3abbf4859", params: data)
+```
+
 > Response:
 
 ```json
@@ -576,6 +652,10 @@ client.cancelAppointment("ef987691-0a19-447f-814d-f8f3abbf4859");
 
 ```java
 client.cancelAppointment("ef987691-0a19-447f-814d-f8f3abbf4859");
+```
+
+```swift
+try client.cancelAppointment(appointmentUuid: "ef987691-0a19-447f-814d-f8f3abbf4859")
 ```
 
 *Available modes of operation: real-time*

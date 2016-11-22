@@ -21,6 +21,10 @@ client.plans
 client.plans();
 ```
 
+```swift
+try client.plans()
+```
+
 > example fetching information for plans in Texas:
 
 ```shell
@@ -48,6 +52,13 @@ HashMap<String, String> query = new HashMap<String, String>();
 query.put("state", "TX");
 
 client.plans(query);
+```
+
+```swift
+let data = [
+    "state": "TX"
+] as [String:Any]
+try client.plans(params: data)
 ```
 
 > example fetching information for PPO plans in South Carolina:
@@ -79,6 +90,14 @@ query.put("state", "TX");
 query.put("plan_type", "PPO");
 
 client.plans(query);
+```
+
+```swift
+let data = [
+    "state": "TX",
+    "plan_type": "PPO"
+] as [String:Any]
+try client.plans(params: data)
 ```
 
 > The plans endpoint will return an array of plan objects dependent on your query. The following is an incomplete example of response json for one plan object. If you would like a more complete example of the plans endpoint entire response json it is recommended you use the test application.

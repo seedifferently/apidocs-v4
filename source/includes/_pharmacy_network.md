@@ -30,6 +30,14 @@ params.put("plan_number", "S5820003");
 client.pharmacyNetwork("1427382266", params);
 ```
 
+```swift
+let data = [
+    "trading_partner_id": "medicare_national",
+    "plan_number": "S5820003"
+] as [String:Any]
+try client.pharmacyNetwork(npi: "1427382266", params: data)
+```
+
 > Example searching for in-network pharmacies by plan and zip code:
 
 ```shell
@@ -61,6 +69,16 @@ params.put("plan_number", "S5820003");
 params.put("zipcode", "07030");
 params.put("radius", "1mi");
 client.pharmacyNetwork(params);
+```
+
+```swift
+let data = [
+    "trading_partner_id": "medicare_national",
+    "plan_number": "S5820003",
+    "zipcode": "07030",
+    "radius": "1mi"
+] as [String:Any]
+try client.pharmacyNetwork(params: data)
 ```
 
 > Sample response for /pharmacy/network/{npi} endpoint :

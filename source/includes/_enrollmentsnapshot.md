@@ -22,6 +22,10 @@ client.enrollment_snapshot('MOCKPAYER', '/path/to/current_membership_enrollment.
 client.enrollmentSnapshot("MOCKPAYER", "/path/to/current_membership_enrollment.834");
 ```
 
+```swift
+try client.enrollmentSnapshot(tradingPartnerId: "MOCKPAYER", x12FilePath: "/path/to/current_membership_enrollment.834")
+```
+
 > Example response:
 
 ```json
@@ -84,6 +88,10 @@ client.enrollment_snapshots
 client.enrollmentSnapshots();
 ```
 
+```swift
+try client.enrollmentSnapshots()
+```
+
 > Example response:
 
 ```json
@@ -123,6 +131,10 @@ client.enrollment_snapshots({snapshot_id: '5317f51527a27620f2ec7533'})
 client.enrollmentSnapshot("5317f51527a27620f2ec7533");
 ```
 
+```swift
+try client.enrollmentSnapshots(snapshotId: "5317f51527a27620f2ec7533")
+```
+
 > Example response:
 
 ```json
@@ -153,6 +165,10 @@ client.enrollment_snapshot_data(snapshot_id: '5317f51527a27620f2ec7533')
 
 ```java
 client.enrollmentSnapshotData("5317f51527a27620f2ec7533");
+```
+
+```swift
+try client.enrollmentSnapshotData(snapshotId: "5317f51527a27620f2ec7533")
 ```
 
 > Example response: 
