@@ -634,16 +634,17 @@ and our eligibility endpoint to provide an estimate of what consumers may expect
 
 Available OOP Insurance Endpoints:
 
-| Endpoint                  | HTTP Method | Description                                                                                     |
-|:--------------------------|:------------|:------------------------------------------------------------------------------------------------|
-| /oop/insurance-load-price | POST        | Loads procedure prices for a specific trading partner                                           |
-| /oop/insurance-estimate   | POST        | Returns estimated out of pocket cost and eligibility information for a given procedure          |
+| Endpoint                                  | HTTP Method | Description                                                                                     |
+|:------------------------------------------|:------------|:------------------------------------------------------------------------------------------------|
+| /oop/insurance-load-price                 | POST        | Loads procedure prices for a specific trading partner                                           |
+| /oop/insurance-load-price/{price_uuid}    | DELETE      | Loads procedure prices for a specific trading partner                                           |
+| /oop/insurance-estimate                   | POST        | Returns estimated out of pocket cost and eligibility information for a given procedure          |
 
-The /oop/insurance-load-price endpoint is used to load pricing data that is used in the /oop-insurance-estimate endpoint's calculations.
+The /oop/insurance-load-price POST endpoint is used to load pricing data that is used in the /oop-insurance-estimate endpoint's calculations.
 The /oop/insurance-load-price endpoint may also be used to retrieve pricing data, specific to the client that loaded it.
 Sending a request that includes only the trading_partner_id and cpt_bundle parameters will either return the currently loaded price or, if no price has been loaded, return an error response.
 
-The /oop/insurance-load-price endpoint accepts the following parameters:
+The /oop/insurance-load-price POST endpoint accepts the following parameters:
 
 | Parameter          | Type     | Description                                                                                   | Presence |
 |:-------------------|:---------|:----------------------------------------------------------------------------------------------|:------------------|
@@ -652,7 +653,9 @@ The /oop/insurance-load-price endpoint accepts the following parameters:
 | price.amount       | {string} | The price of the bundle of procedures in the cpt_bundle                                       | Optional (include to load price, do not include to retrieve price) |
 | price.currency     | {string} | Optional: The denomination of the currency of the price.amount. Defaults to 'USD'             | Optional (include to load price, do not include to retrieve price) |
 
-The /oop/insurance-load-price response contains the aforementioned fields and activity tracking meta data.
+The /oop/insurance-load-price POST response contains the aforementioned fields and activity tracking meta data.
+The /oop/insurance-load-price POST response also contains a "uuid" field that can be passed to the The /oop/insurance-load-price/{price_uuid} DELETE endpoint as the {price_uuid} in order to remove that loaded pricing data.
+The /oop/insurance-load-price/{price_uuid} DELETE endpoint may be used to delete previously loaded pricing data.
 
 The /oop/insurance-estimate endpoint accepts the following parameters:
 
