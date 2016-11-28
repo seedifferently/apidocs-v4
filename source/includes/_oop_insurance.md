@@ -637,7 +637,7 @@ Available OOP Insurance Endpoints:
 | Endpoint                                  | HTTP Method | Description                                                                                     |
 |:------------------------------------------|:------------|:------------------------------------------------------------------------------------------------|
 | /oop/insurance-load-price                 | POST        | Loads procedure prices for a specific trading partner                                           |
-| /oop/insurance-load-price/{price_uuid}    | DELETE      | Loads procedure prices for a specific trading partner                                           |
+| /oop/insurance-load-price/{price_uuid}    | DELETE      | Removes a previously loaded procedure price from the system                                     |
 | /oop/insurance-estimate                   | POST        | Returns estimated out of pocket cost and eligibility information for a given procedure          |
 
 The /oop/insurance-load-price POST endpoint is used to load pricing data that is used in the /oop-insurance-estimate endpoint's calculations.
