@@ -41,7 +41,7 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 })
 ```
 
-Call the `pokitdok.dropin` function, using your PokitDok Platform `Drop-In Token` and <a href='#options'>options</a>.
+Call the `pokitdok.dropin` function, using your PokitDok Platform `Drop-In Token` and <a href='/#options'>options</a>.
 
 The drop-in UI form will auto-populate in the HTML container that you specified.
 
@@ -111,6 +111,9 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
     values: {
         'trading_partner_id': 'MOCKPAYER'
     },
+    labels: [
+        {'name': 'first_name', 'label': 'CUSTOM LABEL'},
+    ]
     pieChartColors: {
         'fill': '#000000',
         'background': '#333333'
@@ -148,6 +151,22 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 }
 ```
 
+> Example of all input labels changed using `values` option:
+
+```json
+
+[
+    {'name': 'zip_code', 'label': 'CUSTOM LABEL'},
+    {'name': 'procedure', 'label': 'CUSTOM LABEL'},
+    {'name': 'first_name', 'label': 'CUSTOM LABEL'},
+    {'name': 'last_name', 'label': 'CUSTOM LABEL'},
+    {'name': 'birth_date', 'label': 'CUSTOM LABEL'},
+    {'name': 'insurance', 'label': 'CUSTOM LABEL'},
+    {'name': 'member_id', 'label': 'CUSTOM LABEL'},
+    {'name': 'submit_button', 'label': 'CUSTOM LABEL'}
+]
+```
+
 <aside class="warning">
 'container' and 'type' are required options for the drop-in UI to work.<BR>
 'procedures' is required for the calculator type drop-in.
@@ -163,6 +182,7 @@ pieChartColors.fill       | String (hex color)  | Null     | Color of the filled
 pieChartColors.background | String (hex color)  | Null     | Color of the background section of the pie chart on the eligibility results
 values                    | Object              | Null     | An object of values that the form will pre-populate with
 values.provider           | Object              | Null     | NPI to use for eligibility checks
+labels                    | Array               | Null     | Change individual input labels by adding an object to this array where the `name` value is the input name and `label` is your custom label
 autoSubmit                | Boolean             | False    | Form should submit automatically once all fields are filled
 resetButton               | Boolean             | False    | A button should show that allows form to be reset once submitted
 onFormSuccess             | Function            | Null     | Call when the form has been submitted successfully
