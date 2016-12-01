@@ -267,7 +267,8 @@ try client.activities(activityId: "5362b5a064da150ef6f2526c", params: data)
     "process",
     "complete"
   ],
-  "units_of_work": 1
+  "units_of_work": 1,
+  "callback_error": "Unable to POST data to the specified callback_url: https://testcallback/claims. Error: ('Connection aborted.', BadStatusLine(\"''\",))"
 }
 ```
 
@@ -316,6 +317,7 @@ The /activities/ response includes the following fields:
 Field | Type | Description
 ----- | ---- | -----------
 callback_url | {string} | The URL that will be invoked to notify the client application that this Activity has completed. You must use https for callback URLs used by your application. For added security, a callback URL can be defined in the application.
+callback_error | {string} | Displays the error information associated with a failed callback attempt.
 history | {object array} | Historical status of the progress of this Activity.
 history.record_dt | {datetime} | The date time associated with the history. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).
 history.name | {string} | State name associated with the history.
