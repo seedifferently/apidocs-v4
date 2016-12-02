@@ -3557,8 +3557,8 @@ client.claims({
         "direct_payment": "y",
         "medical_record_number": "000000000",
         "information_release": "informed_consent",
-        "patient_signature_on_file": True,
-        "provider_signature": True,
+        "patient_signature_on_file": "True",
+        "provider_signature": "True",
         "plan_participation": "assigned",
         "claim_frequency": "original",
         "patient_control_number": "01010101010101",
@@ -3624,12 +3624,10 @@ client.claims({
                 "state": "TN",
                 "zipcode": "37072"
             },
-            "birth_date": "1986-09-22",
-            "gender": "male",
             "relationship": "self",
             "payer_responsibility": "secondary"
         },
-        "other_payer": {
+        "payer": {
             "organization_name": "MOCKPAYER B",
             "id": "000002"
         }
@@ -3807,8 +3805,8 @@ client.claims({
     "direct_payment": "y",
     "medical_record_number": "000000000",
     "information_release": "informed_consent",
-    "patient_signature_on_file": True,
-    "provider_signature": True,
+    "patient_signature_on_file": "True",
+    "provider_signature": "True",
     "plan_participation": "assigned",
     "claim_frequency": "original",
     "patient_control_number": "01010101010101",
@@ -3847,7 +3845,7 @@ client.claims({
         "service_date": "2015-10-10",
         "unit_type": "units"
       },
-
+      {
         "procedure_code": "86663",
         "charge_amount": "2",
         "unit_count": "1.0",
@@ -3871,22 +3869,16 @@ client.claims({
             "city": "SPARTANBURG",
             "state": "SC",
             "zipcode": "29301"
-        },
-        "birth_date": "1970-01-01",
-        "gender": "female"
-        "relationship": "self",
-        "payer_responsibility": "primary",
-        "patient_signature_source": "patient",
-        "authorize_payment_to_billing_provider": "yes",
-        "release_of_information_code": "informed_consent"
-    },
-      "birth_date": "1943-05-01",
-      "gender": "male",
+            },
       "relationship": "self",
-      "payer_responsibility": "primary",
+      "payer_responsibility": "secondary",
       "patient_signature_source": "patient",
       "authorize_payment_to_billing_provider": "yes",
       "release_of_information_code": "informed_consent"
+      },
+      "payer": {
+            "organization_name": "MOCKPAYER B",
+            "id": "000002"
     },
     "claim_level_adjustments": {
       "claim_adjustment_group_code": "other_adjustments",
@@ -3908,10 +3900,9 @@ client.claims({
     "line_level_adjustments": {
       "adjustments": [
         {
-          "adjustment_amount": 1000.00,
-          "adjustment_quantity": 1,
+          "adjustment_amount": "1000.00",
+          "adjustment_quantity": "1",
           "cpt_code": "83839",
-          "product_id": "12345",
           "procedure_modifiers": ["A", "B", "C", "D"],
           "procedure_code_description": "Testing Testing",
           "adjustment_information": [
@@ -3936,7 +3927,8 @@ client.claims({
 
   }
 })
-```
+ ```
+  
 
 ```swift
 let data = [
@@ -4393,8 +4385,6 @@ The /claims/ response contains an activity and thus returns the same object as t
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
 | claim_adjustment_group_code        | Required for Secondary: Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
-| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
 | adjustments                        | Required for Secondary: List of claim level adjustments, with reason, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
 | payer_amount_paid                  | Required for Secondary: Claim level amount paid by the payer. |
 | amount_owed                        | Required for Secondary: Claim level amount owed by the patient. |
