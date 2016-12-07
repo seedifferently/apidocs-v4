@@ -3611,7 +3611,6 @@ client.claims({
         "prior_authorization_number": "0A02d"
     },
     "coordination_of_benefits": {
-        "trading_partner_id": "MOCKPAYER",
         "subscriber": {
             "group_number": "000111000111",
             "first_name": "Danny",
@@ -3731,7 +3730,6 @@ let data = [
         "prior_authorization_number": "0A02d"
     ],
     "coordination_of_benefits": [
-        "trading_partner_id": "MOCKPAYER",
         "subscriber": [
             "group_number": "000111000111",
             "first_name": "Danny",
@@ -3859,7 +3857,6 @@ client.claims({
     "prior_authorization_number": "0A02d"
   },
   "coordination_of_benefits": {
-   "trading_partner_id": "MOCKPAYER",
    "subscriber": {
         "first_name": "Jane",
         "last_name": "Doe",
@@ -4029,7 +4026,6 @@ let data = [
     "prior_authorization_number": "0A02d"
   ],
   "coordination_of_benefits": [
-   "trading_partner_id": "MOCKPAYER",
    "subscriber": [
         "first_name": "Jane",
         "last_name": "Doe",
@@ -4349,7 +4345,6 @@ The /claims/ response contains an activity and thus returns the same object as t
 ###Coordination of Benefits object:
 | Field                                 | Description                                                                                                       |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-| trading_partner_id                    | Required: The trading_partner_id of the alternate payer (if submitting second claim, then provide primary ID here).
 | subscriber                            | Required: The subscriber listed on the additional payer. May be the same as the original payer. Has additional required fields. Uses the other subscriber model [object](#claims-other-subscriber-object). |
 | claim_level_adjustments               | Required for Secondary: Only when submitting to secondary payer. Information related to adjustements made on the claim level. Uses Claim Level Adjustments model [object](#claims-claim-level-adjustments-object). |
 | line_level_adjustments                | Required for Secondary: Only when submitting to secondary payer. Information related to adjustements made on the line level. Uses Line Level Adjustments model [object](#claims-line-level-adjustments-object). |
