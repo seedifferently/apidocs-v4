@@ -295,7 +295,7 @@ let data = [
 try client.claims(params: data)
 ```
 
-> Example response:
+> Sample PokitDok response to initial claim submission that passes validation checks:
 
 ```json
 {
@@ -407,6 +407,208 @@ try client.claims(params: data)
     "complete"
   ],
   "units_of_work": 1
+}
+```
+
+> Sample trading partner response for claim acknowledgement (this response will complete a claims activity):
+
+```json
+{
+    "client_id": "ASDFBOI87234CSDEAR",
+    "correlation_id": "575037af0640fd518fe64c36",
+    "trading_partner_id": "MOCKPAYER",
+    "clearinghouse": {
+        "name": "MOCK CLEARINGHOUSE",
+        "transmitter_id": "12345678",
+        "date_received": "2016-12-05",
+        "date_processed": "2016-12-05"
+    },
+    "submitter": {
+        "organization_name": "POKITDOK TESTING",
+        "id": "1234567890",
+        "tracking_id": "20161205123456789",
+        "statuses": [
+            {
+                "action": "accept",
+                "status_category": "Acknowledgement/Receipt-The claim/encounter has been received. This does not mean that the claim has been accepted for adjudication.",
+                "status_category_code": "A1",
+                "status_effective_date": "2016-12-05",
+                "status_code": "Accepted for processing.",
+                "total_claim_amount": {
+                    "amount": "60.0",
+                    "currency": "USD"
+                }
+            }
+        ],
+        "accepted_quantity": "1",
+        "amount_in_process": {
+            "amount": "60.0,
+            "currency": "USD"
+        }
+    },
+    "providers": [
+        {
+             "first_name": "Jerome",
+             "last_name": "Aya-Ay",
+             "npi": "1467560003",
+             "tax_id": "123456789",
+             "trace_number": "0",
+             "accepted_quantity": "1",
+             "amount_in_process": {
+                "amount": "60.0",
+                "currency": "USD"
+            }
+        }
+    ],
+    "patient": {
+        "last_name": "DOE",
+        "first_name": "JANE",
+        "id": "W000000000",
+        "claim_level_info": {
+            "statuses": [
+                {
+                    "action": "accept",
+                    "status_category": "Acknowledgement/Receipt-The claim/encounter has been received. This does not mean that the claim has been accepted for adjudication.",
+                    "status_category_code": "A1",
+                    "status_effective_date": "2016-12-05",
+                    "status_code": "Accepted for processing.",
+                    "total_claim_amount": {
+                        "amount": "60.0",
+                        "currency": "USD"
+                    }
+                }
+            ],
+            "claim_id_number": "NA",
+            "service_date": "2016-11-01",
+            "service_end_date": "2016-11-02",
+            "tracking_id": "ASDFBOI87234CSDEAR"
+        }
+    }
+}
+```
+
+> Sample trading partner response for claim payment (835):
+
+```json
+{
+    "claim_payments": [
+        {
+            "assigned_number": 654654,
+            "control_number": "20161205123456789",
+            "facility_type": "hospital_inpatient_part_a",
+            "claim_frequency": "original",
+            "filing_indicator": "health_maintenance_organization",
+            "patient_control_number": "20161205123456789",
+            "payment_amount": {
+                "amount": "0",
+                "currency": "USD"
+            },
+            "patient_responsibility_amount": {
+                "amount": "0",
+                "currency": "USD"
+            },
+            "services": [
+                {
+                    "adjustments": [
+                        {
+                            "amount": {
+                                "amount": "60.0",
+                                "currency": "USD"
+                            },
+                            "group": "contractual_obligations",
+                            "reason": "Exact duplicate claim/service",
+                            "reason_code": "18"
+                        }
+                    ],
+                    "adjudicated_procedure_code": "26740",
+                    "charge_amount": {
+                        "amount": "60.0",
+                        "currency": "USD"
+                    },
+                    "provider_payment_amount": {
+                        "amount": "0",
+                        "currency": "USD"
+                    },
+                    "service_units_paid": 1,
+                    "service_units_submitted": 1,
+                    "service_date": "2016-11-01",
+                    "control_number": "20161205123456789"
+                }
+            ],
+            "status": "processed_as_primary",
+            "total_charge_amount": {
+                "amount": "60.0",
+                "currency": "USD"
+            }
+        }
+    ],
+    "financial_information": {
+        "check_eft_trace_number": "EFT2016120798749874",
+        "transaction_type": "credit",
+        "effective_date": "2016-12-05",
+        "originating_company_id": "121212123",
+        "payment_amount": {
+            "amount": "3210.10",
+            "currency": "USD"
+        },
+        "payment_method": "automated_clearing_house",
+        "transaction_handling": "remittance_information_only"
+    },
+    "payee": {
+        "name": "POKITDOK INC",
+        "address": {
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        },
+        "npi": "1234567890",
+        "tax_id": "987654321"
+    },
+    "payer": {
+        "name": "MOCKPAYER",
+        "address": {
+            "address_lines": [
+                "P.O. BOX 12345"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "294011234"
+        },
+        "contacts": [
+            {
+                "function": "business",
+                "contact_methods": [
+                    {
+                        "type": "phone",
+                        "value": "8431111111"
+                    },
+                    {
+                        "type": "phone",
+                        "value": "8001111111"
+                    }
+                ]
+            },
+            {
+                "function": "technical",
+                "contact_methods": [
+                    {
+                        "type": "url",
+                        "value": "WWW.HELP.COM"
+                    }
+                ]
+            }
+        ]
+    },
+    "patient": {
+        "last_name": "DOE",
+        "first_name": "JANE",
+        "id": "W000000000"
+    },
+    "production_date": "2016-12-05",
+    "transaction_type": "remittance_information_only"
 }
 ```
 
