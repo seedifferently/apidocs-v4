@@ -442,7 +442,7 @@ try client.claims(params: data)
         ],
         "accepted_quantity": "1",
         "amount_in_process": {
-            "amount": "60.0,
+            "amount": "60.0",
             "currency": "USD"
         }
     },
