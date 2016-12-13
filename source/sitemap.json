@@ -129,19 +129,19 @@
     "title": "Raw X12 Support",
     "sublinks": [
         {
-            "link": "https://github.com/pokitdok/apidocs-v4/blob/dev/source/includes/_raw_x12_support.md#supported-content-type-and-accept-header-values",
+            "link": "#supported-content-type-and-accept-header-values",
             "title": "Supported Content-Type and Accept header values"
         },
         {
-            "link": "https://github.com/pokitdok/apidocs-v4/blob/dev/source/includes/_raw_x12_support.md#mixing-mime-types",
+            "link": "#mixing-mime-types",
             "title": "Mixing mime types"
         },
         {
-            "link": "https://github.com/pokitdok/apidocs-v4/blob/dev/source/includes/_raw_x12_support.md#examples",
+            "link": "#examples",
             "title": "Examples"
         },
         {
-            "link": "https://github.com/pokitdok/apidocs-v4/blob/dev/source/includes/_raw_x12_support.md#trading-partners",
+            "link": "#trading-partners",
             "title": "Trading Partners"
         }
     ]
