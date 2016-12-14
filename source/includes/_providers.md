@@ -385,7 +385,7 @@ try client.providers(params: data)
 The Providers endpoints provide access to PokitDok's provider directory.
 The Providers endpoints can be used to search for Providers, view biographical,
 education, credential, and license information. For a complete reference to all possible 
-provider specialties, see our [provider specialties reference](provider_specialties.html).
+provider specialties, see our [provider specialties reference](https://platform.pokitdok.com/documentation/v4/provider_specialties.html).
 
 Available Provider Endpoints:
 
