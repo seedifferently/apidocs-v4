@@ -1,4 +1,4 @@
-{
+[{
     "slug": "overview",
     "content": "includes/_overview.md",
     "title": "Overview"
@@ -145,4 +145,4 @@
             "title": "Trading Partners"
         }
     ]
-}
+}]
