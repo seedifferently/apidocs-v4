@@ -2554,6 +2554,16 @@ The /eligibility/ response contains the following fields:
 | provider_code                         | Identifies the type of provider (ex: admitting, consulting, hospital).                                                                       						             |
 | taxonomy_code                         | The taxonomy code for the entity.
                                                             						          |
+| eligibility_or_benefit_information    | The eligibility or benefit information indicator returned by the trading partner.  Possible values include deductible, active_coverage, other_source_of_data, etc.
+                                                            						          |
+| coverage_level		        | The coverage level that applies to the eligibility or benefit information returned by the trading partner.  A full list of possible values is included [below](#coverage-level). 
+                                                            						          |
+| service_types			  	| The service type(s) returned by the trading partner. A full listing of possible service_types values is included [below](#service-type).
+                                                            						          |
+| service_type_codes			| The service type codes returned by the trading partner. A full listing of possible service_type_codes values is included [below](#service-type).
+                                                            						          |
+| benefit_amount			| The monetary amount associated with the eligibility_or_benefit_information and service_types provided. Uses the monetary amount [object](#eligibility-monetary-amount).
+                                                            						          |
 
 
 <a name="procedure-id-qualifier"></a>
