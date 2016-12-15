@@ -1060,7 +1060,7 @@ Available Enrollment Endpoints:
 
 These are some of the most commonly used parameters accepted by the enrollment
 endpoint. For a complete reference to all possible values in an enrollment
-request, see our [benefits enrollment reference](benefits_enrollment.html).
+request, see our [benefits enrollment reference](https://platform.pokitdok.com/documentation/v4/benefits_enrollment.html).
 <a name="enrollment_table"></a>
 
 | Parameter                                  | Description                                                                                                                                             |
