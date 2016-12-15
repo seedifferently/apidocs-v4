@@ -136,7 +136,8 @@
       {  
          "slug":"security-and-authentication",
          "content":"includes/_authentication.md",
-         "title":"Security and Authentication"
+         "title":"Security and Authentication",
+         "order": "3"
       },
       {  
          "slug":"common",
