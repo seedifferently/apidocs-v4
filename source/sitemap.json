@@ -176,7 +176,7 @@
       },
       {  
          "slug":"claims-payment-overview",
-         "content":"claim_payment.md",
+         "content":"claim_payments.md",
          "title":"Claim Payment Overview",
          "order":"10"
       },
