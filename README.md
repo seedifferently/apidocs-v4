@@ -1,8 +1,5 @@
 PokitDok API Documentation
-==========================
-
-
-
+=========================
 
 *This documentation was created with Slate. Check it out at [tripit.github.io/slate](http://tripit.github.io/slate).*
 
