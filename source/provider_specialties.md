@@ -1,6 +1,5 @@
 # Provider Specialties
-Provider specialties originate from the [NUCC Taxonomy](http://www.nucc.org) (Code Sets->Provider Taxonomy->CSV) 
-and also [PokitDok Marketplace](https://pokitdok.com/marketplace) specialties.  The complete list of specialties is below.
+Provider specialties originate from the [NUCC Taxonomy](http://www.nucc.org) (Code Sets->Provider Taxonomy->CSV).  The complete list of specialties is below.
 
 <a name="provider_specialties"></a>
 
