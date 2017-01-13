@@ -100,6 +100,9 @@ controlled via OAuth2 (for more information, reference "OAuth 2.0 Authorization
 Framework" [here](http://tools.ietf.org/html/rfc6749).) The cURL tab contains a quick example
 authenticating at the command line using cURL and making a call to the Activities API.
 
+PokitDok's API supports connections using TLS versions 1.2 or higher. (All modern languages
+and frameworks support TLS 1.2, but
+[specific older ones](https://fullmetalhealth.com/ssl-upgrade-notice/) do not.)
 
 The Python tab contains an example of authentication from scratch using Python
 and the requests library. Note that if you use one of our client libraries,
