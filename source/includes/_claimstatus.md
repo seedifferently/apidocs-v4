@@ -539,6 +539,7 @@ any matching claims:
                         "status_category": "Acknowledgement/Not Found-The claim/encounter can not be found in the adjudication system.",
                         "status_category_code": "A4",
                         "status_code": "Claim/encounter not found.",
+                        "status_code_value": "35",
                         "status_effective_date": "2014-07-25",
                         "total_claim_amount": {
                             "amount": "0",
@@ -595,6 +596,7 @@ name, and they are unable to find a match:
             "statuses":[  
                 {  
                     "status_code":"Entity's National Provider Identifier (NPI).",
+                    "status_code_value": "562",
                     "status_category":"Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
                     "status_category_code":"D0",
                     "status_effective_date":"2015-09-25"
@@ -649,6 +651,7 @@ has been paid:
                             {
                                 "status_category": "Finalized/Denial-The claim/line has been denied.",
                                 "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
+                                "status_code_value": "107",
                                 "status_category_code": "F2",
                                 "status_effective_date": "2014-07-25"
                             }
@@ -670,6 +673,7 @@ has been paid:
                             {
                                 "status_category": "Finalized/Payment-The claim/line has been paid.",
                                 "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
+                                "status_code_value": "107",
                                 "status_category_code": "F1",
                                 "status_effective_date": "2014-07-25"
                             }
@@ -691,6 +695,7 @@ has been paid:
                             {
                                 "status_category": "Finalized/Denial-The claim/line has been denied.",
                                 "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
+                                "status_code_value": "107",
                                 "status_category_code": "F2",
                                 "status_effective_date": "2014-07-25"
                             }
@@ -712,6 +717,7 @@ has been paid:
                             {
                                 "status_category": "Finalized/Payment-The claim/line has been paid.",
                                 "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
+                                "status_code_value": "107",
                                 "status_category_code": "F1",
                                 "status_effective_date": "2014-07-25"
                             }
@@ -733,6 +739,7 @@ has been paid:
                             {
                                 "status_category": "Finalized/Payment-The claim/line has been paid.",
                                 "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
+                                "status_code_value": "107",
                                 "status_category_code": "F1",
                                 "status_effective_date": "2014-07-25"
                             }
@@ -750,6 +757,7 @@ has been paid:
                         "remittance_date": "2014-06-25",
                         "status_category": "Finalized/Payment-The claim/line has been paid.",
                         "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
+                        "status_code_value": "107",
                         "status_category_code": "F1",
                         "status_effective_date": "2014-07-25",
                         "total_claim_amount": {
@@ -823,7 +831,9 @@ has been paid:
                         "statuses": [
                             {
                                 "status_category": "Finalized/Denial-The claim/line has been denied.",
-                                "status_code": "Subscriber and subscriber id not found.",                                                                     "status_category_code": "F2",
+                                "status_category_code": "F2",
+                                "status_code": "Subscriber and subscriber id not found.",                                                                     
+                                "status_code_value": "33",
                                 "status_effective_date": "2014-07-25"
                             }
                         ]
@@ -843,8 +853,9 @@ has been paid:
                         "statuses": [
                             {
                                 "status_category": "Finalized/Denial-The claim/line has been denied.",
+                                "status_category_code": "F2",
                                 "status_code": "Subscriber and subscriber id not found.",
-			        "status_category_code": "F2",
+			                    "status_code_value": "33",
                                 "status_effective_date": "2014-07-25"
                             }
                         ]
@@ -863,9 +874,10 @@ has been paid:
                         "service_end_date": "2013-07-25",
                         "statuses": [
                             {
-                                "status_category": "Finalized/Denial-The claim/line has been denied.",
-                                "status_code": "Subscriber and subscriber id not found.",
+                                "status_category": "Finalized/Denial-The claim/line has been denied.",                                
                                 "status_category_code": "F2",
+                                "status_code": "Subscriber and subscriber id not found.",
+                                "status_code_value": "33",
                                 "status_effective_date": "2014-07-25"
                             }
                         ]
@@ -880,8 +892,9 @@ has been paid:
                         },
                         "remittance_date": "2013-07-25",
                         "status_category": "Finalized/Denial-The claim/line has been denied.",
-                        "status_code": "Subscriber and subscriber id not found.",
                         "status_category_code": "F2",
+                        "status_code": "Subscriber and subscriber id not found.",
+                        "status_code_value": "33",                        
                         "status_effective_date": "2014-07-25",
                         "total_claim_amount": {
                             "amount": "975",
@@ -922,7 +935,9 @@ has been paid:
                         "statuses": [
                             {
                                 "status_category": "Finalized/Denial-The claim/line has been denied.",
-                                "status_code": "Subscriber and subscriber id not found.",                                                                     "status_category_code": "F2",
+                                "status_category_code": "F2",
+                                "status_code": "Subscriber and subscriber id not found.",    
+                                "status_code_value": "33",
                                 "status_effective_date": "2014-07-25"
                             }
                         ]
@@ -942,7 +957,9 @@ has been paid:
                         "statuses": [
                             {
                                 "status_category": "Finalized/Denial-The claim/line has been denied.",
-                                "status_code": "Subscriber and subscriber id not found.",                                                                     "status_category_code": "F2",
+                                "status_category_code": "F2",
+                                "status_code": "Subscriber and subscriber id not found.",
+                                 "status_code_value": "33",
                                 "status_effective_date": "2014-07-25"
                             }
                         ]
@@ -962,8 +979,9 @@ has been paid:
                         "statuses": [
                             {
                                 "status_category": "Finalized/Denial-The claim/line has been denied.",
-                                "status_code": "Subscriber and subscriber id not found.",
                                 "status_category_code": "F2",
+                                "status_code": "Subscriber and subscriber id not found.",
+                                "status_code_value": "33",
                                 "status_effective_date": "2014-07-25"
                             }
                         ]
@@ -977,9 +995,10 @@ has been paid:
                             "currency": "USD"
                         },
                         "remittance_date": "2013-08-25",
-                        "status_category": "Finalized/Denial-The claim/line has been denied.",
-                        "status_code": "Subscriber and subscriber id not found.",
+                        "status_category": "Finalized/Denial-The claim/line has been denied.",                        
                         "status_category_code": "F2",
+                        "status_code": "Subscriber and subscriber id not found.",
+                        "status_code_value": "33",
                         "status_effective_date": "2014-07-25",
                         "total_claim_amount": {
                             "amount": "975",
@@ -1054,8 +1073,9 @@ been denied (not paid) and the charges are applied to the deductible:
                         "statuses": [
                             {
                                 "status_category": "Finalized/Denial-The claim/line has been denied.",
-                                "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
                                 "status_category_code": "F1",
+                                "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
+                                "status_code_value": "107",
                                 "status_effective_date": "2014-07-25"
                             }
                         ]
@@ -1075,8 +1095,9 @@ been denied (not paid) and the charges are applied to the deductible:
                         "statuses": [
                             {
                                 "status_category": "Finalized/Denial-The claim/line has been denied.",
-                                "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
                                 "status_category_code": "F1",
+                                "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
+                                "status_code_value": "107",
                                 "status_effective_date": "2014-07-25"
                             }
                         ]
@@ -1092,8 +1113,9 @@ been denied (not paid) and the charges are applied to the deductible:
                         },
                         "remittance_date": "2014-04-25",
                         "status_category": "Finalized/Denial-The claim/line has been denied.",
-                        "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
                         "status_category_code": "F1",
+                        "status_code": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services)",
+                        "status_code_value": "107",
                         "status_effective_date": "2014-07-25",
                         "total_claim_amount": {
                             "amount": "427",
@@ -1276,7 +1298,8 @@ The /claim/status response contains the following fields:
 | tertiary_status_code              | Indicates the status of the claim. This status code provides more detail to support the status category. This value is suitable for display to users of a system utilizing the claims status API. A full listing of possible values can be found [here](http://www.wpc-edi.com/reference/codelists/healthcare/claim-status-category-codes/).       |
 | adjudication_finalized_date       | Date that the claim is paid or declined. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                                                                                                           |
 | remittance_date                   | The date the check was issued or EFT funds became available. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                                                                                       |
-| status_code                       | Indicates the status of the claim. This status code provides more detail to support the status category. This value is suitable for display to users of a system utilizing the claims status API. A full listing of possible values can be found [here](http://www.wpc-edi.com/reference/codelists/healthcare/claim-status-category-codes/).       |
+| status_code                       | Indicates the status of the claim. This status code provides more detail to support the status category. This value is suitable for display to users of a system utilizing the claims status API. A full listing of possible values can be found [here](http://www.wpc-edi.com/reference/codelists/healthcare/claim-status-codes/).                |
+| status_code_value                 | Indicates the raw status code value returned in the X12 277 claim status response. This value may be helpful to API clients that previously worked with X12 277 data directly and wish to continue to operate on the status code value while using the claims status API's JSON response format.  A full listing of possible values can be found [here](http://www.wpc-edi.com/reference/codelists/healthcare/claim-status-codes/). |
 | total_claim_amount                | The total monetary amount of the claim. Uses the monetary amount [object](#claims-status-monetary-amount).                                                                                                                                                                                                                                         |
 | claim_payment_amount              | The amount that's been paid on the claim. Uses the monetary amount [object](#claims-status-monetary-amount).                                                                                                                                                                                                                                       |
 | check_number                      | The check or EFT trace number for a claim payment.                                                                                                                                                                                                                                                                                                 |
