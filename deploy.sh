@@ -4,6 +4,11 @@
 
 set -e
 
+if [[ -n `docker images -q pokitdok.com/pd-api-docs-deploy` ]]
+then
+  docker build -t pokitdok.com/pd-api-docs-deploy -f Dockerfile.deployer .
+fi
+
 git checkout dev
 git pull origin dev
 
