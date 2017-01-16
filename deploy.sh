@@ -4,9 +4,11 @@
 
 set -e
 
-if [[ -n `docker images -q pokitdok.com/pd-api-docs-deploy` ]]
+DEPLOY_IMAGE=pokitdok.com/pd-api-docs-deploy:0.0.1
+
+if [[ -z $(docker images -q $DEPLOY_IMAGE) ]]
 then
-  docker build -t pokitdok.com/pd-api-docs-deploy -f Dockerfile.deployer .
+  docker build -t $DEPLOY_IMAGE -f Dockerfile.deployer .
 fi
 
 git checkout dev
@@ -30,8 +32,8 @@ echo "Deploying to staging..."
 docker run --rm \
 	-v "$PWD:/host" \
 	-v "$HOME/.boto:/root/.boto" \
-       	pokitdok.com/pd-api-docs-deploy \
-python deployer.py \
+       	$DEPLOY_IMAGE \
+python /host/deployer.py \
   --bucket "$staging" \
   --dir /host/build \
   --backup /host/backup \
@@ -55,8 +57,8 @@ if [ "$staging_ok" == "Y" ]; then
         docker run --rm \
 	    -v "$PWD:/host" \
 	    -v "$HOME/.boto:/root/.boto" \
-	    pokitdok.com/pd-api-docs-deploy \
-	python deployer.py \
+	    $DEPLOY_IMAGE \
+	python /host/deployer.py \
            --bucket "$production" \
            --dir /host/build \
            --backup /host/backup \
