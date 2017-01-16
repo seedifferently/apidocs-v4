@@ -27,10 +27,14 @@ echo "Building docs..."
 docker run -t -v "$PWD:/app" ruby:2.3 /app/build.sh
 
 echo "Deploying to staging..."
+docker run --rm \
+	-v "$PWD:/host" \
+	-v "$HOME/.boto:/root/.boto" \
+       	pokitdok.com/pd-api-docs-deploy \
 python deployer.py \
   --bucket "$staging" \
-  --dir ./build \
-  --backup ./backup \
+  --dir /host/build \
+  --backup /host/backup \
   --verify-url "https://s3.amazonaws.com/$staging/index.html"
 
 python -mwebbrowser "https://s3.amazonaws.com/$staging/index.html"
@@ -48,10 +52,14 @@ if [ "$staging_ok" == "Y" ]; then
 	docker run -t -v "$PWD:/app" ruby:2.3 /app/build.sh
 	
 	echo "Deploying to production..."
+        docker run --rm \
+	    -v "$PWD:/host" \
+	    -v "$HOME/.boto:/root/.boto" \
+	    pokitdok.com/pd-api-docs-deploy \
 	python deployer.py \
            --bucket "$production" \
-           --dir ./build \
-           --backup ./backup \
+           --dir /host/build \
+           --backup /host/backup \
            --verify-url https://platform.pokitdok.com/documentation/v4/
 	echo "Deployed to production, check it out:"
 	python -mwebbrowser "https://platform.pokitdok.com/documentation/v4/"
