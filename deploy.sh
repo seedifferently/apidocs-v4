@@ -2,6 +2,8 @@
 
 # This program follows the deployment process for API Documentation
 
+set -e
+
 git checkout dev
 git pull origin dev
 
