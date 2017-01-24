@@ -3449,6 +3449,13 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
                 "diagnosis_codes": [
                     "X35.XXXD"
                 ],
+                "test_results": [
+                     {
+                        "measurement": "height",
+                        "reference_id": "test_results",
+                        "value": "61"
+                      }
+               ], 
                 "service_date": "2016-04-25",
                 "service_end_date": "2016-05-25"
             }
@@ -3501,13 +3508,19 @@ client.claims({
         "diagnosis_codes": [
           "X35.XXXD"
         ],
+        "test_results": [
+           {
+             "measurement": "height",
+             "reference_id": "test_results",
+             "value": "61"
+            }
+        ], 
         "service_date": "2016-04-25",
         "service_end_date": "2016-05-25"
       }
     ]
   }
 })
-```
 
 ```ruby
 client.claims({
@@ -4383,6 +4396,10 @@ The /claims/ endpoint accepts the following parameters:
 | claim.service_lines.ambulance_patient_count   | The ambulance patient count associated with the service. Required if more than one patient is transported in the same vehicle.                                                                                                                                                        |                                                    |
 | claim.service_lines.note                      | Additional information on the service.                                                                                                                                                                                                                                                |                                                    |
 | claim.service_lines.note.reference_code       | Reference codes associated with a note. Possibilities are additional_information (ADD) and goals_rehab_discharge (DCP).                                                                                                                                                               |                                                    |
+| claim.service_lines.test_results                      | Used to communicate measurements or counts for tests.                                                                                                                                                                                                                      |                                                    |
+| claim.service_lines.test_results.reference_id                   | Code which identifies the category for the measurement. Available options are original or test_results.                                                                                                                                                          |                                                    |
+| claim.service_lines.test_results.measurement                   | Qualifier for the type of measurement.  Available options are height, hemoglobin, hematocrit, epoetin_starting_dosage, and creatinine.                                                                                                                                                                                                                                                |                                                    |
+| claim.service_lines.test_results.value                   | Numerical value associated with the measurement.                                                                                                                                                                                                                        |                                                    |
 | claim.service_lines.note.note                 | The string of additional information associated with a service.                                                                                                                                                                                                                       |                                                    |
 | claim.service_lines.rendering_provider        | Rendering provider associated with the service. Uses the provider object [below](#claims-provider-object). Used if the claim's rendering provider is not the health care provider that provided this particular service.                                                              |                                                    |
 | claim.service_lines.purchased_service_provider| Provider associated with the purchased service. Uses the provider object [below](#claims-provider-object). Used if the service reported in the service line item is a purchased service.                                                                                              |                                                    |
