@@ -2,6 +2,15 @@
 
 # This program follows the deployment process for API Documentation
 
+set -e
+
+DEPLOY_IMAGE=pokitdok.com/pd-api-docs-deploy:0.0.1
+
+if [[ -z $(docker images -q $DEPLOY_IMAGE) ]]
+then
+  docker build -t $DEPLOY_IMAGE -f Dockerfile.deployer .
+fi
+
 git checkout dev
 git pull origin dev
 
@@ -20,7 +29,15 @@ echo "Building docs..."
 docker run -t -v "$PWD:/app" ruby:2.3 /app/build.sh
 
 echo "Deploying to staging..."
-python deployer.py --bucket "$staging" --dir ./build --backup ./backup --verify-url "https://s3.amazonaws.com/$staging/index.html"
+docker run --rm \
+	-v "$PWD:/host" \
+	-v "$HOME/.boto:/root/.boto" \
+       	$DEPLOY_IMAGE \
+python /host/deployer.py \
+  --bucket "$staging" \
+  --dir /host/build \
+  --backup /host/backup \
+  --verify-url "https://s3.amazonaws.com/$staging/index.html"
 
 python -mwebbrowser "https://s3.amazonaws.com/$staging/index.html"
 echo "Deployed to staging. Please verify correctness by typing (Y/N), followed by [ENTER]: "
@@ -37,7 +54,15 @@ if [ "$staging_ok" == "Y" ]; then
 	docker run -t -v "$PWD:/app" ruby:2.3 /app/build.sh
 	
 	echo "Deploying to production..."
-	python deployer.py --bucket "$production" --dir ./build --backup ./backup --verify-url https://platform.pokitdok.com/documentation/v4/
+        docker run --rm \
+	    -v "$PWD:/host" \
+	    -v "$HOME/.boto:/root/.boto" \
+	    $DEPLOY_IMAGE \
+	python /host/deployer.py \
+           --bucket "$production" \
+           --dir /host/build \
+           --backup /host/backup \
+           --verify-url https://platform.pokitdok.com/documentation/v4/
 	echo "Deployed to production, check it out:"
 	python -mwebbrowser "https://platform.pokitdok.com/documentation/v4/"
 
