@@ -22,13 +22,11 @@ includes:
   - endpoints
   - activities
   - authorizations
-  - enrollment
   - cashprices
   - claims
   - claimsconvert
   - claimstatus
   - eligibility
-  - enrollmentsnapshot
   - icdconvert
   - identity
   - identityproof
@@ -52,5 +50,4 @@ includes:
 
 search: true
 
-enrollment_codes: enrollment_codes
 ---

@@ -54,16 +54,6 @@
          "title":"Eligibility"
       },
       {
-         "slug":"apis/enrollment",
-         "content":"includes/_enrollment.md",
-         "title":"Enrollment"
-      },
-      {
-         "slug":"apis/enrollmentsnapshot",
-         "content":"includes/_enrollmentsnapshot.md",
-         "title":"Enrollment Snapshot"
-      },
-      {
          "slug":"apis/icdconvert",
          "content":"includes/_icdconvert.md",
          "title":"ICD Convert"
