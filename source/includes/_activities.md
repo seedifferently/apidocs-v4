@@ -25,44 +25,6 @@ rejected          | The activity has been rejected by the trading partner for re
 rejected_reviewed | The activity has been rejected by the trading partner and reviewed for errors by the PokitDok team.
 
 
-Information concerning the activity’s progression through the system is available via the API Dashboard, as well as the endpoints listed below.
-
-Available Activity Endpoints:
-
-
-Endpoint | HTTP Method | Description
--------- | ----------- | -----------
-/activities/ | GET | List current activities. A query string parameter ‘parent_id’ may also be used with this API to get information about sub-activities that were initiated from a batch file upload.
-/activities/{id} | GET | Return detailed information about the specified activity. API applications will receive an activity ID in the API response for all operations that are asynchronous.
-/activities/{id} | PUT | Used for canceling activities that a client application no longer wishes to execute. This functionality cannot be used for activities after they have left a scheduled state and been transmitted to the trading partner.
-
-
-The /activities/ response includes the following fields:
-
-<a name="activities_response"></a>
-
-Field | Type | Description
------ | ---- | -----------
-callback_url | {string} | The URL that will be invoked to notify the client application that this Activity has completed. You must use https for callback URLs used by your application. For added security, a callback URL can be defined in the application.
-callback_error | {string} | Displays the error information associated with a failed callback attempt.
-history | {object array} | Historical status of the progress of this Activity.
-history.record_dt | {datetime} | The date time associated with the history. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).
-history.name | {string} | State name associated with the history.
-history.title | {string} | State title associated with the history.  
-id | {string} | ID of this Activity.
-name | {string} | Activity name.
-trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint. 
-parent_id | {string} | Id only present on sub-activities that were initiated via a batch file upload of activities.
-parameters | {dict} | The parameters that were originally supplied to the activity.
-remaining_transitions | {array} | The list of remaining state transitions that the activity has yet to go through.
-result | {dict} | The result of the activity processing.  This will be populated with the latest response from a trading partner.
-result_history | {object array} | A list of result values that have been received from a trading partner.  This list will be present when a request results in more than one response from a trading partner.  The most recent response will always be available in the result field for convenience.
-result_history.result | {dict} | The result associated with the result.
-result_history.record_dt | {datetime} | The date time associated with the result. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).
-state | {dict} | Current state of this Activity.
-transition_path | {array} | The list of state transitions that will be used for this Activity.
-units_of_work | {int} | The number of 'units of work' that the activity is operating on. This will typically be 1 for real-time requests like /eligibility/.
-
 > Example fetching activities for the current application:
 
 ```shell
@@ -115,6 +77,45 @@ try client.activities()
   }
 ]
 ```
+
+Information concerning the activity’s progression through the system is available via the API Dashboard, as well as the endpoints listed below.
+
+Available Activity Endpoints:
+
+
+Endpoint | HTTP Method | Description
+-------- | ----------- | -----------
+/activities/ | GET | List current activities. A query string parameter ‘parent_id’ may also be used with this API to get information about sub-activities that were initiated from a batch file upload.
+/activities/{id} | GET | Return detailed information about the specified activity. API applications will receive an activity ID in the API response for all operations that are asynchronous.
+/activities/{id} | PUT | Used for canceling activities that a client application no longer wishes to execute. This functionality cannot be used for activities after they have left a scheduled state and been transmitted to the trading partner.
+
+
+The /activities/ response includes the following fields:
+
+<a name="activities_response"></a>
+
+Field | Type | Description
+----- | ---- | -----------
+callback_url | {string} | The URL that will be invoked to notify the client application that this Activity has completed. You must use https for callback URLs used by your application. For added security, a callback URL can be defined in the application.
+callback_error | {string} | Displays the error information associated with a failed callback attempt.
+history | {object array} | Historical status of the progress of this Activity.
+history.record_dt | {datetime} | The date time associated with the history. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).
+history.name | {string} | State name associated with the history.
+history.title | {string} | State title associated with the history.  
+id | {string} | ID of this Activity.
+name | {string} | Activity name.
+trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint. 
+parent_id | {string} | Id only present on sub-activities that were initiated via a batch file upload of activities.
+parameters | {dict} | The parameters that were originally supplied to the activity.
+remaining_transitions | {array} | The list of remaining state transitions that the activity has yet to go through.
+result | {dict} | The result of the activity processing.  This will be populated with the latest response from a trading partner.
+result_history | {object array} | A list of result values that have been received from a trading partner.  This list will be present when a request results in more than one response from a trading partner.  The most recent response will always be available in the result field for convenience.
+result_history.result | {dict} | The result associated with the result.
+result_history.record_dt | {datetime} | The date time associated with the result. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).
+state | {dict} | Current state of this Activity.
+transition_path | {array} | The list of state transitions that will be used for this Activity.
+units_of_work | {int} | The number of 'units of work' that the activity is operating on. This will typically be 1 for real-time requests like /eligibility/.
+
 
 > Example fetching information for a specific activity:
 
