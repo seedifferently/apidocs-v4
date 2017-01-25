@@ -1,5 +1,31 @@
 ## In-Network Pharmacies
 
+The In-Network Pharmacy Endpoint returns in-network pharmacies for a plan.
+
+| Endpoint               | HTTP Method | Description                                                              |
+|:-----------------------|:------------|:-------------------------------------------------------------------------|
+| /pharmacy/network/     | GET         | Get a list of pharmacies meeting certain search criteria                 |
+| /pharmacy/network/{id} | GET         | Retrieve the data for a specified pharmacy; the ID is the provider’s NPI |
+
+To use the In-Network Pharmacy Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number PBP number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility.
+
+A list of pharmacies will be returned for a given location and radius. The in-network pharmacy endpoint defaults to retail pharmacies.
+
+The response will include details about the pharmacy such as name, address, phone number, etc.
+
+The /pharmacy/network endpoint accepts the following parameters:
+
+| Parameter          | Type     | Description                                                                                                                                                    | Presence |
+|:-------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|
+| trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](https://platform.pokitdok.com/documentation/v4/#trading-partners) endpoint. | Required |
+| plan_number        | {string} | Member’s plan identification number. Note: If unknown can use X12 270/271 eligibility                                                                          | Either plan_number or plan_name must be present |
+| plan_name          | {string} | Name of prescription drug plan                                                                                                                                 | Either plan_number or plan_name must be present |
+| zipcode            | {string} | Zip code for location                                                                                                                                          | Optional |
+| radius             | {string} | Radius of area (miles)                                                                                                                                         | Optional |
+| pharmacy_name      | {string} | Name of pharmacy                                                                                                                                               | Optional |
+| state              | {string} | Name of U.S. state in which to search for providers (e.g. “CA” or “SC”)                                                                                        | Optional |
+| sort               | {string} | Accepted values include ‘distance’ (default) or 'rank’. 'distance’ sort requires city & state or zipcode parameters otherwise sort will be 'rank’.             | Optional |
+
 > Example fetching pharmacy information by NPI:
 
 ```shell
@@ -80,6 +106,23 @@ let data = [
 ] as [String:Any]
 try client.pharmacyNetwork(params: data)
 ```
+
+The /pharmacy/network response contains the following fields:
+
+| Field                            | Type      | Description                            | Presence |
+|:---------------------------------|:----------|:---------------------------------------|:---------|
+| pharmacy.pharmacy_name           | {string}  | Name of pharmacy                       | Required |
+| pharmacy.npi                     | {string}  | NPI of pharmacy                        | Required |
+| pharmacy.in_network              | {boolean} | True if pharmacy is in-network         | Required |
+| pharmacy.locations.address_lines | {array}   | Address lines                          | Optional |
+| pharmacy.locations.city          | {string}  | City                                   | Optional |
+| pharmacy.locations.country       | {string}  | Country                                | Optional |
+| pharmacy.locations.geo_location  | {array}   | GeoJSON array of [longitude, latitude] | Optional |
+| pharmacy.locations.phone         | {string}  | Phone number                           | Optional |
+| pharmacy.locations.state         | {string}  | State                                  | Optional |
+| pharmacy.locations.zipcode       | {string}  | Zip code                               | Optional |
+| pharmacy.mail                    | {boolean} | Is location a mail order pharmacy?     | Optional |
+| pharmacy.retail                  | {boolean} | Is location a retail order pharmacy?   | Optional |
 
 > Sample response for /pharmacy/network/{npi} endpoint :
 
@@ -181,47 +224,4 @@ try client.pharmacyNetwork(params: data)
     ]
 }
 ```
-
-The In-Network Pharmacy Endpoint returns in-network pharmacies for a plan.
-
-| Endpoint               | HTTP Method | Description                                                              |
-|:-----------------------|:------------|:-------------------------------------------------------------------------|
-| /pharmacy/network/     | GET         | Get a list of pharmacies meeting certain search criteria                 |
-| /pharmacy/network/{id} | GET         | Retrieve the data for a specified pharmacy; the ID is the provider’s NPI |
-
-To use the In-Network Pharmacy Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number PBP number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility.
-
-A list of pharmacies will be returned for a given location and radius. The in-network pharmacy endpoint defaults to retail pharmacies.
-
-The response will include details about the pharmacy such as name, address, phone number, etc.
-
-The /pharmacy/network endpoint accepts the following parameters:
-
-| Parameter          | Type     | Description                                                                                                                                                    | Presence |
-|:-------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|
-| trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](https://platform.pokitdok.com/documentation/v4/#trading-partners) endpoint. | Required |
-| plan_number        | {string} | Member’s plan identification number. Note: If unknown can use X12 270/271 eligibility                                                                          | Either plan_number or plan_name must be present |
-| plan_name          | {string} | Name of prescription drug plan                                                                                                                                 | Either plan_number or plan_name must be present |
-| zipcode            | {string} | Zip code for location                                                                                                                                          | Optional |
-| radius             | {string} | Radius of area (miles)                                                                                                                                         | Optional |
-| pharmacy_name      | {string} | Name of pharmacy                                                                                                                                               | Optional |
-| state              | {string} | Name of U.S. state in which to search for providers (e.g. “CA” or “SC”)                                                                                        | Optional |
-| sort               | {string} | Accepted values include ‘distance’ (default) or 'rank’. 'distance’ sort requires city & state or zipcode parameters otherwise sort will be 'rank’.             | Optional |
-
-The /pharmacy/network response contains the following fields:
-
-| Field                            | Type      | Description                            | Presence |
-|:---------------------------------|:----------|:---------------------------------------|:---------|
-| pharmacy.pharmacy_name           | {string}  | Name of pharmacy                       | Required |
-| pharmacy.npi                     | {string}  | NPI of pharmacy                        | Required |
-| pharmacy.in_network              | {boolean} | True if pharmacy is in-network         | Required |
-| pharmacy.locations.address_lines | {array}   | Address lines                          | Optional |
-| pharmacy.locations.city          | {string}  | City                                   | Optional |
-| pharmacy.locations.country       | {string}  | Country                                | Optional |
-| pharmacy.locations.geo_location  | {array}   | GeoJSON array of [longitude, latitude] | Optional |
-| pharmacy.locations.phone         | {string}  | Phone number                           | Optional |
-| pharmacy.locations.state         | {string}  | State                                  | Optional |
-| pharmacy.locations.zipcode       | {string}  | Zip code                               | Optional |
-| pharmacy.mail                    | {boolean} | Is location a mail order pharmacy?     | Optional |
-| pharmacy.retail                  | {boolean} | Is location a retail order pharmacy?   | Optional |
 
