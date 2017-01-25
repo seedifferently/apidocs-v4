@@ -10,7 +10,7 @@ Learn more about our [Authorization API workflow](https://pokitdok.com/developer
 
 Interested in requesting approval for a referral to a specialist? See PokitDok’s [Referrals](#referrals) endpoint.
 
-Available Authorizations endpoints:
+### Available Authorizations Endpoints:
 
 | Endpoint         | HTTP Method | Description                                                                                             |
 |:-----------------|:------------|:--------------------------------------------------------------------------------------------------------|
@@ -295,7 +295,9 @@ let data = [
 try client.authorizations(params: data)
 ```
 
-The /authorizations/ endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
+### Authorizations Fields
+
+The `/authorizations/` endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
 
 | Field                             | Description                                                                                                                                                                                  |
 |:----------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -356,7 +358,7 @@ The /authorizations/ endpoint uses the same object for both its parameters and r
 If the authorization request is sent using a real-time interface, an authorization response may be returned depending on trading partner ability. Trading partner responses may vary or additional information may be requested via phone, email or fax.                                         
 
 <a name="service_review_member_object"></a>
-###Patient object:
+### Patient object:
 
 | Field                             | Description                                                                           |
 |:----------------------------------|:--------------------------------------------------------------------------------------|
@@ -375,7 +377,7 @@ If the authorization request is sent using a real-time interface, an authorizati
 | accident_date                     | The date of the member's accident. In ISO8601 format (YYYY-MM-DD).                                                                                                                                    |
 
 <a name="service_review_provider_object"></a>
-###Provider object:
+### Provider object:
 
 | Field                             | Description                                                           |
 |:----------------------------------|:----------------------------------------------------------------------|
@@ -463,9 +465,10 @@ Possible values that can be returned in the event.category parameter on the auth
 | admission_review       | individual            |
 | health_services_review | specialty_care_review |
 
+### Example Responses
 > Example authorizations response when the trading partner has rejected the submission:
 
-```
+```json
 {
     "client_id": "ASDFBOI87234CSDEAR",
     "correlation_id": "575037af0640fd518fe64c36",
@@ -590,7 +593,7 @@ Possible values that can be returned in the event.category parameter on the auth
 ```
 > Example authorizations response when the trading partner has received the request and it is pending:
 
-```
+```json
 {
     "client_id": "<client_id>",
     "patient": {

@@ -3,8 +3,7 @@
 
 The Activities endpoint is used to track the life cycle of a transaction.  Results returned will follow the states through which an Activity flows in the PokitDok platform. Long-running operations are performed asynchronously. Upon initiating those operations via an API endpoint, activity tracking information is returned to the caller, which can be used to query the status of the activity later on.
 
-Available Activity Endpoints:
-
+### Available Activity Endpoints:
 
 Endpoint | HTTP Method | Description
 -------- | ----------- | -----------
