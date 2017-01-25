@@ -6,7 +6,7 @@ A formulary is a list of medications that are approved for coverage by an insura
 
 This endpoint returns tier level and restrictions such as prior authorization, step therapy, and quantity limit. Only Medicare Part C and D plans are currently available.
 
-#### Available Endpoint
+#### Available Pharmacy Formulary Endpoint
 
 | Endpoint            | HTTP Method | Description                        |
 |:--------------------|:------------|:-----------------------------------|
