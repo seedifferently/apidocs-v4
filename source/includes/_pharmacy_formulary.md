@@ -6,6 +6,8 @@ A formulary is a list of medications that are approved for coverage by an insura
 
 This endpoint returns tier level and restrictions such as prior authorization, step therapy, and quantity limit. Only Medicare Part C and D plans are currently available.
 
+#### Available Pharmacy Formulary Endpoint
+
 | Endpoint            | HTTP Method | Description                        |
 |:--------------------|:------------|:-----------------------------------|
 | /pharmacy/formulary | GET         | Determine drug coverage for member |
@@ -24,7 +26,9 @@ In some cases, the member’s copay will be more than the total cost of the drug
 
 The field include_plans may be used if you would like to include an overview of the pharmacy plan information. This will add a new field to each drug document in the response.
 
-The /pharmacy/formulary endpoint accepts the following parameters:
+#### Accepted Parameters
+
+The `/pharmacy/formulary` endpoint accepts the following parameters:
 
 | Parameter          | Type      | Description                                                                                                                                                    | Presence |
 |:-------------------|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|
@@ -36,6 +40,7 @@ The /pharmacy/formulary endpoint accepts the following parameters:
 | rxcui              | {string}  | An RxNorm concept unique identifier for a drug                                           | Either drug, ndc, or rxcui must be present      |
 | include_plans      | {boolean} | If set to true, will return pharmacy plan info in response                               | Optional                                        |
 
+#### Example Requests
 
 > Example request to determine drug coverage using drug name:
 
@@ -117,7 +122,9 @@ let data = [
 try client.pharmacyFormulary(params: data)
 ```
 
-The /pharmacy/formulary response contains the following fields:
+#### Pharmacy Formulary Fields
+
+The `/pharmacy/formulary` response contains the following fields:
 
 | Field                    | Type      | Description                                                                                                                                   | Presence |
 |:-------------------------|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------|:---------|
@@ -135,6 +142,8 @@ The /pharmacy/formulary response contains the following fields:
 | mail.oop_90_day          | {string}  | Estimated out of pocket cost for 90 day supply of drug at an in-network mail order pharmacy                                                   | Optional |
 | mail.total_cost_90_day   | {string}  | Estimated total cost of drug for 90 day supply of drug at an in-network mail order pharmacy (average insurance negotiated rate with pharmacy) | Optional |
 | mail.ins_pay_90_day      | {string}  | Estimated amount insurance covers for 90 day supply of drug at an in-network mail order pharmacy                                              | Optional |
+
+#### Example Responses
 
 > Sample Pharmacy Formulary API response when searching for a drug name (SIMVASTATIN) :
 

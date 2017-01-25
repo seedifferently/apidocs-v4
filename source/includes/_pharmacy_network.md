@@ -1,5 +1,7 @@
 ## In-Network Pharmacies
 
+#### Available In-Network Pharmacy EndPoints
+
 The In-Network Pharmacy Endpoint returns in-network pharmacies for a plan.
 
 | Endpoint               | HTTP Method | Description                                                              |
@@ -13,7 +15,9 @@ A list of pharmacies will be returned for a given location and radius. The in-ne
 
 The response will include details about the pharmacy such as name, address, phone number, etc.
 
-The /pharmacy/network endpoint accepts the following parameters:
+#### Accepted Parameters
+
+The `/pharmacy/network` endpoint accepts the following parameters:
 
 | Parameter          | Type     | Description                                                                                                                                                    | Presence |
 |:-------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|
@@ -25,6 +29,8 @@ The /pharmacy/network endpoint accepts the following parameters:
 | pharmacy_name      | {string} | Name of pharmacy                                                                                                                                               | Optional |
 | state              | {string} | Name of U.S. state in which to search for providers (e.g. “CA” or “SC”)                                                                                        | Optional |
 | sort               | {string} | Accepted values include ‘distance’ (default) or 'rank’. 'distance’ sort requires city & state or zipcode parameters otherwise sort will be 'rank’.             | Optional |
+
+#### Example Requests
 
 > Example fetching pharmacy information by NPI:
 
@@ -107,6 +113,8 @@ let data = [
 try client.pharmacyNetwork(params: data)
 ```
 
+#### In-Network Pharmacy Fields
+
 The /pharmacy/network response contains the following fields:
 
 | Field                            | Type      | Description                            | Presence |
@@ -123,6 +131,8 @@ The /pharmacy/network response contains the following fields:
 | pharmacy.locations.zipcode       | {string}  | Zip code                               | Optional |
 | pharmacy.mail                    | {boolean} | Is location a mail order pharmacy?     | Optional |
 | pharmacy.retail                  | {boolean} | Is location a retail order pharmacy?   | Optional |
+
+#### Example Responses 
 
 > Sample response for /pharmacy/network/{npi} endpoint :
 
