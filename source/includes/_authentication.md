@@ -62,9 +62,8 @@ from base64 import urlsafe_b64encode
 client_id = YOUR_APP_CLIENT_ID
 client_secret = YOUR_APP_CLIENT_SECRET
 access_token = requests.post('https://platform.pokitdok.com/oauth2/token',
-headers={'Authorization': 'Basic ' +
-urlsafe_b64encode(client_id + ':' + client_secret)},
-data={'grant_type':'client_credentials'}).json()['access_token']
+                              headers={'Authorization': 'Basic ' + urlsafe_b64encode(client_id + ':' + client_secret)},
+                              data={'grant_type':'client_credentials'}).json()['access_token']
 
 activity = requests.get('https://platform.pokitdok.com/api/v4/activities/53187d2027a27620f2ec7537',
 headers={'Authorization': 'Bearer ' + access_token}).json()
