@@ -10,7 +10,7 @@ Learn more about our [Authorization API workflow](https://pokitdok.com/developer
 
 Interested in requesting approval for a referral to a specialist? See PokitDok’s [Referrals](#referrals) endpoint.
 
-#### Available Authorizations Endpoint:
+#### Available Authorizations Endpoint
 
 | Endpoint         | HTTP Method | Description                                                                                             |
 |:-----------------|:------------|:--------------------------------------------------------------------------------------------------------|

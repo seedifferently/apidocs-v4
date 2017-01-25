@@ -11,7 +11,7 @@ Once a claim has been submitted, status can be tracked through PokitDok's system
 A trading partner's first response lets you know if the request has been accepted (or rejected) by their claims validation system. Once your claim submission is accepted by the trading partner, it will enter their adjudication system. A tracking id or claim control number will be assigned after passing the validation stage, which can then be used in claims status requests to track the claim. A claim can be monitored via a Claims Status request once the claim has been accepted in the trading partner’s adjudication system. The speed at which a claim is adjudicated is dependent on the trading partner. On average it takes 5-7 days for a claim to enter a payer’s adjudication system, thus it is recommended to wait at least a week after submitting a claim to check its status. Once adjudication is complete, the trading partner will return an electronic remittance advice or ERA (if registered to receive ERAs), otherwise a paper remittance advice is sent with final adjudication information.  Review our [claim payments reference](https://platform.pokitdok.com/documentation/v4/claim_payments.html) for additional information.
 
 
-#### Available Claims Endpoint:
+#### Available Claims Endpoint
 
 | Endpoint | HTTP Method | Description                                      |
 |:---------|:------------|:-------------------------------------------------|

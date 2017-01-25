@@ -7,7 +7,7 @@ The Plans endpoint provides access to information about insurance plans.
 The plans returned are those currently available through the federal exchange.
 Additional plans may be added later.
 
-#### Available Plans Endpoint:
+#### Available Plans Endpoint
 | Endpoint | HTTP Method | Description                       |
 |:---------|:------------|:----------------------------------|
 | /plans/  | GET         | Search insurance plan information |
