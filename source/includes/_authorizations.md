@@ -1,4 +1,22 @@
 ## Authorizations
+
+*Available modes of operation: batch/async or real-time*
+
+The Authorizations endpoint allows an application to submit a request for an authorization for a health care service. Providers can request permission (authorization) from the reviewing entity (e.g. Utilization Management Organization) to deliver health care services to a patient.
+
+The Authorization request can also be used to request permission to admit a patient and/or gain authorization to deliver specific health care services to a patient that requires review.  Services requiring authorization are defined by the trading partner. Authorization request and responses may vary based on Trading Partner.
+
+Learn more about our [Authorization API workflow](https://pokitdok.com/developers/api/#api-authorizations).
+
+Interested in requesting approval for a referral to a specialist? See PokitDok’s [Referrals](#referrals) endpoint.
+
+Available Authorizations endpoints:
+
+| Endpoint         | HTTP Method | Description                                                                                             |
+|:-----------------|:------------|:--------------------------------------------------------------------------------------------------------|
+| /authorizations/ | POST        | Submit a request for the review of healthcare services in order to obtain an authorization for that service. |
+
+
 >Here's an example authorization request for an abdominal ultrasound. In this example, the patient is also the subscriber on the insurance policy:
 
 ```shell
@@ -276,190 +294,6 @@ let data = [
 ] as [String:Any]
 try client.authorizations(params: data)
 ```
-> Example authorizations response when the trading partner has rejected the submission:
-
-```
-{
-    "client_id": "ASDFBOI87234CSDEAR",
-    "correlation_id": "575037af0640fd518fe64c36",
-    "event": {
-        "category": "health_services_review",
-        "certification_type": "initial",
-        "delivery": {
-            "quantity_qualifier": "visits",
-            "quantity": 1
-        },
-        "place_of_service": "office",
-        "provider": {
-            "last_name": "AYA-AY",
-            "first_name": "JEROME",
-            "npi": "1467560003",
-            "rejections": [
-                {
-                    "follow_up_action": "correct_and_resubmit",
-                    "reason": "input_errors",
-                    "valid_request": false
-                }
-            ]
-        },
-        "review": {
-            "certification_action": "not_certified",
-            "decision_reason": "services_not_considered_due_to_other_errors",
-            "second_surgical_opinion_required": false
-        },
-        "services": [
-            {
-                "cpt_code": "97022",
-                "rejections": [
-                    {
-                        "follow_up_action": "correct_and_resubmit",
-                        "reason": "required_application_data_missing",
-                        "valid_request": false
-                    }
-                ]
-            }
-        ]
-    },
-    "follow_up_action": "correct_and_resubmit",
-    "originating_company_id": "987123654",
-    "patient": {
-        "birth_date": "1970-01-01",
-        "gender": "unknown",
-        "last_name": "DOE",
-        "first_name": "JANE",
-        "id": "W000000000"
-    },
-    "payer": {
-        "organization_name": "MOCKPAYER",
-        "id": "123456789"
-    },
-    "provider": {
-        "organization_name": "POKITDOK TESTING",
-        "npi": "1234567890",
-        "rejections": [
-            {
-                "follow_up_action": "correct_and_resubmit",
-                "reason": "invalid_provider_phone_number",
-                "valid_request": false
-            }
-        ]
-    },
-    "reject_reason": "invalid_provider_phone_number",
-    "trading_partner_id": "MOCKPAYER",
-    "valid_request": false,
-    "async": false
-}
-```
-> Example authorizations response when the trading partner has authorized the request:
-
-```json
-{
-    "client_id": "<client_id>",
-    "event": {
-        "category": "health_services_review",
-        "certification_type": "initial",
-        "delivery": {
-            "quantity": 1,
-            "quantity_qualifier": "visits"
-        },
-        "diagnoses": [
-            {
-                "code": "R10.9",
-                "date": "2016-01-25"
-            }
-        ],
-        "place_of_service": "office",
-        "provider": {
-            "organization_name": "KELLY ULTRASOUND CENTER, LLC",
-            "npi": "1760779011",
-            "phone": "8642341234"
-        },
-        "review": {
-            "certification_action": "certified_in_total",
-            "certification_number": "AUTH0002"
-        },
-        "services": [
-            {
-                "cpt_code": "76700",
-                "measurement": "unit",
-                "quantity": 1
-            }
-        ],
-        "type": "diagnostic_medical"
-    },
-    "patient": {
-        "birth_date": "1970-01-25",
-        "first_name": "JANE",
-        "last_name": "DOE",
-        "id": "1234567890"
-    },
-    "provider": {
-        "first_name": "JEROME",
-        "npi": "1467560003",
-        "last_name": "AYA-AY"
-    },
-    "trading_partner_id": "MOCKPAYER"
-}
-```
-> Example authorizations response when the trading partner has received the request and it is pending:
-
-```
-{
-    "client_id": "<client_id>",
-    "patient": {
-        "birth_date": "1970-02-25",
-        "first_name": "Jane",
-        "last_name": "Doe",
-        "id": "W000000000"
-    },
-    "trading_partner_id": "abc_healthcare",
-    "payer": {
-        "organization_name": "ABC HealthCare",
-        "id": ""
-    },
-    "originating_company_id": "1453504565",
-    "correlation_id": "",
-    "client_id": "",
-    "provider": {
-        "first_name": "JEROME",
-        "last_name": "AYA-AY",
-        "npi": "1760779011"
-    },
-    "async": false,
-    "event": {
-        "category": "health_services_review",
-        "place_of_service": "office",
-        "review": {
-            "decision_reason": "requires_medical_review",
-            "second_surgical_opinion_required": false,
-            "certification_action": "pended"
-        },
-        "delivery": {
-            "quantity_qualifier": "visits",
-            "quantity": 1
-        },
-        "certification_type": "initial",
-        "type": "diagnostic_lab"
-    },
-    "valid_request": true
-}
-```
-
-*Available modes of operation: batch/async or real-time*
-
-The Authorizations endpoint allows an application to submit a request for an authorization for a health care service. Providers can request permission (authorization) from the reviewing entity (e.g. Utilization Management Organization) to deliver health care services to a patient.
-
-The Authorization request can also be used to request permission to admit a patient and/or gain authorization to deliver specific health care services to a patient that requires review.  Services requiring authorization are defined by the trading partner. Authorization request and responses may vary based on Trading Partner. 
-
-Learn more about our Authorization API workflow.
-
-Interested in requesting approval for a referral to a specialist? See PokitDok’s [Referrals](#referrals) endpoint.
-
-Available Authorizations endpoints:
-
-| Endpoint         | HTTP Method | Description                                                                                             |
-|:-----------------|:------------|:--------------------------------------------------------------------------------------------------------|
-| /authorizations/ | POST        | Submit a request for the review of healthcare services in order to obtain an authorization for that service. |
 
 The /authorizations/ endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
 
@@ -628,3 +462,172 @@ Possible values that can be returned in the event.category parameter on the auth
 |:-----------------------|:----------------------|
 | admission_review       | individual            |
 | health_services_review | specialty_care_review |
+
+> Example authorizations response when the trading partner has rejected the submission:
+
+```
+{
+    "client_id": "ASDFBOI87234CSDEAR",
+    "correlation_id": "575037af0640fd518fe64c36",
+    "event": {
+        "category": "health_services_review",
+        "certification_type": "initial",
+        "delivery": {
+            "quantity_qualifier": "visits",
+            "quantity": 1
+        },
+        "place_of_service": "office",
+        "provider": {
+            "last_name": "AYA-AY",
+            "first_name": "JEROME",
+            "npi": "1467560003",
+            "rejections": [
+                {
+                    "follow_up_action": "correct_and_resubmit",
+                    "reason": "input_errors",
+                    "valid_request": false
+                }
+            ]
+        },
+        "review": {
+            "certification_action": "not_certified",
+            "decision_reason": "services_not_considered_due_to_other_errors",
+            "second_surgical_opinion_required": false
+        },
+        "services": [
+            {
+                "cpt_code": "97022",
+                "rejections": [
+                    {
+                        "follow_up_action": "correct_and_resubmit",
+                        "reason": "required_application_data_missing",
+                        "valid_request": false
+                    }
+                ]
+            }
+        ]
+    },
+    "follow_up_action": "correct_and_resubmit",
+    "originating_company_id": "987123654",
+    "patient": {
+        "birth_date": "1970-01-01",
+        "gender": "unknown",
+        "last_name": "DOE",
+        "first_name": "JANE",
+        "id": "W000000000"
+    },
+    "payer": {
+        "organization_name": "MOCKPAYER",
+        "id": "123456789"
+    },
+    "provider": {
+        "organization_name": "POKITDOK TESTING",
+        "npi": "1234567890",
+        "rejections": [
+            {
+                "follow_up_action": "correct_and_resubmit",
+                "reason": "invalid_provider_phone_number",
+                "valid_request": false
+            }
+        ]
+    },
+    "reject_reason": "invalid_provider_phone_number",
+    "trading_partner_id": "MOCKPAYER",
+    "valid_request": false,
+    "async": false
+}
+```
+> Example authorizations response when the trading partner has authorized the request:
+
+```json
+{
+    "client_id": "<client_id>",
+    "event": {
+        "category": "health_services_review",
+        "certification_type": "initial",
+        "delivery": {
+            "quantity": 1,
+            "quantity_qualifier": "visits"
+        },
+        "diagnoses": [
+            {
+                "code": "R10.9",
+                "date": "2016-01-25"
+            }
+        ],
+        "place_of_service": "office",
+        "provider": {
+            "organization_name": "KELLY ULTRASOUND CENTER, LLC",
+            "npi": "1760779011",
+            "phone": "8642341234"
+        },
+        "review": {
+            "certification_action": "certified_in_total",
+            "certification_number": "AUTH0002"
+        },
+        "services": [
+            {
+                "cpt_code": "76700",
+                "measurement": "unit",
+                "quantity": 1
+            }
+        ],
+        "type": "diagnostic_medical"
+    },
+    "patient": {
+        "birth_date": "1970-01-25",
+        "first_name": "JANE",
+        "last_name": "DOE",
+        "id": "1234567890"
+    },
+    "provider": {
+        "first_name": "JEROME",
+        "npi": "1467560003",
+        "last_name": "AYA-AY"
+    },
+    "trading_partner_id": "MOCKPAYER"
+}
+```
+> Example authorizations response when the trading partner has received the request and it is pending:
+
+```
+{
+    "client_id": "<client_id>",
+    "patient": {
+        "birth_date": "1970-02-25",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    },
+    "trading_partner_id": "abc_healthcare",
+    "payer": {
+        "organization_name": "ABC HealthCare",
+        "id": ""
+    },
+    "originating_company_id": "1453504565",
+    "correlation_id": "",
+    "client_id": "",
+    "provider": {
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1760779011"
+    },
+    "async": false,
+    "event": {
+        "category": "health_services_review",
+        "place_of_service": "office",
+        "review": {
+            "decision_reason": "requires_medical_review",
+            "second_surgical_opinion_required": false,
+            "certification_action": "pended"
+        },
+        "delivery": {
+            "quantity_qualifier": "visits",
+            "quantity": 1
+        },
+        "certification_type": "initial",
+        "type": "diagnostic_lab"
+    },
+    "valid_request": true
+}
+```
