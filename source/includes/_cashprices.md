@@ -11,7 +11,7 @@ digits of the zip code, commonly called a "geozip" or a "ZIP Code Prefix". These
 three digits refer to the geographical regions surrounding major cities or
 metropolitan areas. There are approximately 900 "geozips" in the United States.
 
-### Available Cash Prices Endpoints:
+### Available Cash Prices Endpoint:
 
 | Endpoint     | HTTP Method | Description                                                                                 |
 |:-------------|:------------|:--------------------------------------------------------------------------------------------|
