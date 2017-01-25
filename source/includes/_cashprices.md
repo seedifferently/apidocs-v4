@@ -1,3 +1,29 @@
+*Available modes of operation: real-time*
+
+The Cash Prices endpoint allow access to our internal collection of pricing
+data. The data comes from actual providers selling actual services. For a
+location where a cash price has not been collected, a price is estimated using a
+multivariate model.
+
+While the endpoint requires a five-digit zip code, only the first three digits
+are significant. This is because the index is only granular to the first three
+digits of the zip code, commonly called a "geozip" or a "ZIP Code Prefix". These
+three digits refer to the geographical regions surrounding major cities or
+metropolitan areas. There are approximately 900 "geozips" in the United States.
+
+### Available Cash Prices Endpoints:
+
+| Endpoint     | HTTP Method | Description                                                                                 |
+|:-------------|:------------|:--------------------------------------------------------------------------------------------|
+| /prices/cash | GET         | Return a list of prices for a given procedure (by CPT Code) in a given region (by ZIP Code) |
+
+The /prices/cash endpoint accepts the following parameters:
+
+| Parameter| Type     | Description                                | Presence |
+|:---------|:---------|:-------------------------------------------|:---------|
+| cpt_code | {string} | The CPT code of the procedure in question  | Required |
+| zip_code | {string} | Zip code in which to search for procedures | Required |
+
 ## Cash Prices
 > Example fetching cash price information:
 
@@ -62,30 +88,7 @@ try client.cashPrices(cptCode: "99385", zipCode: "29412")
 ]
 ```
 
-
-*Available modes of operation: real-time*
-
-The Cash Prices endpoint allow access to our internal collection of pricing
-data. The data comes from actual providers selling actual services. For a
-location where a cash price has not been collected, a price is estimated using a
-multivariate model.
-
-While the endpoint requires a five-digit zip code, only the first three digits
-are significant. This is because the index is only granular to the first three
-digits of the zip code, commonly called a "geozip" or a "ZIP Code Prefix". These
-three digits refer to the geographical regions surrounding major cities or
-metropolitan areas. There are approximately 900 "geozips" in the United States.
-
-| Endpoint     | HTTP Method | Description                                                                                 |
-|:-------------|:------------|:--------------------------------------------------------------------------------------------|
-| /prices/cash | GET         | Return a list of prices for a given procedure (by CPT Code) in a given region (by ZIP Code) |
-
-The /prices/cash endpoint accepts the following parameters:
-
-| Parameter| Type     | Description                                | Presence |
-|:---------|:---------|:-------------------------------------------|:---------|
-| cpt_code | {string} | The CPT code of the procedure in question  | Required |
-| zip_code | {string} | Zip code in which to search for procedures | Required |
+### Cash Prices Fields
 
 The /prices/cash response contains the following fields:
 
@@ -100,6 +103,8 @@ The /prices/cash response contains the following fields:
 | low_price              | {decimal} | The lowest price for the procedure                                        | Required |
 | median_price           | {decimal} | The median price for the procedure                                        | Required |
 | standard_deviation     | {decimal} | The standard deviation, or variation measure, of prices for the procedure | Required |
+
+
 
 Currently the Cash Prices endpoint only supports the top fifty procedures. A list of these procedures and their corresponding cpt_codes can be seen below.
 
