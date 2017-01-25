@@ -17,6 +17,8 @@ Interested in requesting approval for a referral to a specialist? See PokitDokâ€
 | /authorizations/ | POST        | Submit a request for the review of healthcare services in order to obtain an authorization for that service. |
 
 
+#### Example Request
+
 >Here's an example authorization request for an abdominal ultrasound. In this example, the patient is also the subscriber on the insurance policy:
 
 ```shell
@@ -295,7 +297,7 @@ let data = [
 try client.authorizations(params: data)
 ```
 
-### Authorizations Fields
+#### Authorizations Fields
 
 The `/authorizations/` endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
 
@@ -358,7 +360,7 @@ The `/authorizations/` endpoint uses the same object for both its parameters and
 If the authorization request is sent using a real-time interface, an authorization response may be returned depending on trading partner ability. Trading partner responses may vary or additional information may be requested via phone, email or fax.                                         
 
 <a name="service_review_member_object"></a>
-### Patient object:
+#### Patient object:
 
 | Field                             | Description                                                                           |
 |:----------------------------------|:--------------------------------------------------------------------------------------|
@@ -377,7 +379,7 @@ If the authorization request is sent using a real-time interface, an authorizati
 | accident_date                     | The date of the member's accident. In ISO8601 format (YYYY-MM-DD).                                                                                                                                    |
 
 <a name="service_review_provider_object"></a>
-### Provider object:
+#### Provider object:
 
 | Field                             | Description                                                           |
 |:----------------------------------|:----------------------------------------------------------------------|
@@ -393,6 +395,8 @@ If the authorization request is sent using a real-time interface, an authorizati
 | taxonomy_code                     | The taxonomy code for the provider.                                                                         |
 | npi                               | The NPI for the provider.                                                                                                                                                              |
 | organization_name                 | The providerâ€™s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                   |
+
+#### Response Field Tables
 
 <a name="certaction"></a>
 Possible values that can be returned in the event.review.certification_action parameter on the authorization response:
@@ -465,7 +469,7 @@ Possible values that can be returned in the event.category parameter on the auth
 | admission_review       | individual            |
 | health_services_review | specialty_care_review |
 
-### Example Responses
+#### Example Responses
 > Example authorizations response when the trading partner has rejected the submission:
 
 ```json

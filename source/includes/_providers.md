@@ -1,4 +1,107 @@
 ## Providers
+
+
+*Available modes of operation: real-time only*
+
+The Providers endpoints provide access to PokitDok's provider directory.
+The Providers endpoints can be used to search for Providers, view biographical,
+education, credential, and license information. For a complete reference to all possible
+provider specialties, see our [provider specialties reference](https://platform.pokitdok.com/documentation/v4/provider_specialties.html).
+
+#### Available Provider Endpoints:
+
+| Endpoint        | HTTP Method | Description                                                              |
+|:----------------|:------------|:-------------------------------------------------------------------------|
+| /providers/     | GET         | Get a list of providers meeting certain search criteria                  |
+| /providers/{id} | GET         | Retrieve the data for a specified provider; the ID is the provider's NPI |
+
+
+#### Accepted Parameters
+The `/providers/` endpoint accepts the following search parameters:
+
+| Parameter         | Type     | Description                                                                                                                                         |
+|:------------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
+| address_lines     | {string} | Any or all of number, street name, apartment, suite number                                                                                          |
+| city              | {string} | Name of city in which to search for providers (e.g. "San Mateo" or "Charleston")                                                                    |
+| first_name        | {string} | The provider's first name                                                                                                                           |
+| middle_name       | {string} | The provider's middle name                                                                                                                          |
+| last_name         | {string} | The provider's last name                                                                                                                            |
+| gender            | {string} | The provider's gender                                                                                                                               |
+| organization_name | {string} | The business practice name                                                                                                                          |
+| name              | {string} | Queries against the provider's full name (first, middle, last) for individuals, organization and other organization names for organizations. For best results individual name properties and organization name should be omitted when passing this parameter.|
+| radius            | {string} | Search distance from geographic centerpoint, with unit (e.g. "1mi")                                                                                 |
+| specialty         | {string} | The provider's specialty name (e.g. "rheumatology").  Partial name-prefixes may be specified (e.g. "rheum")                                         |
+| state             | {string} | Name of U.S. state in which to search for providers (e.g. "CA" or "SC")                                                                             |
+| zipcode           | {string} | Geographic center point in which to search for providers (e.g. "94401")                                                                             |
+| sort              | {string} | Accepted values include 'distance' (default) or 'rank'.  'distance' sort requires city & state or zipcode parameters otherwise sort will be 'rank'. |
+| entity_types      | {string} | The desired provider entity type(s), as a comma-separated string.  Possibilities are 'individual', 'organization', and 'individual,organization'.   |
+
+
+#### Providers Fields
+
+The response from the `/providers/` endpoints contain the following fields:
+
+| Field                                 | Type      | Description                                                                                                    | Presence |
+|:--------------------------------------|:----------|:---------------------------------------------------------------------------------------------------------------|:------------------|
+| provider.birth_date                   | {string}  | The provider's birth year. In ISO8601 format (YYYY-MM-DD).                                                     | Optional (when entity_type is 'individual') |
+| provider.board_certifications         | {array}   | The provider's board certifications                                                                            | Optional (when entity_type is 'individual') |
+| provider.degree                       | {string}  | The provider's degree ("MD" or "DO")                                                                           | Optional (when entity_type is 'individual') |
+| provider.description                  | {string}  | Provider description                                                                                           | Optional |
+| provider.education                    | {dict}    | The provider's medical school information                                                                      | Optional (when entity_type is 'individual') |
+| provider.education.medical_school     | {string}  | Provider's medical school                                                                                      | Required |
+| provider.education.graduation_year    | {string}  | Provider's graduation year                                                                                     | Optional |
+| provider.entity_type                  | {string}  | The entity type of the provider. Possibilities are 'individual') and 'organization')                           | Required |
+| provider.facilities                   | {array}   | Providers' affiliated facilities                                                                               | Optional |
+| provider.facilities.organization_name | {string}  | Facility organization name                                                                                     | Required |
+| provider.facilities.npi               | {string}  | Facility NPI                                                                                                   | Optional |
+| provider.fax                          | {string}  | The provider's fax number                                                                                      | Optional |
+| provider.first_name                   | {string}  | The provider's first name                                                                                      | Required (when entity_type is 'individual') |
+| provider.gender                       | {string}  | The provider's gender                                                                                          | Optional |
+| provider.last_name                    | {string}  | The provider's last name                                                                                       | Required (when entity_type is 'individual') |
+| provider.licenses                     | {array}   | CMS-NPI license information                                                                                    | Optional |
+| provider.licenses.number              | {string}  | License number                                                                                                 | Optional |
+| provider.licenses.state               | {string}  | License state                                                                                                  | Optional |
+| provider.licensures                   | {array}   | State licensure information                                                                                    | Optional |
+| provider.licensures.as_of_date        | {string}  | Licensure as of date. In ISO8601 format (YYYY-MM-DD).                                                          | Optional |
+| provider.licensures.expiration_date   | {string}  | Licensure expiration date. In ISO8601 format (YYYY-MM-DD).                                                     | Optional |
+| provider.licensures.number            | {string}  | Licensure number                                                                                               | Optional |
+| provider.licensures.status            | {string}  | Licensure status ('active', 'inactive')                                                                        | Optional |
+| provider.licensures.state             | {string}  | Licensure state                                                                                                | Optional |
+| provider.licensures.verified          | {string}  | Licensure verification status ('Y' or 'N')                                                                     | Optional |
+| provider.locations                    | {array}   | List of locations associated with the provider                                                                 | Optional |
+| provider.locations.address_lines      | {array}   | Address lines                                                                                                  | Optional |
+| provider.locations.city               | {string}  | City                                                                                                           | Required |
+| provider.locations.country            | {string}  | Country                                                                                                        | Optional |
+| provider.locations.fax                | {string}  | Fax number                                                                                                     | Optional |
+| provider.locations.geo_location       | {array}   | GeoJSON array of \[longitude, latitude\]                                                                       | Optional |
+| provider.locations.phone              | {string}  | Phone number                                                                                                   | Optional |
+| provider.locations.state              | {string}  | State                                                                                                          | Required |
+| provider.locations.zipcode            | {string}  | Zip code                                                                                                       | Required |
+| provider.locations.county             | {string}  | County                                                                                                         | Optional |
+| provider.locations.role               | {list}    | Address role(s). One or both of: ('mailing' or 'practice').  When missing the address is the practice address. | Optional |
+| provider.locations.suite              | {string}  | Address suite																								     | Optional |
+| provider.middle_name                  | {string}  | The provider's middle name or initial                                                                          | Optional |
+| provider.npi                          | {string}  | The provider's NPI                                                                                             | Optional |
+| provider.organization_name            | {string}  | The business practice name                                                                                     | Required (when entity_type is 'organization') |
+| provider.other_organization_name      | {string}  | The business practice's other name                                                                             | Optional (when entity_type is 'organization') |
+| provider.phone                        | {string}  | The provider's phone number                                                                                    | Optional |
+| provider.prefix                       | {string}  | The provider's prefix (Mr., Mrs., Dr., etc)                                                                    | Optional |
+| provider.residencies                  | {array}   | Provider residency and education information                                                                   | Optional (when entity_type is 'individual') |
+| provider.residencies.institution_name | {string}  | Institution name                                                                                               | Required |
+| provider.residencies.type             | {string}  | Education type.  One of: ('Medical School', 'Residency','Internship', 'Fellowship', 'College Attended')        | Required |
+| provider.residencies.to_year          | {string}  | Graduation year                                                                                                | Optional |
+| provider.specialty                    | {array}   | List of specialties from the specialty taxonomy associated with the provider                                   | Required |
+| provider.specialty_primary            | {array}   | List of provider's primary specialties                                                                         | Required |
+| provider.specialty_secondary          | {array}   | List of provider's secondary specialties                                                                       | Required |
+| provider.suffix                       | {string}  | The provider's suffix (MD, Jr., etc)                                                                           | Optional |
+| provider.uuid                         | {uuid}    | The provider's unique PokitDok Platform identifier                                                             | Required |
+| provider.website_url                  | {string}  | (verified providers only) Provider website URL                                                                 | Optional (when entity_type is 'organization') |
+| distance                              | {string}  | When sort is 'distance' (default) this is the distance from the city & state or zipcode centroid               | Optional (when sort is 'distance') |
+
+
+
+#### Examples
+
 > Example fetching provider information by NPI:
 
 ```shell
@@ -379,96 +482,3 @@ try client.providers(params: data)
   }
 ]
 ```
-
-*Available modes of operation: real-time only*
-
-The Providers endpoints provide access to PokitDok's provider directory.
-The Providers endpoints can be used to search for Providers, view biographical,
-education, credential, and license information. For a complete reference to all possible 
-provider specialties, see our [provider specialties reference](https://platform.pokitdok.com/documentation/v4/provider_specialties.html).
-
-Available Provider Endpoints:
-
-| Endpoint        | HTTP Method | Description                                                              |
-|:----------------|:------------|:-------------------------------------------------------------------------|
-| /providers/     | GET         | Get a list of providers meeting certain search criteria                  |
-| /providers/{id} | GET         | Retrieve the data for a specified provider; the ID is the provider's NPI |
-
-The /providers/ endpoint accepts the following search parameters:
-
-| Parameter         | Type     | Description                                                                                                                                         |
-|:------------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
-| address_lines     | {string} | Any or all of number, street name, apartment, suite number                                                                                          |
-| city              | {string} | Name of city in which to search for providers (e.g. "San Mateo" or "Charleston")                                                                    |
-| first_name        | {string} | The provider's first name                                                                                                                           |
-| middle_name       | {string} | The provider's middle name                                                                                                                          |
-| last_name         | {string} | The provider's last name                                                                                                                            |
-| gender            | {string} | The provider's gender                                                                                                                               |
-| organization_name | {string} | The business practice name                                                                                                                          |
-| name              | {string} | Queries against the provider's full name (first, middle, last) for individuals, organization and other organization names for organizations. For best results individual name properties and organization name should be omitted when passing this parameter.|
-| radius            | {string} | Search distance from geographic centerpoint, with unit (e.g. "1mi")                                                                                 |
-| specialty         | {string} | The provider's specialty name (e.g. "rheumatology").  Partial name-prefixes may be specified (e.g. "rheum")                                         |
-| state             | {string} | Name of U.S. state in which to search for providers (e.g. "CA" or "SC")                                                                             |
-| zipcode           | {string} | Geographic center point in which to search for providers (e.g. "94401")                                                                             |
-| sort              | {string} | Accepted values include 'distance' (default) or 'rank'.  'distance' sort requires city & state or zipcode parameters otherwise sort will be 'rank'. |
-| entity_types      | {string} | The desired provider entity type(s), as a comma-separated string.  Possibilities are 'individual', 'organization', and 'individual,organization'.   |
-
-The response from the /providers/ endpoints contain the following fields:
-
-| Field                                 | Type      | Description                                                                                                    | Presence |
-|:--------------------------------------|:----------|:---------------------------------------------------------------------------------------------------------------|:------------------|
-| provider.birth_date                   | {string}  | The provider's birth year. In ISO8601 format (YYYY-MM-DD).                                                     | Optional (when entity_type is 'individual') |
-| provider.board_certifications         | {array}   | The provider's board certifications                                                                            | Optional (when entity_type is 'individual') |
-| provider.degree                       | {string}  | The provider's degree ("MD" or "DO")                                                                           | Optional (when entity_type is 'individual') |
-| provider.description                  | {string}  | Provider description                                                                                           | Optional |
-| provider.education                    | {dict}    | The provider's medical school information                                                                      | Optional (when entity_type is 'individual') |
-| provider.education.medical_school     | {string}  | Provider's medical school                                                                                      | Required |
-| provider.education.graduation_year    | {string}  | Provider's graduation year                                                                                     | Optional |
-| provider.entity_type                  | {string}  | The entity type of the provider. Possibilities are 'individual') and 'organization')                           | Required |
-| provider.facilities                   | {array}   | Providers' affiliated facilities                                                                               | Optional |
-| provider.facilities.organization_name | {string}  | Facility organization name                                                                                     | Required |
-| provider.facilities.npi               | {string}  | Facility NPI                                                                                                   | Optional |
-| provider.fax                          | {string}  | The provider's fax number                                                                                      | Optional |
-| provider.first_name                   | {string}  | The provider's first name                                                                                      | Required (when entity_type is 'individual') |
-| provider.gender                       | {string}  | The provider's gender                                                                                          | Optional |
-| provider.last_name                    | {string}  | The provider's last name                                                                                       | Required (when entity_type is 'individual') |
-| provider.licenses                     | {array}   | CMS-NPI license information                                                                                    | Optional |
-| provider.licenses.number              | {string}  | License number                                                                                                 | Optional |
-| provider.licenses.state               | {string}  | License state                                                                                                  | Optional |
-| provider.licensures                   | {array}   | State licensure information                                                                                    | Optional |
-| provider.licensures.as_of_date        | {string}  | Licensure as of date. In ISO8601 format (YYYY-MM-DD).                                                          | Optional |
-| provider.licensures.expiration_date   | {string}  | Licensure expiration date. In ISO8601 format (YYYY-MM-DD).                                                     | Optional |
-| provider.licensures.number            | {string}  | Licensure number                                                                                               | Optional |
-| provider.licensures.status            | {string}  | Licensure status ('active', 'inactive')                                                                        | Optional |
-| provider.licensures.state             | {string}  | Licensure state                                                                                                | Optional |
-| provider.licensures.verified          | {string}  | Licensure verification status ('Y' or 'N')                                                                     | Optional |
-| provider.locations                    | {array}   | List of locations associated with the provider                                                                 | Optional |
-| provider.locations.address_lines      | {array}   | Address lines                                                                                                  | Optional |
-| provider.locations.city               | {string}  | City                                                                                                           | Required |
-| provider.locations.country            | {string}  | Country                                                                                                        | Optional |
-| provider.locations.fax                | {string}  | Fax number                                                                                                     | Optional |
-| provider.locations.geo_location       | {array}   | GeoJSON array of \[longitude, latitude\]                                                                       | Optional |
-| provider.locations.phone              | {string}  | Phone number                                                                                                   | Optional |
-| provider.locations.state              | {string}  | State                                                                                                          | Required |
-| provider.locations.zipcode            | {string}  | Zip code                                                                                                       | Required |
-| provider.locations.county             | {string}  | County                                                                                                         | Optional |
-| provider.locations.role               | {list}    | Address role(s). One or both of: ('mailing' or 'practice').  When missing the address is the practice address. | Optional |
-| provider.locations.suite              | {string}  | Address suite																								     | Optional |
-| provider.middle_name                  | {string}  | The provider's middle name or initial                                                                          | Optional |
-| provider.npi                          | {string}  | The provider's NPI                                                                                             | Optional |
-| provider.organization_name            | {string}  | The business practice name                                                                                     | Required (when entity_type is 'organization') |
-| provider.other_organization_name      | {string}  | The business practice's other name                                                                             | Optional (when entity_type is 'organization') |
-| provider.phone                        | {string}  | The provider's phone number                                                                                    | Optional |
-| provider.prefix                       | {string}  | The provider's prefix (Mr., Mrs., Dr., etc)                                                                    | Optional |
-| provider.residencies                  | {array}   | Provider residency and education information                                                                   | Optional (when entity_type is 'individual') |
-| provider.residencies.institution_name | {string}  | Institution name                                                                                               | Required |
-| provider.residencies.type             | {string}  | Education type.  One of: ('Medical School', 'Residency','Internship', 'Fellowship', 'College Attended')        | Required |
-| provider.residencies.to_year          | {string}  | Graduation year                                                                                                | Optional |
-| provider.specialty                    | {array}   | List of specialties from the specialty taxonomy associated with the provider                                   | Required |
-| provider.specialty_primary            | {array}   | List of provider's primary specialties                                                                         | Required |
-| provider.specialty_secondary          | {array}   | List of provider's secondary specialties                                                                       | Required |
-| provider.suffix                       | {string}  | The provider's suffix (MD, Jr., etc)                                                                           | Optional |
-| provider.uuid                         | {uuid}    | The provider's unique PokitDok Platform identifier                                                             | Required |
-| provider.website_url                  | {string}  | (verified providers only) Provider website URL                                                                 | Optional (when entity_type is 'organization') |
-| distance                              | {string}  | When sort is 'distance' (default) this is the distance from the city & state or zipcode centroid               | Optional (when sort is 'distance') |
-

@@ -24,6 +24,7 @@ map ICD-9 to ICD-10.
 |:----------------|:------------|:-------------------------------------|
 | /claims/convert | POST        | Submit a X12 837 file for conversion |
 
+#### Accepted Parameters
 
 The `/claims/convert` endpoint accepts the following parameters:
 
@@ -31,6 +32,8 @@ The `/claims/convert` endpoint accepts the following parameters:
 |:----------|:---------------|
 | file      | a X12 837 file |
 
+
+#### Example Requests
 
 > Example claims convert request using a local X12 837 test file
 
@@ -63,7 +66,7 @@ client.claimsConvert("test_claim.837");
 try client.claimsCovert(x12ClaimsFilePath: "test_claim.837")
 ```
 
-### Response Fields
+#### Response Fields
 
 The /claims/convert response contains the following fields:
 
@@ -83,6 +86,8 @@ The /claims/convert response contains the following fields:
 | diagnosis_mappings.approximate                                     | a boolean of whether or not the mapping from ICD-9 to ICD-10 was direct or more of an approximation.                                                                |
 | diagnosis_mappings.combination                                     | a boolean of whether or not multiple ICD-9 values were combined and mapped to fewer ICD-10 values.                                                                                                  |
 
+
+#### Example Responses
 
 > Example claims convert response when a single claim is included in the uploaded X12 837 file
 

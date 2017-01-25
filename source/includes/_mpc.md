@@ -1,4 +1,30 @@
 ## Medical Procedure Code
+
+
+*Available modes of operation: real-time only*
+
+The Medical Procedure Code endpoints provide access to clinical and consumer
+friendly information related to medical procedures. It's useful for identifying
+the procedure code (or codes) that match search queries. It can also be used
+for determining the official descriptions for a specific procedure code.
+
+#### Available Medical Procedure Code Endpoints:
+
+| Endpoint    | HTTP Method | Description                                                                 |
+|:------------|:------------|:----------------------------------------------------------------------------|
+| /mpc/       | GET         | Get a list of medical procedure information meeting certain search criteria |
+| /mpc/{code} | GET         | Retrieve the data for a specific procedure code                             |
+
+#### Acceprted Parameters
+The `/mpc/` endpoint accepts the following parameters:
+
+| Parameter   | Type     | Description                                                                      | Presence |
+|:------------|:---------|:---------------------------------------------------------------------------------|:---------|
+| name        | {string} | Search medical procedure information by consumer friendly name                   | Optional |
+| description | {string} | A partial or full description to be used to locate medical procedure information | Optional |
+
+#### Example Request
+
 > Example fetching medical procedure information by code:
 
 ```shell
@@ -28,7 +54,18 @@ client.mpc(query);
 try client.mpc(code: "99213")
 ```
 
->Example Response:
+#### MPC Fields
+The `/mpc/` response contains the following fields:
+
+| Field       | Type     | Description                                        | Presence |
+|:------------|:---------|:---------------------------------------------------|:---------|
+| code        | {string} | The procedure code                                 | Required |
+| name        | {string} | A consumer friendly name for the medical procedure | Required |
+| description | {string} | The medical procedure's clinical description       | Optional |
+
+
+
+#### Example Response:
 
 ```json
 {
@@ -111,32 +148,3 @@ try client.mpc(name: "office")
   }
 ]
 ```
-
-*Available modes of operation: real-time only*
-
-The Medical Procedure Code endpoints provide access to clinical and consumer
-friendly information related to medical procedures. It's useful for identifying
-the procedure code (or codes) that match search queries. It can also be used
-for determining the official descriptions for a specific procedure code.
-
-Available Medical Procedure Code Endpoints:
-
-| Endpoint    | HTTP Method | Description                                                                 |
-|:------------|:------------|:----------------------------------------------------------------------------|
-| /mpc/       | GET         | Get a list of medical procedure information meeting certain search criteria |
-| /mpc/{code} | GET         | Retrieve the data for a specific procedure code                             |
-
-The /mpc/ endpoint accepts the following parameters:
-
-| Parameter   | Type     | Description                                                                      | Presence |
-|:------------|:---------|:---------------------------------------------------------------------------------|:---------|
-| name        | {string} | Search medical procedure information by consumer friendly name                   | Optional |
-| description | {string} | A partial or full description to be used to locate medical procedure information | Optional |
-
-The /mpc/ response contains the following fields:
-
-| Field       | Type     | Description                                        | Presence |
-|:------------|:---------|:---------------------------------------------------|:---------|
-| code        | {string} | The procedure code                                 | Required |
-| name        | {string} | A consumer friendly name for the medical procedure | Required |
-| description | {string} | The medical procedure's clinical description       | Optional |

@@ -79,11 +79,6 @@
          "title":"OOP Price Estimate"
       },
       {
-         "slug":"apis/payers",
-         "content":"includes/_payers.md",
-         "title":"Payers"
-      },
-      {
          "slug":"apis/pharmacy_formulary",
          "content":"includes/_pharmacy_formulary.md",
          "title":"Pharmacy Formulary"

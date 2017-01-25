@@ -11,7 +11,7 @@ Once a claim has been submitted, status can be tracked through PokitDok's system
 A trading partner's first response lets you know if the request has been accepted (or rejected) by their claims validation system. Once your claim submission is accepted by the trading partner, it will enter their adjudication system. A tracking id or claim control number will be assigned after passing the validation stage, which can then be used in claims status requests to track the claim. A claim can be monitored via a Claims Status request once the claim has been accepted in the trading partner’s adjudication system. The speed at which a claim is adjudicated is dependent on the trading partner. On average it takes 5-7 days for a claim to enter a payer’s adjudication system, thus it is recommended to wait at least a week after submitting a claim to check its status. Once adjudication is complete, the trading partner will return an electronic remittance advice or ERA (if registered to receive ERAs), otherwise a paper remittance advice is sent with final adjudication information.  Review our [claim payments reference](https://platform.pokitdok.com/documentation/v4/claim_payments.html) for additional information.
 
 
-### Available Claims Endpoint:
+#### Available Claims Endpoint:
 
 | Endpoint | HTTP Method | Description                                      |
 |:---------|:------------|:-------------------------------------------------|
@@ -429,7 +429,7 @@ try client.claims(params: data)
 }
 ```
 
-### Claims Fields
+#### Claims Fields
 Parameters that are specific to Institutional claims only have (_Insitutional claim specific_) in the Description column in the below endpoint parameter table. The `/claims/` endpoint accepts the following parameters:
 
 | Parameter                                     | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
@@ -574,667 +574,11 @@ Parameters that are specific to Institutional claims only have (_Insitutional cl
 | trading_partner_id                            | Required: Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.                                                                                                                                                             |                                                    |
 | transaction_code                              | Required: The type of claim transaction that is being submitted (e.g. "chargeable"). A full list of possible values is included [below](#transaction-code).                                                                                                                           |                                                    |
 | coordination_of_benefits                      | Required for Secondary Claims: Information related to the coordination of benefits for additional payers. [object](#claims-coordination-of-benefits-object) |
-A claim goes through an entire lifecycle after its transmission to a payer.
-For details on this process, and how the [Claims Status](#claims-status)
-Endpoint ties in, see our [claims API workflow](https://pokitdok.com/developers/api/#api-claim-submission).
 
+A claim goes through an entire lifecycle after its transmission to a payer. For details on this process, and how the [Claims Status](#claims-status) Endpoint ties in, see our [claims API workflow](https://pokitdok.com/developers/api/#api-claim-submission).
 
-The `/claims/` response contains an activity and thus returns the same object as the activity endpoint. This object can be seen under the activities endpoint documentation [above](#activities_response). The only difference between the activities and claims response is the data returned via the 'parameters' field. The following objects/fields are attached internally and can be accessed via the parameters object:
 
-| Field                                           | Description                                                                                                       |
-|:------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-| submitter                                       | The submitter of the claims request.                                                                              |
-| submitter.first_name                            | The first name of the submitter.                                                                                  |
-| submitter.middle_name                           | The middle name of the submitter.                                                                                 |
-| submitter.last_name                             | The last name of the submitter.                                                                                   |
-| submitter.organization_name                     | The organization name of the submitter.                                                                           |
-| submitter.id                                    | The unique id of the submitter.                                                                                   |
-| submitter.email                                 | The email of the submitter.                                                                                       |
-| submitter.contacts                              | A list of contacts associated with submitter.                                                                     |
-| submitter.contacts.name                         | The name of the contact.                                                                                          |
-| submitter.contacts.contact_methods              | A list of contact methods assoicated with the contact.                                                            |
-| submitter.contacts.contact_methods.type         | The type of contact method. Possibilities are email, fax, phone, phone_extensions, and url.                       |
-| submitter.contacts.contact_methods.value        | The value assoicated with a contact type (e.g. a phone number).                                                   |
-| receiver                                        | The receiver of the claims request.                                                                               |
-| receiver.id                                     | The unique id of the receiver.                                                                                    |
-| receiver.organization_name                      | The organization name of the receiver.                                                                            |
-| receiver.email                                  | The email of the receiver.                                                                                        |
-
-<
-
-### Example Responses
-> Sample trading partner response for claim acknowledgement (this response will complete a claims activity):
-
-```json
-{
-    "client_id": "ASDFBOI87234CSDEAR",
-    "correlation_id": "575037af0640fd518fe64c36",
-    "trading_partner_id": "MOCKPAYER",
-    "clearinghouse": {
-        "name": "MOCK CLEARINGHOUSE",
-        "transmitter_id": "12345678",
-        "date_received": "2016-12-05",
-        "date_processed": "2016-12-05"
-    },
-    "submitter": {
-        "organization_name": "POKITDOK TESTING",
-        "id": "1234567890",
-        "tracking_id": "20161205123456789",
-        "statuses": [
-            {
-                "action": "accept",
-                "status_category": "Acknowledgement/Receipt-The claim/encounter has been received. This does not mean that the claim has been accepted for adjudication.",
-                "status_category_code": "A1",
-                "status_effective_date": "2016-12-05",
-                "status_code": "Accepted for processing.",
-                "total_claim_amount": {
-                    "amount": "60.0",
-                    "currency": "USD"
-                }
-            }
-        ],
-        "accepted_quantity": "1",
-        "amount_in_process": {
-            "amount": "60.0",
-            "currency": "USD"
-        }
-    },
-    "providers": [
-        {
-             "first_name": "Jerome",
-             "last_name": "Aya-Ay",
-             "npi": "1467560003",
-             "tax_id": "123456789",
-             "trace_number": "0",
-             "accepted_quantity": "1",
-             "amount_in_process": {
-                "amount": "60.0",
-                "currency": "USD"
-            }
-        }
-    ],
-    "patient": {
-        "last_name": "DOE",
-        "first_name": "JANE",
-        "id": "W000000000",
-        "claim_level_info": {
-            "statuses": [
-                {
-                    "action": "accept",
-                    "status_category": "Acknowledgement/Receipt-The claim/encounter has been received. This does not mean that the claim has been accepted for adjudication.",
-                    "status_category_code": "A1",
-                    "status_effective_date": "2016-12-05",
-                    "status_code": "Accepted for processing.",
-                    "total_claim_amount": {
-                        "amount": "60.0",
-                        "currency": "USD"
-                    }
-                }
-            ],
-            "claim_id_number": "NA",
-            "service_date": "2016-11-01",
-            "service_end_date": "2016-11-02",
-            "tracking_id": "ASDFBOI87234CSDEAR"
-        }
-    }
-}
-```
-
-> Sample trading partner response for claim payment (835):
-
-```json
-{
-    "claim_payments": [
-        {
-            "assigned_number": 654654,
-            "control_number": "20161205123456789",
-            "facility_type": "hospital_inpatient_part_a",
-            "claim_frequency": "original",
-            "filing_indicator": "health_maintenance_organization",
-            "patient_control_number": "20161205123456789",
-            "payment_amount": {
-                "amount": "0",
-                "currency": "USD"
-            },
-            "patient_responsibility_amount": {
-                "amount": "0",
-                "currency": "USD"
-            },
-            "services": [
-                {
-                    "adjustments": [
-                        {
-                            "amount": {
-                                "amount": "60.0",
-                                "currency": "USD"
-                            },
-                            "group": "contractual_obligations",
-                            "reason": "Exact duplicate claim/service",
-                            "reason_code": "18"
-                        }
-                    ],
-                    "adjudicated_procedure_code": "26740",
-                    "charge_amount": {
-                        "amount": "60.0",
-                        "currency": "USD"
-                    },
-                    "provider_payment_amount": {
-                        "amount": "0",
-                        "currency": "USD"
-                    },
-                    "service_units_paid": 1,
-                    "service_units_submitted": 1,
-                    "service_date": "2016-11-01",
-                    "control_number": "20161205123456789"
-                }
-            ],
-            "status": "processed_as_primary",
-            "total_charge_amount": {
-                "amount": "60.0",
-                "currency": "USD"
-            }
-        }
-    ],
-    "financial_information": {
-        "check_eft_trace_number": "EFT2016120798749874",
-        "transaction_type": "credit",
-        "effective_date": "2016-12-05",
-        "originating_company_id": "121212123",
-        "payment_amount": {
-            "amount": "3210.10",
-            "currency": "USD"
-        },
-        "payment_method": "automated_clearing_house",
-        "transaction_handling": "remittance_information_only"
-    },
-    "payee": {
-        "name": "POKITDOK INC",
-        "address": {
-            "address_lines": [
-                "8311 WARREN H ABERNATHY HWY"
-            ],
-            "city": "SPARTANBURG",
-            "state": "SC",
-            "zipcode": "29301"
-        },
-        "npi": "1234567890",
-        "tax_id": "987654321"
-    },
-    "payer": {
-        "name": "MOCKPAYER",
-        "address": {
-            "address_lines": [
-                "P.O. BOX 12345"
-            ],
-            "city": "CHARLESTON",
-            "state": "SC",
-            "zipcode": "294011234"
-        },
-        "contacts": [
-            {
-                "function": "business",
-                "contact_methods": [
-                    {
-                        "type": "phone",
-                        "value": "8431111111"
-                    },
-                    {
-                        "type": "phone",
-                        "value": "8001111111"
-                    }
-                ]
-            },
-            {
-                "function": "technical",
-                "contact_methods": [
-                    {
-                        "type": "url",
-                        "value": "WWW.HELP.COM"
-                    }
-                ]
-            }
-        ]
-    },
-    "patient": {
-        "last_name": "DOE",
-        "first_name": "JANE",
-        "id": "W000000000"
-    },
-    "production_date": "2016-12-05",
-    "transaction_type": "remittance_information_only"
-}
-```
-a name="claims-subscriber-object"></a>
-###Subscriber object:
-
-| Field                              | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| address                            | The subscriber’s address information as specified on their policy. Uses an address [object](#claims-address).                                                                                                                                                                         | 7: Insured's address                               |
-| birth_date                         | The subscriber’s birth date as specified on their policy. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                             | 11a: Insured's date of birth                       |
-| claim_filing_code                  | Indicates the type of payment for the claim. It is an optional field and when left blank or not passed in the request, defaults to "mutually_defined". A full list of possible values is included [below](#filing).                                                                   |                                                    |
-| first_name                         | Required: The subscriber’s first name as specified on their policy.                                                                                                                                                                                                                   |
-| suffix                             | The suffix if any used by the subscriber.                                                                                                                                                                                                                                             |
-| middle_name                        | The subscriber’s middle name as specified on their policy.                                                                                                                                                                                                                            |                                                    |
-| phone                              | The subscriber's phone number.                                                                                                                                                                                                                                                        |                                                    |
-| gender                             | The subscriber’s gender as specified on their policy.                                                                                                                                                                                                                                 | 11a: Insured's sex                                 |
-| group_number                       | Optional: The subscriber’s group or policy number as specified on their policy.                                                                                                                                                                                                       | 11:      Employer's policy number or group number  |
-| group_name                         | Optional: The subscriber’s group name as specified on their policy.                                                                                                                                                                                                                   | 11b: Employer's name or school name                |
-| member_id                          | Required: The subscriber’s member identifier.                                                                                                                                                                                                                                         | 1a: Insured's ID number                            |
-| last_name                          | Required: The subscriber’s last name as specified on their policy.                                                                                                                                                                                                                    | 4: Insured's name                                  |
-| ssn                                | The subscriber’s ssn name as specified on their policy.                                                                                                                                                                                                                               |                                                    |
-| payer_responsibility               | Determines the position of the payer with regards to coordination of benefits. Defaults to primary. List of possibilities can be seen [below](#payer-responsibility).                                                                                                                 |                                                    |
-
-<a name="claims-provider-object"></a>
-###Provider object:
-
-| Field                             | Description                                                                                                                                                                     | CMS 1500                                           |
-|:----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| taxonomy_code                     | The taxonomy code for the provider. (e.g. "207Q00000X")                                                                                                                         | 24i: ID Qualifier                                  |
-| first_name                        | The first name of the provider. Required when the provider is an individual.                                                                                                    |                                                    |
-| middle_name                       | The middle name of the provider. Required when the provider is an individual.                                                                                                   |                                                    |
-| last_name                         | The last name of the provider. Required when the provider is an individual.                                                                                                     |                                                    |
-| suffix                            | The suffix of the provider.                                                                                                                                                     |                                                    |
-| organization_name                 | The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                            |                                                    |
-| npi                               | The National Provider Identifier for the provider.                                                                                                                              | 33a: Billing Provider NPI                          |
-| state_license_number              | The state license number for the provider.                                                                                                                                      | 33a: Billing Provider NPI                          |
-| tax_id                            | The federal tax id for the provider. For individual providers, this may be the tax id of the medical practice or organization where a provider works.                           | 25: Federal tax ID Number (SSN EIN)                |
-| provider_commercial_number        | A proprietary number assigned to a provider by the destination payer.                                                                                                            |                                                    |
-| upin                              | A unique physician identification number which was replaced by the use of NPI.                                                                                                  |                                                    |
-| location_number                   | A location number assigned to a provider.                                                                                                                                        |                                                    |
-| address                           | The provider's address. Uses an adress [object](#claims-address).                                                                                                               |                                                    |
-| payment_address                   | The provider's payment address to be used when the address for payment is different than that of the billing provider.  Parameter is placed under the billing provider and uses an address [object](#claims-address).                                                                                                      |                                                    |
-|contacts                          | A list of contacts associated with the provider.                                                                                                                                |                                                    |
-| contacts.name                     | The name of the contact.                                                                                                                                                        |                                                    |
-| contacts.contact_methods          | A list of contact methods assoicated with the contact.                                                                                                                          |                                                    |
-| contacts.contact_methods.type     | The type of contact method. Possibilities are email, fax, phone, phone_extensions, and url.                                                                                     |                                                    |
-| contacts.contact_methods.value    | The value assoicated with a contact type (e.g. a phone number).                                                                                                                 |                                                    |
-
-
-<a name="claims-address"></a>
-###Address object:
-
-| Field                                 | Description                                                                                                       |
-|:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-| address_lines                         | List of strings representing the street address. (e.g. ["123 MAIN ST.", "Suite 4"])                               |
-| city                                  | The city component of a address. (e.g. "SAN MATEO")                                                               |
-| state                                 | The state component of a address. (e.g. "CA")                                                                     |
-| zipcode                               | The zip/postal code. (e.g. "94401")                                                                               |
-| country                               | The country component of a address.                                                                               |
-
-<a name="claims-coordination-of-benefits-object"></a>
-###Coordination of Benefits object:
-| Field                                 | Description                                                                                                       |
-|:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-| subscriber                            | Required: The subscriber listed on the additional payer. May be the same as the original payer. Has additional required fields. Uses the other subscriber model [object](#claims-other-subscriber-object). |
-| claim_level_adjustments               | Required for Secondary: Only when submitting to secondary payer. Information related to adjustements made on the claim level. Uses Claim Level Adjustments model [object](#claims-claim-level-adjustments-object). |
-| line_level_adjustments                | Required for Secondary: Only when submitting to secondary payer. Information related to adjustements made on the line level. Uses Line Level Adjustments model [object](#claims-line-level-adjustments-object). |
-
-<a name="claims-other-subscriber-object"></a>
-###Other Subscriber object:
-| Field                              | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| address                            | The subscriber’s address information as specified on their policy. Uses an address [object](#claims-address).                                                                                                                                                                          | 7: Insured's address                               |
-| birth_date                         | The subscriber’s birth date as specified on their policy. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                             | 11a: Insured's date of birth                       |
-| claim_filing_code                  | Indicates the type of payment for the claim. It is an optional field and when left blank or not passed in the request, defaults to "mutually_defined". A full list of possible values is included [below](#filing).                                                                   |                                                    |
-| first_name                         | Required: The subscriber’s first name as specified on their policy.                                                                                                                                                                                                                         |                                                    |
-| suffix                             | The suffix if any used by the subscriber.                                                                                                                                                                                                                                             |                                                    |
-| middle_name                        | The subscriber’s middle name as specified on their policy.                                                                                                                                                                                                                            |                                                    |
-| phone                              | The subscriber's phone number.                                                                                                                                                                                                                                                        |                                                    |
-| gender                             | The subscriber’s gender as specified on their policy.                                                                                                                                                                                                                                 | 11a: Insured's sex                                 |
-| group_number                       | The subscriber’s group or policy number as specified on their policy.                                                                                                                                                                                                       | 11:      Employer's policy number or group number  |
-| group_name                         | The subscriber’s group name as specified on their policy.                                                                                                                                                                                                                   | 11b: Employer's name or school name                |
-| member_id                          | Required: The subscriber’s member identifier.                                                                                                                                                                                                                                         | 1a: Insured's ID number                            |
-| last_name                          | Required: The subscriber’s last name as specified on their policy.                                                                                                                                                                                                                    | 4: Insured's name                                  |
-| ssn                                | The subscriber’s ssn name as specified on their policy.                                                                                                                                                                                                                               |                                                    |
-| payer_responsibility               | Required: Determines the position of the payer with regards to coordination of benefits. Defaults to primary. List of possibilities can be seen [below](#payer-responsibility).                                                                                                                                                                                    |                                                    |
-| relationship                       | Required: The patient’s relationship to the subscriber. A full list of possible values is included [below](#relationships).                                                                                                                                                           | 6: Patient's relationship to the insured           |
-| authorize_payment_to_billing_provider | Values: [no, default: yes] |
-| patient_signature_source           | Values: [other, default: patient] |
-| release_of_information_code        | Values: [signed_statement, default: informed_consent] |
-
-
-
-
-<a name="claims-claim-level-adjustments-object"></a>
-###Claim Level Adjustments object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| claim_adjustment_group_code        | Required for Secondary: Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
-| adjustments                        | Required for Secondary: List of claim level adjustments, with reason, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
-| payer_amount_paid                  | Required for Secondary: Claim level amount paid by the payer. |
-| amount_owed                        | Required for Secondary: Claim level amount owed by the patient. |
-
-<a name="claims-claim-level-adjustment-items"></a>
-###Claim Level Adjustment Items object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| claim_adjustment_reason_code       | Required for Secondary: Reason code as provided in the 835 response from the primary payer. |
-| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
-
-<a name="claims-line-level-adjustments-object"></a>
-###Line Level Adjustments object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| adjustments                        | Required for Secondary: List of line level adjustments with reason, amount, and quantity. [object](#claims-line-level-adjustment-items) |
-
-
-<a name="claims-line-level-adjustment-items"></a>
-###Line Level Adjustment Items object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
-| cpt_code                           | The CPT code indicating the type of service that was performed. |
-| procedure_modifiers                | A list of procedure modifier codes for the claim. |
-| procedure_code_description         | Description relating to the procedure code. |
-| adjustment_information             | List of line level adjustments with reason, amount, group code, and quantity. [object](#claims-line-level-adjustment-information-items) |
-
-
-<a name="claims-line-level-adjustment-information-items"></a>
-###Line Level Adjustment Information Items object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| claim_adjustment_group_code        | Group code describing the type of adjustment [object](#claim-adjustment-group-codes) |
-| claim_adjustment_reason_code       | Required for Secondary: Reason code as provided in the 835 response from the primary payer. |
-| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
-
-
-<a name="claim-adjustment-group-codes"></a>
-Full list of possible values that can be used in the claim_adjusment_group_code fields:
-
-| claim_adjustment_group_code Values                       |
-|:---------------------------------- |
-| 'contractual_obligations' |
-| 'other_adjustments' |
-| 'payor_initiated_reductions' |
-| 'patient_responsibility' |
-| 'corrections_and_reversals' |
-
-
-<a name="claim-frequency"></a>
-Full list of possible values that can be used in the claim.claim_frequency parameter on the claim:
-
-| claim_frequency Values             |                           |
-|:-----------------------------------|:--------------------------|
-| nonpayment                         | original                  |
-| interim_first_claim                | interim_continuing_claims |
-| interim_last_claim                 | late_charges              |
-| adjustment                         | corrected                 |
-| cancel                             | final_claim_home_health   |
-
-<a name="drug-units"></a>
-Full list of possible values that can be used in the claim.service_lines.drug.unit_type parameter on the claim:
-
-| unit_type Values                   |                           |
-|:-----------------------------------|:--------------------------|
-| international                      | gram                      |
-| milligram                          | milliliter                |
-| unit                               |                           |
-
-<a name="ambulance-reason-codes"></a>
-Full list of possible values that can be used in the claim.ambulance.reason_code parameter on the claim:
-
-| reacon_code Values                 |                           |
-|:-----------------------------------|:--------------------------|
-| nearest_or_residential_facility (A)| preferred_physician (B)   |
-| family_proximity (C)               | specialist (D)            |
-| rehab_facility (E)                 |                           |
-
-<a name="ambulance-applicable-conditions"></a>
-Full list of possible values that can be used in the claim.ambulance.applicable_conditions and claim.ambulance.not_applicable_conditions parameter on the claim:
-
-| condition Values                   |                           |
-|:-----------------------------------|:--------------------------|
-| admitted_to_hospital               | moved_by_stretcher        |
-| unconscious_in_shock               | emergency_transport       |
-| physically_restrained              | visible_hemorrhaging      |
-| ambulance_medically_necessary      | patient_confined_bed_chair|
-
-<a name="chiropractic-conditions"></a>
-Full list of possible values that can be used in the claim.chiropractic.spinal_condition parameter on the claim:
-
-| spinal_condition Values              |                           |
-|:-------------------------------------|:--------------------------|
-| acute_condition                      | chronic_condition         |
-| non_acute                            | non_life_threatening      |
-| routine                              | symptomatic               |
-| acute_manifestation_chronic_condition|                           |
-
-<a name="place-of-service"></a>
-Full list of possible values that can be used in the claim.place_of_service parameter on the claim:
-
-| place_of_service Values |                             |
-|:------------------------|:----------------------------|
-| ambulance_air_or_water  | mobile_unit                 |
-| ambulance_land          | nursing                     |
-| assisted_living         | office                      |
-| birthing_center         | other                       |
-| custodial               | outpatient_hospital         |
-| end_stage_renal         | outpatient_rehab            |
-| er_hospital             | pharmacy                    |
-| federal_qualified       | prison                      |
-| group_home              | psych_partial_hospital      |
-| home                    | public_clinic               |
-| hospice                 | residential_substance_abuse |
-| ihs_freestanding        | rural_clinic                |
-| ihs_provider            | school                      |
-| immunization            | shelter                     |
-| independent_clinic      | skilled_nursing             |
-| independent_lab         | surgical_center             |
-| inpatient_hospital      | temp_lodging                |
-| inpatient_psych         | tribal_638_freestanding     |
-| inpatient_rehab         | tribal_638_provider         |
-| mental_health_center    | urgent_care                 |
-| mentally_retarded       | walkin_clinic               |
-| military                | worksite                    |
-
-
-<a name="relationships"></a>
-Full list of possible values that can be used in the patient.relationships parameter on the claim:
-
-| relationship Values |                    |
-|:--------------------|:-------------------|
-| cadaver_donor       | organ_donor        |
-| child               | other_relationship |
-| employee            | spouse             |
-| life_partner        | unknown            |
-
-
-<a name="filing"></a>
-Full list of possible values that can be used in the subscriber.filing_code parameter on the claim:
-
-| filing_code Values              |                                   |
-|:--------------------------------|:----------------------------------|
-| automobile_medical              | medicaid                          |
-| blue_cross_blue_shield          | medicare_part_a                   |
-| champus                         | medicare_part_b                   |
-| commercial_insurance_co         | mutualy_defined                   |
-| dental_maintenance_organization | other_federal_program             |
-| disability                      | other_non_federal_program         |
-| epo                             | pos                               |
-| federal_employee_program        | ppo                               |
-| hmo                             | title_v                           |
-| hmo_medicare_risk               | veterans_affairs_plan             |
-| indemnity_insurance             | workers_compensation_health_claim |
-| liability_medical               |                                   |
-
-
-<a name="transaction-code"></a>
-Full list of possible values that can be used in the transaction_code parameter on the claim:
-
-| transaction_code Values |
-|:------------------------|
-| subrogation_demand      |
-| chargeable              |
-| reporting               |
-
-
-<a name="admitsource"></a>
-Full list of possible values that can be used in the claim.admission_source parameter on the claim:
-
-| admission_source Values |                         |
-|:------------------------|:------------------------|
-| clinic                  | immediate_care_facility |
-| emergency_room          | law_enforcement         |
-| health_care_facility    | not_available           |
-| hospice_transfer        | physician_referral      |
-| hospital_transfer       | surgery_center          |
-
-
-<a name="admittype"></a>
-Full list of possible values that can be used in the claim.admission_type parameter on the claim:
-
-| admission_type Values     |               |
-|:--------------------------|:--------------|
-| elective                  | newborn       |
-| emergency                 | trauma_center |
-| information_not_available | urgent        |
-
-
-<a name="faciltype"></a>
-Full list of possible values that can be used in the claim.facility_type parameter on the claim:
-
-| facility_type Values              |                                  |
-|:----------------------------------|:---------------------------------|
-| clinic_corf                       | hospital_inpatient_part_b        |
-| clinic_ersd                       | hospital_other_part_b            |
-| clinic_opt                        | hospital_outpatient_asc          |
-| clinic_rural_health               | hospital_outpatient              |
-| community_mental_health_center    | hospital_swing_bed               |
-| critical_access_hospital          | nonhospital_based_hospice        |
-| federally_qualified_health_center | religious_nonmedical_institution |
-| home_health_part_b                | skilled_nursing_inpatient_part_b |
-| home_health                       | skilled_nursing_inpatient        |
-| hospital_based_hospice            | skilled_nursing_outpatient       |
-| hospital_inpatient_part_a         | skilled_nursing_swing_bed        |
-
-
-<a name="patstatus"></a>
-Full list of possible values that can be used in the claim.patient_status parameter on the claim:
-
-| patient_status Values                        |                                                        |
-|:---------------------------------------------|:-------------------------------------------------------|
-| expired_at_home                              | transferred_to_hospice_at_home                         |
-| expired_in_medical_facility                  | transferred_to_hospice_medical_facility                |
-| expired_place_unknown                        | transferred_to_inpatient_rehab                         |
-| expired                                      | transferred_to_intermediate_care_facility              |
-| inpatient_at_this_hospital                   | transferred_to_long_term_care_hospital                 |
-| left_against_medical_advice                  | transferred_to_nursing_facility_not_medicare_certified |
-| routine_discharge                            | transferred_to_other_health_care_institution           |
-| still_patient                                | transferred_to_psychiatric_hospital                    |
-| transferred_to_cancer_center                 | transferred_to_short_term_hospital                     |
-| transferred_to_critical_access_hospital      | transferred_to_skilled_nursing_facility                |
-| transferred_to_federal_hospital              | transferred_to_swing_bed                               |
-| transferred_to_home_with_home_health_service |                                                        |
-
-
-<a name="occtype"></a>
-Full list of possible values that can be used in the claim.occurrence_information.occurrence_type parameter on the claim:
-
-| occurrence_type Values                               |                                                             |
-|:-----------------------------------------------------|:------------------------------------------------------------|
-| accident_employment_related                          | guarantee_of_payment                                        |
-| accident_medical_coverage                            | home_iv_therapy_started                                     |
-| accident_no_medical_coverage                         | hospice_certification                                       |
-| accident_tort_liability                              | inpatient_hospital_discharge_non_covered_transplant_patient |
-| active_care_ended                                    | inpatient_hospital_discharge_transplant_patient             |
-| admission_scheduled                                  | insurance_denied                                            |
-| beneficiary_notified_of_intent_to_bill_accomodations | last_menstrual_period                                       |
-| beneficiary_notified_of_intent_to_bill_procedures    | last_therapy                                                |
-| benefits_exhausted_payer_a                           | no_fault_insurance_involved                                 |
-| benefits_exhausted_payer_b                           | occupational_therapy_started                                |
-| benefits_exhausted_payer_c                           | onset_for_chronically_dependent_individual                  |
-| benefits_terminated_primary_payer                    | onset_of_symptoms                                           |
-| birth_date_insured_a                                 | outpatient_occupational_therapy_plan_reviewed               |
-| birth_date_insured_b                                 | outpatient_physical_therapy_plan_reviewed                   |
-| birth_date_insured_c                                 | outpatient_speech_pathology_plan_reviewed                   |
-| canceled_surgery_scheduled                           | physical_therapy_started                                    |
-| cardiac_rehab_started                                | pre_admission_testing                                       |
-| comprehensive_outpatient_rehab_plan_reviewed         | retirement_spouse                                           |
-| cost_outlier_status_begins                           | retirement                                                  |
-| crime_victim                                         | snf_bed_became_available                                    |
-| discharge                                            | speech_therapy_started                                      |
-| discharged_on_continuous_course_iv_therapy           | split_bill_date                                             |
-| effective_date_insured_a                             | start_coordination_period_for_esrd_beneficiaries            |
-| effective_date_insured_b                             | start_infertility_treatement_cycle                          |
-| effective_date_insured_c                             | ur_notice_received                                          |
-| election_of_extended_care_facilities                 |                                                             |
-
-
-<a name="valuecode"></a>
-Full list of possible values that can be used in the claim.value_information.value_type parameter on the claim:
-
-| value_information.value_type                                  |                                                      |
-|:--------------------------------------------------------------|:-----------------------------------------------------|
-| accident_hour                                                 | medicare_blood_deductible                            |
-| any_liability_insurance                                       | medicare_coinsurance_amount_first_year               |
-| arterial_blood_gas                                            | medicare_coinsurance_amount_second_year              |
-| black_lung                                                    | medicare_lifetime_reserve_amount_first_year          |
-| blood_deductible_pints                                        | medicare_lifetime_reserve_amount_second_year         |
-| blood_pints_furnished                                         | medicare_new_technology_add_on_payment               |
-| blood_pints_replaced                                          | medicare_spend_down_amount                           |
-| cardiac_rehab_visits                                          | most_common_semi_private_rate                        |
-| catastrophic                                                  | multiple_patient_ambulance_transport                 |
-| chiropractic_services_offset_patient_payment_amount           | new_coverage_not_implemented_by_managed_care_plan    |
-| coinsurance_days                                              | newborn_birth_weight                                 |
-| coinsurance_payer_a                                           | no_fault_insurance                                   |
-| coinsurance_payer_b                                           | non_covered_days                                     |
-| coinsurance_payer_c                                           | occupational_therapy_visits                          |
-| conventional_provider_payment_amount_non_demonstration_claims | operating_disproportionate_share_amount              |
-| copayment_payer_a                                             | operating_indirect_medical_education_amount          |
-| copayment_payer_b                                             | operating_outlier_amount                             |
-| copayment_payer_c                                             | other_assessments_payer_a                            |
-| covered_days                                                  | other_assessments_payer_b                            |
-| covered_self_administrable_drugs_diagnostic_study             | other_assessments_payer_c                            |
-| covered_self_administrable_drugs_emergency                    | other_medical_services_offset_patient_payment_amount |
-| covered_self_administrable_drugs_not_self_administrable       | oxygen_saturation                                    |
-| deductible_payer_a                                            | part_a_demonstration_payment                         |
-| deductible_payer_b                                            | part_b_coinsurance                                   |
-| deductible_payer_c                                            | part_b_demonstration_payment                         |
-| dental_services_offset_patient_payment_amount                 | patient_estimated_responsibility                     |
-| disabled_beneficiary_under_65_with_lghp                       | patient_height                                       |
-| eligibility_threshold_charity_care                            | patient_liability_amount                             |
-| epo_units_provided                                            | patient_weight                                       |
-| esrd_beneficiary_in_medicare_coordination_period_with_eghp    | peritoneal_dialysis                                  |
-| esrd_network_funding                                          | phs                                                  |
-| estimated_responsibility_payer_a                              | physical_therapy_visits                              |
-| estimated_responsibility_payer_b                              | podiatric_services_offset_patient_payment_amount     |
-| estimated_responsibility_payer_c                              | prescription_drugs_offset_patient_payment_amount     |
-| flat_rate_surgery_charge                                      | professional_charges_included_and_billed_separately  |
-| grace_days                                                    | provider_amount_agreed_to_accept_primary_payer       |
-| health_insurance_premiums_offset_patient_payment_amount       | providers_interim_rate                               |
-| hearing_ear_services_offset_patient_payment_amount            | recurring_monthly_income                             |
-| hematocrit_reading                                            | regulatory_surcharges_payer_a                        |
-| hemoglobin_reading                                            | regulatory_surcharges_payer_b                        |
-| hh_reimbursements_part_a                                      | regulatory_surcharges_payer_c                        |
-| hh_reimbursements_part_b                                      | service_furnished_location_number                    |
-| hh_visits_part_a                                              | skilled_nurse_home_visit_hours                       |
-| hh_visits_part_b                                              | special_zip_code_reporting                           |
-| hha_branch_msa                                                | speech_therapy_visits                                |
-| home_health_aide_home_visit_hours                             | state_charity_care_percent                           |
-| hospital_no_semi_private_rooms                                | surplus                                              |
-| inpatient_professional_charges_combined_billed                | veterans_affairs                                     |
-| interest_amount                                               | vision_eye_services_offset_patient_payment_amount    |
-| lifetime_reserve_days                                         | workers_compensation                                 |
-| medicaid_rate_code                                            | working_age_beneficiary_spouse_with_eghp             |
-| medicaid_rate_code                                            | working_age_beneficiary_spouse_with_eghp             |
-
-<a name="payer-responsibility"></a>
-Full list of possible values that can be returned in the subscriber.payer_responsibility field on the claim:
-
-| payer_responsibility Values |                    |
-|:----------------------------|:-------------------|
-| four                        | five               |
-| six                         | seven              |
-| eight                       | nine               |
-| ten                         | eleven             |
-| primary                     | secondary          |
-| tertiary                    | unknown            |
-
-
-### Example Requests
+#### Example Requests
 
 > Sample Claims request where the patient is not the subscriber:
 
@@ -4095,7 +3439,7 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
                         "reference_id": "test_results",
                         "value": "61"
                       }
-               ], 
+               ],
                 "service_date": "2016-04-25",
                 "service_end_date": "2016-05-25"
             }
@@ -4154,7 +3498,7 @@ client.claims({
              "reference_id": "test_results",
              "value": "61"
             }
-        ], 
+        ],
         "service_date": "2016-04-25",
         "service_end_date": "2016-05-25"
       }
@@ -4780,7 +4124,7 @@ client.claims({
   }
 })
  ```
-  
+
 
 ```swift
 let data = [
@@ -4956,4 +4300,664 @@ let data = [
   ]
 ] as [String:Any]
 try client.claims(params: data)
+```
+
+#### Request and Response Field Tables
+
+a name="claims-subscriber-object"></a>
+##### Subscriber object:
+
+| Field                              | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| address                            | The subscriber’s address information as specified on their policy. Uses an address [object](#claims-address).                                                                                                                                                                         | 7: Insured's address                               |
+| birth_date                         | The subscriber’s birth date as specified on their policy. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                             | 11a: Insured's date of birth                       |
+| claim_filing_code                  | Indicates the type of payment for the claim. It is an optional field and when left blank or not passed in the request, defaults to "mutually_defined". A full list of possible values is included [below](#filing).                                                                   |                                                    |
+| first_name                         | Required: The subscriber’s first name as specified on their policy.                                                                                                                                                                                                                   |
+| suffix                             | The suffix if any used by the subscriber.                                                                                                                                                                                                                                             |
+| middle_name                        | The subscriber’s middle name as specified on their policy.                                                                                                                                                                                                                            |                                                    |
+| phone                              | The subscriber's phone number.                                                                                                                                                                                                                                                        |                                                    |
+| gender                             | The subscriber’s gender as specified on their policy.                                                                                                                                                                                                                                 | 11a: Insured's sex                                 |
+| group_number                       | Optional: The subscriber’s group or policy number as specified on their policy.                                                                                                                                                                                                       | 11:      Employer's policy number or group number  |
+| group_name                         | Optional: The subscriber’s group name as specified on their policy.                                                                                                                                                                                                                   | 11b: Employer's name or school name                |
+| member_id                          | Required: The subscriber’s member identifier.                                                                                                                                                                                                                                         | 1a: Insured's ID number                            |
+| last_name                          | Required: The subscriber’s last name as specified on their policy.                                                                                                                                                                                                                    | 4: Insured's name                                  |
+| ssn                                | The subscriber’s ssn name as specified on their policy.                                                                                                                                                                                                                               |                                                    |
+| payer_responsibility               | Determines the position of the payer with regards to coordination of benefits. Defaults to primary. List of possibilities can be seen [below](#payer-responsibility).                                                                                                                 |                                                    |
+
+<a name="claims-provider-object"></a>
+##### Provider object:
+
+| Field                             | Description                                                                                                                                                                     | CMS 1500                                           |
+|:----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| taxonomy_code                     | The taxonomy code for the provider. (e.g. "207Q00000X")                                                                                                                         | 24i: ID Qualifier                                  |
+| first_name                        | The first name of the provider. Required when the provider is an individual.                                                                                                    |                                                    |
+| middle_name                       | The middle name of the provider. Required when the provider is an individual.                                                                                                   |                                                    |
+| last_name                         | The last name of the provider. Required when the provider is an individual.                                                                                                     |                                                    |
+| suffix                            | The suffix of the provider.                                                                                                                                                     |                                                    |
+| organization_name                 | The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                            |                                                    |
+| npi                               | The National Provider Identifier for the provider.                                                                                                                              | 33a: Billing Provider NPI                          |
+| state_license_number              | The state license number for the provider.                                                                                                                                      | 33a: Billing Provider NPI                          |
+| tax_id                            | The federal tax id for the provider. For individual providers, this may be the tax id of the medical practice or organization where a provider works.                           | 25: Federal tax ID Number (SSN EIN)                |
+| provider_commercial_number        | A proprietary number assigned to a provider by the destination payer.                                                                                                            |                                                    |
+| upin                              | A unique physician identification number which was replaced by the use of NPI.                                                                                                  |                                                    |
+| location_number                   | A location number assigned to a provider.                                                                                                                                        |                                                    |
+| address                           | The provider's address. Uses an adress [object](#claims-address).                                                                                                               |                                                    |
+| payment_address                   | The provider's payment address to be used when the address for payment is different than that of the billing provider.  Parameter is placed under the billing provider and uses an address [object](#claims-address).                                                                                                      |                                                    |
+|contacts                          | A list of contacts associated with the provider.                                                                                                                                |                                                    |
+| contacts.name                     | The name of the contact.                                                                                                                                                        |                                                    |
+| contacts.contact_methods          | A list of contact methods assoicated with the contact.                                                                                                                          |                                                    |
+| contacts.contact_methods.type     | The type of contact method. Possibilities are email, fax, phone, phone_extensions, and url.                                                                                     |                                                    |
+| contacts.contact_methods.value    | The value assoicated with a contact type (e.g. a phone number).                                                                                                                 |                                                    |
+
+
+<a name="claims-address"></a>
+##### Address object:
+
+| Field                                 | Description                                                                                                       |
+|:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
+| address_lines                         | List of strings representing the street address. (e.g. ["123 MAIN ST.", "Suite 4"])                               |
+| city                                  | The city component of a address. (e.g. "SAN MATEO")                                                               |
+| state                                 | The state component of a address. (e.g. "CA")                                                                     |
+| zipcode                               | The zip/postal code. (e.g. "94401")                                                                               |
+| country                               | The country component of a address.                                                                               |
+
+<a name="claims-coordination-of-benefits-object"></a>
+##### Coordination of Benefits object:
+| Field                                 | Description                                                                                                       |
+|:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
+| subscriber                            | Required: The subscriber listed on the additional payer. May be the same as the original payer. Has additional required fields. Uses the other subscriber model [object](#claims-other-subscriber-object). |
+| claim_level_adjustments               | Required for Secondary: Only when submitting to secondary payer. Information related to adjustements made on the claim level. Uses Claim Level Adjustments model [object](#claims-claim-level-adjustments-object). |
+| line_level_adjustments                | Required for Secondary: Only when submitting to secondary payer. Information related to adjustements made on the line level. Uses Line Level Adjustments model [object](#claims-line-level-adjustments-object). |
+
+<a name="claims-other-subscriber-object"></a>
+##### Other Subscriber object:
+| Field                              | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| address                            | The subscriber’s address information as specified on their policy. Uses an address [object](#claims-address).                                                                                                                                                                          | 7: Insured's address                               |
+| birth_date                         | The subscriber’s birth date as specified on their policy. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                             | 11a: Insured's date of birth                       |
+| claim_filing_code                  | Indicates the type of payment for the claim. It is an optional field and when left blank or not passed in the request, defaults to "mutually_defined". A full list of possible values is included [below](#filing).                                                                   |                                                    |
+| first_name                         | Required: The subscriber’s first name as specified on their policy.                                                                                                                                                                                                                         |                                                    |
+| suffix                             | The suffix if any used by the subscriber.                                                                                                                                                                                                                                             |                                                    |
+| middle_name                        | The subscriber’s middle name as specified on their policy.                                                                                                                                                                                                                            |                                                    |
+| phone                              | The subscriber's phone number.                                                                                                                                                                                                                                                        |                                                    |
+| gender                             | The subscriber’s gender as specified on their policy.                                                                                                                                                                                                                                 | 11a: Insured's sex                                 |
+| group_number                       | The subscriber’s group or policy number as specified on their policy.                                                                                                                                                                                                       | 11:      Employer's policy number or group number  |
+| group_name                         | The subscriber’s group name as specified on their policy.                                                                                                                                                                                                                   | 11b: Employer's name or school name                |
+| member_id                          | Required: The subscriber’s member identifier.                                                                                                                                                                                                                                         | 1a: Insured's ID number                            |
+| last_name                          | Required: The subscriber’s last name as specified on their policy.                                                                                                                                                                                                                    | 4: Insured's name                                  |
+| ssn                                | The subscriber’s ssn name as specified on their policy.                                                                                                                                                                                                                               |                                                    |
+| payer_responsibility               | Required: Determines the position of the payer with regards to coordination of benefits. Defaults to primary. List of possibilities can be seen [below](#payer-responsibility).                                                                                                                                                                                    |                                                    |
+| relationship                       | Required: The patient’s relationship to the subscriber. A full list of possible values is included [below](#relationships).                                                                                                                                                           | 6: Patient's relationship to the insured           |
+| authorize_payment_to_billing_provider | Values: [no, default: yes] |
+| patient_signature_source           | Values: [other, default: patient] |
+| release_of_information_code        | Values: [signed_statement, default: informed_consent] |
+
+
+
+
+<a name="claims-claim-level-adjustments-object"></a>
+##### Claim Level Adjustments object:
+| Field                              | Description                                                                                                                                                                                                                                                                           |
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| claim_adjustment_group_code        | Required for Secondary: Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
+| adjustments                        | Required for Secondary: List of claim level adjustments, with reason, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
+| payer_amount_paid                  | Required for Secondary: Claim level amount paid by the payer. |
+| amount_owed                        | Required for Secondary: Claim level amount owed by the patient. |
+
+<a name="claims-claim-level-adjustment-items"></a>
+##### Claim Level Adjustment Items object:
+| Field                              | Description                                                                                                                                                                                                                                                                           |
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| claim_adjustment_reason_code       | Required for Secondary: Reason code as provided in the 835 response from the primary payer. |
+| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
+| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
+
+<a name="claims-line-level-adjustments-object"></a>
+##### Line Level Adjustments object:
+| Field                              | Description                                                                                                                                                                                                                                                                           |
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| adjustments                        | Required for Secondary: List of line level adjustments with reason, amount, and quantity. [object](#claims-line-level-adjustment-items) |
+
+
+<a name="claims-line-level-adjustment-items"></a>
+##### Line Level Adjustment Items object:
+| Field                              | Description                                                                                                                                                                                                                                                                           |
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
+| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
+| cpt_code                           | The CPT code indicating the type of service that was performed. |
+| procedure_modifiers                | A list of procedure modifier codes for the claim. |
+| procedure_code_description         | Description relating to the procedure code. |
+| adjustment_information             | List of line level adjustments with reason, amount, group code, and quantity. [object](#claims-line-level-adjustment-information-items) |
+
+
+<a name="claims-line-level-adjustment-information-items"></a>
+##### Line Level Adjustment Information Items object:
+| Field                              | Description                                                                                                                                                                                                                                                                           |
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| claim_adjustment_group_code        | Group code describing the type of adjustment [object](#claim-adjustment-group-codes) |
+| claim_adjustment_reason_code       | Required for Secondary: Reason code as provided in the 835 response from the primary payer. |
+| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
+| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
+
+
+#### Response Field Tables
+
+The `/claims/` response contains an activity and thus returns the same object as the activity endpoint. This object can be seen under the activities endpoint documentation. The only difference between the activities and claims response is the data returned via the 'parameters' field. The following objects/fields are attached internally and can be accessed via the parameters object:
+
+| Field                                           | Description                                                                                                       |
+|:------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|
+| submitter                                       | The submitter of the claims request.                                                                              |
+| submitter.first_name                            | The first name of the submitter.                                                                                  |
+| submitter.middle_name                           | The middle name of the submitter.                                                                                 |
+| submitter.last_name                             | The last name of the submitter.                                                                                   |
+| submitter.organization_name                     | The organization name of the submitter.                                                                           |
+| submitter.id                                    | The unique id of the submitter.                                                                                   |
+| submitter.email                                 | The email of the submitter.                                                                                       |
+| submitter.contacts                              | A list of contacts associated with submitter.                                                                     |
+| submitter.contacts.name                         | The name of the contact.                                                                                          |
+| submitter.contacts.contact_methods              | A list of contact methods assoicated with the contact.                                                            |
+| submitter.contacts.contact_methods.type         | The type of contact method. Possibilities are email, fax, phone, phone_extensions, and url.                       |
+| submitter.contacts.contact_methods.value        | The value assoicated with a contact type (e.g. a phone number).                                                   |
+| receiver                                        | The receiver of the claims request.                                                                               |
+| receiver.id                                     | The unique id of the receiver.                                                                                    |
+| receiver.organization_name                      | The organization name of the receiver.                                                                            |
+| receiver.email                                  | The email of the receiver.                                                                                        |
+
+
+<a name="claim-adjustment-group-codes"></a>
+Full list of possible values that can be used in the claim_adjusment_group_code fields:
+
+| claim_adjustment_group_code Values                       |
+|:---------------------------------- |
+| 'contractual_obligations' |
+| 'other_adjustments' |
+| 'payor_initiated_reductions' |
+| 'patient_responsibility' |
+| 'corrections_and_reversals' |
+
+
+<a name="claim-frequency"></a>
+Full list of possible values that can be used in the claim.claim_frequency parameter on the claim:
+
+| claim_frequency Values             |                           |
+|:-----------------------------------|:--------------------------|
+| nonpayment                         | original                  |
+| interim_first_claim                | interim_continuing_claims |
+| interim_last_claim                 | late_charges              |
+| adjustment                         | corrected                 |
+| cancel                             | final_claim_home_health   |
+
+<a name="drug-units"></a>
+Full list of possible values that can be used in the claim.service_lines.drug.unit_type parameter on the claim:
+
+| unit_type Values                   |                           |
+|:-----------------------------------|:--------------------------|
+| international                      | gram                      |
+| milligram                          | milliliter                |
+| unit                               |                           |
+
+<a name="ambulance-reason-codes"></a>
+Full list of possible values that can be used in the claim.ambulance.reason_code parameter on the claim:
+
+| reacon_code Values                 |                           |
+|:-----------------------------------|:--------------------------|
+| nearest_or_residential_facility (A)| preferred_physician (B)   |
+| family_proximity (C)               | specialist (D)            |
+| rehab_facility (E)                 |                           |
+
+<a name="ambulance-applicable-conditions"></a>
+Full list of possible values that can be used in the claim.ambulance.applicable_conditions and claim.ambulance.not_applicable_conditions parameter on the claim:
+
+| condition Values                   |                           |
+|:-----------------------------------|:--------------------------|
+| admitted_to_hospital               | moved_by_stretcher        |
+| unconscious_in_shock               | emergency_transport       |
+| physically_restrained              | visible_hemorrhaging      |
+| ambulance_medically_necessary      | patient_confined_bed_chair|
+
+<a name="chiropractic-conditions"></a>
+Full list of possible values that can be used in the claim.chiropractic.spinal_condition parameter on the claim:
+
+| spinal_condition Values              |                           |
+|:-------------------------------------|:--------------------------|
+| acute_condition                      | chronic_condition         |
+| non_acute                            | non_life_threatening      |
+| routine                              | symptomatic               |
+| acute_manifestation_chronic_condition|                           |
+
+<a name="place-of-service"></a>
+Full list of possible values that can be used in the claim.place_of_service parameter on the claim:
+
+| place_of_service Values |                             |
+|:------------------------|:----------------------------|
+| ambulance_air_or_water  | mobile_unit                 |
+| ambulance_land          | nursing                     |
+| assisted_living         | office                      |
+| birthing_center         | other                       |
+| custodial               | outpatient_hospital         |
+| end_stage_renal         | outpatient_rehab            |
+| er_hospital             | pharmacy                    |
+| federal_qualified       | prison                      |
+| group_home              | psych_partial_hospital      |
+| home                    | public_clinic               |
+| hospice                 | residential_substance_abuse |
+| ihs_freestanding        | rural_clinic                |
+| ihs_provider            | school                      |
+| immunization            | shelter                     |
+| independent_clinic      | skilled_nursing             |
+| independent_lab         | surgical_center             |
+| inpatient_hospital      | temp_lodging                |
+| inpatient_psych         | tribal_638_freestanding     |
+| inpatient_rehab         | tribal_638_provider         |
+| mental_health_center    | urgent_care                 |
+| mentally_retarded       | walkin_clinic               |
+| military                | worksite                    |
+
+
+<a name="relationships"></a>
+Full list of possible values that can be used in the patient.relationships parameter on the claim:
+
+| relationship Values |                    |
+|:--------------------|:-------------------|
+| cadaver_donor       | organ_donor        |
+| child               | other_relationship |
+| employee            | spouse             |
+| life_partner        | unknown            |
+
+
+<a name="filing"></a>
+Full list of possible values that can be used in the subscriber.filing_code parameter on the claim:
+
+| filing_code Values              |                                   |
+|:--------------------------------|:----------------------------------|
+| automobile_medical              | medicaid                          |
+| blue_cross_blue_shield          | medicare_part_a                   |
+| champus                         | medicare_part_b                   |
+| commercial_insurance_co         | mutualy_defined                   |
+| dental_maintenance_organization | other_federal_program             |
+| disability                      | other_non_federal_program         |
+| epo                             | pos                               |
+| federal_employee_program        | ppo                               |
+| hmo                             | title_v                           |
+| hmo_medicare_risk               | veterans_affairs_plan             |
+| indemnity_insurance             | workers_compensation_health_claim |
+| liability_medical               |                                   |
+
+
+<a name="transaction-code"></a>
+Full list of possible values that can be used in the transaction_code parameter on the claim:
+
+| transaction_code Values |
+|:------------------------|
+| subrogation_demand      |
+| chargeable              |
+| reporting               |
+
+
+<a name="admitsource"></a>
+Full list of possible values that can be used in the claim.admission_source parameter on the claim:
+
+| admission_source Values |                         |
+|:------------------------|:------------------------|
+| clinic                  | immediate_care_facility |
+| emergency_room          | law_enforcement         |
+| health_care_facility    | not_available           |
+| hospice_transfer        | physician_referral      |
+| hospital_transfer       | surgery_center          |
+
+
+<a name="admittype"></a>
+Full list of possible values that can be used in the claim.admission_type parameter on the claim:
+
+| admission_type Values     |               |
+|:--------------------------|:--------------|
+| elective                  | newborn       |
+| emergency                 | trauma_center |
+| information_not_available | urgent        |
+
+
+<a name="faciltype"></a>
+Full list of possible values that can be used in the claim.facility_type parameter on the claim:
+
+| facility_type Values              |                                  |
+|:----------------------------------|:---------------------------------|
+| clinic_corf                       | hospital_inpatient_part_b        |
+| clinic_ersd                       | hospital_other_part_b            |
+| clinic_opt                        | hospital_outpatient_asc          |
+| clinic_rural_health               | hospital_outpatient              |
+| community_mental_health_center    | hospital_swing_bed               |
+| critical_access_hospital          | nonhospital_based_hospice        |
+| federally_qualified_health_center | religious_nonmedical_institution |
+| home_health_part_b                | skilled_nursing_inpatient_part_b |
+| home_health                       | skilled_nursing_inpatient        |
+| hospital_based_hospice            | skilled_nursing_outpatient       |
+| hospital_inpatient_part_a         | skilled_nursing_swing_bed        |
+
+
+<a name="patstatus"></a>
+Full list of possible values that can be used in the claim.patient_status parameter on the claim:
+
+| patient_status Values                        |                                                        |
+|:---------------------------------------------|:-------------------------------------------------------|
+| expired_at_home                              | transferred_to_hospice_at_home                         |
+| expired_in_medical_facility                  | transferred_to_hospice_medical_facility                |
+| expired_place_unknown                        | transferred_to_inpatient_rehab                         |
+| expired                                      | transferred_to_intermediate_care_facility              |
+| inpatient_at_this_hospital                   | transferred_to_long_term_care_hospital                 |
+| left_against_medical_advice                  | transferred_to_nursing_facility_not_medicare_certified |
+| routine_discharge                            | transferred_to_other_health_care_institution           |
+| still_patient                                | transferred_to_psychiatric_hospital                    |
+| transferred_to_cancer_center                 | transferred_to_short_term_hospital                     |
+| transferred_to_critical_access_hospital      | transferred_to_skilled_nursing_facility                |
+| transferred_to_federal_hospital              | transferred_to_swing_bed                               |
+| transferred_to_home_with_home_health_service |                                                        |
+
+
+<a name="occtype"></a>
+Full list of possible values that can be used in the claim.occurrence_information.occurrence_type parameter on the claim:
+
+| occurrence_type Values                               |                                                             |
+|:-----------------------------------------------------|:------------------------------------------------------------|
+| accident_employment_related                          | guarantee_of_payment                                        |
+| accident_medical_coverage                            | home_iv_therapy_started                                     |
+| accident_no_medical_coverage                         | hospice_certification                                       |
+| accident_tort_liability                              | inpatient_hospital_discharge_non_covered_transplant_patient |
+| active_care_ended                                    | inpatient_hospital_discharge_transplant_patient             |
+| admission_scheduled                                  | insurance_denied                                            |
+| beneficiary_notified_of_intent_to_bill_accomodations | last_menstrual_period                                       |
+| beneficiary_notified_of_intent_to_bill_procedures    | last_therapy                                                |
+| benefits_exhausted_payer_a                           | no_fault_insurance_involved                                 |
+| benefits_exhausted_payer_b                           | occupational_therapy_started                                |
+| benefits_exhausted_payer_c                           | onset_for_chronically_dependent_individual                  |
+| benefits_terminated_primary_payer                    | onset_of_symptoms                                           |
+| birth_date_insured_a                                 | outpatient_occupational_therapy_plan_reviewed               |
+| birth_date_insured_b                                 | outpatient_physical_therapy_plan_reviewed                   |
+| birth_date_insured_c                                 | outpatient_speech_pathology_plan_reviewed                   |
+| canceled_surgery_scheduled                           | physical_therapy_started                                    |
+| cardiac_rehab_started                                | pre_admission_testing                                       |
+| comprehensive_outpatient_rehab_plan_reviewed         | retirement_spouse                                           |
+| cost_outlier_status_begins                           | retirement                                                  |
+| crime_victim                                         | snf_bed_became_available                                    |
+| discharge                                            | speech_therapy_started                                      |
+| discharged_on_continuous_course_iv_therapy           | split_bill_date                                             |
+| effective_date_insured_a                             | start_coordination_period_for_esrd_beneficiaries            |
+| effective_date_insured_b                             | start_infertility_treatement_cycle                          |
+| effective_date_insured_c                             | ur_notice_received                                          |
+| election_of_extended_care_facilities                 |                                                             |
+
+
+<a name="valuecode"></a>
+Full list of possible values that can be used in the claim.value_information.value_type parameter on the claim:
+
+| value_information.value_type                                  |                                                      |
+|:--------------------------------------------------------------|:-----------------------------------------------------|
+| accident_hour                                                 | medicare_blood_deductible                            |
+| any_liability_insurance                                       | medicare_coinsurance_amount_first_year               |
+| arterial_blood_gas                                            | medicare_coinsurance_amount_second_year              |
+| black_lung                                                    | medicare_lifetime_reserve_amount_first_year          |
+| blood_deductible_pints                                        | medicare_lifetime_reserve_amount_second_year         |
+| blood_pints_furnished                                         | medicare_new_technology_add_on_payment               |
+| blood_pints_replaced                                          | medicare_spend_down_amount                           |
+| cardiac_rehab_visits                                          | most_common_semi_private_rate                        |
+| catastrophic                                                  | multiple_patient_ambulance_transport                 |
+| chiropractic_services_offset_patient_payment_amount           | new_coverage_not_implemented_by_managed_care_plan    |
+| coinsurance_days                                              | newborn_birth_weight                                 |
+| coinsurance_payer_a                                           | no_fault_insurance                                   |
+| coinsurance_payer_b                                           | non_covered_days                                     |
+| coinsurance_payer_c                                           | occupational_therapy_visits                          |
+| conventional_provider_payment_amount_non_demonstration_claims | operating_disproportionate_share_amount              |
+| copayment_payer_a                                             | operating_indirect_medical_education_amount          |
+| copayment_payer_b                                             | operating_outlier_amount                             |
+| copayment_payer_c                                             | other_assessments_payer_a                            |
+| covered_days                                                  | other_assessments_payer_b                            |
+| covered_self_administrable_drugs_diagnostic_study             | other_assessments_payer_c                            |
+| covered_self_administrable_drugs_emergency                    | other_medical_services_offset_patient_payment_amount |
+| covered_self_administrable_drugs_not_self_administrable       | oxygen_saturation                                    |
+| deductible_payer_a                                            | part_a_demonstration_payment                         |
+| deductible_payer_b                                            | part_b_coinsurance                                   |
+| deductible_payer_c                                            | part_b_demonstration_payment                         |
+| dental_services_offset_patient_payment_amount                 | patient_estimated_responsibility                     |
+| disabled_beneficiary_under_65_with_lghp                       | patient_height                                       |
+| eligibility_threshold_charity_care                            | patient_liability_amount                             |
+| epo_units_provided                                            | patient_weight                                       |
+| esrd_beneficiary_in_medicare_coordination_period_with_eghp    | peritoneal_dialysis                                  |
+| esrd_network_funding                                          | phs                                                  |
+| estimated_responsibility_payer_a                              | physical_therapy_visits                              |
+| estimated_responsibility_payer_b                              | podiatric_services_offset_patient_payment_amount     |
+| estimated_responsibility_payer_c                              | prescription_drugs_offset_patient_payment_amount     |
+| flat_rate_surgery_charge                                      | professional_charges_included_and_billed_separately  |
+| grace_days                                                    | provider_amount_agreed_to_accept_primary_payer       |
+| health_insurance_premiums_offset_patient_payment_amount       | providers_interim_rate                               |
+| hearing_ear_services_offset_patient_payment_amount            | recurring_monthly_income                             |
+| hematocrit_reading                                            | regulatory_surcharges_payer_a                        |
+| hemoglobin_reading                                            | regulatory_surcharges_payer_b                        |
+| hh_reimbursements_part_a                                      | regulatory_surcharges_payer_c                        |
+| hh_reimbursements_part_b                                      | service_furnished_location_number                    |
+| hh_visits_part_a                                              | skilled_nurse_home_visit_hours                       |
+| hh_visits_part_b                                              | special_zip_code_reporting                           |
+| hha_branch_msa                                                | speech_therapy_visits                                |
+| home_health_aide_home_visit_hours                             | state_charity_care_percent                           |
+| hospital_no_semi_private_rooms                                | surplus                                              |
+| inpatient_professional_charges_combined_billed                | veterans_affairs                                     |
+| interest_amount                                               | vision_eye_services_offset_patient_payment_amount    |
+| lifetime_reserve_days                                         | workers_compensation                                 |
+| medicaid_rate_code                                            | working_age_beneficiary_spouse_with_eghp             |
+| medicaid_rate_code                                            | working_age_beneficiary_spouse_with_eghp             |
+
+<a name="payer-responsibility"></a>
+Full list of possible values that can be returned in the subscriber.payer_responsibility field on the claim:
+
+| payer_responsibility Values |                    |
+|:----------------------------|:-------------------|
+| four                        | five               |
+| six                         | seven              |
+| eight                       | nine               |
+| ten                         | eleven             |
+| primary                     | secondary          |
+| tertiary                    | unknown            |
+
+
+
+#### Example Responses
+> Sample trading partner response for claim acknowledgement (this response will complete a claims activity):
+
+```json
+{
+    "client_id": "ASDFBOI87234CSDEAR",
+    "correlation_id": "575037af0640fd518fe64c36",
+    "trading_partner_id": "MOCKPAYER",
+    "clearinghouse": {
+        "name": "MOCK CLEARINGHOUSE",
+        "transmitter_id": "12345678",
+        "date_received": "2016-12-05",
+        "date_processed": "2016-12-05"
+    },
+    "submitter": {
+        "organization_name": "POKITDOK TESTING",
+        "id": "1234567890",
+        "tracking_id": "20161205123456789",
+        "statuses": [
+            {
+                "action": "accept",
+                "status_category": "Acknowledgement/Receipt-The claim/encounter has been received. This does not mean that the claim has been accepted for adjudication.",
+                "status_category_code": "A1",
+                "status_effective_date": "2016-12-05",
+                "status_code": "Accepted for processing.",
+                "total_claim_amount": {
+                    "amount": "60.0",
+                    "currency": "USD"
+                }
+            }
+        ],
+        "accepted_quantity": "1",
+        "amount_in_process": {
+            "amount": "60.0",
+            "currency": "USD"
+        }
+    },
+    "providers": [
+        {
+             "first_name": "Jerome",
+             "last_name": "Aya-Ay",
+             "npi": "1467560003",
+             "tax_id": "123456789",
+             "trace_number": "0",
+             "accepted_quantity": "1",
+             "amount_in_process": {
+                "amount": "60.0",
+                "currency": "USD"
+            }
+        }
+    ],
+    "patient": {
+        "last_name": "DOE",
+        "first_name": "JANE",
+        "id": "W000000000",
+        "claim_level_info": {
+            "statuses": [
+                {
+                    "action": "accept",
+                    "status_category": "Acknowledgement/Receipt-The claim/encounter has been received. This does not mean that the claim has been accepted for adjudication.",
+                    "status_category_code": "A1",
+                    "status_effective_date": "2016-12-05",
+                    "status_code": "Accepted for processing.",
+                    "total_claim_amount": {
+                        "amount": "60.0",
+                        "currency": "USD"
+                    }
+                }
+            ],
+            "claim_id_number": "NA",
+            "service_date": "2016-11-01",
+            "service_end_date": "2016-11-02",
+            "tracking_id": "ASDFBOI87234CSDEAR"
+        }
+    }
+}
+```
+
+> Sample trading partner response for claim payment (835):
+
+```json
+{
+    "claim_payments": [
+        {
+            "assigned_number": 654654,
+            "control_number": "20161205123456789",
+            "facility_type": "hospital_inpatient_part_a",
+            "claim_frequency": "original",
+            "filing_indicator": "health_maintenance_organization",
+            "patient_control_number": "20161205123456789",
+            "payment_amount": {
+                "amount": "0",
+                "currency": "USD"
+            },
+            "patient_responsibility_amount": {
+                "amount": "0",
+                "currency": "USD"
+            },
+            "services": [
+                {
+                    "adjustments": [
+                        {
+                            "amount": {
+                                "amount": "60.0",
+                                "currency": "USD"
+                            },
+                            "group": "contractual_obligations",
+                            "reason": "Exact duplicate claim/service",
+                            "reason_code": "18"
+                        }
+                    ],
+                    "adjudicated_procedure_code": "26740",
+                    "charge_amount": {
+                        "amount": "60.0",
+                        "currency": "USD"
+                    },
+                    "provider_payment_amount": {
+                        "amount": "0",
+                        "currency": "USD"
+                    },
+                    "service_units_paid": 1,
+                    "service_units_submitted": 1,
+                    "service_date": "2016-11-01",
+                    "control_number": "20161205123456789"
+                }
+            ],
+            "status": "processed_as_primary",
+            "total_charge_amount": {
+                "amount": "60.0",
+                "currency": "USD"
+            }
+        }
+    ],
+    "financial_information": {
+        "check_eft_trace_number": "EFT2016120798749874",
+        "transaction_type": "credit",
+        "effective_date": "2016-12-05",
+        "originating_company_id": "121212123",
+        "payment_amount": {
+            "amount": "3210.10",
+            "currency": "USD"
+        },
+        "payment_method": "automated_clearing_house",
+        "transaction_handling": "remittance_information_only"
+    },
+    "payee": {
+        "name": "POKITDOK INC",
+        "address": {
+            "address_lines": [
+                "8311 WARREN H ABERNATHY HWY"
+            ],
+            "city": "SPARTANBURG",
+            "state": "SC",
+            "zipcode": "29301"
+        },
+        "npi": "1234567890",
+        "tax_id": "987654321"
+    },
+    "payer": {
+        "name": "MOCKPAYER",
+        "address": {
+            "address_lines": [
+                "P.O. BOX 12345"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "294011234"
+        },
+        "contacts": [
+            {
+                "function": "business",
+                "contact_methods": [
+                    {
+                        "type": "phone",
+                        "value": "8431111111"
+                    },
+                    {
+                        "type": "phone",
+                        "value": "8001111111"
+                    }
+                ]
+            },
+            {
+                "function": "technical",
+                "contact_methods": [
+                    {
+                        "type": "url",
+                        "value": "WWW.HELP.COM"
+                    }
+                ]
+            }
+        ]
+    },
+    "patient": {
+        "last_name": "DOE",
+        "first_name": "JANE",
+        "id": "W000000000"
+    },
+    "production_date": "2016-12-05",
+    "transaction_type": "remittance_information_only"
+}
 ```
