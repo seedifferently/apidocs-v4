@@ -1,4 +1,37 @@
 ## Claims Convert
+
+*Available modes of operation: real-time and batch/async*
+
+The Claims Convert endpoint allows a client application to easily convert a X12 837 claims file
+into claims request models.  When a claims file is submitted with ICD-9 diagnosis codes,
+those claims will be mapped to corresponding ICD-10 codes. If multiple mappings are possible for the ICD-9 code,
+the first matching ICD-10 code is used in the converted claim.  The mapping information that was used during the claim
+conversion is also returned in the response so that the mapping may be reviewed prior to submitting converted claims
+to a trading partner.  This endpoint operates in a real-time mode when the supplied claims file only includes a single claim.
+If the claims file includes multiple claims, the endpoint will operate in a batch mode.
+When multiple claims are detected, a platform activity will be returned to the client application so that
+it may use the activities endpoint to track the claims conversion process.  For each claim detected in the file, a
+child activity will be created that may be used to track the conversion of individual claims within the file.
+The activity result for a converted claim will contain a claims_request value that is suitable for submission
+to the claims endpoint.  The activity result will also contain a converted_edi string value that
+represents the converted X12 837 transaction for that claim.  A list of diagnosis_mappings is also
+included so that the client application may review the scenarios and choices that were utilized to
+map ICD-9 to ICD-10.
+
+### Available Claims Convert Endpoint:
+
+| Endpoint        | HTTP Method | Description                          |
+|:----------------|:------------|:-------------------------------------|
+| /claims/convert | POST        | Submit a X12 837 file for conversion |
+
+
+The `/claims/convert` endpoint accepts the following parameters:
+
+| Parameter | Description    |
+|:----------|:---------------|
+| file      | a X12 837 file |
+
+
 > Example claims convert request using a local X12 837 test file
 
 ```shell
@@ -29,6 +62,27 @@ client.claimsConvert("test_claim.837");
 ```swift
 try client.claimsCovert(x12ClaimsFilePath: "test_claim.837")
 ```
+
+### Response Fields
+
+The /claims/convert response contains the following fields:
+
+| Field                                                              | Description                                                                                                                                                         |
+|:-------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| claims_request                                                     | a JSON object representing the converted claims data that's suitable for use with the claims endpoint                                                               |
+| converted_edi                                                      | a string representing a converted X12 837 transaction with ICD-9 mapped to ICD-10.  The X12 envelope (ISA and GS segments) is preserved from the original X12 file. |
+| diagnosis_mappings                                                 | a list of diagnosis mapping information that was used to convert ICD-9 to ICD-10 for this claim                                                                     |
+| diagnosis_mappings.destination_scenarios                           | a list of mapping scenarios that apply for the matched ICD-9 code                                                                                                   |
+| diagnosis_mappings.destination_scenarios.choice_lists              | a list of codes that represent a destination scenario for diagnosis mapping                                                                                         |
+| diagnosis_mappings.destination_scenarios.choice_lists.description  | a string representing a description of the source ICD-9 code                                                                                                        |
+| diagnosis_mappings.destination_scenarios.choice_lists.value        | a string containing the ICD-9 code value                                                                                                                            |
+| diagnosis_mappings.destination_scenarios.choice_lists.system       | a string representing the code system (icd9)                                                                                                                        |
+| diagnosis_mappings.source_code.description                         | a string representing a description of the source ICD-9 code                                                                                                        |
+| diagnosis_mappings.source_code.system                              | a string representing the code system (icd9)                                                                                                                        |
+| diagnosis_mappings.source_code.value                               | a string containing the ICD-9 code value                                                                                                                            |
+| diagnosis_mappings.approximate                                     | a boolean of whether or not the mapping from ICD-9 to ICD-10 was direct or more of an approximation.                                                                |
+| diagnosis_mappings.combination                                     | a boolean of whether or not multiple ICD-9 values were combined and mapped to fewer ICD-10 values.                                                                                                  |
+
 
 > Example claims convert response when a single claim is included in the uploaded X12 837 file
 
@@ -136,52 +190,3 @@ try client.claimsCovert(x12ClaimsFilePath: "test_claim.837")
     ]
 }
 ```
-
-*Available modes of operation: real-time and batch/async*
-
-The Claims Convert endpoint allows a client application to easily convert a X12 837 claims file
-into claims request models.  When a claims file is submitted with ICD-9 diagnosis codes,
-those claims will be mapped to corresponding ICD-10 codes. If multiple mappings are possible for the ICD-9 code,
-the first matching ICD-10 code is used in the converted claim.  The mapping information that was used during the claim
-conversion is also returned in the response so that the mapping may be reviewed prior to submitting converted claims
-to a trading partner.  This endpoint operates in a real-time mode when the supplied claims file only includes a single claim.
-If the claims file includes multiple claims, the endpoint will operate in a batch mode.
-When multiple claims are detected, a platform activity will be returned to the client application so that
-it may use the activities endpoint to track the claims conversion process.  For each claim detected in the file, a
-child activity will be created that may be used to track the conversion of individual claims within the file.
-The activity result for a converted claim will contain a claims_request value that is suitable for submission
-to the claims endpoint.  The activity result will also contain a converted_edi string value that
-represents the converted X12 837 transaction for that claim.  A list of diagnosis_mappings is also
-included so that the client application may review the scenarios and choices that were utilized to
-map ICD-9 to ICD-10.
-
-
-| Endpoint        | HTTP Method | Description                          |
-|:----------------|:------------|:-------------------------------------|
-| /claims/convert | POST        | Submit a X12 837 file for conversion |
-
-
-The /claims/convert endpoint accepts the following parameters:
-
-| Parameter | Description    |
-|:----------|:---------------|
-| file      | a X12 837 file |
-
-
-The /claims/convert response contains the following fields:
-
-| Field                                                              | Description                                                                                                                                                         |
-|:-------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| claims_request                                                     | a JSON object representing the converted claims data that's suitable for use with the claims endpoint                                                               |
-| converted_edi                                                      | a string representing a converted X12 837 transaction with ICD-9 mapped to ICD-10.  The X12 envelope (ISA and GS segments) is preserved from the original X12 file. |
-| diagnosis_mappings                                                 | a list of diagnosis mapping information that was used to convert ICD-9 to ICD-10 for this claim                                                                     |
-| diagnosis_mappings.destination_scenarios                           | a list of mapping scenarios that apply for the matched ICD-9 code                                                                                                   |
-| diagnosis_mappings.destination_scenarios.choice_lists              | a list of codes that represent a destination scenario for diagnosis mapping                                                                                         |
-| diagnosis_mappings.destination_scenarios.choice_lists.description  | a string representing a description of the source ICD-9 code                                                                                                        |
-| diagnosis_mappings.destination_scenarios.choice_lists.value        | a string containing the ICD-9 code value                                                                                                                            |
-| diagnosis_mappings.destination_scenarios.choice_lists.system       | a string representing the code system (icd9)                                                                                                                        |
-| diagnosis_mappings.source_code.description                         | a string representing a description of the source ICD-9 code                                                                                                        |
-| diagnosis_mappings.source_code.system                              | a string representing the code system (icd9)                                                                                                                        |
-| diagnosis_mappings.source_code.value                               | a string containing the ICD-9 code value                                                                                                                            |
-| diagnosis_mappings.approximate                                     | a boolean of whether or not the mapping from ICD-9 to ICD-10 was direct or more of an approximation.                                                                |
-| diagnosis_mappings.combination                                     | a boolean of whether or not multiple ICD-9 values were combined and mapped to fewer ICD-10 values.                                                                                                  |
