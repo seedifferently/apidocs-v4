@@ -149,7 +149,9 @@ rejected          | The activity has been rejected by the trading partner for re
 rejected_reviewed | The activity has been rejected by the trading partner and reviewed for errors by the PokitDok team.
 
 
-Information concerning the activity’s progression through the system is available via the API Dashboard, as well as the endpoints listed below.
+In formation concerning the activity’s progression through the system is also available via the [API Dashboard](https://platform.pokitdok.com/login#/).
+
+### Authorizations Fields
 
 The /activities/ response includes the following fields:
 
