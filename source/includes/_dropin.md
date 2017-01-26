@@ -70,7 +70,7 @@ Returns eligibility information in an easy to read format with detailed info inc
 ### Calculator
 
 <aside class="warning">
-an array of 'procedures' is required for the drop-in UI calculator to work.
+an array of `procedures` is required for the drop-in UI calculator to work.
 </aside>
 
 > Calculator example with minimum required options:
@@ -175,8 +175,8 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 ```
 
 <aside class="warning">
-'container' and 'type' are required options for the drop-in UI to work.<BR>
-'procedures' is required for the calculator type drop-in.
+`container` and `type` are required options for the drop-in UI to work.<BR>
+`procedures` is required for the calculator type drop-in.
 </aside>
 
 Name                      | Type                | Default  | Description

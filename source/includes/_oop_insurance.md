@@ -30,7 +30,7 @@ The `/oop/insurance-load-price` POST endpoint accepts the following parameters:
 | price.currency     | {string} | Optional: The denomination of the currency of the price.amount. Defaults to 'USD'             | Optional (include to load price, do not include to retrieve price) |
 
 The `/oop/insurance-load-price` POST response contains the aforementioned fields and activity tracking meta data.
-The `/oop/insurance-load-price` POST response also contains a "uuid" field that can be passed to the The /oop/insurance-load-price/{price_uuid} DELETE endpoint as the {price_uuid} in order to remove that loaded pricing data.
+The `/oop/insurance-load-price` POST response also contains a `uuid` field that can be passed to the The `/oop/insurance-load-price/{price_uuid}` DELETE endpoint as the `price_uuid` in order to remove that loaded pricing data.
 The `/oop/insurance-load-price/{price_uuid}` DELETE endpoint may be used to delete previously loaded pricing data.
 
 The `/oop/insurance-estimate` endpoint accepts the following parameters:
@@ -56,7 +56,7 @@ three digits refer to the geographical regions surrounding major cities or
 metropolitan areas. There are approximately 900 "geozips" in the United States.
 
 #### Example Requests
-> Example loading trading partner price for cpt_bundle to /oop/insurance-load-price
+> Example loading trading partner price for cpt_bundle to `/oop/insurance-load-price`
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json" -XPOST -d '{
@@ -126,7 +126,7 @@ try client.oopLoadPrice(params: data)
  }
 ```
 
-> Example fetching OOP Price Estimate from /oop/insurance-estimate
+> Example fetching OOP Price Estimate from `/oop/insurance-estimate`
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json" -XPOST -d '{

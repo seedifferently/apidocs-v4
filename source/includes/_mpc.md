@@ -23,9 +23,21 @@ The `/mpc/` endpoint accepts the following parameters:
 | name        | {string} | Search medical procedure information by consumer friendly name                   | Optional |
 | description | {string} | A partial or full description to be used to locate medical procedure information | Optional |
 
-#### Example Request
 
-> Example fetching medical procedure information by code:
+#### MPC Fields
+The `/mpc/` response contains the following fields:
+
+| Field       | Type     | Description                                        | Presence |
+|:------------|:---------|:---------------------------------------------------|:---------|
+| code        | {string} | The procedure code                                 | Required |
+| name        | {string} | A consumer friendly name for the medical procedure | Required |
+| description | {string} | The medical procedure's clinical description       | Optional |
+
+
+
+#### Examples
+
+An example fetching medical procedure information by code:
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/mpc/99213
@@ -54,18 +66,7 @@ client.mpc(query);
 try client.mpc(code: "99213")
 ```
 
-#### MPC Fields
-The `/mpc/` response contains the following fields:
-
-| Field       | Type     | Description                                        | Presence |
-|:------------|:---------|:---------------------------------------------------|:---------|
-| code        | {string} | The procedure code                                 | Required |
-| name        | {string} | A consumer friendly name for the medical procedure | Required |
-| description | {string} | The medical procedure's clinical description       | Optional |
-
-
-
-#### Example Response:
+Example Response:
 
 ```json
 {
@@ -75,7 +76,7 @@ The `/mpc/` response contains the following fields:
 }
 ```
 
-> Example searching medical procedure information by consumer friendly name:
+An example searching medical procedure information by consumer friendly name:
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/mpc/?name=office
@@ -107,7 +108,7 @@ client.mpc(query);
 try client.mpc(name: "office")
 ```
 
-> Example Response:
+Example Response:
 
 ```json
 [

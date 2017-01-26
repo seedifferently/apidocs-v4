@@ -17,7 +17,7 @@ entity (e.g. Utilization Management Organization) for approval.
 
 #### Accepted Parameters
 
-The /referrals/ endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
+The `/referrals/` endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
 
 | Parameter                                     | Description                                                                                                                                                                                                                           |
 |:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -308,13 +308,13 @@ try client.referrals(params: data)
 
 If the referral request is sent using a real-time interface, a referral response will be returned.
 
-Interested in requesting authorization for a particular service for a patient? See PokitDok’s
-[Authorizations](#authorizations) endpoint.
+Interested in requesting authorization for a particular service for a patient? See PokitDok’s API Reference for the
+Authorizations endpoint.
 
 #### Referals Fields
 
 <a name="referral_service_review_member_object"></a>
-###Member object:
+##### Member object:
 
 | Field                             | Description                                                                           |
 |:----------------------------------|:--------------------------------------------------------------------------------------|
@@ -333,7 +333,7 @@ Interested in requesting authorization for a particular service for a patient? S
 | accident_date                     | The date of the member's accident. In ISO8601 format (YYYY-MM-DD).                     |
 
 <a name="referral_service_review_provider_object"></a>
-###Provider object:
+##### Provider object:
 
 | Field                             | Description                                                                                                                                                                            |
 |:----------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -348,7 +348,7 @@ Interested in requesting authorization for a particular service for a patient? S
 | organization_name                 | The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                   |
 
 <a name="referral_certaction"></a>
-Full list of possible values that can be returned in the event.review.certification_action parameter
+Full list of possible values that can be returned in the `event.review.certification_action` parameter
 on the referral response:
 
 | certification_action Values |                    |
@@ -359,7 +359,7 @@ on the referral response:
 | contact_payer               | pended             |
 
 <a name="referral_follow_up_action"></a>
-Possible values that can be returned in the follow_up_action field on the referral response:
+Possible values that can be returned in the `follow_up_action` field on the referral response:
 
 | follow_up_action Values               |                                   |
 |:--------------------------------------|:----------------------------------|
@@ -370,7 +370,7 @@ Possible values that can be returned in the follow_up_action field on the referr
 
 
 <a name="referral_decision"></a>
-Full list of possible values that can be returned in the event.review.decision_reason parameter on the referrals response:
+Full list of possible values that can be returned in the `event.review.decision_reason` parameter on the referrals response:
 
 | decision_reason Values                                    |                                                      |
 |:----------------------------------------------------------|:-----------------------------------------------------|
@@ -403,7 +403,7 @@ Full list of possible values that can be returned in the event.review.decision_r
 | patient_in_premium_payment_grace_period_first_month       |                                                      |
 
 <a name="certification_r_type"></a>
-Full list of possible values that can be returned in the event.certification_type parameter on the referral response:
+Full list of possible values that can be returned in the `event.certification_type` parameter on the referral response:
 
 | certification_type |                 |
 |:-------------------|:----------------|
@@ -414,7 +414,7 @@ Full list of possible values that can be returned in the event.certification_typ
 
 
 <a name="r_category"></a>
-Full list of possible values that can be returned in the event.category parameter on the referral response:
+Full list of possible values that can be returned in the `event.category` parameter on the referral response:
 
 | category               |                       |
 |:-----------------------|:----------------------|

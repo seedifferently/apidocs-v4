@@ -28,7 +28,7 @@ The /prices/insurance endpoint accepts the following parameters:
 
 #### Example Request
 
-> example fetching insurance price information
+> Example fetching insurance price information
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/prices/insurance?cpt_code=90658&zip_code=94401

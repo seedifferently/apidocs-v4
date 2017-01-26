@@ -7,7 +7,7 @@ PokitDok's Identity Management (IdM) API queries an EMPI (Enterprise Master Pati
 
 Within the Identity Management product, there are three availalbe interfaces: Identity, Identity History and Identity Match. The Identity API provides the foundational POST/PUT/GET capability for respectively inserting, updating and retrieving identities in the system. The Identity system updates and returns a single best record while simultaneously tracking the historical updates made to the entity. The Identity History API provides access to the historical versions of an identity. Lastly, the Identity Match API supports the execution of a tune-able and configurable match job which detects duplicates across a historical data load.
 
-Learn more about our [Identity Management workflows](https://platform.pokitdok.com/workflows#anchor-idm).
+Learn more about our [Identity Management workflows](https://pokitdok.com/developers/api/#api-idm).
 
 ### Identity
 
@@ -53,7 +53,7 @@ Each identifier, or identifiers list entry, represents an external system utiliz
 | system_uuid   | {uuid}   | The unique identifier for the system               |
 | value         | {string} | The identifier value                               |
 
-The `location` and `provider_uuid` values correspond to provider resources accessed through the /providers endpoint. system_uuid values correspond to registered systems under the /schedule/schedulers endpoint.
+The `location` and `provider_uuid` values correspond to provider resources accessed through the `/providers` endpoint. `system_uuid` values correspond to registered systems under the /schedule/schedulers endpoint.
 
 #### Accepted Parameters
 
@@ -79,7 +79,9 @@ External id search is executed using the `id` parameter: `/identity?id={identifi
 
 The `id` parameter, if present, overrides other search parameters.
 
+
 #### Identity Examples
+
 > Example creating an identity resource
 
 ```shell

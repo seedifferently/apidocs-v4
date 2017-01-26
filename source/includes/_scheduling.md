@@ -16,6 +16,15 @@ restrict access to provider's PM systems and user's personal information.
 |:------------------------------------|:------------|:-----------------------------------------------------------------------------|:----------------------------------|
 | /schedule/schedulers/               | GET         | Get a list of supported scheduling systems and their UUIDs and descriptions. |                                   |
 | /schedule/schedulers/{uuid}         | GET         | Retrieve the data for a specified scheduling system.                         |                                   |
+| /schedule/appointments/                       | GET         | Query for appointments. business_schedule scope requests include pd_provider_uuid and location. user_schedule requests include  patient_uuid      | user_schedule or business_schedule  |
+| /schedule/appointments/{pd_appointment_uuid}  | GET         | Query for an open appointment slot or a booked appointment given a specific {pd_appointment_uuid}, the (PokitDok unique appointment identifier).  | user_schedule                       |
+| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Book appointment for an open slot. Post data contains patient attributes and description.                                                         | user_schedule                       |
+| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Update appointment description.                                                                                                                   | user_schedule                       |
+| /schedule/appointments/{pd_appointment_uuid}  | DELETE      | Cancel appointment given its {pd_appointment_uuid}.                                                                                               | user_schedule                       |
+| /schedule/appointmenttypes/         | GET         | Get a list of appointment types, their UUIDs, and descriptions. |                                   |
+| /schedule/appointmenttypes/{uuid}   | GET         | Retrieve the data for a specified appointment type.             |                                   |
+| /schedule/slots/                      | POST        | Creates an open scheduling slot. | business_schedule                                                                 |
+| /schedule/slots/{pd_appointment_uuid} | DELETE      | Deletes an open scheduling slot. | business_schedule                                                                 |                                                     |
 
 #### Accepted Parameters
 
@@ -37,13 +46,6 @@ The `/schedule/slots/` POST endpoint accepts the following parameters:
 | start_date       | {datetime}     | The beginning date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).       |
 | end_date         | {datetime}     | The ending date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).          |
 
-| Endpoint                                      | HTTP Method | Description                                                                                                                                       | Scope                               |
-|:----------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------|
-| /schedule/appointments/                       | GET         | Query for appointments. business_schedule scope requests include pd_provider_uuid and location. user_schedule requests include  patient_uuid      | user_schedule or business_schedule  |
-| /schedule/appointments/{pd_appointment_uuid}  | GET         | Query for an open appointment slot or a booked appointment given a specific {pd_appointment_uuid}, the (PokitDok unique appointment identifier).  | user_schedule                       |
-| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Book appointment for an open slot. Post data contains patient attributes and description.                                                         | user_schedule                       |
-| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Update appointment description.                                                                                                                   | user_schedule                       |
-| /schedule/appointments/{pd_appointment_uuid}  | DELETE      | Cancel appointment given its {pd_appointment_uuid}.                                                                                               | user_schedule                       |
 
 The `/schedule/appointments/` endpoint accepts the following parameters:
 
@@ -525,11 +527,6 @@ The `/schedule/schedulers` response includes the following fields:
 | methods_payloads | {object}       | Conveys messaging information utilized by the Scheduling system, such as SOAP envelopes, message headers/footers, etc. |
 
 
-| Endpoint                            | HTTP Method | Description                                                     | Scope                             | 
-|:------------------------------------|:------------|:--------------------------------------------------------------- |:----------------------------------|
-| /schedule/appointmenttypes/         | GET         | Get a list of appointment types, their UUIDs, and descriptions. |                                   |
-| /schedule/appointmenttypes/{uuid}   | GET         | Retrieve the data for a specified appointment type.             |                                   |
-
 The `/schedule/appointmenttypes/` response includes the following fields:
 
 | Field                   | Type           | Description                                                                        |
@@ -548,11 +545,6 @@ The `/schedule/appointmenttypes/` response includes the following fields:
 | /schedule/patient/                  | POST        | Registers an existing PokitDok user as a patient within a provider's scheduling system.           | user_schedule             |
 
 The `/schedule/patient/` endpoint response returns a patient [object](#scheduling_patient_object).
-
-| Endpoint                              | HTTP Method | Description                      | Scope                                                                             |
-|:--------------------------------------|:------------|:---------------------------------|:----------------------------------------------------------------------------------|
-| /schedule/slots/                      | POST        | Creates an open scheduling slot. | business_schedule                                                                 |
-| /schedule/slots/{pd_appointment_uuid} | DELETE      | Deletes an open scheduling slot. | business_schedule                                                                 |                                                     |                                           
 
 Both the `/schedule/slots/` (POST) and `/schedule/appointments` (GET/PUT) endpoints' response includes the following fields:
 

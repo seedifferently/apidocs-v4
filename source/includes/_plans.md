@@ -54,7 +54,7 @@ client.plans();
 try client.plans()
 ```
 
-> example fetching information for plans in Texas:
+> Example fetching information for plans in Texas:
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/plans/?state=TX
@@ -90,7 +90,7 @@ let data = [
 try client.plans(params: data)
 ```
 
-> example fetching information for PPO plans in South Carolina:
+> Example fetching information for PPO plans in South Carolina:
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/plans/?state=SC&plan_type=PPO
@@ -158,7 +158,7 @@ The `/plans/` response contains the following fields:
 | trading_partner_id           | {string} | The trading partner id for the issuer of the plan                                     | Required |
 
 <a name="metallic_level"></a>
-Possible values that can be used in the metallic_level parameter:
+Possible values that can be used in the `metallic_level` parameter:
 
 | metallic_level     |                 |
 |:-------------------|:----------------|

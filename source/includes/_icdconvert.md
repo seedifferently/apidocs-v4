@@ -13,7 +13,7 @@ specified ICD-9 code.
 
 
 #### Accepted Parameters
-The /icd/convert endpoint accepts the following parameters:
+The `/icd/convert` endpoint accepts the following parameters:
 
 | Parameter | Description |
 |:----------|:------------|
@@ -50,7 +50,7 @@ try client.icdConvert(code: "250.12")
 
 #### ICD Convert Fields
 
-The /icd/convert response contains the following fields:
+The `/icd/convert` response contains the following fields:
 
 | Field                                                     | Description                                                                                                       |
 |:----------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|
