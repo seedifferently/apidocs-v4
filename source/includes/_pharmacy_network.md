@@ -115,7 +115,7 @@ try client.pharmacyNetwork(params: data)
 
 #### In-Network Pharmacy Fields
 
-The /pharmacy/network response contains the following fields:
+The `/pharmacy/network` response contains the following fields:
 
 | Field                            | Type      | Description                            | Presence |
 |:---------------------------------|:----------|:---------------------------------------|:---------|
@@ -134,7 +134,7 @@ The /pharmacy/network response contains the following fields:
 
 #### Example Responses 
 
-> Sample response for /pharmacy/network/{npi} endpoint :
+> Sample response for `/pharmacy/network/{npi}` endpoint :
 
 ```
 {
@@ -165,7 +165,7 @@ The /pharmacy/network response contains the following fields:
 
 ```
 
-> Sample response for /pharmacy/network endpoint when using zipcode and radius as parameters:
+> Sample response for `/pharmacy/network` endpoint when using zipcode and radius as parameters:
 
 ```
 {
