@@ -8,7 +8,7 @@ The Authorization request can also be used to request permission to admit a pati
 
 Learn more about our [Authorization API workflow](https://pokitdok.com/developers/api/#api-authorizations).
 
-Interested in requesting approval for a referral to a specialist? See PokitDok’s [Referrals](#referrals) endpoint.
+Interested in requesting approval for a referral to a specialist? See PokitDok’s [Referrals](#referrals_header) endpoint.
 
 #### Available Authorizations Endpoint
 
@@ -399,7 +399,7 @@ If the authorization request is sent using a real-time interface, an authorizati
 #### Response Field Tables
 
 <a name="certaction"></a>
-Possible values that can be returned in the event.review.certification_action parameter on the authorization response:
+Possible values that can be returned in the `event.review.certification_action` parameter on the authorization response:
 
 | certification_action Values |                    |
 |:----------------------------|:-------------------|
@@ -409,7 +409,7 @@ Possible values that can be returned in the event.review.certification_action pa
 | contact_payer               | pended             |
 
 <a name="follow_up_action"></a>
-Possible values that can be returned in the follow_up_action field on the authorization response:
+Possible values that can be returned in the `follow_up_action` field on the authorization response:
 
 | follow_up_action Values               |                                   |
 |:--------------------------------------|:----------------------------------|
@@ -419,7 +419,7 @@ Possible values that can be returned in the follow_up_action field on the author
 | resubmission_allowed                  | resubmission_not_allowed          |
 
 <a name="decision"></a>
-List of possible values that can be returned in the event.review.decision_reason parameter on the authorization response:
+List of possible values that can be returned in the `event.review.decision_reason` parameter on the authorization response:
 
 | decision_reason Values                                    |                                                      |
 |:----------------------------------------------------------|:-----------------------------------------------------|
@@ -452,7 +452,7 @@ List of possible values that can be returned in the event.review.decision_reason
 | patient_in_premium_payment_grace_period_first_month       |                                                      |
 
 <a name="certification_type"></a>
-Possible values that can be returned in the event.certification_type parameter on the authorization response:
+Possible values that can be returned in the `event.certification_type` parameter on the authorization response:
 
 | certification_type |                 |
 |:-------------------|:----------------|
@@ -462,7 +462,7 @@ Possible values that can be returned in the event.certification_type parameter o
 | extension          | revised         |
 
 <a name="category"></a>
-Possible values that can be returned in the event.category parameter on the authorization response:
+Possible values that can be returned in the `event.category parameter` on the authorization response:
 
 | category               |                       |
 |:-----------------------|:----------------------|
