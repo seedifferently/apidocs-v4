@@ -64,6 +64,11 @@
          "title":"Identity Management"
       },
       {
+         "slug":"apis/identity_proof",
+         "content":"includes/_identityproof.md",
+         "title":"Identity Proof"
+      },
+      {
          "slug":"apis/insuranceprices",
          "content":"includes/_insuranceprices.md",
          "title":"Insurance Prices"
