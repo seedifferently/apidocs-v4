@@ -2,11 +2,11 @@
 
 *Available modes of operation: real-time*
 
-The claims status endpoint allows an application to request information from a trading partner about previously submitted claims.  You may send a request to a trading partner to determine where the claim is in their adjudication system and the status of the claim. The Claims Status endpoint can be used to query the status of multiple claims. The claims status endpoint can be used to check the status of claims in the trading partners' system regardless of the submitter or means of submission. Claims status DOES NOT offer insight into where a claim is in PokitDok's system (for more info on monitoring PokitDok's processing of your claims, please see our [activities endpoint](#activities) and [callback url](#api-callbacks)).
+The claims status endpoint allows an application to request information from a trading partner about previously submitted claims.  You may send a request to a trading partner to determine where the claim is in their adjudication system and the status of the claim. The Claims Status endpoint can be used to query the status of multiple claims. The claims status endpoint can be used to check the status of claims in the trading partners' system regardless of the submitter or means of submission. Claims status DOES NOT offer insight into where a claim is in PokitDok's system (for more info on monitoring PokitDok's processing of your claims, please see our API Reference for the activities endpoint.
 
 The speed at which a claim is adjudicated is dependent on the trading partner. On average it takes 5-7 days for a claim to enter a payer's adjudication system, thus it is recommended to wait at least a week after submitting a claim to check its status.
 
-To understand how the [Claims](#claims) and [Claims Status](#claims_status) Endpoints work together,
+To understand how the Claims and Claims Status Endpoints work together,
 see the [claims API workflow](https://pokitdok.com/developers/api/#api-claims-status).
 
 #### Available Claims Status Endpoint
@@ -564,9 +564,9 @@ let data = [
 try client.claimsStatus(params: data)
 ```
 
-#### Claim Status Fields                                                                                                                                                                                   |
+#### Claim Status Fields
 
-The /claim/status response contains the following fields:
+The `/claim/status` response contains the following fields:
 
 | Field                                                 | Description                                                                                                                                                                                                                                                                                                                                        |
 |:------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

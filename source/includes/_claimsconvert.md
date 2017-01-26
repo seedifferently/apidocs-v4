@@ -18,7 +18,7 @@ represents the converted X12 837 transaction for that claim.  A list of diagnosi
 included so that the client application may review the scenarios and choices that were utilized to
 map ICD-9 to ICD-10.
 
-### Available Claims Convert Endpoint
+#### Available Claims Convert Endpoint
 
 | Endpoint        | HTTP Method | Description                          |
 |:----------------|:------------|:-------------------------------------|
@@ -68,7 +68,7 @@ try client.claimsCovert(x12ClaimsFilePath: "test_claim.837")
 
 #### Response Fields
 
-The /claims/convert response contains the following fields:
+The `/claims/convert` response contains the following fields:
 
 | Field                                                              | Description                                                                                                                                                         |
 |:-------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------|

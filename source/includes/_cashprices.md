@@ -66,7 +66,7 @@ try client.cashPrices(cptCode: "99385", zipCode: "29412")
 
 #### Cash Prices Fields
 
-The /prices/cash response contains the following fields:
+The `/prices/cash` response contains the following fields:
 
 | Field                  | Type      | Description                                                               | Presence |
 |:-----------------------|:----------|:--------------------------------------------------------------------------|:---------|

@@ -5,8 +5,8 @@
 The Eligibility endpoint makes it easy to verify a member's insurance information in real-time. You can check
 co-insurance, copay, deductible and out of pocket amounts for a member along with other benefit information.
 
-Use the [Trading Partners](#trading-partners) endpoint to determine available trading_partner_id values for use with the
-Eligibility API.
+Use the Trading Partners endpoint to determine available `trading_partner_id` values for use with the
+Eligibility API or check out our [Trading Partners page](https://platform.pokitdok.com/tradingpartners/eligibility#/).
 
 
 #### Available Eligibility Endpoint
@@ -16,18 +16,17 @@ Eligibility API.
 | /eligibility/ | POST        | Determine eligibility via an X12 270 Request For Eligibility |
 
 
-All eligibility requests must include a valid Provider NPI. Some trading partners require that the submitting provider’s
-NPI be registered or be a participating provider with that health plan to successfully check eligibility.
+All eligibility requests must include a valid Provider NPI. Further, some trading partners require that the submitting provider’s
+NPI be registered or be a participating provider with that health plan to successfully check eligibility. For the full list of these requirements, please check out our [Trading Partners page](https://platform.pokitdok.com/tradingpartners/eligibility#/).
 
 The Eligibility endpoint allows you to request eligibility for service types. The service_type parameter
 allows you to specify particular service(s), however, if no service type is specified the
 request will be made for general benefit coverage (health_benefit_plan_coverage). Some trading partners may not support specific service type inquiries. A full listing of possible service_types values is included [below](#service-type).
 
-Some trading partners allow combinations of the below parameters to return a successful eligibility response.  PokitDok now only requires those specific parameters required by the trading partner being called. Details on available search options per trading partner can be found by using the [Trading Partners](#trading-partners) endpoint.  There are example eligibility requests for each of the search option combinations to the right as well.
-
 #### Accepted Parameters
+Some trading partners allow combinations of the below parameters to return a successful eligibility response.  PokitDok now only requires those specific parameters required by the trading partner being called. Details on available search options per trading partner can be found by using the Trading Partners endpoint.  There are example eligibility requests for each of the search option combinations below.
 
-The /eligibility/ endpoint accepts the following parameters:
+The `/eligibility/` endpoint accepts the following parameters:
 
 | Parameter                  | Description                                                                                                                                                                                                     |
 |:---------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1047,16 +1046,124 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
 }' https://platform.pokitdok.com/api/v4/eligibility/
 ```
 
+> Example eligibility request using custom application data for easy handling of asynchronous responses:
 
-<a name="procedure-id-qualifier"></a>
-Full list of possible procedure_id_qualifier values that may be used in the eligiblity request or returned in an eligibility response:
+```python
+client.eligibility({
+    "member": {
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    },
+    "provider": {
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    },
+    "trading_partner_id": "MOCKPAYER",
+    "application_data": {
+        "patient_id": "ABC1234XYZ",
+        "location_id": 123,
+        "transaction_uuid": "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"
+    }
+})
+```
 
-| procedure_id_qualifier                |                 |
-|:--------------------------------------|:----------------|
-| ada_code                              | cpt             |
-| hcpcs                                 | icd_9_cm        |
-| hiec_product_service_code             | ndc_5_4_2_format|
-| mutually_defined                      |                 |
+```csharp
+client.eligibility(
+    new Dictionary<string, object> {
+        {"member", new Dictionary<string, string> {
+                {"birth_date", "1970-01-25"},
+                {"first_name", "Jane"},
+                {"last_name", "Doe"},
+                {"id", "W000000000"}
+            }},
+        {"provider", new Dictionary<string, string> {
+                {"first_name", "JEROME"},
+                {"last_name", "AYA-AY"},
+                {"npi", "1467560003"}
+            }},
+        {"trading_partner_id", "MOCKPAYER"},
+        {"application_data", new Dictionary<string, object> {
+                {"patient_id", "ABC1234XYZ"},
+                {"location_id", 123},
+                {"transaction_uuid", "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"}
+            }}
+);
+```
+
+```ruby
+client.eligiblity({
+    member: {
+        birth_date: "1970-01-25",
+        first_name: "Jane",
+        last_name: "Doe",
+        id: "W000000000"
+    },
+    provider: {
+        first_name: "JEROME",
+        last_name: "AYA-AY",
+        npi: "1467560003"
+    },
+    trading_partner_id: "MOCKPAYER",
+    application_data: {
+        patient_id: "ABC1234XYZ",
+        location_id: 123,
+        transaction_uuid: "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"
+    }
+})
+```
+
+```java
+StringBuffer buf = new StringBuffer();
+
+buf.append("{");
+buf.append("    \"member\": {");
+buf.append("        \"birth_date\": \"1970-01-25\",");
+buf.append("        \"first_name\": \"Jane\",");
+buf.append("        \"last_name\": \"Doe\",");
+buf.append("        \"id\": \"W000000000\"");
+buf.append("    },");
+buf.append("    \"provider\": {");
+buf.append("        \"first_name\": \"JEROME\",");
+buf.append("        \"last_name\": \"AYA-AY\",");
+buf.append("        \"npi\": \"1467560003\"");
+buf.append("    },");
+buf.append("    \"trading_partner_id\": \"MOCKPAYER\",");
+buf.append("    \"application_data\": {");
+buf.append("        \"patient_id\": \"ABC1234XYZ\",");
+buf.append("        \"location_id\": 123,");
+buf.append("        \"transaction_uuid\": \"93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf\"");
+buf.append("    }");
+buf.append("");
+
+JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
+Map<String, Object> results = client.eligibility(query);
+```
+
+```swift
+let data = [
+    "member": [
+        "birth_date": "1970-01-25",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    ],
+    "provider": [
+        "first_name": "JEROME",
+        "last_name": "AYA-AY",
+        "npi": "1467560003"
+    ],
+    "trading_partner_id": "MOCKPAYER",
+    "application_data": [
+        "patient_id": "ABC1234XYZ",
+        "location_id": 123,
+        "transaction_uuid": "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"
+    ]
+] as [String:Any]
+try client.eligibility(params: data)
+```
 
 
 #### Eligibility Fields:
@@ -1319,8 +1426,9 @@ The `/eligibility/` response contains the following fields:
 | summary.out_of_pocket.family                        | Family out-of-pocket information.  The subproperties can be seen [below](#deductible-outofpocket).                                                                                                                                                                                                                                                                                                                                                                                       |
 | summary.out_of_pocket.individual                    | Individual out-of-pocket information. The subproperties can be seen [below](#deductible-outofpocket).                                                                                                                                                                                                                                                                                                                                                                                    |
 
+
 <a name="eligibility-payer"></a>
-##### Payer Object
+##### Payer Object:
 
 | Parameter                  | Description                                                                           |
 |:---------------------------|:--------------------------------------------------------------------------------------|
@@ -1344,7 +1452,7 @@ The `/eligibility/` response contains the following fields:
 | country                               | The country component of a address.                                                                               |
 
 <a name="eligibility-subscriber"></a>
-##### Subscriber Object
+##### Subscriber Object:
 
 | Parameter                  | Description                                                                                                                                                                                                                                                                                      |
 |:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1357,8 +1465,8 @@ The `/eligibility/` response contains the following fields:
 | gender                     | The subscriber’s gender as specified on their policy. Possible values include: 'female', 'male', and 'unknown'. 'unknown' will be returned when gender is not specified in the trading partner's eligibility data or when the trading partner explicitly returns a value of 'unknown'.           |
 | relationship               | The subscriber's relationship.                                                                                                                                                                                                                                                                   |
 | group_number               | Group number for the subscriber.                                                                                                                                                                                                                                                                 |
-| military_personnel_information | Information pertaining to the subscriber's military service.  This information may be returned for dependents as well.  Uses the military personnel information [object](#eligibility-military).
-										|
+| military_personnel_information | Information pertaining to the subscriber's military service.  This information may be returned for dependents as well.  Uses the military personnel information [object](#eligibility-military).                                                                                             |
+
 <a name="eligibility-military"></a>
 ##### Military Personnel Information Object
 
@@ -1437,128 +1545,12 @@ The `/eligibility/` response contains the following fields:
 | service_type_codes			| The service type codes returned by the trading partner. A full listing of possible service_type_codes values is included [below](#service-type).
                                                             						          |
 | benefit_amount			| The monetary amount associated with the eligibility_or_benefit_information and service_types provided. Uses the monetary amount [object](#eligibility-monetary-amount).
-                                                            						          |
+
+                                                           						          |
+
+
 
 #### Example Responses
-
-> Example eligibility request using custom application data for easy handling of asynchronous responses:
-
-```python
-client.eligibility({
-    "member": {
-        "birth_date": "1970-01-25",
-        "first_name": "Jane",
-        "last_name": "Doe",
-        "id": "W000000000"
-    },
-    "provider": {
-        "first_name": "JEROME",
-        "last_name": "AYA-AY",
-        "npi": "1467560003"
-    },
-    "trading_partner_id": "MOCKPAYER",
-    "application_data": {
-        "patient_id": "ABC1234XYZ",
-        "location_id": 123,
-        "transaction_uuid": "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"
-    }
-})
-```
-
-```csharp
-client.eligibility(
-    new Dictionary<string, object> {
-        {"member", new Dictionary<string, string> {
-                {"birth_date", "1970-01-25"},
-                {"first_name", "Jane"},
-                {"last_name", "Doe"},
-                {"id", "W000000000"}
-            }},
-        {"provider", new Dictionary<string, string> {
-                {"first_name", "JEROME"},
-                {"last_name", "AYA-AY"},
-                {"npi", "1467560003"}
-            }},
-        {"trading_partner_id", "MOCKPAYER"},
-        {"application_data", new Dictionary<string, object> {
-                {"patient_id", "ABC1234XYZ"},
-                {"location_id", 123},
-                {"transaction_uuid", "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"}
-            }}
-);
-```
-
-```ruby
-client.eligiblity({
-    member: {
-        birth_date: "1970-01-25",
-        first_name: "Jane",
-        last_name: "Doe",
-        id: "W000000000"
-    },
-    provider: {
-        first_name: "JEROME",
-        last_name: "AYA-AY",
-        npi: "1467560003"
-    },
-    trading_partner_id: "MOCKPAYER",
-    application_data: {
-        patient_id: "ABC1234XYZ",
-        location_id: 123,
-        transaction_uuid: "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"
-    }
-})
-```
-
-```java
-StringBuffer buf = new StringBuffer();
-
-buf.append("{");
-buf.append("    \"member\": {");
-buf.append("        \"birth_date\": \"1970-01-25\",");
-buf.append("        \"first_name\": \"Jane\",");
-buf.append("        \"last_name\": \"Doe\",");
-buf.append("        \"id\": \"W000000000\"");
-buf.append("    },");
-buf.append("    \"provider\": {");
-buf.append("        \"first_name\": \"JEROME\",");
-buf.append("        \"last_name\": \"AYA-AY\",");
-buf.append("        \"npi\": \"1467560003\"");
-buf.append("    },");
-buf.append("    \"trading_partner_id\": \"MOCKPAYER\",");
-buf.append("    \"application_data\": {");
-buf.append("        \"patient_id\": \"ABC1234XYZ\",");
-buf.append("        \"location_id\": 123,");
-buf.append("        \"transaction_uuid\": \"93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf\"");
-buf.append("    }");
-buf.append("");
-
-JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
-Map<String, Object> results = client.eligibility(query);
-```
-
-```swift
-let data = [
-    "member": [
-        "birth_date": "1970-01-25",
-        "first_name": "Jane",
-        "last_name": "Doe",
-        "id": "W000000000"
-    ],
-    "provider": [
-        "first_name": "JEROME",
-        "last_name": "AYA-AY",
-        "npi": "1467560003"
-    ],
-    "trading_partner_id": "MOCKPAYER",
-    "application_data": [
-        "patient_id": "ABC1234XYZ",
-        "location_id": 123,
-        "transaction_uuid": "93f38f1b-b2cd-4da1-8b55-c6e3ab380dbf"
-    ]
-] as [String:Any]
-try client.eligibility(params: data)
-```
 
 > Example eligibility response when the trading partner is unable to respond at this time:
 
@@ -2612,6 +2604,16 @@ a CPT code:
 ```
 
 #### Response Field Tables
+
+<a name="procedure-id-qualifier"></a>
+Full list of possible `procedure_id_qualifier` values that may be used in the eligibility request or returned in an eligibility response:
+
+| procedure_id_qualifier                |                 |
+|:--------------------------------------|:----------------|
+| ada_code                              | cpt             |
+| hcpcs                                 | icd_9_cm        |
+| hiec_product_service_code             | ndc_5_4_2_format|
+| mutually_defined
 
 <a name="coverage-level"></a>
 Full list of possible coverage level values that may be returned in an eligibility response:

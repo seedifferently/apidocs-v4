@@ -1,4 +1,3 @@
-<a name="referrals_header"></a>
 ## Referrals
 
 *Available modes of operation: batch/async or real-time*

@@ -575,7 +575,7 @@ Parameters that are specific to Institutional claims only have (_Insitutional cl
 | transaction_code                              | Required: The type of claim transaction that is being submitted (e.g. "chargeable"). A full list of possible values is included [below](#transaction-code).                                                                                                                           |                                                    |
 | coordination_of_benefits                      | Required for Secondary Claims: Information related to the coordination of benefits for additional payers. [object](#claims-coordination-of-benefits-object) |
 
-A claim goes through an entire lifecycle after its transmission to a payer. For details on this process, and how the [Claims Status](#claims-status) Endpoint ties in, see our [claims API workflow](https://pokitdok.com/developers/api/#api-claim-submission).
+A claim goes through an entire lifecycle after its transmission to a payer. For details on this process, and how the Claims Status Endpoint ties in, see our [claims API workflow](https://pokitdok.com/developers/api/#api-claim-submission).
 
 
 #### Example Requests
@@ -4304,7 +4304,7 @@ try client.claims(params: data)
 
 #### Request and Response Field Tables
 
-a name="claims-subscriber-object"></a>
+<a name="claims-subscriber-object"></a>
 ##### Subscriber object:
 
 | Field                              | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
@@ -4466,7 +4466,7 @@ The `/claims/` response contains an activity and thus returns the same object as
 
 
 <a name="claim-adjustment-group-codes"></a>
-Full list of possible values that can be used in the claim_adjusment_group_code fields:
+Full list of possible values that can be used in the `claim_adjustment_group_code` fields:
 
 | claim_adjustment_group_code Values                       |
 |:---------------------------------- |
@@ -4478,7 +4478,7 @@ Full list of possible values that can be used in the claim_adjusment_group_code 
 
 
 <a name="claim-frequency"></a>
-Full list of possible values that can be used in the claim.claim_frequency parameter on the claim:
+Full list of possible values that can be used in the `claim.claim_frequency` parameter on the claim:
 
 | claim_frequency Values             |                           |
 |:-----------------------------------|:--------------------------|
@@ -4489,7 +4489,7 @@ Full list of possible values that can be used in the claim.claim_frequency param
 | cancel                             | final_claim_home_health   |
 
 <a name="drug-units"></a>
-Full list of possible values that can be used in the claim.service_lines.drug.unit_type parameter on the claim:
+Full list of possible values that can be used in the `claim.service_lines.drug.unit_type` parameter on the claim:
 
 | unit_type Values                   |                           |
 |:-----------------------------------|:--------------------------|
@@ -4498,7 +4498,7 @@ Full list of possible values that can be used in the claim.service_lines.drug.un
 | unit                               |                           |
 
 <a name="ambulance-reason-codes"></a>
-Full list of possible values that can be used in the claim.ambulance.reason_code parameter on the claim:
+Full list of possible values that can be used in the `claim.ambulance.reason_code` parameter on the claim:
 
 | reacon_code Values                 |                           |
 |:-----------------------------------|:--------------------------|
@@ -4507,7 +4507,7 @@ Full list of possible values that can be used in the claim.ambulance.reason_code
 | rehab_facility (E)                 |                           |
 
 <a name="ambulance-applicable-conditions"></a>
-Full list of possible values that can be used in the claim.ambulance.applicable_conditions and claim.ambulance.not_applicable_conditions parameter on the claim:
+Full list of possible values that can be used in the `claim.ambulance.applicable_conditions` and `claim.ambulance.not_applicable_conditions` parameter on the claim:
 
 | condition Values                   |                           |
 |:-----------------------------------|:--------------------------|
@@ -4517,7 +4517,7 @@ Full list of possible values that can be used in the claim.ambulance.applicable_
 | ambulance_medically_necessary      | patient_confined_bed_chair|
 
 <a name="chiropractic-conditions"></a>
-Full list of possible values that can be used in the claim.chiropractic.spinal_condition parameter on the claim:
+Full list of possible values that can be used in the `claim.chiropractic.spinal_condition` parameter on the claim:
 
 | spinal_condition Values              |                           |
 |:-------------------------------------|:--------------------------|
@@ -4527,7 +4527,7 @@ Full list of possible values that can be used in the claim.chiropractic.spinal_c
 | acute_manifestation_chronic_condition|                           |
 
 <a name="place-of-service"></a>
-Full list of possible values that can be used in the claim.place_of_service parameter on the claim:
+Full list of possible values that can be used in the `claim.place_of_service` parameter on the claim:
 
 | place_of_service Values |                             |
 |:------------------------|:----------------------------|
@@ -4556,7 +4556,7 @@ Full list of possible values that can be used in the claim.place_of_service para
 
 
 <a name="relationships"></a>
-Full list of possible values that can be used in the patient.relationships parameter on the claim:
+Full list of possible values that can be used in the `patient.relationships` parameter on the claim:
 
 | relationship Values |                    |
 |:--------------------|:-------------------|
@@ -4567,7 +4567,7 @@ Full list of possible values that can be used in the patient.relationships param
 
 
 <a name="filing"></a>
-Full list of possible values that can be used in the subscriber.filing_code parameter on the claim:
+Full list of possible values that can be used in the `subscriber.filing_code` parameter on the claim:
 
 | filing_code Values              |                                   |
 |:--------------------------------|:----------------------------------|
@@ -4586,7 +4586,7 @@ Full list of possible values that can be used in the subscriber.filing_code para
 
 
 <a name="transaction-code"></a>
-Full list of possible values that can be used in the transaction_code parameter on the claim:
+Full list of possible values that can be used in the `transaction_code` parameter on the claim:
 
 | transaction_code Values |
 |:------------------------|
@@ -4596,7 +4596,7 @@ Full list of possible values that can be used in the transaction_code parameter 
 
 
 <a name="admitsource"></a>
-Full list of possible values that can be used in the claim.admission_source parameter on the claim:
+Full list of possible values that can be used in the `claim.admission_source` parameter on the claim:
 
 | admission_source Values |                         |
 |:------------------------|:------------------------|
@@ -4608,7 +4608,7 @@ Full list of possible values that can be used in the claim.admission_source para
 
 
 <a name="admittype"></a>
-Full list of possible values that can be used in the claim.admission_type parameter on the claim:
+Full list of possible values that can be used in the `claim.admission_type` parameter on the claim:
 
 | admission_type Values     |               |
 |:--------------------------|:--------------|
@@ -4618,7 +4618,7 @@ Full list of possible values that can be used in the claim.admission_type parame
 
 
 <a name="faciltype"></a>
-Full list of possible values that can be used in the claim.facility_type parameter on the claim:
+Full list of possible values that can be used in the `claim.facility_type` parameter on the claim:
 
 | facility_type Values              |                                  |
 |:----------------------------------|:---------------------------------|
@@ -4636,7 +4636,7 @@ Full list of possible values that can be used in the claim.facility_type paramet
 
 
 <a name="patstatus"></a>
-Full list of possible values that can be used in the claim.patient_status parameter on the claim:
+Full list of possible values that can be used in the `claim.patient_status` parameter on the claim:
 
 | patient_status Values                        |                                                        |
 |:---------------------------------------------|:-------------------------------------------------------|
@@ -4655,7 +4655,7 @@ Full list of possible values that can be used in the claim.patient_status parame
 
 
 <a name="occtype"></a>
-Full list of possible values that can be used in the claim.occurrence_information.occurrence_type parameter on the claim:
+Full list of possible values that can be used in the `claim.occurrence_information.occurrence_type` parameter on the claim:
 
 | occurrence_type Values                               |                                                             |
 |:-----------------------------------------------------|:------------------------------------------------------------|
@@ -4688,7 +4688,7 @@ Full list of possible values that can be used in the claim.occurrence_informatio
 
 
 <a name="valuecode"></a>
-Full list of possible values that can be used in the claim.value_information.value_type parameter on the claim:
+Full list of possible values that can be used in the `claim.value_information.value_type` parameter on the claim:
 
 | value_information.value_type                                  |                                                      |
 |:--------------------------------------------------------------|:-----------------------------------------------------|
@@ -4746,7 +4746,7 @@ Full list of possible values that can be used in the claim.value_information.val
 | medicaid_rate_code                                            | working_age_beneficiary_spouse_with_eghp             |
 
 <a name="payer-responsibility"></a>
-Full list of possible values that can be returned in the subscriber.payer_responsibility field on the claim:
+Full list of possible values that can be returned in the `subscriber.payer_responsibility` field on the claim:
 
 | payer_responsibility Values |                    |
 |:----------------------------|:-------------------|

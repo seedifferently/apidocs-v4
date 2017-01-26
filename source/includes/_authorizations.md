@@ -8,7 +8,7 @@ The Authorization request can also be used to request permission to admit a pati
 
 Learn more about our [Authorization API workflow](https://pokitdok.com/developers/api/#api-authorizations).
 
-Interested in requesting approval for a referral to a specialist? See PokitDok’s [Referrals](#referrals_header) endpoint.
+Interested in requesting approval for a referral to a specialist? Check out the API Reference page for PokitDok’s Referrals endpoint.
 
 #### Available Authorizations Endpoint
 
