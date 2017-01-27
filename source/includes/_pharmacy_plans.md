@@ -12,6 +12,10 @@ as plan name, premium, deductible, initial coverage limit and copays for each ti
 
 To use the Pharmacy Plans Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number PBP number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility.
 
+The Pharmacy Plans Endpoint allows you to dive into the member’s drug benefit and discover details about the plan. Medicare drug plans have different phases of coverage, including deductible, initial coverage, gap coverage, and catastrophic coverage. Each phase has a different out of pocket cost for covered medications. The copays included in the Pharmacy Plan Endpoint are for the member during the Initial Coverage Phase.
+
+Medications are grouped into tiers or levels. Plans may have several tiers and the copay for a drug depends on which tier the drug is in. Usually the lower tiers contain less expensive medications and the higher tiers are reserved for more expensive medications. Each tier level will have either a copay or coinsurance associated with it. The copay will be a dollar amount that the member will be responsible for paying out of pocket. Ex. retail_30_day_tier_1_copay The co-insurance will be a percentage of the total cost of the drug that the member will pay out of pocket. Ex. retail_30_day_tier_4_coins
+
 #### Accepted Parameters
 
 The `/pharmacy/plans` endpoint accepts the following parameters:
@@ -60,11 +64,6 @@ let data = [
 ] as [String:Any]
 try client.pharmacyPlans(params: data)
 ```
-
-The Pharmacy Plans Endpoint allows you to dive into the member’s drug benefit and discover details about the plan.
-
-Medicare drug plans have different phases of coverage, including deductible, initial coverage, gap coverage, and catastrophic coverage. Each phase has a different out of pocket cost for covered medications. The copays included in the Pharmacy Plan Endpoint are for the member during the Initial Coverage Phase.
-Medications are grouped into tiers or levels. Plans may have several tiers and the copay for a drug depends on which tier the drug is in. Usually the lower tiers contain less expensive medications and the higher tiers are reserved for more expensive medications. Each tier level will have either a copay or coinsurance associated with it. The copay will be a dollar amount that the member will be responsible for paying out of pocket. Ex. retail_30_day_tier_1_copay The co-insurance will be a percentage of the total cost of the drug that the member will pay out of pocket. Ex. retail_30_day_tier_4_coins
 
 #### Pharmacy Plans Fields
 
