@@ -141,14 +141,6 @@ try client.plans(params: data)
 
 The `/plans/` response contains the following fields:
 
-| **field_name** *field specs* <br> field description  |
-|:-----------------------------|
-| **benefits_summary_url** *string, required*   <br>  URL to benefit summary information for the plan  |
-| **customer_service_phone** *string, required*   <br>  The customer service phone number for the plan |
-| **deductible** *string, optional*  <br>   The deductible amounts for individual and family coverage (when available) |
-| **deductible.individual** *string, optional*   <br>  The deductible amount for individual coverage (when available) |
-
-
 | Field                        | Type     | Description                                                                           | Presence |
 |:-----------------------------|:---------|:--------------------------------------------------------------------------------------|:---------|
 | benefits_summary_url         | {string} | URL to benefit summary information for the plan                                       | Required |
