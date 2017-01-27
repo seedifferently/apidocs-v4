@@ -28,30 +28,38 @@ The `/plans/` endpoint accepts the following parameters:
 
 #### Example Request
 
-> Example fetching all plan information:
+> Example fetching all plan information for a specific `trading_partner_id`:
 
 ```shell
-curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/plans/
+curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/plans/?trading_partner_id="cigna"
 ```
 
 ```python
-client.plans()
+client.plans(trading_partner_id="cigna")
 ```
 
 ```csharp
-client.plans();
+client.plans(new Dictionary<string, string> {
+		{ "trading_partner_id", "cigna" }
+	});
 ```
 
 ```ruby
-client.plans
+client.plans({trading_partner_id: "cigna"})
 ```
 
 ```java
-client.plans();
+HashMap<String, String> query = new HashMap<String, String>();
+query.put("trading_partner_id", "cigna");
+
+client.plans(query);
 ```
 
 ```swift
-try client.plans()
+let data = [
+    "trading_partner_id": "cigna"
+] as [String:Any]
+try client.plans(params: data)
 ```
 
 > Example fetching information for plans in Texas:
