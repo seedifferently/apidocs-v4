@@ -144,10 +144,10 @@ The `/plans/` response contains the following fields:
 | **field_name** *field specs* <br> field description  |
 |:-----------------------------|
 | Test |
-| **benefits_summary_url** *string, required* <br> URL to benefit summary information for the plan  |
-| **customer_service_phone** *string, required* <br> The customer service phone number for the plan |
-| **deductible** *string, optional* <br> The deductible amounts for individual and family coverage (when available) |
-| **deductible.individual** *string, optional* <br> The deductible amount for individual coverage (when available) |
+| **benefits_summary_url** *string, required*     URL to benefit summary information for the plan  |
+| **customer_service_phone** *string, required*     The customer service phone number for the plan |
+| **deductible** *string, optional*     The deductible amounts for individual and family coverage (when available) |
+| **deductible.individual** *string, optional*     The deductible amount for individual coverage (when available) |
 
 
 | Field                        | Type     | Description                                                                           | Presence |
