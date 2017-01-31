@@ -1,7 +1,7 @@
 # Client Libraries
 To simplify authorization and access to the PokitDok API, we provide client
 libraries for a number of programming languages. These libraries offer full
-access to the PokitDok API with a minimum of code, usually just a few lines.
+access to the PokitDok API with minimal code, usually just a few lines.
 These libraries are hosted on
 [PokitDok's Github repo](https://github.com/pokitdok).
 
@@ -23,3 +23,31 @@ The following sections go into further detail on the underlying details of
 connecting directly to the PokitDok API. This is of use if you're implementing
 the APIs in a programming language for which we currently don't have a client
 library.
+
+
+## Installation
+
+Please see each client's GitHub page for installation instructions from language specific distributions. For example, installing the Python Client via PyPi using pip:
+
+```$ pip install pokitdok
+```
+
+Then, creating an eligibility request and storing the response with Python:
+
+```python
+import pokitdok
+
+pd = pokitdok.api.connect('<your client id>', '<your client secret>')
+
+#submit an eligibility request
+response = pd.eligibility({
+    "member": {
+        "birth_date": "1970-01-01",
+        "first_name": "Jane",
+        "last_name": "Doe",
+        "id": "W000000000"
+    },
+    "trading_partner_id": "MOCKPAYER"
+})```
+
+Each client's GitHub page has language specific Quick Start guides. Check them out for more details. 
