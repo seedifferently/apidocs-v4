@@ -4,160 +4,191 @@
          "slug":"overview",
          "content":"includes/_overview.md",
          "title":"Overview",
-         "order":0
+         "order":0,
+         "summary": ""
       },
       {
          "slug":"clientlibraries",
          "content":"includes/_clientlibraries.md",
          "title":"Client Libraries",
-         "order":1
+         "order":1,
+         "summary": "To simplify authorization and access to the PokitDok API, we provide client libraries for a number of programming languages. These libraries offer full access to the PokitDok API with a minimum of code, usually just a few lines. These libraries are hosted on [PokitDok's Github repo](https://github.com/pokitdok)."
       },
       {
          "slug":"apis",
          "content":"includes/_endpoints.md",
          "title":"API Reference",
-         "order":2
+         "order":2,
+         "summary": ""
       },
       {
          "slug":"apis/activities",
          "content":"includes/_activities.md",
-         "title":"Activities"
+         "title":"Activities",
+         "summary": "The Activities endpoint is used to track the life cycle of a transaction.  Results returned will follow the states through which an Activity flows in the PokitDok platform. Long-running operations are performed asynchronously. Upon initiating those operations via an API endpoint, activity tracking information is returned to the caller, which can be used to query the status of the activity later on."
       },
       {
          "slug":"apis/authorizations",
          "content":"includes/_authorizations.md",
-         "title":"Authorizations"
+         "title":"Authorizations",
+         "summary": "The Authorizations endpoint allows an application to submit a request for an authorization for a health care service. Providers can request permission (authorization) from the reviewing entity (e.g. Utilization Management Organization) to deliver health care services to a patient. The Authorization request can also be used to request permission to admit a patient and/or gain authorization to deliver specific health care services to a patient that requires review.  Services requiring authorization are defined by the trading partner. Authorization request and responses may vary based on Trading Partner."
       },
       {
          "slug":"apis/cashprices",
          "content":"includes/_cashprices.md",
-         "title":"Cash Prices"
+         "title":"Cash Prices",
+         "summary": "The Cash Prices endpoint allow access to our internal collection of pricing data. The data comes from actual providers selling actual services. For a location where a cash price has not been collected, a price is estimated using a multivariate model."
       },
       {
          "slug":"apis/claims",
          "content":"includes/_claims.md",
-         "title":"Claims"
+         "title":"Claims",
+         "summary": "The Claims endpoint gives clients the ability to submit either Professional (837P) or Institutional (837I) claims, using the same endpoint. Professional format claims are submitted using the CMS-1500 parameters by physicians, suppliers and other non-institutional providers.  Institutional format claims are submitted using the UB-04 parameters by hospitals, skilled nursing facilities, and other institutions. If a claims request includes an _Institutional claim specific (837I)_ parameter, the Claims endpoint will validate the request as an institutional claim and submit it accordingly. If no _Institutional claim specific_ parameter is passed in the request, then the request will be validated and transmitted as a professional claim. To review which trading partners support various claim types, visit our trading partners list."
+
       },
       {
          "slug":"apis/claimsconvert",
          "content":"includes/_claimsconvert.md",
-         "title":"Claims Convert"
+         "title":"Claims Convert",
+         "summary": "The Claims Convert endpoint allows a client application to easily convert a X12 837 claims file into claims request models.  When a claims file is submitted with ICD-9 diagnosis codes, those claims will be mapped to corresponding ICD-10 codes. If multiple mappings are possible for the ICD-9 code, the first matching ICD-10 code is used in the converted claim.  The mapping information that was used during the claim conversion is also returned in the response so that the mapping may be reviewed prior to submitting converted claims to a trading partner."
       },
       {
          "slug":"apis/claimstatus",
          "content":"includes/_claimstatus.md",
-         "title":"Claims Status"
+         "title":"Claims Status",
+         "summary": "The claims status endpoint allows an application to request information from a trading partner about previously submitted claims.  You may send a request to a trading partner to determine where the claim is in their adjudication system and the status of the claim. The Claims Status endpoint can be used to query the status of multiple claims. The claims status endpoint can be used to check the status of claims in the trading partners' system regardless of the submitter or means of submission. Claims status DOES NOT offer insight into where a claim is in PokitDok's system (for more info on monitoring PokitDok's processing of your claims, please see our API Reference for the activities endpoint."
       },
       {
          "slug":"apis/eligibility",
          "content":"includes/_eligibility.md",
-         "title":"Eligibility"
+         "title":"Eligibility",
+         "summary": "The Eligibility endpoint makes it easy to verify a member's insurance information in real-time. You can check co-insurance, copay, deductible and out of pocket amounts for a member along with other benefit information. Use the Trading Partners endpoint to determine available `trading_partner_id` values for use with the Eligibility API"
       },
       {
          "slug":"apis/icdconvert",
          "content":"includes/_icdconvert.md",
-         "title":"ICD Convert"
+         "title":"ICD Convert",
+         "summary": "The ICD Convert endpoint allows a client application to request ICD-9 to ICD-10 mapping information for the specified ICD-9 code."
       },
       {
          "slug":"apis/identity",
          "content":"includes/_identity.md",
-         "title":"Identity Management"
+         "title":"Identity Management",
+         "summary": "PokitDok's Identity Management (IdM) API queries an EMPI (Enterprise Master Patient Index) and/or MPI (Master Patient Index), both typically components of an EMR or EHR system, to find a patient identifier and details in the target EMR/EHR system. This helps providers identify the patient through past visits or other records within other EMR/EHR systems."
+      },
+      {
+         "slug":"apis/identity_proof",
+         "content":"includes/_identityproof.md",
+         "title":"Identity Proof",
+         "summary": "PokitDok's Identity Proof API allows providers to validate and verify patient provided information against identity records maintained by government agencies, credit bureaus, and insurance companies. Validation is the process of determining whether an identity matching the request is present in our system. By validating patient information, providers can prevent erroneous records from being created due to data entry mistakes."
       },
       {
          "slug":"apis/insuranceprices",
          "content":"includes/_insuranceprices.md",
-         "title":"Insurance Prices"
+         "title":"Insurance Prices",
+         "summary": "The Insurance Prices endpoint allows access to our collection of insurance pricing data. The data comes from private payer data as well as data from Medicare."
       },
       {
          "slug":"apis/mpc",
          "content":"includes/_mpc.md",
-         "title":"Medical Prodedure Code"
+         "title":"Medical Prodedure Code",
+         "summary": "The Medical Procedure Code endpoints provide access to clinical and consumer friendly information related to medical procedures. It's useful for identifying the procedure code (or codes) that match search queries. It can also be used for determining the official descriptions for a specific procedure code."
       },
       {
          "slug":"apis/oop_insurance",
          "content":"includes/_oop_insurance.md",
-         "title":"OOP Price Estimate"
-      },
-      {
-         "slug":"apis/payers",
-         "content":"includes/_payers.md",
-         "title":"Payers"
+         "title":"OOP Price Estimate",
+         "summary": "The Out-of-Pocket (OOP) Insurance Estimate endpoint takes advantage of industry standard calculation methods and our eligibility endpoint to provide an estimate of what consumers may expect to pay out of pocket for a set of services."
       },
       {
          "slug":"apis/pharmacy_formulary",
          "content":"includes/_pharmacy_formulary.md",
-         "title":"Pharmacy Formulary"
+         "title":"Pharmacy Formulary",
+         "summary": "The Pharmacy Formulary Endpoint allows a deep dive into the member’s drug benefit. It returns details about what medications are covered in the formulary. A formulary is a list of medications that are approved for coverage by an insurance company. Drugs on a formulary are usually grouped into tier levels. The tier that the medication falls in determines the member’s copay. Most plans have between 3 to 5 tiers. The lower the tier, the less expensive the copay. Lower tiers are usually generic medication, middle tiers are brand medications, and the highest tier is usually reserved for specialty medications. This endpoint returns tier level and restrictions such as prior authorization, step therapy, and quantity limit. Only Medicare Part C and D plans are currently available."
       },
       {
          "slug":"apis/pharmacy_network",
          "content":"includes/_pharmacy_network.md",
-         "title":"Pharmacy Network"
+         "title":"Pharmacy Network",
+         "summary": "The In-Network Pharmacy Endpoint returns in-network pharmacies for a plan. To use the In-Network Pharmacy Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number PBP number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility."
       },
       {
          "slug":"apis/pharmacy_plans",
          "content":"includes/_pharmacy_plans.md",
-         "title":"Pharmacy Plans"
+         "title":"Pharmacy Plans",
+         "summary": "The Pharmacy Plans Endpoint returns a member’s pharmacy plan information such as plan name, premium, deductible, initial coverage limit and copays for each tier (initial coverage phase). Only Medicare Part C and D plans are currently available."
       },
       {
          "slug":"apis/plans",
          "content":"includes/_plans.md",
-         "title":"Plans"
+         "title":"Plans",
+         "summary": "The Plans endpoint provides access to information about insurance plans. The plans returned are those currently available through the federal exchange. Additional plans may be added later."
       },
       {
          "slug":"apis/providers",
          "content":"includes/_providers.md",
-         "title":"Providers"
+         "title":"Providers",
+         "summary": "The Providers endpoints provide access to PokitDok's provider directory. The Providers endpoints can be used to search for Providers, view biographical, education, credential, and license information. For a complete reference to all possible provider specialties, see our [provider specialties reference](https://platform.pokitdok.com/documentation/v4/provider_specialties.html)."
       },
       {
          "slug":"apis/referrals",
          "content":"includes/_referrals.md",
-         "title":"Referrals"
+         "title":"Referrals",
+         "summary": "The Referrals endpoint allows an application to request approval for a referral to another health care provider. Primary Care Physicians can enable their patients to receive the consult and services of a specialist or specialist entity. This request will be sent to the reviewing entity (e.g. Utilization Management Organization) for approval. "
       },
       {
          "slug":"apis/scheduling",
          "content":"includes/_scheduling.md",
-         "title":"Scheduling"
+         "title":"Scheduling",
+         "summary": "The PokitDok Scheduling API performs schedule aggregation to multiple third party scheduling applications, typically commercial off-the-shelf Practice Management (PM) software, for private practices, provider networks, hospital systems, etc. The PokitDok Scheduling API also provides a built-in scheduling system for providers without a PM. The API provides consumers a means to schedule appointments in a manner independent of the provider's PM system. OAuth scopes are used to restrict access to provider's PM systems and user's personal information."
       },
       {
          "slug":"apis/tradingpartners",
          "content":"includes/_tradingpartners.md",
-         "title":"Trading Partners"
+         "title":"Trading Partners",
+         "summary": "The Trading Partners endpoint provides access to the collection of PokitDok's trading partners."
       },
       {
          "slug":"security-and-authentication",
          "content":"includes/_authentication.md",
          "title":"Security and Authentication",
-         "order": 3
+         "order": 3,
+         "summary": "All calls to the PokitDok API are encrypted over HTTPS. Access to the API is controlled via OAuth2 (for more information, reference OAuth 2.0 Authorization Framework [here](http://tools.ietf.org/html/rfc6749).) The cURL tab contains a quick example authenticating at the command line using cURL and making a call to the Activities API. PokitDok's API supports connections using TLS versions 1.2 or higher. (All modern languages and frameworks support TLS 1.2, but [specific older ones](https://fullmetalhealth.com/ssl-upgrade-notice/) do not.)"
       },
       {
          "slug":"common",
          "content":"includes/_common.md",
          "title":"Common to All Endpoints",
-         "order":4
+         "order":4,
+         "summary": "To guarantee clients have reliable access to the newest PokitDok endpoints, a generic request handler is built into most clients. This allows for the sending of JSON payloads to any PokitDok endpoint for any given CRUD operation."
       },
       {
          "slug":"apicallbacks",
          "content":"includes/_apicallbacks.md",
          "title":"API Callbacks",
-         "order":5
+         "order":5,
+         "summary": "Some API activities, like claims, may take some time to process.  We offer API callbacks to help you avoid polling the activities API to check for results to your requests.  If you'd like to use API callbacks in your application, be sure to include a callback_url parameter in your API requests.  As responses are received from a trading partner, we'll post the activity information back to the callback_url specified in your original API request."
       },
       {
          "slug":"apidashboard",
          "content":"includes/_apidashboard.md",
          "title":"API Dashboard",
-         "order":6
+         "order":6,
+         "summary": "To manage and configure your usage of the PokitDok API, we provide an API Dashboard. The Dashboard provides the following functionality: Tracking of long-running asynchronous activity status, Monitoring of system health, connectivity, and uptime, Account usage and billing information, Management of API keys and authentication details for access, App security settings for API callbacks, Documentation, examples, and API references, System messages and notifications, such as for scheduled maintenance downtime"
       },
       {
          "slug":"dropin",
          "content":"includes/_dropin.md",
          "title":"Drop In",
-         "order":7
+         "order":7,
+         "summary": "The PokitDok Drop-in UI enables anyone to add functionality like eligibility checks or out-of-pocket cost estimation to their own website with a fully styled and functional UI. One simple drop-in with full customization, All major insurance carriers, Detailed eligibility info including deductible status and co-pays, Out-of-pocket cost estimation based on location and eligibility information"
       },
       {
          "slug":"raw-x12-support",
          "content":"includes/_raw_x12_support.md",
          "title":"Raw X12 Support",
-         "order":8
+         "order":8,
+         "summary": "The PokitDok Platform allows for raw X12 transactions to be routed through the X12-based APIs. The default mode of operation for the X12 APIs is to exchange X12-based data in a convenient and simple JSON request and response format.  This default mode of operation often works well for new companies just starting out or for companies that wish to no longer operate on X12 healthcare transactions directly. Some companies may have a significant investment in X12 transaction handling and need to continue using it with their systems.  In order to help these companies take advantage of other PokitDok Platform capabilities and services, raw X12 transactions may be routed through the X12 based APIs by adjusting the Content-Type and Accept header values on their API requests.  When raw X12 processing is requested, the APIs will only consider the first transaction found in the X12 transaction set."
       }
    ]
 }

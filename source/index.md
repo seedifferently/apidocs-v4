@@ -29,7 +29,7 @@ includes:
   - eligibility
   - icdconvert
   - identity
-  - identityproof
+  - identity_proof
   - insuranceprices
   - mpc
   - oop_insurance

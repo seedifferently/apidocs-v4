@@ -1,5 +1,27 @@
 # Security And Authorization
 
+All calls to the PokitDok API are encrypted over HTTPS. Access to the API is
+controlled via OAuth2 (for more information, reference "OAuth 2.0 Authorization
+Framework" [here](http://tools.ietf.org/html/rfc6749).) The cURL tab contains a quick example
+authenticating at the command line using cURL and making a call to the Activities API.
+
+PokitDok's API supports connections using TLS versions 1.2 or higher. (All modern languages
+and frameworks support TLS 1.2, but
+[specific older ones](https://fullmetalhealth.com/ssl-upgrade-notice/) do not.)
+
+The Python tab contains an example of authentication from scratch using Python
+and the requests library. Note that if you use one of our client libraries,
+you don't have to handle authentication yourself - you just pass in your Client
+ID and Client Secret and the library does the rest. These examples are provided
+if you cannot use one of the client libraries, or are writing your own.
+
+The Swift tab contains an example of authentication by entering a client ID and client secret,
+as well as an example of authentication using only an access token. This is because it is highly
+recommended that you do not release an iOS app with your Client ID and Client Secret
+strings baked into the app, as they may be vulnerable to exposure there. A suitable alternative
+would be to utilize an external identity service that authenticates your users and requests
+an access token that can then be returned to your app to utilize.
+
 ```shell
 CLIENT_ID=YOUR_APP_CLIENT_ID
 CLIENT_SECRET=YOUR_APP_CLIENT_SECRET
@@ -40,9 +62,8 @@ from base64 import urlsafe_b64encode
 client_id = YOUR_APP_CLIENT_ID
 client_secret = YOUR_APP_CLIENT_SECRET
 access_token = requests.post('https://platform.pokitdok.com/oauth2/token',
-headers={'Authorization': 'Basic ' +
-urlsafe_b64encode(client_id + ':' + client_secret)},
-data={'grant_type':'client_credentials'}).json()['access_token']
+                              headers={'Authorization': 'Basic ' + urlsafe_b64encode(client_id + ':' + client_secret)},
+                              data={'grant_type':'client_credentials'}).json()['access_token']
 
 activity = requests.get('https://platform.pokitdok.com/api/v4/activities/53187d2027a27620f2ec7537',
 headers={'Authorization': 'Bearer ' + access_token}).json()
@@ -95,24 +116,3 @@ an access token that can then be returned to your app to utilize.
 ```
 
 
-All calls to the PokitDok API are encrypted over HTTPS. Access to the API is
-controlled via OAuth2 (for more information, reference "OAuth 2.0 Authorization
-Framework" [here](http://tools.ietf.org/html/rfc6749).) The cURL tab contains a quick example
-authenticating at the command line using cURL and making a call to the Activities API.
-
-PokitDok's API supports connections using TLS versions 1.2 or higher. (All modern languages
-and frameworks support TLS 1.2, but
-[specific older ones](https://fullmetalhealth.com/ssl-upgrade-notice/) do not.)
-
-The Python tab contains an example of authentication from scratch using Python
-and the requests library. Note that if you use one of our client libraries,
-you don't have to handle authentication yourself - you just pass in your Client
-ID and Client Secret and the library does the rest. These examples are provided
-if you cannot use one of the client libraries, or are writing your own.
-
-The Swift tab contains an example of authentication by entering a client ID and client secret,
-as well as an example of authentication using only an access token. This is because it is highly
-recommended that you do not release an iOS app with your Client ID and Client Secret
-strings baked into the app, as they may be vulnerable to exposure there. A suitable alternative
-would be to utilize an external identity service that authenticates your users and requests
-an access token that can then be returned to your app to utilize.

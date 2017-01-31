@@ -19,13 +19,13 @@ from those batch files will be streamed into the platform as activities and asso
 The X12 APIs currently support three different mime type values that may be provided in the Content-Type and Accept
 header values to control the input and output data format.
 
-### application/json
+#### application/json
 
 This is the default Content-Type and Accept value.  Use `application/json` when you wish to use the X12 APIs
 using the convenient JSON request and response format.   Request and response examples are included throughout
 the API documentation.
 
-### application/vnd.pokitdok.v4+edi-x12-json
+#### application/vnd.pokitdok.v4+edi-x12-json
 
 Use this value when you'd like to exchange Raw X12 data with the platform and desire to receive `meta` information back
 in responses similar to what's returned with the `application/json` response format.
@@ -56,13 +56,14 @@ Example Response:
 }
 ```
 
-### application/edi-x12
+#### application/edi-x12
 
 Use this value when you wish to send and receive raw X12 with no extra wrapping or information.
 This mime type is most useful for systems that don't have good JSON support and wish to send and receive
 X12 transactions directly.
 
-Example Request data `POST`ed to an X12-based API:
+Example Request
+An example of data `POST`ed to an X12-based API:
 ```
 ISA*...IEA*1*000000001~
 ```
@@ -78,7 +79,7 @@ The platform also supports using different mime type values for requests and res
 Some systems may prefer to send requests in JSON and receive raw X12 data back (or vice versa).
 Feel free to specify the mime types that work best for your system in the Content-Type and Accept headers.
 
-## Examples
+#### Examples
 
 
 Here's an example using cURL that submits a raw X12 270 transaction for real time processing
