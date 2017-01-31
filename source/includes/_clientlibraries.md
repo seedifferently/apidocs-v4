@@ -27,14 +27,14 @@ library.
 
 ## Installation
 
-Please see each client's GitHub page for installation instructions from language specific distributions. For example, installing the Python Client via PyPi using pip:
+Please see each client's GitHub page for installation instructions from each language's specific distribution. For example, installing the Python Client via PyPi using pip:
 
 ```$ pip install pokitdok
 ```
 
 Then, creating an eligibility request and storing the response with Python:
 
-```python
+```shell
 import pokitdok
 
 pd = pokitdok.api.connect('<your client id>', '<your client secret>')
@@ -48,6 +48,7 @@ response = pd.eligibility({
         "id": "W000000000"
     },
     "trading_partner_id": "MOCKPAYER"
-})```
+})
+```
 
-Each client's GitHub page has language specific Quick Start guides. Check them out for more details. 
+Each client's GitHub page has language specific Quick Start guides. Check them out for more details.
