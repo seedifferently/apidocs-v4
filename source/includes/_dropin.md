@@ -69,9 +69,45 @@ Returns eligibility information in an easy to read format with detailed info inc
 
 ### Calculator
 
-<aside class="warning">
-an array of `procedures` is required for the drop-in UI calculator to work.
-</aside>
+Displays a form that requires all the same fields as the eligibility type, with an added required procedure field and geolocation functionality
+for closest possible price estimation. Returns an out of pocket cost estimation based on average insurance prices and location information for the procedure that was selected, as well as
+eligibility. Displays in an easy to read format with detailed info including deductible status and co-pays.
+
+#### Calculator Fields:
+
+Calculator specific options:
+
+Name                    | Type                    | Default  | Description
+------------------------|-------------------------|----------|--------------------------------------------------------------------------------------
+procedures              | Array                   | Null     | Procedure(s) to populate the procedure dropdown with; `name` and `cpt_code` are required
+procedures.name         | String                  | Null     | The name of the procedure that will show in the form dropdown
+procedures.cpt_code     | String/Array (cpt code) | Null     | Either an array of associated CPT Codes or a string of a single CPT Code for the procedure
+values.procedure        | String/Array (cpt code) | Null     | The procedure that will be auto-selected once the form loads
+showPriceRange          | Boolean                 | False    | Show insurance price and out-of-pocket estimate results as a range of prices rather than an average
+showCalculatorMessages  | Boolean                 | False    | Show a message below the out-of-pocket results explaining how calculation was made
+eligibilityResultsFirst | Boolean                 | False    | On results page, show eligibility results first and out-of-pocket results below that
+
+Other optional fields:
+
+Name                      | Type                | Default  | Description
+--------------------------|---------------------|----------|--------------------------------------------------------------------------------------
+container                 | String              | Null     | The id of the HTML container that the drop-in UI will be housed in
+type                      | String              | Null     | Set the desired functionality of the drop-in; either `eligibility` or `calculator`
+styles                    | String (url)        | Null     | URL pointing to a css file to overwrite styles
+pieChartColors            | Object              | Null     | Change the colors of the pie chart in the eligibility results
+pieChartColors.fill       | String (hex color)  | Null     | Color of the filled-in section of the pie chart on the eligibility results
+pieChartColors.background | String (hex color)  | Null     | Color of the background section of the pie chart on the eligibility results
+values                    | Object              | Null     | An object of values that the form will pre-populate with
+values.provider           | Object              | Null     | NPI to use for eligibility checks
+labels                    | Array               | Null     | Change individual input labels by adding an object to this array where the `name` value is the input name and `label` is your custom label
+autoSubmit                | Boolean             | False    | Form should submit automatically once all fields are filled
+resetButton               | Boolean             | False    | A button should show that allows form to be reset once submitted
+onFormSuccess             | Function            | Null     | Call when the form has been submitted successfully
+onFormLoad                | Function            | Null     | Call when the form has been loaded successfully
+
+An array of `procedures` is required for the drop-in UI calculator to work. Both `container` and `type` are required options for the drop-in UI to work.
+
+#### Examples
 
 > Calculator example with minimum required options:
 
@@ -87,24 +123,6 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
     ]
 }
 ```
-
-Displays a form that requires all the same fields as the eligibility type, with an added required procedure field and geolocation functionality
-for closest possible price estimation. Returns an out of pocket cost estimation based on average insurance prices and location information for the procedure that was selected, as well as
-eligibility. Displays in an easy to read format with detailed info including deductible status and co-pays.
-
-#### Calculator Specific Options:
-
-Name                    | Type                    | Default  | Description
-------------------------|-------------------------|----------|--------------------------------------------------------------------------------------
-procedures              | Array                   | Null     | Procedure(s) to populate the procedure dropdown with; `name` and `cpt_code` are required
-procedures.name         | String                  | Null     | The name of the procedure that will show in the form dropdown
-procedures.cpt_code     | String/Array (cpt code) | Null     | Either an array of associated CPT Codes or a string of a single CPT Code for the procedure
-values.procedure        | String/Array (cpt code) | Null     | The procedure that will be auto-selected once the form loads
-showPriceRange          | Boolean                 | False    | Show insurance price and out-of-pocket estimate results as a range of prices rather than an average
-showCalculatorMessages  | Boolean                 | False    | Show a message below the out-of-pocket results explaining how calculation was made
-eligibilityResultsFirst | Boolean                 | False    | On results page, show eligibility results first and out-of-pocket results below that
-
-## Options
 
 > Example with options:
 
@@ -174,23 +192,3 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
 }
 ```
 
-<aside class="warning">
-`container` and `type` are required options for the drop-in UI to work.<BR>
-`procedures` is required for the calculator type drop-in.
-</aside>
-
-Name                      | Type                | Default  | Description
---------------------------|---------------------|----------|--------------------------------------------------------------------------------------
-container                 | String              | Null     | The id of the HTML container that the drop-in UI will be housed in
-type                      | String              | Null     | Set the desired functionality of the drop-in; either `eligibility` or `calculator`
-styles                    | String (url)        | Null     | URL pointing to a css file to overwrite styles
-pieChartColors            | Object              | Null     | Change the colors of the pie chart in the eligibility results
-pieChartColors.fill       | String (hex color)  | Null     | Color of the filled-in section of the pie chart on the eligibility results
-pieChartColors.background | String (hex color)  | Null     | Color of the background section of the pie chart on the eligibility results
-values                    | Object              | Null     | An object of values that the form will pre-populate with
-values.provider           | Object              | Null     | NPI to use for eligibility checks
-labels                    | Array               | Null     | Change individual input labels by adding an object to this array where the `name` value is the input name and `label` is your custom label
-autoSubmit                | Boolean             | False    | Form should submit automatically once all fields are filled
-resetButton               | Boolean             | False    | A button should show that allows form to be reset once submitted
-onFormSuccess             | Function            | Null     | Call when the form has been submitted successfully
-onFormLoad                | Function            | Null     | Call when the form has been loaded successfully
