@@ -37,10 +37,8 @@ Then, creating an eligibility request and storing the response with Python:
 
 ```shell
 import pokitdok
-
 pd = pokitdok.api.connect('<your client id>', '<your client secret>')
-
-#submit an eligibility request
+# submit an eligibility request
 response = pd.eligibility({
     "member": {
         "birth_date": "1970-01-01",
