@@ -1,55 +1,5 @@
-## Identity Proof
-
-PokitDok's Identity Proof API allows providers to validate and verify patient provided information against identity
-records maintained by government agencies, credit bureaus, and insurance companies.
-
-Validation is the process of determining whether an identity matching the request is present in our system. By
-validating patient information, providers can prevent erroneous records from being created due to data entry mistakes.
-
-Verification is the process of determining whether the given identity belongs to the customer who made the request;
-ensuring that the patient is who they say they are. To accomplish this, our Identity Proof API produces security
-questions for the patient to answer in order to prove their authenticity in a process called KBA (Knowledge Based
-Authentication). When used during account creation, or password recovery, KBA ensures that patients' privacy is
-protected while still allowing them convenient access to their own healthcare information.
-
-#### Available Identity Proof Endpoints:
-
-| Endpoint                            | HTTP Method | Description                                             |
-|-------------------------------------|-------------|---------------------------------------------------------|
-| /identity/proof/questions/generate/ | POST        | Generates a new KBA questionnaire.                      |
-| /identity/proof/questions/score/    | POST        | Scores the patient's response to a KBA question.        |
-| /identity/proof/valid/              | POST        | Validate's the identity fields provided by the patient. |
-
-
-
-#### Identity Proof Fields:
-
-The `/identity/proof/questions/generate/` and `/identity/proof/valid/` endpoints both accept the same Identity Proof
-Request (IPR) json document defined below.
-
-| Parameter                 | Type     | Description                                                                       | Required |
-|---------------------------|----------|-----------------------------------------------------------------------------------|----------|
-| first_name                | {string} | Patient's legal first name.                                                       | Yes      |
-| middle_name               | {string} | Patient's legal middle name.                                                      | No       |
-| last_name                 | {string} | Patient's legal surname.                                                          | Yes      |
-| ssn                       | {string} | Patient's social security number.                                                 | Yes      |
-| birth_date.year           | {string} | The year the patient was born. (ISO 4-digit form, e.g. 1987)                      | Yes      |
-| birth_date.month          | {string} | The month the patient was born. (Unpadded numeric form, e.g. 1)                   | Yes      |
-| birth_date.day            | {string} | The day of the month the patient was born (Unpadded numeric form, e.g. 1)         | Yes      |
-| address.street1           | {string} | The first line of the patient's street address.                                   | Yes      |
-| address.street2           | {string} | The second line of the patient's street address.                                  | No       |
-| address.city              | {string} | The city/town of the patient's street address.                                    | Yes      |
-| address.state_or_province | {string} | The two-letter state abbreviation code of the patient's street address. (e.g. SC) | Yes      |
-| address.postal_code       | {string} | The zip or postal code of the patient's address. (e.g. 29414)                     | Yes      |
-| address.country_code      | {string} | The country code of the patient's address. (e.g. USA)                             | Yes      |
-| phone_number              | {string} | The patient's phone number.                                                       | No       |
-| email                     | {string} | The patient's email address.                                                      | No       |
-| ip_address                | {string} | The ip address the patient is using to connect to the provider system.            | No       |
-
-It is worth noting that validation will always be run as part of verification, so providers do not need to hit the
-/identity/proof/valid/ endpoint prior to a /identity/proof/questions/generate/ call.
-
-#### Identity Proof Example
+Identity Proof
+-------------------
 
 > Example: How to start a new KBA request.
 
@@ -181,6 +131,53 @@ let data = [
 try client.request(path: "/identity/proof/questions/generate/", method: "POST", params: data)
 ```
 
+PokitDok's Identity Proof API allows providers to validate and verify patient provided information against identity
+records maintained by government agencies, credit bureaus, and insurance companies.
+
+Validation is the process of determining whether an identity matching the request is present in our system. By
+validating patient information, providers can prevent erroneous records from being created due to data entry mistakes.
+
+Verification is the process of determining whether the given identity belongs to the customer who made the request;
+ensuring that the patient is who they say they are. To accomplish this, our Identity Proof API produces security
+questions for the patient to answer in order to prove their authenticity in a process called KBA (Knowledge Based
+Authentication). When used during account creation, or password recovery, KBA ensures that patients' privacy is
+protected while still allowing them convenient access to their own healthcare information.
+
+##### Identity Proof
+
+| Endpoint                            | HTTP Method | Description                                             |
+|-------------------------------------|-------------|---------------------------------------------------------|
+| /identity/proof/questions/generate/ | POST        | Generates a new KBA questionnaire.                      |
+| /identity/proof/questions/score/    | POST        | Scores the patient's response to a KBA question.        |
+| /identity/proof/valid/              | POST        | Validate's the identity fields provided by the patient. |
+
+The /identity/proof/questions/generate/ and /identity/proof/valid/ endpoints both accept the same Identity Proof
+Request (IPR) json document defined below.
+
+| Parameter                 | Type     | Description                                                                       | Required |
+|---------------------------|----------|-----------------------------------------------------------------------------------|----------|
+| first_name                | {string} | Patient's legal first name.                                                       | Yes      |
+| middle_name               | {string} | Patient's legal middle name.                                                      | No       |
+| last_name                 | {string} | Patient's legal surname.                                                          | Yes      |
+| ssn                       | {string} | Patient's social security number.                                                 | Yes      |
+| birth_date.year           | {string} | The year the patient was born. (ISO 4-digit form, e.g. 1987)                      | Yes      |
+| birth_date.month          | {string} | The month the patient was born. (Unpadded numeric form, e.g. 1)                   | Yes      |
+| birth_date.day            | {string} | The day of the month the patient was born (Unpadded numeric form, e.g. 1)         | Yes      |
+| address.street1           | {string} | The first line of the patient's street address.                                   | Yes      |
+| address.street2           | {string} | The second line of the patient's street address.                                  | No       |
+| address.city              | {string} | The city/town of the patient's street address.                                    | Yes      |
+| address.state_or_province | {string} | The two-letter state abbreviation code of the patient's street address. (e.g. SC) | Yes      |
+| address.postal_code       | {string} | The zip or postal code of the patient's address. (e.g. 29414)                     | Yes      |
+| address.country_code      | {string} | The country code of the patient's address. (e.g. USA)                             | Yes      |
+| phone_number              | {string} | The patient's phone number.                                                       | No       |
+| email                     | {string} | The patient's email address.                                                      | No       |
+| ip_address                | {string} | The ip address the patient is using to connect to the provider system.            | No       |
+
+It is worth noting that validation will always be run as part of verification, so providers do not need to hit the
+/identity/proof/valid/ endpoint prior to a /identity/proof/questions/generate/ call.
+
+### Responses
+
 > VALID response data:
 
 ```
@@ -214,7 +211,7 @@ try client.request(path: "/identity/proof/questions/generate/", method: "POST", 
 }
 ```
 
-The `/identity/proof/questions/generate/` endpoint can return several types of responses. Only a VERIFIABLE response will include the first
+The /identity/proof/questions/generate/ endpoint can return several types of responses. Only a VERIFIABLE response will include the first
 question of a KBA questionnaire; allowing the patient to begin the KBA process. To protect the integrity of the KBA
 process, KBA questionnaires expire after 25 minutes. Additionally, identities will be locked for 12 hours following
 the creation of a KBA questionnaire in order to guard against brute force attacks.
@@ -229,7 +226,7 @@ the creation of a KBA questionnaire in order to guard against brute force attack
 
 
 
-#### Scoring
+### Scoring
 The `/identity/proof/questions/score` endpoint handles the scoring of the questionnaires generated by the
 `/identity/proof/questions/generate` endpoint. Requests submitted to `/identity/proof/questions/score` should have
 the following parameters:
@@ -242,8 +239,6 @@ the following parameters:
 
 Provided the request parameters were valid, the `/identity/proof/questions/score` endpoint will produce one of three
 types of response.
-
-#### Examples
 
 > Example: Submitting a user response.
 
@@ -295,8 +290,9 @@ let data = [
 try client.request(path: "/identity/proof/questions/score/", method: "POST", params: data)
 ```
 
+#### Failure
 
-> Failure Response
+> Failure
 
 ```
 {
@@ -312,8 +308,9 @@ questions for that identity for 12 hours. To reflect this we include the `next_a
 which the identity in question will again be serviced by the API. Finally, we include a boolean value,
 `customer_notified` reflecting whether or not the customer has been notified of this KBA attempt.
 
+#### Success
 
-> Success Response
+> Success
 
 ```
 {
@@ -325,8 +322,9 @@ which the identity in question will again be serviced by the API. Finally, we in
 In this case the customer has answered enough questions correctly that we're confident that they are who they say
 they are.
 
+#### PENDING
 
-> Pending Response
+> Pending
 
 ```
 {

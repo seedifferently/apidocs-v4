@@ -9,5 +9,3 @@ following functionality:
 * App security settings for API callbacks
 * Documentation, examples, and API references
 * System messages and notifications, such as for scheduled maintenance downtime
-
-To access your API Dashboard, [login to your platform application.](https://platform.pokitdok.com/login)
