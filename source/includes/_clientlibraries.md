@@ -29,7 +29,8 @@ library.
 
 Please see each client's GitHub page for installation instructions from each language's specific distribution. For example, installing the Python Client via PyPi using pip:
 
-```$ pip install pokitdok
+```shell
+$ pip install pokitdok
 ```
 
 Then, creating an eligibility request and storing the response with Python:
