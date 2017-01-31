@@ -15,7 +15,7 @@ for determining the official descriptions for a specific procedure code.
 | /mpc/       | GET         | Get a list of medical procedure information meeting certain search criteria |
 | /mpc/{code} | GET         | Retrieve the data for a specific procedure code                             |
 
-#### Acceprted Parameters
+#### Accepted Parameters
 The `/mpc/` endpoint accepts the following parameters:
 
 | Parameter   | Type     | Description                                                                      | Presence |
