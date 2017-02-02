@@ -73,6 +73,7 @@ be comprised of other objects.
 | amount       | <a href="#monetary_object">Monetary Amount object</a> | The amount of the adjustment.                                                                                               |           |
 | group        | {string}                                              | The group classification of the adjustment. Possible values are listed in <a href="#adjustment_group_codes">Group Codes</a> |           |
 | reason       | {string}                                              | The reason for the adjustment.                                                                                              |           |
+| reason_code  | {string}                                              | The numerical reason code value for the adjustment reason.                                                                  |           |
 | quantity     | {string}                                              | The number of items impacted by the adjustment.                                                                             |           |
 
 
@@ -80,7 +81,7 @@ be comprised of other objects.
 
 
 <a name="service_object"></a>
-## Service object
+## Services object
 | Parameters                       | Type                                                            | Description                                                           | Required? |
 |:---------------------------------|:----------------------------------------------------------------|:----------------------------------------------------------------------|:----------|
 | adjudicated_procedure_code       | {string}                                                        | The procedure code that was adjudicated for the service.              | Yes       |
@@ -89,6 +90,9 @@ be comprised of other objects.
 | submitted_procedure_code         | {string}                                                        | The procedure code that was submitted in the claim for the service.   | No        |
 | service_units_paid               | {int}                                                           | The number of service units that were paid.                           | No        |
 | service_units_submitted          | {int}                                                           | The number of service units that were submitted on the claim.         | No        |
+| control_number                    | {string}                                                           | The control number assigned to the service line.  This is the line item control number submitted on the original claim and is required to be returned if submitted.                    | No        |
+| service_date                    | {string}                                                         | The service date assigned to this service line.                    | No        |
+| adjustments                      | {list}                                                        | Adjustments applicable to the service line.  Uses the <a href="#adjustment_object">Adjustment object</a>                              | No       |
 
 (<a href="#claim_payment_object">Back to Claim Payment Object</a>)
 
