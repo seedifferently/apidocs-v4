@@ -4398,7 +4398,7 @@ try client.claims(params: data)
 <a name="claims-claim-level-adjustments-object"></a>
 ##### Claim Level Adjustments object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | claim_adjustment_group_code        | Required for Secondary: Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
 | adjustments                        | Required for Secondary: List of claim level adjustments, with reason, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
 | payer_amount_paid                  | Required for Secondary: Claim level amount paid by the payer. |
@@ -4407,7 +4407,7 @@ try client.claims(params: data)
 <a name="claims-claim-level-adjustment-items"></a>
 ##### Claim Level Adjustment Items object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | claim_adjustment_reason_code       | Required for Secondary: Reason code as provided in the 835 response from the primary payer. |
 | adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
 | adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
@@ -4415,14 +4415,14 @@ try client.claims(params: data)
 <a name="claims-line-level-adjustments-object"></a>
 ##### Line Level Adjustments object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | adjustments                        | Required for Secondary: List of line level adjustments with reason, amount, and quantity. [object](#claims-line-level-adjustment-items) |
 
 
 <a name="claims-line-level-adjustment-items"></a>
 ##### Line Level Adjustment Items object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
 | adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
 | cpt_code                           | The CPT code indicating the type of service that was performed. |
@@ -4434,7 +4434,7 @@ try client.claims(params: data)
 <a name="claims-line-level-adjustment-information-items"></a>
 ##### Line Level Adjustment Information Items object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | claim_adjustment_group_code        | Group code describing the type of adjustment [object](#claim-adjustment-group-codes) |
 | claim_adjustment_reason_code       | Required for Secondary: Reason code as provided in the 835 response from the primary payer. |
 | adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
