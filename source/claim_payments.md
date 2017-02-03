@@ -5,8 +5,8 @@ layout: 2column
 # Claim Payments Reference
 
 The claims endpoint makes it easy to submit claims transactions to trading partners.
-If you've enrolled for claim payment processing, valid claims requests will
-receive a claim payment result after adjudication is complete.
+If you've enrolled for claim payment processing (Electronic Remittance Advice), valid claims requests will
+receive a claim payment result after adjudication is complete.  For more information about enrolling for electronic remittance advice delivery via PokitDok, please contact us.
 
 This document describes the PokitDok claim payment (835) result format.
 It's meant to accompany the summary of claims functionality in
@@ -39,7 +39,7 @@ be comprised of other objects.
 | patient                         | <a href="#patient_object">Patient object</a>                                              | The patient information related to the claim.                                                                            | Yes       |
 | payee                           | <a href="#payee_object">Payee object</a>                                                  | The payee information related to the claim.                                                                              | Yes       |
 | payer                           | <a href="#payer_object">Payer object</a>                                                  | The payer information related to the claim.                                                                              | Yes       |
-| payment_responsibility_amount   | <a href="#monetary_object">Monetary Amount object</a>                                     | Monetary amount left to be paid by the patient/insured                                                                   | No        |
+| patient_responsibility_amount   | <a href="#monetary_object">Monetary Amount object</a>                                     | Monetary amount left to be paid by the patient/insured                                                                   | No        |
 | prior_authorization_number      | {string}                                                                                  | The prior authorization number associated with the claim                                                                 | No        |
 | production_date                 | {string}                                                                                  | The date the claim was processed                                                                                         | No        |
 | received_date                   | {string}                                                                                  | The date the claim was received.                                                                                         | No        |
@@ -49,18 +49,18 @@ be comprised of other objects.
 
 
 <a name="claim_payment_object"></a>
-## Claim Payment object
+## Claim Payments object
 | Parameters                 | Type                                                             | Description                       | Required? |
 |:---------------------------|:-----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:----------|
 | adjustments                | List of <a href="#adjustment_object">Adjustment objects</a>      | A list of adjustments that apply to the claim payment.                                                                                | No        |
-| assigned_number            | {int}                                                            | Number assigned to the claim payment                                                                                                  | No        |
-| control_number             | {string}                                                         | Control number assigned to the claim payment                                                                                          | Yes       |
+| assigned_number            | {int}                                                            | Number assigned to the claim payment.                                                                                                  | No        |
+| control_number             | {string}                                                         | Control number assigned to the claim payment.                                                                                          | Yes       |
 | filing_indicator           | {string}                                                         | Filing indicator for this claim payment.  Possible values are listed in <a href="#filing_indicator_codes">Filing Indicator Codes</a>  | No        |
-| patient_control_number     | {string}                                                         | Patient control number reference for the claim payment                                                                                | Yes       |
-| payment_amount             | <a href="#monetary_object">Payment amount object</a>             | Claim payment amount                                                                                                                  | Yes       |
+| patient_control_number     | {string}                                                         | Patient control number reference for the claim payment.                                                                                | Yes       |
+| payment_amount             | <a href="#monetary_object">Payment amount object</a>             | Claim payment amount.                                                                                                                  | Yes       |
 | services                   | List of <a href="#service_object">Service objects</a>            | A list of services covered by this claim payment.                                                                                     | No        |
-| status                     | {string}                                                         | Status of this claim payment.  Possible values are listed in <a href="#claim_payment_status_codes">Status Codes</a>                   | Yes       |
-| total_charge_amount        | <a href="#monetary_object">Total charge amount object</a>        | Total charge amount for services included in this claim payment                                                                       | Yes       |
+| status                     | {string}                                                         | Status of this claim payment.  Possible values are listed in <a href="#claim_payment_status_codes">Status Codes</a>.                   | Yes       |
+| total_charge_amount        | <a href="#monetary_object">Total charge amount object</a>        | Total charge amount for services included in this claim payment.                                                                       | Yes       |
 
 
 (<a href="#claim_payment">Back to Claim Payment Result</a>)
@@ -104,10 +104,10 @@ be comprised of other objects.
 | check_eft_trace_number       | {string}                                                                 | The check or electronic funds transfer trace number.                                                                     | Yes      |
 | transaction_type             | {string}                                                                 | The transaction type.  See <a href="#transaction_type_codes">Transaction Type Codes</a> for possible values.             | Yes      |
 | effective_date               | {string}                                                                 | The effective date of the payment.                                                                                       | No       |
-| payer_id                     | {string}                                                                 | The payer id associated with this financial information                                                                  | No       |
-| originating_company_id       | {string}                                                                 | The originating company id associated with this financial information                                                    | No       |
-| originating_institution      | <a href="#financial_institution_object">Financial Institution object</a> | The originating institution associated with this financial information                                                   | No       |
-| receiving_institution        | <a href="#financial_institution_object">Financial Institution object</a> | The receiving institution associated with this financial information                                                     | No       |
+| payer_id                     | {string}                                                                 | The payer id associated with this financial information.                                                                  | No       |
+| originating_company_id       | {string}                                                                 | The originating company id associated with this financial information.                                                    | No       |
+| originating_institution      | <a href="#financial_institution_object">Financial Institution object</a> | The originating institution associated with this financial information.                                                   | No       |
+| receiving_institution        | <a href="#financial_institution_object">Financial Institution object</a> | The receiving institution associated with this financial information.                                                     | No       |
 | payment_amount               | <a href="#monetary_object">Monetary Amount object</a>                    | The amount paid.                                                                                                         | Yes      |
 | payment_method               | {string}                                                                 | The method used to pay the claim.  See <a href="#payment_method_codes">Payment Method Codes</a> for possible values.     | Yes      |
 | transaction_handling         | {string}                                                                 | The payment transaction type.  See <a href="#transaction_type_codes">Transaction Type Codes</a> for possible values.     | Yes      |
@@ -131,10 +131,10 @@ be comprised of other objects.
 ## Insured object
 | Parameters    | Type     | Description                            | Required? |
 |:--------------|:---------|:---------------------------------------|:----------|
-| first_name    | {string} | The insured's first name               | Yes       |
-| middle_name   | {string} | The insured's middle name              |           |
-| last_name     | {string} | The insured's last name                | Yes       |
-| id            | {string} | The member ID assigned to the insured  |           |
+| first_name    | {string} | The insured's first name.               | Yes       |
+| middle_name   | {string} | The insured's middle name.              |           |
+| last_name     | {string} | The insured's last name.                | Yes       |
+| id            | {string} | The member ID assigned to the insured.  |           |
 
 (<a href="#claim_payment">Back to Claim Payment Result</a>)
 
@@ -143,10 +143,10 @@ be comprised of other objects.
 ## Patient object
 | Parameters    | Type     | Description                            | Required? |
 |:--------------|:---------|:---------------------------------------|:----------|
-| first_name    | {string} | The patient's first name               | Yes       |
-| middle_name   | {string} | The patient's middle name              |           |
-| last_name     | {string} | The patient's last name                | Yes       |
-| id            | {string} | The member ID assigned to the patient  |           |
+| first_name    | {string} | The patient's first name.               | Yes       |
+| middle_name   | {string} | The patient's middle name.              |           |
+| last_name     | {string} | The patient's last name.                | Yes       |
+| id            | {string} | The member ID assigned to the patient.  |           |
 
 (<a href="#claim_payment">Back to Claim Payment Result</a>)
 
@@ -158,7 +158,7 @@ be comprised of other objects.
 | name       | {string}                                              | The name of the payee.                     | Yes       |
 | npi        | {string}                                              | The payee's NPI.                           | No        |
 | tax_id     | {string}                                              | The tax ID of the payee.                   | No        |
-| address    | <a href="#address_object">Address object</a>          | The address of the payee                   | No        |
+| address    | <a href="#address_object">Address object</a>          | The address of the payee.                   | No        |
 | contacts   | List of <a href="#contact_object">Contact objects</a> | A list of contacts for the payee.          | No        |
 
 (<a href="#claim_payment">Back to Claim Payment Result</a>)
@@ -169,7 +169,7 @@ be comprised of other objects.
 | Parameters | Type                                                                | Description                       | Required? |
 |:-----------|:--------------------------------------------------------------------|:----------------------------------|:----------|
 | name       | {string}                                                            | The name of the payer.            | Yes       |
-| address    | <a href="#address_object">Address object</a>                        | The address of the payer          | No        |
+| address    | <a href="#address_object">Address object</a>                        | The address of the payer.          | No        |
 | contacts   | List of <a href="#contact_object">Contact objects</a>               | A list of contacts for the payer. | No        |
 
 
@@ -193,8 +193,8 @@ be comprised of other objects.
 ## Contact object
 | Parameter       | Type                                           | Description                          | Required? |
 |:----------------|:-----------------------------------------------|:-------------------------------------|:----------|
-| name            | {string}                                       | The name of the contact              |           |
-| contact_methods | List of <a href="#contact_method_object">Contact Method objects</a> |  Contact methods                     |           |
+| name            | {string}                                       | The name of the contact.              |           |
+| contact_methods | List of <a href="#contact_method_object">Contact Method objects</a> |  Contact methods.                     |           |
 
 (<a href="#payer_object">Back to Payer object</a>)
 
