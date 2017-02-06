@@ -4588,11 +4588,10 @@ Full list of possible values that can be used in the `subscriber.filing_code` pa
 <a name="transaction-code"></a>
 Full list of possible values that can be used in the `transaction_code` parameter on the claim:
 
-| transaction_code Values |
-|:------------------------|
-| subrogation_demand      |
-| chargeable              |
-| reporting               |
+| transaction_code Values |                         |
+|:------------------------|:------------------------|
+| chargeable              | reporting               |
+| subrogation_demand      |                         |
 
 
 <a name="admitsource"></a>
