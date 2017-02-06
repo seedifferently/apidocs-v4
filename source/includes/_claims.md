@@ -4468,13 +4468,12 @@ The `/claims/` response contains an activity and thus returns the same object as
 <a name="claim-adjustment-group-codes"></a>
 Full list of possible values that can be used in the `claim_adjustment_group_code` fields:
 
-| claim_adjustment_group_code Values                       |
-|:---------------------------------- |
-| 'contractual_obligations' |
-| 'other_adjustments' |
-| 'payor_initiated_reductions' |
-| 'patient_responsibility' |
-| 'corrections_and_reversals' |
+| claim_adjustment_group_code Values |                           |
+|:-----------------------------------|:--------------------------|
+| 'contractual_obligations'          | 'payor_initiated_reductions' |
+| 'corrections_and_reversals'        | 'patient_responsibility'  |
+| 'other_adjustments'                |                           |
+
 
 
 <a name="claim-frequency"></a>
