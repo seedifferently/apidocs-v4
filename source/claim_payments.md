@@ -285,7 +285,7 @@ These values are transformed from the corresponding EDI X12 code values that wer
 | upc                            |
 | alternative                    |
 
-(<a name="service_object">Back to Service Object</a>)
+(<a href="#service_object">Back to Service Object</a>)
 
 <a name="payment_method_codes"></a>
 ## Payment Method Codes
