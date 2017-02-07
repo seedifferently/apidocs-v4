@@ -85,6 +85,8 @@ be comprised of other objects.
 | Parameters                       | Type                                                            | Description                                                           | Required? |
 |:---------------------------------|:----------------------------------------------------------------|:----------------------------------------------------------------------|:----------|
 | adjudicated_procedure_code       | {string}                                                        | The procedure code that was adjudicated for the service.              | Yes       |
+| adjudicated_procedure_code_qualifier       | {string}                                                        | The qualifier for the procedure code that was adjudicated for the service.  Possible values included in <a href="#procedure_code_qualifiers">Procedure Code Qualifiers</a>.              | Yes       |
+| adjudicated_procedure_modifier_codes       | {string}                                                        | The modifiers for the procedure code that was adjudicated for the service.          | No        |
 | charge_amount                    | <a href="#monetary_object">Monetary Amount object</a>           | The amount charged for the service on the claim.                      | Yes       |
 | provider_payment_amount          | <a href="#monetary_object">Monetaty Amount object</a>           | The amount the provider was paid for the service.                     | Yes       |
 | submitted_procedure_code         | {string}                                                        | The procedure code that was submitted in the claim for the service.   | No        |
@@ -268,6 +270,22 @@ These values are transformed from the corresponding EDI X12 code values that wer
 
 (<a href="#adjustment_object">Back to Adjustment Object</a>)
 
+<a href="#procedure_code_qualifiers"></a>
+## Procedure Code Qualifiers
+|                                |
+|:-------------------------------|
+| dental                         |
+| jurisdiction_specific          |
+| health_care                    |
+| nursing_facility               |
+| home_infusion                  |
+| drug                           |
+| health_related_item            |
+| hospital                       |
+| upc                            |
+| alternative                    |
+
+(<a name="service_object">Back to Service Object</a>)
 
 <a name="payment_method_codes"></a>
 ## Payment Method Codes
