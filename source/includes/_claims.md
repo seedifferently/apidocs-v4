@@ -521,6 +521,10 @@ try client.claims(params: data)
                         }
                     ],
                     "adjudicated_procedure_code": "26740",
+                    "adjudicated_procedure_code_qualifier": "health_care",
+                    "adjudicated_procedure_modifier_codes": [
+                                "GT"
+                            ],
                     "charge_amount": {
                         "amount": "60.0",
                         "currency": "USD"
