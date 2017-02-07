@@ -521,6 +521,10 @@ try client.claims(params: data)
                         }
                     ],
                     "adjudicated_procedure_code": "26740",
+                    "adjudicated_procedure_code_qualifier": "health_care",
+                    "adjudicated_procedure_modifier_codes": [
+                                "GT"
+                            ],
                     "charge_amount": {
                         "amount": "60.0",
                         "currency": "USD"
@@ -4583,27 +4587,27 @@ The /claims/ response contains an activity and thus returns the same object as t
 ###Coordination of Benefits object:
 | Field                                 | Description                                                                                                       |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-| subscriber                            | Required: The subscriber listed on the additional payer. May be the same as the original payer. Has additional required fields. Uses the other subscriber model [object](#claims-other-subscriber-object). |
-| claim_level_adjustments               | Required for Secondary: Only when submitting to secondary payer. Information related to adjustements made on the claim level. Uses Claim Level Adjustments model [object](#claims-claim-level-adjustments-object). |
-| line_level_adjustments                | Required for Secondary: Only when submitting to secondary payer. Information related to adjustements made on the line level. Uses Line Level Adjustments model [object](#claims-line-level-adjustments-object). |
+| subscriber                            | Required: The subscriber of the policy for the additional payer. May be the same as the original payer with some additional field requirements. Uses the Other Subscriber [object](#claims-other-subscriber-object). |
+| claim_level_adjustments               | Used to communicate information about claim level adjustments received in a remittance to a secondary payer. Uses the Claim Level Adjustments [object](#claims-claim-level-adjustments-object). |
+| line_level_adjustments                | Used to communicate information about service line level adjustments received in a remittance to a secondary payer. Uses the Line Level Adjustments [object](#claims-line-level-adjustments-object). |
 
 <a name="claims-other-subscriber-object"></a>
 ###Other Subscriber object:
 | Field                              | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| address                            | The subscriber’s address information as specified on their policy. Uses an address [object](#claims-address).                                                                                                                                                                          | 7: Insured's address                               |
+| address                            | The subscriber’s address information as specified on their policy. Uses the address [object](#claims-address).                                                                                                                                                                          | 7: Insured's address                               |
 | birth_date                         | The subscriber’s birth date as specified on their policy. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                             | 11a: Insured's date of birth                       |
 | claim_filing_code                  | Indicates the type of payment for the claim. It is an optional field and when left blank or not passed in the request, defaults to "mutually_defined". A full list of possible values is included [below](#filing).                                                                   |                                                    |
 | first_name                         | Required: The subscriber’s first name as specified on their policy.                                                                                                                                                                                                                         |                                                    |
-| suffix                             | The suffix if any used by the subscriber.                                                                                                                                                                                                                                             |                                                    |
 | middle_name                        | The subscriber’s middle name as specified on their policy.                                                                                                                                                                                                                            |                                                    |
+| last_name                          | Required: The subscriber’s last name as specified on their policy.                                                                                                                                                                                                                    | 4: Insured's name                                  |
+| suffix                             | The suffix, if any, used by the subscriber.                                                                                                                                                                                                                                          |                                                    |
 | phone                              | The subscriber's phone number.                                                                                                                                                                                                                                                        |                                                    |
 | gender                             | The subscriber’s gender as specified on their policy.                                                                                                                                                                                                                                 | 11a: Insured's sex                                 |
 | group_number                       | The subscriber’s group or policy number as specified on their policy.                                                                                                                                                                                                       | 11:      Employer's policy number or group number  |
 | group_name                         | The subscriber’s group name as specified on their policy.                                                                                                                                                                                                                   | 11b: Employer's name or school name                |
-| member_id                          | Required: The subscriber’s member identifier.                                                                                                                                                                                                                                         | 1a: Insured's ID number                            |
-| last_name                          | Required: The subscriber’s last name as specified on their policy.                                                                                                                                                                                                                    | 4: Insured's name                                  |
-| ssn                                | The subscriber’s ssn name as specified on their policy.                                                                                                                                                                                                                               |                                                    |
+| member_id                          | Required: The subscriber’s member identifier.                                                                                                                                                                                                                               | 1a: Insured's ID number                            |
+| ssn                                | The subscriber’s ssn name as specified on their policy.                                                                                                                                                                                                                             |                                                    |
 | payer_responsibility               | Required: Determines the position of the payer with regards to coordination of benefits. Defaults to primary. List of possibilities can be seen [below](#payer-responsibility).                                                                                                                                                                                    |                                                    |
 | relationship                       | Required: The patient’s relationship to the subscriber. A full list of possible values is included [below](#relationships).                                                                                                                                                           | 6: Patient's relationship to the insured           |
 | authorize_payment_to_billing_provider | Values: [no, default: yes] |
@@ -4617,32 +4621,32 @@ The /claims/ response contains an activity and thus returns the same object as t
 ###Claim Level Adjustments object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| claim_adjustment_group_code        | Required for Secondary: Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
-| adjustments                        | Required for Secondary: List of claim level adjustments, with reason, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
-| payer_amount_paid                  | Required for Secondary: Claim level amount paid by the payer. |
-| amount_owed                        | Required for Secondary: Claim level amount owed by the patient. |
+| claim_adjustment_group_code        | Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
+| adjustments                        | List of claim level adjustments with reason, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
+| payer_amount_paid                  | Claim level amount paid by the payer.  |
+| amount_owed                        | Claim level amount owed by the patient. |
 
 <a name="claims-claim-level-adjustment-items"></a>
 ###Claim Level Adjustment Items object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| claim_adjustment_reason_code       | Required for Secondary: Reason code as provided in the 835 response from the primary payer. |
-| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
+| claim_adjustment_reason_code       | Reason code as provided in the 835 response from the primary payer. |
+| adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
+| adjustment_quantity                | Adjustment quantity as specified for the secondary payer. |
 
 <a name="claims-line-level-adjustments-object"></a>
 ###Line Level Adjustments object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| adjustments                        | Required for Secondary: List of line level adjustments with reason, amount, and quantity. [object](#claims-line-level-adjustment-items) |
+| adjustments                        | List of line level adjustments with reason, amount, and quantity. [object](#claims-line-level-adjustment-items) |
 
 
 <a name="claims-line-level-adjustment-items"></a>
 ###Line Level Adjustment Items object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
+| adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
+| adjustment_quantity                | Adjustment quantity as specified for the secondary payer. |
 | cpt_code                           | The CPT code indicating the type of service that was performed. |
 | procedure_modifiers                | A list of procedure modifier codes for the claim. |
 | procedure_code_description         | Description relating to the procedure code. |
@@ -4654,9 +4658,9 @@ The /claims/ response contains an activity and thus returns the same object as t
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
 | claim_adjustment_group_code        | Group code describing the type of adjustment [object](#claim-adjustment-group-codes) |
-| claim_adjustment_reason_code       | Required for Secondary: Reason code as provided in the 835 response from the primary payer. |
-| adjustment_amount                  | Required for Secondary: Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Required for Secondary: Adjustment quantity as specified for the secondary payer. |
+| claim_adjustment_reason_code       | Reason code as provided in the 835 response from the primary payer. |
+| adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
+| adjustment_quantity                | Adjustment quantity as specified for the secondary payer. |
 
 
 <a name="claim-adjustment-group-codes"></a>

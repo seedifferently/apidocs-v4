@@ -1153,7 +1153,7 @@ been denied (not paid) and the charges are applied to the deductible:
 }
 ```
 
-*Available modes of operation: real-time*
+*Available modes of operation: batch/async or real-time*
 
 The claims status endpoint allows an application to request information from a trading partner about previously submitted claims.  You may send a request to a trading partner to determine where the claim is in their adjudication system and the status of the claim. The Claims Status endpoint can be used to query the status of multiple claims. The claims status endpoint can be used to check the status of claims in the trading partners' system regardless of the submitter or means of submission. Claims status DOES NOT offer insight into where a claim is in PokitDok's system (for more info on monitoring PokitDok's processing of your claims, please see our [activities endpoint](#activities) and [callback url](#api-callbacks)).
 
