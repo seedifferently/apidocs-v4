@@ -1243,7 +1243,7 @@ a CPT code:
         "birth_date": "1970-01-25",
         "first_name": "Jane",
         "id": "W000000000",
-        "last_name": "Doe"
+        "last_name": "Doe",
         "rejections": [
             {
                 "valid_request": false,
@@ -1266,7 +1266,7 @@ a CPT code:
     "trading_partner_id": "MOCKPAYER",
     "pharmacy": {
         "is_eligible": false
-    },
+    }
 }
 ```
 
