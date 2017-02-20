@@ -28,7 +28,6 @@ includes:
   - claimstatus
   - eligibility
   - icdconvert
-  - identity
   - identityproof
   - insuranceprices
   - mpc
