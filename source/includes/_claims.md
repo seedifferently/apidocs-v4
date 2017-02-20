@@ -3848,15 +3848,14 @@ client.claims({
     "coordination_of_benefits": {
         "subscriber": {
             "group_number": "000111000111",
-            "first_name": "Danny",
-            "last_name": "Hairloss",
-            "ssn": "01001011111",
+            "first_name": "JANE",
+            "last_name": "DOE",
             "member_id": "111222111222",
             "address": {
-                "address_lines": ["712 Yvonne Drive"],
-                "city": "Goodlettsville",
-                "state": "TN",
-                "zipcode": "37072"
+                "address_lines": ["123 ABC LANE"],
+                "city": "CHARLESTON",
+                "state": "SC",
+                "zipcode": "29401"
             },
             "relationship": "self",
             "payer_responsibility": "secondary"
@@ -3967,22 +3966,21 @@ let data = [
     "coordination_of_benefits": [
         "subscriber": [
             "group_number": "000111000111",
-            "first_name": "Danny",
-            "last_name": "Hairloss",
-            "ssn": "01001011111",
+            "first_name": "JANE",
+            "last_name": "DOE",
             "member_id": "111222111222",
             "address": [
-                "address_lines": ["712 Yvonne Drive"],
-                "city": "Goodlettsville",
-                "state": "TN",
-                "zipcode": "37072"
+                "address_lines": ["123 ABC LANE"],
+                "city": "CHARLESTON",
+                "state": "SC",
+                "zipcode": "29401"
             ],
-            "birth_date": "1986-09-22",
-            "gender": "male",
+            "birth_date": "1990-01-01",
+            "gender": "female",
             "relationship": "self",
             "payer_responsibility": "secondary"
         ],
-        "other_payer": [
+        "payer": [
             "organization_name": "MOCKPAYER B",
             "id": "000002"
         ]
@@ -3997,10 +3995,6 @@ try client.claims(params: data)
 client.claims({
   "trading_partner_id": "MOCKPAYER",
   "transaction_code": "chargeable",
-  "receiver": {
-    "organization_name": "MOCKRECEIVER",
-    "id": "MOCKRECEIVER"
-  },
   "billing_provider": {
         "taxonomy_code": "207Q00000X",
         "first_name": "Jerome",
@@ -4018,20 +4012,19 @@ client.claims({
     },
   "subscriber": {
     "group_number": "000111000111",
-    "first_name": "Danny",
-    "last_name": "Hairloss",
-    "ssn": "01001011111",
+    "first_name": "JANE",
+    "last_name": "DOE",
     "member_id": "111222111222",
     "address": {
       "address_lines": [
-        "712 Yvonne Drive"
+        "123 ABC Lane"
       ],
-      "city": "Goodlettsville",
-      "state": "TN",
-      "zipcode": "37072"
+      "city": "CHARLESTON",
+      "state": "SC",
+      "zipcode": "29401"
     },
-    "birth_date": "1986-09-22",
-    "gender": "male",
+    "birth_date": "1990-01-01",
+    "gender": "female",
     "payer_responsibility": "secondary"
   },
   "claim": {
@@ -4103,7 +4096,7 @@ client.claims({
             "zipcode": "29301"
             },
       "relationship": "self",
-      "payer_responsibility": "secondary",
+      "payer_responsibility": "primary",
       "patient_signature_source": "patient",
       "authorize_payment_to_billing_provider": "yes",
       "release_of_information_code": "informed_consent"
@@ -4112,6 +4105,8 @@ client.claims({
             "organization_name": "MOCKPAYER B",
             "id": "000002"
     },
+    "payer_amount_paid": "200.50",
+    "amount_owed": "150.50",
     "claim_level_adjustments": {
       "claim_adjustment_group_code": "other_adjustments",
       "adjustments": [
@@ -4126,8 +4121,6 @@ client.claims({
           "adjustment_quantity": "6"
         }
       ],
-      "payer_amount_paid": "200.50",
-      "amount_owed": "150.50"
     },
     "line_level_adjustments": {
       "adjustments": [
@@ -4166,10 +4159,6 @@ client.claims({
 let data = [
   "trading_partner_id": "MOCKPAYER",
   "transaction_code": "chargeable",
-  "receiver": [
-    "organization_name": "MOCKRECEIVER",
-    "id": "MOCKRECEIVER"
-  ],
   "billing_provider": [
         "taxonomy_code": "207Q00000X",
         "first_name": "Jerome",
@@ -4187,20 +4176,19 @@ let data = [
     ],
   "subscriber": [
     "group_number": "000111000111",
-    "first_name": "Danny",
-    "last_name": "Hairloss",
-    "ssn": "01001011111",
+    "first_name": "JANE",
+    "last_name": "DOE",
     "member_id": "111222111222",
     "address": [
       "address_lines": [
-        "712 Yvonne Drive"
+        "123 ABC LANE"
       ],
-      "city": "Goodlettsville",
-      "state": "TN",
-      "zipcode": "37072"
+      "city": "CHARLESTON",
+      "state": "SC",
+      "zipcode": "29401"
     ],
-    "birth_date": "1986-09-22",
-    "gender": "male",
+    "birth_date": "1990-01-01",
+    "gender": "female",
     "payer_responsibility": "secondary"
   ],
   "claim": [
@@ -4279,14 +4267,8 @@ let data = [
         "authorize_payment_to_billing_provider": "yes",
         "release_of_information_code": "informed_consent"
     ],
-      "birth_date": "1943-05-01",
-      "gender": "male",
-      "relationship": "self",
-      "payer_responsibility": "primary",
-      "patient_signature_source": "patient",
-      "authorize_payment_to_billing_provider": "yes",
-      "release_of_information_code": "informed_consent"
-    ],
+    "payer_amount_paid": "200.50",
+    "amount_owed": "150.50",
     "claim_level_adjustments": [
       "claim_adjustment_group_code": "other_adjustments",
       "adjustments": [
@@ -4301,8 +4283,6 @@ let data = [
           "adjustment_quantity": "6"
         ]
       ],
-      "payer_amount_paid": "200.50",
-      "amount_owed": "150.50"
     ],
     "line_level_adjustments": [
       "adjustments": [
@@ -4462,7 +4442,6 @@ The /claims/ endpoint accepts the following parameters:
 | claim.supervising_provider                    | The supervising provider associated with this claim.  Used if the claim's rendering provider is supervised by a physician.  The supervising provider must be an individual, not an organization. Uses certain parameters available in the provider object [below](#claims-provider-object).  Tax id, taxonomy code and address are not to be submitted for a supervising provider.                                                                                                                                                          |                                                    |
 | claim.related_causes_code                     | Codes specifying a cause associated with the claim. Possibilities are auto_accident (AA), employment (EM), and other_accident (OA). Used if the top level billing provider is not the health care provider that provided services.                                                    |                                                    |
 | claim.original_reference_number               | The original reference number of the claim. Used if the top level billing provider is not the health care provider that provided services.                                                                                                                                            |                                                    |
-| claim.other_subscriber                        | The other subscriber associated with the claim. Uses the subscriber [object](#claims-subscriber-object). Used if the top level billing provider is not the health care provider that provided services.                                                                               |                                                    |
 | claim.patient_control_number                  | The patient control number associated with the claim. Used if the top level billing provider is not the health care provider that provided services.                                                                                                                                  |                                                    |
 | claim.ambulance                               | Ambulance information associated with the claim.                                                                                                                                                                                                                                      |                                                    |
 | claim.patient_weight                          | The weight of the patient.                                                                                                                                                                                                                                                             |                                                    |                                          
@@ -4545,6 +4524,10 @@ The /claims/ response contains an activity and thus returns the same object as t
 | last_name                          | Required: The subscriber’s last name as specified on their policy.                                                                                                                                                                                                                    | 4: Insured's name                                  |
 | ssn                                | The subscriber’s ssn name as specified on their policy.                                                                                                                                                                                                                               |                                                    |
 | payer_responsibility               | Determines the position of the payer with regards to coordination of benefits. Defaults to primary. List of possibilities can be seen [below](#payer-responsibility).                                                                                                                 |                                                    |
+| relationship                       | Used for coordination of benefits subscriber only. The patient’s relationship to the subscriber. A full list of possible values is included [below](#relationships).                                                                                                                  | 6: Patient's relationship to the insured           |
+| authorize_payment_to_billing_provider | Used for coordination of benefits subscriber only. Values: [no, default: yes] |
+| patient_signature_source           | Used for coordination of benefits subscriber only. Values: [other, default: patient] |
+| release_of_information_code        | Used for coordination of benefits subscriber only. Values: [signed_statement, default: informed_consent] |
 
 <a name="claims-provider-object"></a>
 ###Provider object:
@@ -4587,33 +4570,11 @@ The /claims/ response contains an activity and thus returns the same object as t
 ###Coordination of Benefits object:
 | Field                                 | Description                                                                                                       |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-| subscriber                            | Required: The subscriber of the policy for the additional payer. May be the same as the original payer with some additional field requirements. Uses the Other Subscriber [object](#claims-other-subscriber-object). |
+| subscriber                            | Required: The subscriber of the policy for the additional payer. May be the same as the original payer with some additional field requirements. Uses the Subscriber [object](#claims-subscriber-object). |
 | claim_level_adjustments               | Used to communicate information about claim level adjustments received in a remittance to a secondary payer. Uses the Claim Level Adjustments [object](#claims-claim-level-adjustments-object). |
 | line_level_adjustments                | Used to communicate information about service line level adjustments received in a remittance to a secondary payer. Uses the Line Level Adjustments [object](#claims-line-level-adjustments-object). |
-
-<a name="claims-other-subscriber-object"></a>
-###Other Subscriber object:
-| Field                              | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| address                            | The subscriber’s address information as specified on their policy. Uses the address [object](#claims-address).                                                                                                                                                                          | 7: Insured's address                               |
-| birth_date                         | The subscriber’s birth date as specified on their policy. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                             | 11a: Insured's date of birth                       |
-| claim_filing_code                  | Indicates the type of payment for the claim. It is an optional field and when left blank or not passed in the request, defaults to "mutually_defined". A full list of possible values is included [below](#filing).                                                                   |                                                    |
-| first_name                         | Required: The subscriber’s first name as specified on their policy.                                                                                                                                                                                                                         |                                                    |
-| middle_name                        | The subscriber’s middle name as specified on their policy.                                                                                                                                                                                                                            |                                                    |
-| last_name                          | Required: The subscriber’s last name as specified on their policy.                                                                                                                                                                                                                    | 4: Insured's name                                  |
-| suffix                             | The suffix, if any, used by the subscriber.                                                                                                                                                                                                                                          |                                                    |
-| phone                              | The subscriber's phone number.                                                                                                                                                                                                                                                        |                                                    |
-| gender                             | The subscriber’s gender as specified on their policy.                                                                                                                                                                                                                                 | 11a: Insured's sex                                 |
-| group_number                       | The subscriber’s group or policy number as specified on their policy.                                                                                                                                                                                                       | 11:      Employer's policy number or group number  |
-| group_name                         | The subscriber’s group name as specified on their policy.                                                                                                                                                                                                                   | 11b: Employer's name or school name                |
-| member_id                          | Required: The subscriber’s member identifier.                                                                                                                                                                                                                               | 1a: Insured's ID number                            |
-| ssn                                | The subscriber’s ssn name as specified on their policy.                                                                                                                                                                                                                             |                                                    |
-| payer_responsibility               | Required: Determines the position of the payer with regards to coordination of benefits. Defaults to primary. List of possibilities can be seen [below](#payer-responsibility).                                                                                                                                                                                    |                                                    |
-| relationship                       | Required: The patient’s relationship to the subscriber. A full list of possible values is included [below](#relationships).                                                                                                                                                           | 6: Patient's relationship to the insured           |
-| authorize_payment_to_billing_provider | Values: [no, default: yes] |
-| patient_signature_source           | Values: [other, default: patient] |
-| release_of_information_code        | Values: [signed_statement, default: informed_consent] |
-
+| payer_amount_paid                | Amount paid on the claim after claim has been adjudicated by the primary payer. |
+| amount_owed                | Remaining liability amount to be paid after adjudication by the primary payer. |
 
 
 
@@ -4623,8 +4584,6 @@ The /claims/ response contains an activity and thus returns the same object as t
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
 | claim_adjustment_group_code        | Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
 | adjustments                        | List of claim level adjustments with reason, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
-| payer_amount_paid                  | Claim level amount paid by the payer.  |
-| amount_owed                        | Claim level amount owed by the patient. |
 
 <a name="claims-claim-level-adjustment-items"></a>
 ###Claim Level Adjustment Items object:
@@ -4648,7 +4607,7 @@ The /claims/ response contains an activity and thus returns the same object as t
 | adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
 | adjustment_quantity                | Adjustment quantity as specified for the secondary payer. |
 | cpt_code                           | The CPT code indicating the type of service that was performed. |
-| procedure_modifiers                | A list of procedure modifier codes for the claim. |
+| procedure_modifier_codes           | A list of procedure modifier codes for the claim. |
 | procedure_code_description         | Description relating to the procedure code. |
 | adjustment_information             | List of line level adjustments with reason, amount, group code, and quantity. [object](#claims-line-level-adjustment-information-items) |
 
