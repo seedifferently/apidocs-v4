@@ -4128,7 +4128,7 @@ client.claims({
           "adjustment_amount": "1000.00",
           "adjustment_quantity": "1",
           "cpt_code": "83839",
-          "procedure_modifiers": ["A", "B", "C", "D"],
+          "procedure_modifier_codes": ["A", "B", "C", "D"],
           "procedure_code_description": "Testing Testing",
           "adjustment_information": [
             {
@@ -4291,7 +4291,7 @@ let data = [
           "adjustment_quantity": 1,
           "cpt_code": "83839",
           "product_id": "12345",
-          "procedure_modifiers": ["A", "B", "C", "D"],
+          "procedure_modifier_codes": ["A", "B", "C", "D"],
           "procedure_code_description": "Testing Testing",
           "adjustment_information": [
             [
