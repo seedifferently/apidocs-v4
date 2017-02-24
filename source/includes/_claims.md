@@ -3749,7 +3749,7 @@ try client.claims(params: data)
 ```
 
 
-> Sample Claims request for sending COB (Coordination of Benefits) information for a subscriber between two payers for Payer A.
+> Sample Claims request for sending COB (Coordination of Benefits) information for a subscriber between two payers.
 
 ```python
 client.claims({
