@@ -3749,7 +3749,7 @@ try client.claims(params: data)
 ```
 
 
-> Sample Claims request for sending COB (Coordination of Benefits) between two payers for Payer A.
+> Sample Claims request for sending COB (Coordination of Benefits) information for a subscriber between two payers for Payer A.
 
 ```python
 client.claims({
@@ -3989,7 +3989,7 @@ let data = [
 try client.claims(params: data)
 ```
 
-> Sample Claims request for sending COB (Coordination of Benefits) between two payers for Payer B.
+> Sample Claims request for sending COB (Coordination of Benefits) with adjustment information from the primary payer.
 
 ```python
 client.claims({
@@ -4108,27 +4108,52 @@ client.claims({
     "payer_amount_paid": "200.50",
     "amount_owed": "150.50",
     "claim_level_adjustments": {
-      "claim_adjustment_group_code": "other_adjustments",
       "adjustments": [
         {
+          "claim_adjustment_group_code": "other_adjustments",
           "claim_adjustment_reason_code": "1",
           "adjustment_amount": "2.00",
           "adjustment_quantity": "3"
         },
         {
+          "claim_adjustment_group_code": "other_adjustments",
           "claim_adjustment_reason_code": "4",
           "adjustment_amount": "5.00",
           "adjustment_quantity": "6"
         }
       ],
     },
-    "line_level_adjustments": {
+ "line_level_adjustments": {
       "adjustments": [
         {
-          "adjustment_amount": "1000.00",
-          "adjustment_quantity": "1",
+          "service_line_number": 1,
+          "service_line_paid_amount": 1000,
+          "paid_service_unit_count": 2,
           "cpt_code": "83839",
           "procedure_modifier_codes": ["A", "B", "C", "D"],
+          "procedure_code_description": "Testing Testing",
+          "adjustment_information": [
+            {
+              "claim_adjustment_group_code": "patient_responsibility",
+              "claim_adjustment_reason_code": "1",
+              "adjustment_amount": "2.00",
+              "adjustment_quantity": "3"
+            },
+            {
+              "claim_adjustment_group_code": "contractual_obligations",
+              "claim_adjustment_reason_code": "4",
+              "adjustment_amount": "5.00",
+              "adjustment_quantity": "6"
+            }
+          ],
+          "date_paid": "2015-10-10",
+          "remaining_patient_liability": "200"
+        },
+        {
+          "service_line_number": 2,
+          "service_line_paid_amount": 300,
+          "paid_service_unit_count": 1,
+          "cpt_code": "83839",
           "procedure_code_description": "Testing Testing",
           "adjustment_information": [
             {
@@ -4149,7 +4174,6 @@ client.claims({
         }
       ]
     }
-
   }
 })
  ```
@@ -4270,14 +4294,15 @@ let data = [
     "payer_amount_paid": "200.50",
     "amount_owed": "150.50",
     "claim_level_adjustments": [
-      "claim_adjustment_group_code": "other_adjustments",
       "adjustments": [
         [
+          "claim_adjustment_group_code": "other_adjustments",
           "claim_adjustment_reason_code": "1",
           "adjustment_amount": "2.00",
           "adjustment_quantity": "3"
         ],
         [
+          "claim_adjustment_group_code": "other_adjustments",
           "claim_adjustment_reason_code": "4",
           "adjustment_amount": "5.00",
           "adjustment_quantity": "6"
@@ -4287,11 +4312,32 @@ let data = [
     "line_level_adjustments": [
       "adjustments": [
         [
-          "adjustment_amount": 1000.00,
-          "adjustment_quantity": 1,
+          "service_line_number": 1,
+          "service_line_paid_amount": 1000,
+          "paid_service_unit_count": 2,
           "cpt_code": "83839",
-          "product_id": "12345",
           "procedure_modifier_codes": ["A", "B", "C", "D"],
+          "procedure_code_description": "Testing Testing",
+          "date_paid": "2015-10-10",
+          "remaining_patient_liability": "200",
+          "adjustment_information": [
+            [
+              "claim_adjustment_group_code": "patient_responsibility",
+              "claim_adjustment_reason_code": "1",
+              "adjustment_amount": "2.00",
+              "adjustment_quantity": "3"
+            ],
+            [
+              "claim_adjustment_group_code": "contractual_obligations",
+              "claim_adjustment_reason_code": "4",
+              "adjustment_amount": "5.00",
+              "adjustment_quantity": "6"
+            ],
+        [
+          "service_line_number": 2,
+          "service_line_paid_amount": 300,
+          "paid_service_unit_count": 1,
+          "cpt_code": "83839",
           "procedure_code_description": "Testing Testing",
           "adjustment_information": [
             [
@@ -4309,10 +4355,11 @@ let data = [
           ],
           "date_paid": "2015-10-10",
           "remaining_patient_liability": "200"
+             ]
+          ]
         ]
       ]
     ]
-
   ]
 ] as [String:Any]
 try client.claims(params: data)
@@ -4578,20 +4625,21 @@ The /claims/ response contains an activity and thus returns the same object as t
 | line_level_adjustments                | Used to communicate information about service line level adjustments received in a remittance to a secondary payer. Uses the Line Level Adjustments [object](#claims-line-level-adjustments-object). |
 | payer_amount_paid                | Amount paid on the claim after claim has been adjudicated by the primary payer. |
 | amount_owed                | Remaining liability amount to be paid after adjudication by the primary payer. |
-
+| payer                | Required: The payer information to communicate to the top level payer for coordination of benefits.  Uses the payer [object](#coordination-of-benefits-payer). |
 
 
 <a name="claims-claim-level-adjustments-object"></a>
 ###Claim Level Adjustments object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| claim_adjustment_group_code        | Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
-| adjustments                        | List of claim level adjustments with reason, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
+| adjustments                        | List of claim level adjustments with group code, reason code, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
 
 <a name="claims-claim-level-adjustment-items"></a>
 ###Claim Level Adjustment Items object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+
+| claim_adjustment_group_code        | Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
 | claim_adjustment_reason_code       | Reason code as provided in the 835 response from the primary payer. |
 | adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
 | adjustment_quantity                | Adjustment quantity as specified for the secondary payer. |
@@ -4600,19 +4648,20 @@ The /claims/ response contains an activity and thus returns the same object as t
 ###Line Level Adjustments object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| adjustments                        | List of line level adjustments with reason, amount, and quantity. [object](#claims-line-level-adjustment-items) |
+| adjustments                        | List of line level adjustments that outlines items specific to adjustments for service lines. [object](#claims-line-level-adjustment-items) |
 
 
 <a name="claims-line-level-adjustment-items"></a>
 ###Line Level Adjustment Items object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Adjustment quantity as specified for the secondary payer. |
+| service_line_paid_amount           | Monetary amount paid for this service line. |
+| paid_service_unit_count            | ￼Number of paid units from the remittance advice. If paid units are not present on the ERA, use the original billed units. |
+| service_line_number                | Used to specify to which service_line the adjustments will be applied. Required if more than one service line and more than one line level adjustment are provided. |
 | cpt_code                           | The CPT code indicating the type of service that was performed. |
-| procedure_modifier_codes           | A list of procedure modifier codes for the claim. |
+| procedure_modifier_codes           | A list of procedure modifier codes for the claim.  If procedure modifier codes are included, a cpt_code must also be provided. |
 | procedure_code_description         | Description relating to the procedure code. |
-| adjustment_information             | List of line level adjustments with reason, amount, group code, and quantity. [object](#claims-line-level-adjustment-information-items) |
+| adjustment_information             | List of line level adjustments with group code, reason code, amount, and quantity. [object](#claims-line-level-adjustment-information-items) |
 
 
 <a name="claims-line-level-adjustment-information-items"></a>
@@ -4624,6 +4673,13 @@ The /claims/ response contains an activity and thus returns the same object as t
 | adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
 | adjustment_quantity                | Adjustment quantity as specified for the secondary payer. |
 
+<a name="coordination-of-benefits-payer"></a>
+###Payer object:
+| Field                              | Description                                                                                                                                                                                                                                                                           |
+|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| organization_name               | Name information for the coordination of benefits payer. |
+| id                              | Numerical payer id value associated with coordination of benefits payer. |
+| address                         | Address information for the coordination of benefits payer.  Uses an address [object](#claims-address).  |
 
 <a name="claim-adjustment-group-codes"></a>
 Full list of possible values that can be used in the claim_adjusment_group_code fields:
