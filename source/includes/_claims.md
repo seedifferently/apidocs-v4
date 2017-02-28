@@ -3540,7 +3540,7 @@ client.claims({
       }
     ]
   }
-})
+})```
 
 ```ruby
 client.claims({
