@@ -4639,7 +4639,6 @@ The /claims/ response contains an activity and thus returns the same object as t
 ###Claim Level Adjustment Items object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-
 | claim_adjustment_group_code        | Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
 | claim_adjustment_reason_code       | Reason code as provided in the 835 response from the primary payer. |
 | adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
