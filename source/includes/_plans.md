@@ -1,30 +1,4 @@
 ## Plans
-> Example fetching all plan information:
-
-```shell
-curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/plans/
-```
-
-```python
-client.plans()
-```
-
-```csharp
-client.plans();
-```
-
-```ruby
-client.plans
-```
-
-```java
-client.plans();
-```
-
-```swift
-try client.plans()
-```
-
 > example fetching information for plans in Texas:
 
 ```shell
@@ -148,6 +122,7 @@ The /plans/ endpoint accepts the following parameters:
 | Parameter          | Description                                           										 | Presence |
 |:-------------------|:----------------------------------------------------------------------------------------------|:---------|
 | trading_partner_id | The trading partner id of the payer offering the plan 										 | Optional |
+| issuer_name        | The plan issuer name (trading partner full name)        										 | Optional |
 | county             | The county in which the plan is available             										 | Optional |
 | state              | The state in which the plan is available              										 | Optional |
 | plan_id            | The identifier for the plan                           										 | Optional |
@@ -180,6 +155,26 @@ The /plans/ response contains the following fields:
 | state                        | {string} | The state where the plan is offered (e.g.: CA, SC, etc.)                              | Required |
 | county                       | {string} | The county in which the plan is available   	  	                                  | Required |
 | trading_partner_id           | {string} | The trading partner id for the issuer of the plan                                     | Required |
+| emergency_room               | {object} | Emergency room cost-sharing object [below](#cost-sharing-object)                      | Optional |
+| generic_drugs                | {object} | Generic drugs cost-sharing object  [below](#cost-sharing-object)                      | Optional |
+| inpatient_facility           | {object} | Inpatient facility cost-sharing object [below](#cost-sharing-object)                  | Optional |
+| inpatient_physician          | {object} | Inpatient physician cost-sharing object [below](#cost-sharing-object)                 | Optional |
+| non_preferred_brand_drugs    | {object} | Non-preferred brand drugs cost-sharing object [below](#cost-sharing-object)           | Optional |
+| preferred_brand_drugs        | {object} | Preferred brand drugs cost-sharing object [below](#cost-sharing-object)               | Optional |
+| primary_care_physician       | {object} | Primary care physician cost-sharing object [below](#cost-sharing-object)              | Optional |
+| specialist                   | {object} | Specialist cost-sharing object [below](#cost-sharing-object)                          | Optional |
+| specialty_drugs              | {object} | Specialty drugs cost-sharing object [below](#cost-sharing-object)                     | Optional |
+
+<a name="cost-sharing-object"></a>
+### Cost sharing object
+(The silver plan variants below differ from the standard plan by the percentage of health care expenses covered by the plan for a typical group of enrollees (i.e., actuarial value))
+
+| Field           | Description                                |
+|:----------------|:-------------------------------------------|
+| standard        | Standard copay and/or co-insurance amounts |
+| percent_73      | 73 percent silver plan variant             |
+| percent_87      | 87 percent silver plan variant             |
+| percent_94      | 94 percent silver plan variant             |
 
 <a name="metallic_level"></a>
 Possible values that can be used in the metallic_level parameter:
