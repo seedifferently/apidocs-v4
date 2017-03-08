@@ -130,3 +130,16 @@ If NM109 is not populated with an available PokitDok trading partner id value, a
     }
 }    
 ```
+
+## Activities
+
+The activities API may also be used to retrieve a Raw X12 view of past X12 API activity
+on the platform.  This works for activities created as a result of Raw X12 API requests as well
+as our standard JSON based X12 API requests.
+To access the `x12_request` and `x12_response` values along with the standard activity 
+information, you can use an `Accept` header value of `application/vnd.pokitdok.v4+activity-x12-json`
+when making `GET /activities/<id>` requests.
+
+```shell
+curl -H "Authorization: Bearer $ACCESS_TOKEN" -H "Accept: application/vnd.pokitdok.v4+activity-x12-json" https://platform.pokitdok.com/api/v4/activities/<insert activity id here>
+```

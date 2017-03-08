@@ -450,7 +450,7 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.locations.geo_location       | {array}   | GeoJSON array of \[longitude, latitude\]                                                                       | Optional |
 | provider.locations.phone              | {string}  | Phone number                                                                                                   | Optional |
 | provider.locations.state              | {string}  | State                                                                                                          | Required |
-| provider.locations.zipcode            | {string}  | Zip code                                                                                                       | Required |
+| provider.locations.zipcode            | {string}  | Zip code; length is between 5 and 10 alphanumeric characters                                                                                                      | Required |
 | provider.locations.county             | {string}  | County                                                                                                         | Optional |
 | provider.locations.role               | {list}    | Address role(s). One or both of: ('mailing' or 'practice').  When missing the address is the practice address. | Optional |
 | provider.locations.suite              | {string}  | Address suite																								     | Optional |
