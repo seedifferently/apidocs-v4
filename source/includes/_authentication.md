@@ -1,16 +1,14 @@
 # Security And Authorization
 
 ```shell
-CLIENT_ID=YOUR_APP_CLIENT_ID
-CLIENT_SECRET=YOUR_APP_CLIENT_SECRET
-BASIC_HEADER=`echo "$CLIENT_ID:$CLIENT_SECRET" | base64`
+CLIENT_ID=<YOUR_APP_CLIENT_ID>
+CLIENT_SECRET=<YOUR_APP_CLIENT_SECRET>
 
-# On some operating systems, base64 may include extra
-# whitespace that needs to be removed
-BASIC_HEADER=$(echo $BASIC_HEADER | sed 's/\r//g')
-BASIC_HEADER=$(echo $BASIC_HEADER | sed 's/ *//g')
+# remove control characters if necessary (may occur with base64 on some OS platforms)
+BASIC_HEADER=$(echo "$CLIENT_ID":"$CLIENT_SECRET" | base64 | tr -d "[:cntrl:]")
 
-curl -i -XPOST -H "Authorization: Basic $BASIC_HEADER" -d "grant_type=client_credentials"
+curl -i -X POST -H "Authorization: Basic $BASIC_HEADER" -d "grant_type=client_credentials" https://platform.pokitdok.com/oauth2/token; echo ""
+
 https://platform.pokitdok.com/oauth2/token
 HTTP/1.1 200 OK
 Server: nginx
