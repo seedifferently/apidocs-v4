@@ -80,6 +80,46 @@ let data = [
 try client.pharmacyFormulary(params: data)
 ```
 
+> The API response contains a drug_class field which can be used to to determine drug coverage for similiar drugs:
+
+```shell
+curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json"  'https://platform.pokitdok.com/api/v4/pharmacy/formulary?trading_partner_id=medicare_national&plan_number=S5820003&drug_class=Antihyperlipidemic%20-%20HMG%20CoA%20Reductase%20Inhibitors%20(statins)'
+```
+
+```python
+client.pharmacy_formulary(trading_partner_id='medicare_national', plan_number='S5820003', drug_class='Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)')
+```
+
+```ruby
+client.pharmacy_formulary(trading_partner_id: 'medicare_national', plan_number: 'S5820003', drug_class: 'Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)')
+```
+
+```csharp
+client.pharmacyFormulary(
+                      new Dictionary<string, string> {
+                        {"trading_partner_id", "medicare_national"},
+                        {"plan_number", "S5820003"},
+                        {"drug_class",  "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)"}
+                    });
+```
+
+```java
+Map<String, Object> params = new HashMap<String, Object>();
+params.put("trading_partner_id", "medicare_national");
+params.put("plan_number", "S5820003");
+params.put("drug_class", "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)");
+Map<String, Object> response = client.pharmacyFormulary(params);
+```
+
+```swift
+let data = [
+    "trading_partner_id": "medicare_national",
+    "plan_number": "S5820003",
+    "drug_class": "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)"
+] as [String:Any]
+try client.pharmacyFormulary(params: data)
+```
+
 > Sample Pharmacy Formulary API response when searching for a drug name (SIMVASTATIN) :
 
 ```json
@@ -87,6 +127,9 @@ try client.pharmacyFormulary(params: data)
     "data": [
         {
             "drug": "SIMVASTATIN 80 MG TABLET",
+            "drug_class": [
+                "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)"
+            ],
             "limit_amount": "30",
             "limit_days": 30,
             "mail": {
@@ -125,6 +168,9 @@ try client.pharmacyFormulary(params: data)
         },
         {
             "drug": "SIMVASTATIN 40 MG TABLET",
+            "drug_class": [
+                "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)"
+            ],
             "limit_amount": "30",
             "limit_days": 30,
             "mail": {
@@ -163,6 +209,9 @@ try client.pharmacyFormulary(params: data)
         },
         {
             "drug": "SIMVASTATIN 20 MG TABLET",
+            "drug_class": [
+                "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)"
+            ],
             "limit_amount": "30",
             "limit_days": 30,
             "mail": {
@@ -201,6 +250,9 @@ try client.pharmacyFormulary(params: data)
         },
         {
             "drug": "SIMVASTATIN 5 MG TABLET",
+            "drug_class": [
+                "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)"
+            ],
             "limit_amount": "30",
             "limit_days": 30,
             "mail": {
@@ -239,6 +291,9 @@ try client.pharmacyFormulary(params: data)
         },
         {
             "drug": "SIMVASTATIN 10 MG TABLET",
+            "drug_class": [
+                "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)"
+            ],
             "limit_amount": "30",
             "limit_days": 30,
             "mail": {
@@ -275,7 +330,7 @@ try client.pharmacyFormulary(params: data)
             "tier": 1,
             "tier_name": "preferred generic"
         }
-    ],
+    ]
 }
 ```
 
@@ -286,6 +341,9 @@ try client.pharmacyFormulary(params: data)
     "data": [
         {
             "drug": "SIMVASTATIN 10 MG TABLET",
+            "drug_class": [
+                "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)"
+            ],
             "limit_amount": "30",
             "limit_days": 30,
             "mail": {
@@ -322,7 +380,7 @@ try client.pharmacyFormulary(params: data)
             "tier": 1,
             "tier_name": "preferred generic"
         }
-    ],
+    ]
 }
 ```
 
@@ -333,6 +391,9 @@ try client.pharmacyFormulary(params: data)
     "data": [
         {
             "drug": "SIMVASTATIN 10 MG TABLET",
+            "drug_class": [
+                "Antihyperlipidemic - HMG CoA Reductase Inhibitors (statins)"
+            ],
             "limit_amount": "30",
             "limit_days": 30,
             "mail": {
@@ -434,9 +495,11 @@ This endpoint returns tier level and restrictions such as prior authorization, s
 
 To use the Pharmacy Formulary Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility.
 
-A medication for which coverage is being determined will need to be specified. This can be done using the drug name, NDC, or RXCUI. A drug name can include the name of the medication, strength, and form. For example, SIMVASTATIN 10 MG TABLET. Simvastatin is the drug name. 10 MG is the strength. Simvastatin can come in other strengths (5mg, 10mg, 20mg, 40mg, and 80mg). The form of this medication is tablet. Some drugs will come in multiple forms. Other examples are capsule, solution, suspension, lotion, cream, etc. The brand name of simvastatin is Zocor. You can search for a drug with just the brand or generic name or any combination of drug +/- strength +/- form.
+A medication for which coverage is being determined will need to be specified. This can be done using the drug name, drug class, NDC, or RXCUI. A drug name can include the name of the medication, strength, and form. For example, SIMVASTATIN 10 MG TABLET. Simvastatin is the drug name. 10 MG is the strength. Simvastatin can come in other strengths (5mg, 10mg, 20mg, 40mg, and 80mg). The form of this medication is tablet. Some drugs will come in multiple forms. Other examples are capsule, solution, suspension, lotion, cream, etc. The brand name of simvastatin is Zocor. You can search for a drug with just the brand or generic name or any combination of drug +/- strength +/- form.
 
 The Pharmacy Formulary Endpoint also accepts national drug code number (NDC). The NDC is a unique 11-digit, 3-segment number used to identify a specific drug product. The segments identify the manufacturer (first 5 numbers), product (middle 4 numbers), and package (last 2 numbers). An alternative way to lookup drug coverage is by using the NDC. One medication can have multiple NDC numbers. For example, simvastatin 10 mg tablets can be supplied to the pharmacy in a 100 count and 1000 count bottle. Both of these will have different NDC numbers even though the same drug is in each of the bottles. Simvastatin from different generic manufacturers will have different NDC numbers.
+
+Additionally, the Pharmacy Formulary Endpoint can be searched by drug class.  This is an exacty match only search.  When searching for drug coverage using one of the other identifiers, such as drug name or NDC, the drug class will be returned in the API response.  This value can then be used to find coverage information for other drugs in the same classification.
 
 Medicare drug plans have different phases of coverage, including deductible, initial coverage, gap coverage, and catastrophic coverage. Each phase has a different out of pocket cost for covered medications. The out of pocket costs included in the Pharmacy Formulary Endpoint are for the member during the Initial Coverage Phase.
 
@@ -453,9 +516,10 @@ The /pharmacy/formulary endpoint accepts the following parameters:
 | trading_partner_id | {string}  | Unique id for the intended trading partner, as specified by the [Trading Partners](https://platform.pokitdok.com/documentation/v4/#trading-partners) endpoint. | Required |
 | plan_number        | {string}  | Member’s plan identification number. Note: If unknown can use X12 270/271 eligibility    | Either plan_number or plan_name must be present |
 | plan_name          | {string}  | Name of prescription drug plan                                                           | Either plan_number or plan_name must be present |
-| drug               | {string}  | Name of medication, strength, and form. Note: Strength and form are optional             | Either drug, ndc, or rxcui must be present      |
-| ndc                | {string}  | National drug code: a unique 11-digit, 3-segment number used to identify medication      | Either drug, ndc, or rxcui must be present      |
-| rxcui              | {string}  | An RxNorm concept unique identifier for a drug                                           | Either drug, ndc, or rxcui must be present      |
+| drug               | {string}  | Name of medication, strength, and form. Note: Strength and form are optional             | Either drug, drug_class, ndc, or rxcui must be present |
+| drug_class         | {string}  | Drug classification (exact match only). Note: Values can be discovered in the API response when searching by one of the other parameters, such as ndc. | Either drug, drug_class, ndc, or rxcui must be present |
+| ndc                | {string}  | National drug code: a unique 11-digit, 3-segment number used to identify medication      | Either drug, drug_class, ndc, or rxcui must be present |
+| rxcui              | {string}  | An RxNorm concept unique identifier for a drug                                           | Either drug, drug_class, ndc, or rxcui must be present |
 | include_plans      | {boolean} | If set to true, will return pharmacy plan info in response                               | Optional                                        |
 
 The /pharmacy/formulary response contains the following fields:
@@ -463,6 +527,7 @@ The /pharmacy/formulary response contains the following fields:
 | Field                    | Type      | Description                                                                                                                                   | Presence |
 |:-------------------------|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------|:---------|
 | drug                     | {string}  | The full drug name (name + strength + form)                                                                                                   | Required |
+| drug_class               | {array}   | A list of drug classes (strings) associated with the drug                                                                                     | Required |
 | tier                     | {short}   | The level the drug fall under on the formulary                                                                                                | Required |
 | tier_name                | {string}  | The name associated with the tier level                                                                                                       | Required |
 | prior_auth               | {boolean} | Does the drug require a prior authorization?                                                                                                  | Optional |
