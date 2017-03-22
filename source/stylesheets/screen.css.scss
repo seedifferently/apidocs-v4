@@ -449,6 +449,15 @@ html, body {
       word-wrap: break-word;
       min-width: 100px;
     }
+    /* first table cell is usually the api key so no hard break */
+    td:first-child {
+      /* For Firefox */
+      white-space: normal;
+      word-break: normal;
+
+      /* For Chrome and IE */
+      word-wrap: normal;
+    }
 
     tr:last-child {
       border-bottom: 1px solid #ccc;
