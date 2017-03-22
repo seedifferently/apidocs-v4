@@ -3,30 +3,42 @@
 ## Client generic request handlers
 To guarantee clients have reliable access to the newest PokitDok endpoints,
 a generic request handler is built into most clients. This allows for the sending
-of files and JSON payloads to any PokitDok endpoint for any given CRUD operation.
+of JSON payloads to any PokitDok endpoint for any given CRUD operation.
 
-> Example calls using the generic request handler
+> Example calls using the generic request handler:
 
+```shell
+# Curl requests are already formatted as 'General Request' methods
+```
+
+```python
+client.request("/eligibility/", "POST", ExampleRequests.EligibilityRequest)
+```
+
+```ruby
+client.request("/eligibility/", "POST", nil, 'eligibility_request.json')
+```
 
 ```csharp
 client.request("/eligibility/", "POST", ExampleRequests.EligibilityRequest);
 ```
 
-```csharp
-client.request("/identity/4d04d8dc-3d0b-4ea1-8add-4dbc9619e1ae", "PUT", ExampleRequests.CreateIdentityRequest);
+```swift
+try client.request(path: "/eligibility/", method: "POST", params: ExampleRequests.EligibilityRequest)
 ```
 
-> Example call sending a file using the generic request handler
+```python
+client.request("/identity/4d04d8dc-3d0b-4ea1-8add-4dbc9619e1ae", "PUT", ExampleRequests.UpdateIdentityRequest)
+```
+
+```ruby
+client.request("/identity/4d04d8dc-3d0b-4ea1-8add-4dbc9619e1ae", "PUT", nil, 'update_identity_request.json')
+```
 
 ```csharp
- client.request(
-    "/enrollment/snapshot",
-    "../../tests/files/acme_inc_add_subscriber.834",
-    "file",
-    "application/EDI-X12",
-    postData
-);
+client.request("/identity/4d04d8dc-3d0b-4ea1-8add-4dbc9619e1ae", "PUT", ExampleRequests.UpdateIdentityRequest);
 ```
+
 
 ## Collection Parameters
 The below query parameters can be added to collection requests from endpoints
@@ -91,10 +103,6 @@ See cURL example.
 See cURL example.
 ```
 
-```javascript
-See cURL example.
-```
-
 ```csharp
 See cURL example.
 ```
@@ -103,11 +111,7 @@ See cURL example.
 See cURL example.
 ```
 
-```haskell
-See cURL example.
-```
-
-```lua
+```swift
 See cURL example.
 ```
 
@@ -133,10 +137,6 @@ See cURL example.
 See cURL example.
 ```
 
-```javascript
-See cURL example.
-```
-
 ```csharp
 See cURL example.
 ```
@@ -145,11 +145,7 @@ See cURL example.
 See cURL example.
 ```
 
-```haskell
-See cURL example.
-```
-
-```lua
+```swift
 See cURL example.
 ```
 
@@ -176,10 +172,6 @@ See cURL example.
 See cURL example.
 ```
 
-```javascript
-See cURL example.
-```
-
 ```csharp
 See cURL example.
 ```
@@ -188,11 +180,7 @@ See cURL example.
 See cURL example.
 ```
 
-```haskell
-See cURL example.
-```
-
-```lua
+```swift
 See cURL example.
 ```
 
@@ -246,10 +234,6 @@ See cURL example.
 See cURL example.
 ```
 
-```javascript
-See cURL example.
-```
-
 ```csharp
 See cURL example.
 ```
@@ -258,11 +242,7 @@ See cURL example.
 See cURL example.
 ```
 
-```haskell
-See cURL example.
-```
-
-```lua
+```swift
 See cURL example.
 ```
 

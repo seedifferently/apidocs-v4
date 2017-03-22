@@ -5,16 +5,19 @@ access to the PokitDok API with a minimum of code, usually just a few lines.
 These libraries are hosted on
 [PokitDok's Github repo](https://github.com/pokitdok).
 
-| Available languages | &nbsp;                                                           |
+| Fully Supported Languages | &nbsp;                                                           |
 |:--------------------|:-----------------------------------------------------------------|
 | Python              | [pokitdok-python](https://github.com/pokitdok/pokitdok-python)   |
 | Ruby                | [pokitdok-ruby](https://github.com/pokitdok/pokitdok-ruby)       |
-| PHP                 | [pokitdok-php](https://github.com/pokitdok/pokitdok-php)         |
 | Java                | [pokitdok-java](https://github.com/pokitdok/pokitdok-java)       |
 | C#                  | [pokitdok-csharp](https://github.com/pokitdok/pokitdok-csharp)   |
+
+| Available languages | &nbsp;                                                           |
+|:--------------------|:-----------------------------------------------------------------|
+| PHP                 | [pokitdok-php](https://github.com/pokitdok/pokitdok-php)         |
 | NodeJS              | [pokitdok-nodejs](https://github.com/pokitdok/pokitdok-nodejs)   |
-| Lua                 | [pokitdok-lua](https://github.com/pokitdok/pokitdok-lua)         |
-| Haskell             | [pokitdok-haskell](https://github.com/pokitdok/pokitdok-haskell) |
+| Swift               | [pokitdok-swift](https://github.com/pokitdok/pokitdok-swift)     |
+| Salesforce Apex     | [pokitdok-apex](https://github.com/pokitdok/pokitdok-apex)       |
 
 The following sections go into further detail on the underlying details of
 connecting directly to the PokitDok API. This is of use if you're implementing

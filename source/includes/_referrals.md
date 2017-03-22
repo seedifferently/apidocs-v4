@@ -14,8 +14,8 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
         },
         "diagnoses": [
             {
-                "code": "384.20",
-                "date": "2014-09-30"
+                "code": "H72.90",
+                "date": "2014-09-25"
             }
         ],
         "place_of_service": "office",
@@ -28,7 +28,7 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
         "type": "consultation"
     },
     "patient": {
-        "birth_date": "1970-01-01",
+        "birth_date": "1970-01-25",
         "first_name": "JANE",
         "last_name": "DOE",
         "id": "1234567890"
@@ -43,7 +43,7 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
 ```
 
 ```python
-pd.referrals({
+client.referrals({
     "event": {
         "category": "specialty_care_review",
         "certification_type": "initial",
@@ -53,8 +53,8 @@ pd.referrals({
         },
         "diagnoses": [
             {
-                "code": "384.20",
-                "date": "2014-09-30"
+                "code": "H72.90",
+                "date": "2014-09-25"
             }
         ],
         "place_of_service": "office",
@@ -67,7 +67,7 @@ pd.referrals({
         "type": "consultation"
     },
     "patient": {
-        "birth_date": "1970-01-01",
+        "birth_date": "1970-01-25",
         "first_name": "JANE",
         "last_name": "DOE",
         "id": "1234567890"
@@ -93,8 +93,8 @@ pd.referrals({
 							}},
 						{"diagnoses", new Dictionary<string, string>[] {
 							new Dictionary<string, string> {
-								{"code", "384.20"},
-								{"date", "2014-09-30"}
+								{"code", "H72.90"},
+								{"date", "2014-09-25"}
 							}}},
 						{"place_of_service", "office"},
 						{"provider", new Dictionary<string, string> {
@@ -106,7 +106,7 @@ pd.referrals({
 						{"type", "consultation"},
 					}},
 				{"patient", new Dictionary<string, string> {
-						{"birth_date", "1970-01-01"},
+						{"birth_date", "1970-01-25"},
 						{"first_name", "JANE"},
 						{"last_name", "DOE"},
 						{"id", "1234567890"}
@@ -121,41 +121,41 @@ pd.referrals({
 ```
 
 ```ruby
-pd.referrals({
-    "event": {
-        "category": "specialty_care_review",
-        "certification_type": "initial",
-        "delivery": {
-            "quantity": 1,
-            "quantity_qualifier": "visits"
+client.referrals({
+    event: {
+        category: "specialty_care_review",
+        certification_type: "initial",
+        delivery: {
+            quantity: 1,
+            quantity_qualifier: "visits"
         },
-        "diagnoses": [
+        diagnoses: [
             {
-                "code": "384.20",
-                "date": "2014-09-30"
+                code: "H72.90",
+                date: "2014-09-25"
             }
         ],
-        "place_of_service": "office",
-        "provider": {
-            "first_name": "JOHN",
-            "npi": "1154387751",
-            "last_name": "FOSTER",
-            "phone": "8645822900"
+        place_of_service: "office",
+        provider: {
+            first_name: "JOHN",
+            npi: "1154387751",
+            last_name: "FOSTER",
+            phone: "8645822900"
         },
-        "type": "consultation"
+        type: "consultation"
     },
-    "patient": {
-        "birth_date": "1970-01-01",
-        "first_name": "JANE",
-        "last_name": "DOE",
-        "id": "1234567890"
+    patient: {
+        birth_date: "1970-01-25",
+        first_name: "JANE",
+        last_name: "DOE",
+        id: "1234567890"
     },
-    "provider": {
-        "first_name": "CHRISTINA",
-        "last_name": "BERTOLAMI",
-        "npi": "1619131232"
+    provider: {
+        first_name: "CHRISTINA",
+        last_name: "BERTOLAMI",
+        npi: "1619131232"
     },
-    "trading_partner_id": "MOCKPAYER"
+    trading_partner_id: "MOCKPAYER"
 })
 ```
 
@@ -172,8 +172,8 @@ buf.append("            \"quantity_qualifier\": \"visits\"");
 buf.append("        },");
 buf.append("        \"diagnoses\": [");
 buf.append("            {");
-buf.append("                \"code\": \"384.20\",");
-buf.append("                \"date\": \"2014-09-30\"");
+buf.append("                \"code\": \"H72.90\",");
+buf.append("                \"date\": \"2014-09-25\"");
 buf.append("            }");
 buf.append("        ],");
 buf.append("        \"place_of_service\": \"office\",");
@@ -186,7 +186,7 @@ buf.append("        },");
 buf.append("        \"type\": \"consultation\"");
 buf.append("    },");
 buf.append("    \"patient\": {");
-buf.append("        \"birth_date\": \"1970-01-01\",");
+buf.append("        \"birth_date\": \"1970-01-25\",");
 buf.append("        \"first_name\": \"JANE\",");
 buf.append("        \"last_name\": \"DOE\",");
 buf.append("        \"id\": \"1234567890\"");
@@ -200,13 +200,54 @@ buf.append("    \"trading_partner_id\": \"MOCKPAYER\"");
 buf.append("}");
 
 JSONObject query = (JSONObject) JSONValue.parse(buf.toString());
-Map<String, Object> results = pd.referrals(query);
+Map<String, Object> results = client.referrals(query);
+```
+
+```swift
+let data = [
+    "event": [
+        "category": "specialty_care_review",
+        "certification_type": "initial",
+        "delivery": [
+            "quantity": 1,
+            "quantity_qualifier": "visits"
+        ],
+        "diagnoses": [
+            [
+                "code": "H72.90",
+                "date": "2014-09-25"
+            ]
+        ],
+        "place_of_service": "office",
+        "provider": [
+            "first_name": "JOHN",
+            "npi": "1154387751",
+            "last_name": "FOSTER",
+            "phone": "8645822900"
+        ],
+        "type": "consultation"
+    ],
+    "patient": [
+        "birth_date": "1970-01-25",
+        "first_name": "JANE",
+        "last_name": "DOE",
+        "id": "1234567890"
+    ],
+    "provider": [
+        "first_name": "CHRISTINA",
+        "last_name": "BERTOLAMI",
+        "npi": "1619131232"
+    ],
+    "trading_partner_id": "MOCKPAYER"
+] as [String:Any]
+try client.referrals(params: data)
 ```
 
 > Example referrals response when the trading partner has authorized the request:
 
 ```json
 {
+    "client_id": "<client_id>",
     "event": {
         "category": "specialty_care_review",
         "certification_type": "initial",
@@ -216,8 +257,8 @@ Map<String, Object> results = pd.referrals(query);
         },
         "diagnoses": [
             {
-                "code": "384.20",
-                "date": "2014-09-30"
+                "code": "H72.90",
+                "date": "2014-09-25"
             }
         ],
         "place_of_service": "office",
@@ -234,7 +275,7 @@ Map<String, Object> results = pd.referrals(query);
         "type": "consultation"
     },
     "patient": {
-        "birth_date": "1970-01-01",
+        "birth_date": "1970-01-25",
         "first_name": "JANE",
         "last_name": "DOE",
         "id": "1234567890"
@@ -263,88 +304,90 @@ Available Referrals endpoints:
 |:------------|:------------|:---------------------------------------------------------------------------|
 | /referrals/ | POST        | Submit a specialty care referral request to a trading partner for approval |
 
-The /referrals/ endpoint accepts the following parameters:
+The /referrals/ endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
 
-| Parameter                         | Description                                                                                                                                                                                  |
-|:----------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| event                             | The patient event that is being submitted for approval.                                                                                                                                      |
-| event.category                    | The category of the event being submitted for review. For referrals to specialists, a category value of "specialty_care_review" should always be used.                                       |
-| event.certification_type          | The type of certification being requested. For new referrals, a certification value of "initial" should always be used.                                                                      |
-| event.delivery                    | Specifies the delivery pattern of the health care services.                                                                                                                                  |
-| event.delivery.quantity           | The quantity of services being requested.                                                                                                                                                    |
-| event.delivery.quantity_qualifier | The qualifier used to indicate the quantity type. (e.g. visits, month, hours, units, days)                                                                                                   |
-| event.diagnoses                   | An array of diagnosis information related to the event.                                                                                                                                      |
-| event.diagnoses.code              | The diagnosis code. (e.g. 384.20)                                                                                                                                                            |
-| event.diagnoses.date              | The date of the diagnosis.                                                                                                                                                                   |
-| event.place_of_service            | The location where health care services are rendered.                                                                                                                                        |
-| event.provider                    | Information about the provider being requested for this event.                                                                                                                               |
-| event.provider.first_name         | The event provider’s first name when the provider is an individual.                                                                                                                          |
-| event.provider.last_name          | The event provider’s last name when the provider is an individual.                                                                                                                           |
-| event.provider.npi                | The NPI for the event provider.                                                                                                                                                              |
-| event.provider.organization_name  | The event provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                   |
-| event.type                        | The type of service being requested. For example, a value of consultation would be used when referring to a specialist for an initial consultation.                                          |
-| event.start_date                  | Optional: The start date of the given event. For a single date, provide only event.start_date. For a date range, provide event.start_date and event.end_date. Given in ISO8601 (YYYY-MM-DD). |
-| event.end_date                    | Optional: The end date of the given event. Only provide the end_date if the start_date is also given. Given in ISO8601 (YYYY-MM-DD).                                                         |
-| patient.birth_date                | The patient’s birth date as specified on their policy.                                                                                                                                       |
-| patient.id                        | The patient’s member identifier.                                                                                                                                                             |
-| patient.first_name                | The patient’s first name as specified on their policy.                                                                                                                                       |
-| patient.last_name                 | The patient’s last name as specified on their policy.                                                                                                                                        |
-| provider.first_name               | The referring provider’s first name when the provider is an individual.                                                                                                                      |
-| provider.last_name                | The referring provider’s last name when the provider is an individual.                                                                                                                       |
-| provider.npi                      | The NPI for the referring provider.                                                                                                                                                          |
-| provider.organization_name        | The referring provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                               |
-| patient.illness_date              | Optional: The date the patient became ill.                                                                                                                                                   |
-| subscriber.birth_date             | Optional: The subscriber’s birth date as specified on their policy. Specify when the patient is not the subscriber.                                                                          |
-| subscriber.first_name             | Optional: The subscriber’s first name as specified on their policy. Specify when the patient is not the subscriber.                                                                          |
-| subscriber.id                     | Optional: The subscriber’s member identifier. Specify when the patient is not the subscriber.                                                                                                |
-| subscriber.last_name              | Optional: The subscriber’s last name as specified on their policy. Specify when the patient is not the subscriber.                                                                           |
-| trading_partner_id                | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.                                                                              |
+| Parameter                                     | Description                                                                                                                                                                                                                           |
+|:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| client_id                                     | The unique identifier associated with the client making the eligibility request.                                                                                                                                                      |
+| event                                         | The patient event that is being submitted for approval.                                                                                                                                                                               |
+| event.category                                | The category of the event being submitted for review. For referrals to specialists, a category value of "specialty_care_review" should always be used.                                                                                |
+| event.delivery.units                          | The units of services being requested.                                                                                                                                                                                                |
+| event.delivery.sample_selection_modulus       | Specify the sampling frequency in terms of a modulus of the Unit of Measure, e.g., every fifth bag, every 1.5 minutes.                                                                                                                |
+| event.delivery.delivery_frequency_code        | Code which specifies frequency by which services can be performed.                                                                                                                                                                    |
+| event.delivery.delivery_pattern_time_code     | Code which specifies the time delivery pattern of the services.                                                                                                                                                                       |
+| event.delivery.quantity                       | The quantity of services being requested.                                                                                                                                                                                             |
+| event.delivery.quantity_qualifier             | The qualifier used to indicate the quantity type. (e.g. visits, month, hours, units, days)                                                                                                                                            |
+| event.delivery.quantity                       | The quantity of services being requested.                                                                                                                                                                                             |
+| event.delivery.quantity_qualifier             | The qualifier used to indicate the quantity type. (e.g. visits, month, hours, units, days)                                                                                                                                            |
+| event.diagnoses                               | An array of diagnosis information related to the event.                                                                                                                                                                               |
+| event.diagnoses.code                          | The diagnosis code. (e.g. H72.90)                                                                                                                                                                                                     |
+| event.diagnoses.date                          | The date of the diagnosis. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                            |
+| event.place_of_service                        | The location where health care services are rendered.                                                                                                                                                                                 |
+| event.provider                                | Information about the provider being requested for this event. The object used for provider can be seen [below](#referral_service_review_provider_object).                                                                            |
+| event.admission_date                          | The date the patient was admitted. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                    |
+| event.discharge_date                          | The date the patient was discharged. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                  |
+| event.review                                  | Information about the outcome of a health care services review.                                                                                                                                                                       |
+| event.review.certification_action             | Indicates the outcome of the review. For example, "certified_in_total" will be returned when the event is certified/authorized.  A full list of possible values can be found [below](#referral_certaction).                           |
+| event.review.certification_number             | The review certification/reference number.                                                                                                                                                                                            |
+| event.review.decision_reason                  | If the event is not authorized, the reason for that decision.  A full list of possible values can be found [below](#referral_decision).                                                                                               |
+| event.review.event_start_date                 | Effective date of referral. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                           |
+| event.review.event_end_date                   | End date for referral. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                |
+| event.review.second_surgical_opinion_required | Boolean of whether or not a second surgical opinion is required.                                                                                                                                                                      |
+| event.type                                    | The type of service being requested. For example, a value of consultation would be used when referring to a specialist for an initial consultation.                                                                                   |
+| event.start_date                              | Optional: The start date of the given event. For a single date, provide only event.start_date. For a date range, provide event.start_date and event.end_date. In ISO8601 format (YYYY-MM-DD).                                         |
+| event.end_date                                | Optional: The end date of the given event. Only provide the end_date if the start_date is also given. In ISO8601 format (YYYY-MM-DD).                                                                                                 |
+| follow_up_action                              | When a referral request is rejected, a follow up action will be provided to inform your application how to proceed. See the possibilities [below](#referral_follow_up_action).                                                        |
+| patient                                       | The patient for the referral. The object used for the patient can be seen [below](#referral_service_review_member_object).                                                                                                            |
+| originating_company_id                        | The id of the company where the request originated.                                                                                                                                                                                   |
+| payer                                         | The information source providing referral information; i.e., the insurance company.                                                                                                                                                   |
+| payer.organization_name                       | The payer's organization name.                                                                                                                                                                                                        |
+| payer.id                                      | The payer's unique identifier.                                                                                                                                                                                                        |
+| provider                                      | The requesting provider. The object used for provider can be seen [below](#referral_service_review_provider_object).                                                                                                                  |
+| subscriber                                    | The subscriber for the referral. The object used for the subscriber can be seen [below](#referral_service_review_member_object).                                                                                                      |
+| trading_partner_id                            | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.                                                                                                                       |
+| valid_request                                 | A boolean of whether or not the request was valid.                                                                                                                                                                                    |
+
 
 If the referral request is sent using a real-time interface, a referral response will be returned.
-
-The /referrals/ response contains the following fields:
-
-| Parameter                         | Description                                                                                                                                                                                                              |
-|:----------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| event                             | The patient event that is being submitted for approval.                                                                                                                                                                  |
-| event.category                    | The category of the event being submitted for review. For referrals to specialists, a category value of "specialty_care_review" should always be used. A full list of possible values can be found [below](#r_category). |
-| event.certification_type          | The type of certification being requested. For new referrals, a certification value of "initial" should always be used. A full list of possible values can be found [below](#certification_r_type).                      |
-| event.delivery                    | Specifies the delivery pattern of the health care services.                                                                                                                                                              |
-| event.delivery.quantity           | The quantity of services being requested.                                                                                                                                                                                |
-| event.delivery.quantity_qualifier | The qualifier used to indicate the quantity type. (e.g. visits, month, hours, units, days)                                                                                                                               |
-| event.diagnoses                   | An array of diagnosis information related to the event.                                                                                                                                                                  |
-| event.diagnoses.code              | The diagnosis code. (e.g. 384.20)                                                                                                                                                                                        |
-| event.diagnoses.date              | The date of the diagnosis.                                                                                                                                                                                               |
-| event.place_of_service            | The location where health care services are rendered.                                                                                                                                                                    |
-| event.provider                    | Information about the provider being requested for this event.                                                                                                                                                           |
-| event.provider.first_name         | The event provider’s first name when the provider is an individual.                                                                                                                                                      |
-| event.provider.last_name          | The event provider’s last name when the provider is an individual.                                                                                                                                                       |
-| event.provider.npi                | The NPI for the event provider.                                                                                                                                                                                          |
-| event.provider.organization_name  | The event provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                                               |
-| event.review                      | Information about the outcome of a health care services review.                                                                                                                                                          |
-| event.review.certification_action | Indicates the outcome of the review. For example, "certified_in_total" will be returned when the event is certified/authorized.  A full list of possible values can be found [below](#certaction).                       |
-| event.review.certification_number | The review certification/reference number.                                                                                                                                                                               |
-| event.review.decision_reason      | If the event is not authorized, the reason for that decision.  A full list of possible values can be found [below](#decision).                                                                                           |
-| event.type                        | The type of service being requested. For example, a value of "consultation" would be used when referring to a specialist for an initial consultation.                                                                    |
-| patient.birth_date                | The patient’s birth date as specified on their policy.                                                                                                                                                                   |
-| patient.id                        | The patient’s member identifier.                                                                                                                                                                                         |
-| patient.first_name                | The patient’s first name as specified on their policy.                                                                                                                                                                   |
-| patient.last_name                 | The patient’s last name as specified on their policy.                                                                                                                                                                    |
-| provider.first_name               | The referring provider’s first name when the provider is an individual.                                                                                                                                                  |
-| provider.last_name                | The referring provider’s last name when the provider is an individual.                                                                                                                                                   |
-| provider.npi                      | The NPI for the referring provider.                                                                                                                                                                                      |
-| provider.organization_name        | The referring provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                                           |
-| subscriber.birth_date             | Optional: The subscriber’s birth date as specified on their policy. Specify when the patient is not the subscriber.                                                                                                      |
-| subscriber.first_name             | Optional: The subscriber’s first name as specified on their policy. Specify when the patient is not the subscriber.                                                                                                      |
-| subscriber.id                     | Optional: The subscriber’s member identifier. Specify when the patient is not the subscriber.                                                                                                                            |
-| subscriber.last_name              | Optional: The subscriber’s last name as specified on their policy. Specify when the patient is not the subscriber.                                                                                                       |
-| trading_partner_id                | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.                                                                                                          |
-
 
 Interested in requesting authorization for a particular service for a patient? See PokitDok’s
 [Authorizations](#authorizations) endpoint.
 
-<a name="certaction"></a>
+<a name="referral_service_review_member_object"></a>
+###Member object:
+
+| Field                             | Description                                                                           |
+|:----------------------------------|:--------------------------------------------------------------------------------------|
+| birth_date                        | The member’s birth date as specified on their policy. In ISO8601 format (YYYY-MM-DD). |
+| gender                            | The member's gender (Male, Female, Unknown)                                           |
+| last_name                         | The member’s last name as specified on their policy.                                  |
+| first_name                        | The member’s first name as specified on their policy.                                 |
+| middle_name                       | The member’s middle name as specified on their policy.                                |
+| suffix                            | The suffix for the member                                                             |
+| id                                | The member identifier.                                                                |
+| last_menstrual_date               | The last menstrual date of the member. In ISO8601 format (YYYY-MM-DD).                |
+| group_number                      | The group number of the patient.                                                      |
+| ssn                               | The ssn of the member.                                                                |
+| estimated_birth_date              | The estimated date of birth of the patient. In ISO8601 format (YYYY-MM-DD).           |
+| illness_date                      | The date the member became ill. In ISO8601 format (YYYY-MM-DD).                       |
+| accident_date                     | The date of the member's accident. In ISO8601 format (YYYY-MM-DD).                     |
+
+<a name="referral_service_review_provider_object"></a>
+###Provider object:
+
+| Field                             | Description                                                                                                                                                                            |
+|:----------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| first_name                        | The provider’s first name when the provider is an individual.                                                                                                                          |
+| middle_name                       | The provider’s middle name when the provider is an individual.                                                                                                                         |
+| last_name                         | The provider’s last name when the provider is an individual.                                                                                                                           |
+| suffix                            | The suffix for the provider.                                                                                                                                                           |
+| tax_id                            | The federal tax id for the provider billing for services. For individual providers, this may be the tax id of the medical practice or organization where a provider works.             |
+| phone                             | The phone number for the provider.                                                                                                                                                     |
+| taxonomy_code                     | The taxonomy code for the provider.                                                                                                                                                    |
+| npi                               | The NPI for the provider.                                                                                                                                                              |
+| organization_name                 | The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                   |
+
+<a name="referral_certaction"></a>
 Full list of possible values that can be returned in the event.review.certification_action parameter
 on the referral response:
 
@@ -355,9 +398,19 @@ on the referral response:
 | certified_partial           | not_certified      |
 | contact_payer               | pended             |
 
+<a name="referral_follow_up_action"></a>
+Possible values that can be returned in the follow_up_action field on the referral response:
 
-<a name="decision"></a>
-Full list of possible values that can be returned in the event.review.decision_reason parameter on the authorization response:
+| follow_up_action Values               |                                   |
+|:--------------------------------------|:----------------------------------|
+| do_not_resubmit_sent_to_third_party   | do_not_resubmit_will_respond_again|
+| correct_and_resubmit                  | resubmit_original                 |
+| wait_10_days_and_resubmit             | wait_30_days_and_resubmit         |
+| resubmission_allowed                  | resubmission_not_allowed          |
+
+
+<a name="referral_decision"></a>
+Full list of possible values that can be returned in the event.review.decision_reason parameter on the referrals response:
 
 | decision_reason Values                                    |                                                      |
 |:----------------------------------------------------------|:-----------------------------------------------------|

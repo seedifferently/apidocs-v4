@@ -7,7 +7,7 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/a
 ```
 
 ```python
-pd.icd_convert('250.12')
+client.icd_convert('250.12')
 ```
 
 ```csharp
@@ -15,11 +15,15 @@ client.icdConvert("250.12");
 ```
 
 ```ruby
-pd.icd_convert('250.12')
+client.icd_convert({code: '250.12'})
 ```
 
 ```java
-pd.icdConvert("250.12");
+client.icdConvert("250.12");
+```
+
+```swift
+try client.icdConvert(code: "250.12")
 ```
 
 > Example ICD convert response
@@ -79,12 +83,18 @@ The /icd/convert endpoint accepts the following parameters:
 | code      | ICD-9 code  |
 
 
-The /icd/convert response contains the following parameters:
+The /icd/convert response contains the following fields:
 
-| Parameter                                  | Description                                                                         |
-|:-------------------------------------------|:------------------------------------------------------------------------------------|
-| diagnosis_mappings                         | a list of diagnosis mapping information that may be used to convert ICD-9 to ICD-10 |
-| diagnosis_mappings.destination_scenarios   | a list of ICD-10 mapping scenarios that apply for the matched ICD-9 code            |
-| diagnosis_mappings.source_code.description | a string representing a description of the source ICD-9 code                        |
-| diagnosis_mappings.source_code.system      | a string representing the code system (icd9)                                        |
-| diagnosis_mappings.source_code.value       | a string containing the ICD-9 code value                                            |
+| Field                                                     | Description                                                                                                       |
+|:----------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|
+| source_code                                               | information about a source diagnosis code                                                                                |
+| source_code.description                                   | a string representing a description of the source ICD-9 code                                                      |
+| source_code.system                                        | a string representing the code system (icd9)                                                                      |
+| source_code.value                                         | a string containing the ICD-9 code value                                                                          |
+| approximate                                               | a boolean of whether or not the mapping from ICD-9 to ICD-10 was direct or more of an approximation.              |
+| combination                                               | a boolean of whether or not multiple ICD-9 values were combined and mapped to fewer ICD-10 values.                |                                                                                  
+| destination_scenarios                                     | a list of ICD-10 mapping scenarios that apply for the matched ICD-9 code                                          |
+| destination_scenarios.choice_lists                        | a list of codes that represent a destination scenario for diagnosis mapping                                       |
+| destination_scenarios.choice_lists.description            | a string representing a description of the source ICD-9 code                                                      |
+| destination_scenarios.choice_lists.system                 | a string representing the code system (icd9)                                                                      |
+| destination_scenarios.choice_lists.value                  | a string containing the ICD-9 code value                                                                          |

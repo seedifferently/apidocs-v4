@@ -10,6 +10,7 @@ language_tabs:
   - java: Java
   #- haskell: Haskell
   #- lua: Lua
+  - swift: Swift
 
 toc_footers:
   - <a href='https://platform.pokitdok.com/signup' target='_blank'>Sign Up for a Free API Key</a>
@@ -21,19 +22,19 @@ includes:
   - endpoints
   - activities
   - authorizations
-  - enrollment
   - cashprices
   - claims
   - claimsconvert
   - claimstatus
   - eligibility
-  - enrollmentsnapshot
-  - files
   - icdconvert
-  - identity
+  - identityproof
   - insuranceprices
   - mpc
-  - payers
+  - oop_insurance
+  - pharmacy_formulary
+  - pharmacy_network
+  - pharmacy_plans
   - plans
   - providers
   - referrals
@@ -43,8 +44,9 @@ includes:
   - common
   - apicallbacks
   - apidashboard
+  - dropin
+  - raw_x12_support
 
 search: true
 
-enrollment_codes: enrollment_codes
 ---
