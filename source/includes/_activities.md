@@ -134,7 +134,7 @@ results = client.request(url, 'PUT', nil, {transition: 'cancel'})
 ```csharp
 string endpoint = "/activities/574da3720640fd092ca61b24";
 string method = "PUT";
-Dictionary<string, object> data = new Dictionary<string, object> { 
+Dictionary<string, object> data = new Dictionary<string, object> {
   { "transition", "cancel" }
 };
 client.request(endpoint, method, data);
@@ -149,7 +149,7 @@ let data = ["transition": "cancel"] as [String: Any]
 try client.activities(activityId: "5362b5a064da150ef6f2526c", params: data)
 ```
 
-> Example response: 
+> Example response:
 
 ```json
 {
@@ -321,10 +321,10 @@ callback_error | {string} | Displays the error information associated with a fai
 history | {object array} | Historical status of the progress of this Activity.
 history.record_dt | {datetime} | The date time associated with the history. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).
 history.name | {string} | State name associated with the history.
-history.title | {string} | State title associated with the history.  
+history.title | {string} | State title associated with the history.
 id | {string} | ID of this Activity.
 name | {string} | Activity name.
-trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint. 
+trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.
 parent_id | {string} | Id only present on sub-activities that were initiated via a batch file upload of activities.
 parameters | {dict} | The parameters that were originally supplied to the activity.
 remaining_transitions | {array} | The list of remaining state transitions that the activity has yet to go through.
@@ -335,4 +335,3 @@ result_history.record_dt | {datetime} | The date time associated with the result
 state | {dict} | Current state of this Activity.
 transition_path | {array} | The list of state transitions that will be used for this Activity.
 units_of_work | {int} | The number of 'units of work' that the activity is operating on. This will typically be 1 for real-time requests like /eligibility/.
-
