@@ -3949,6 +3949,7 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
         "last_name": "DOE",
         "member_id": "987654321",
         "payer_responsibility": "secondary"
+    }
 }' https://platform.pokitdok.com/api/v4/claims/
 
 ```
@@ -4351,7 +4352,7 @@ client.claims({
         "last_name": "DOE",
         "member_id": "987654321",
         "payer_responsibility": "secondary"
-})
+    }})
 ```
 
 ```csharp
@@ -5021,7 +5022,7 @@ Tracks previous payments and adjustments made to a service line within a Coordin
 | Field                              | Description                                                              |
 | :----------------------------------|:-------------------------------------------------------------------------|
 | amount                             | Required: The amount paid for the service line.                          |
-| procedure_code                     | Required: The service line  procedure code.                              |
+| procedure_code                     | Required: The service line  procedure code (HCPCS/CPT).                              |
 | procedure_modifiers                | List of modifier codes for the service line procedure (maximum of 4)     |
 | quantity                           | The service line quantity                                                |
 | adjustments                        | List of claim service line adjustments (maximum of 5). Uses the adjustment [object](#claim-adjustment) |
