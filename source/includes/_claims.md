@@ -3750,621 +3750,987 @@ try client.claims(params: data)
 ```
 
 
-> Sample Claims request for sending COB (Coordination of Benefits) information for a subscriber between two payers.
+> Sample Coordination of Benefits Claim Request.
 
-```python
-client.claims({
-    "trading_partner_id": "MOCKPAYER",
+```shell
+curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json" -XPOST -d '{
+    "correlation_id": "CLAIM1158654",
     "transaction_code": "chargeable",
-    "receiver": {
-        "organization_name": "MOCKRECEIVER",
-        "id": "MOCKRECEIVER"
-    },
+    "trading_partner_id": "MOCKPAYER",
     "billing_provider": {
-        "taxonomy_code": "207Q00000X",
-        "first_name": "Jerome",
-        "last_name": "Aya-Ay",
-        "npi": "1467560003",
         "address": {
             "address_lines": [
-                "8311 WARREN H ABERNATHY HWY"
+                "25 RAINBOW ROW"
             ],
-            "city": "SPARTANBURG",
+            "city": "CHARLESTON",
             "state": "SC",
-            "zipcode": "29301"
+            "zipcode": "29407"
         },
-        "tax_id": "123456789"
-    },
-    "subscriber": {
-        "first_name": "Jane",
-        "last_name": "Doe",
-        "member_id": "W000000000",
-        "address": {
-            "address_lines": ["123 N MAIN ST"],
-            "city": "SPARTANBURG",
+        "npi": "1487640231",
+        "organization_name": "MEDCO MEDICAL INC",
+        "payment_address": {
+            "address_lines": [
+                "PO BOX 123"
+            ],
+            "city": "CHARLESTON",
             "state": "SC",
-            "zipcode": "29301"
+            "zipcode": "29401"
         },
-        "birth_date": "1970-01-01",
-        "gender": "female",
-        "payer_responsibility": "primary"
+        "tax_id": "123456789",
+        "taxonomy_code": "777B12345X"
     },
     "claim": {
-        "direct_payment": "y",
-        "medical_record_number": "000000000",
-        "information_release": "informed_consent",
-        "patient_signature_on_file": "True",
-        "provider_signature": "True",
-        "plan_participation": "assigned",
         "claim_frequency": "original",
-        "patient_control_number": "01010101010101",
-        "place_of_service": "office",
-        "total_charge_amount": "100.0",
-        "patient_paid_amount": "100.0",
-        "onset_date": "2015-10-03",
+        "direct_payment": "y",
+        "information_release": "signed_statement",
+        "patient_control_number": "CLAIM1158654",
+        "place_of_service": "home",
+        "plan_participation": "assigned",
+        "prior_authorization_number": "P00171408ABCDEF",
+        "provider_signature": true,
+        "service_facility": {
+            "address": {
+                "address_lines": [
+                    "300 RIVERS AVE"
+                ],
+                "city": "CHARLESTON",
+                "state": "SC",
+                "zipcode": "29412"
+            },
+            "organization_name": "MEDCITY"
+        },
         "service_lines": [
             {
-                "procedure_code": "99213",
-                "charge_amount": "40.0",
-                "unit_count": "1.0",
+                "adjudication": {
+                    "adjustments": [
+                        {
+                            "amount": "28.22",
+                            "group": "patient_responsibility",
+                            "reason": "2"
+                        },
+                        {
+                            "amount": "26.79",
+                            "group": "contractual_obligations",
+                            "reason": "45"
+                        }
+                    ],
+                    "amount": "40.66",
+                    "amount_owed": "0",
+                    "claim_paid_date": "2017-04-04",
+                    "payer_id": "62308",
+                    "procedure_code": "T4529",
+                    "procedure_qualifier": "HC",
+                    "quantity": "246"
+                },
+                "charge_amount": "95.67",
                 "diagnosis_codes": [
-                    "J020"
+                    "N184"
                 ],
-                "service_date": "2015-10-03",
+                "is_emergency": false,
+                "ordering_provider": {
+                    "first_name": "STEVEN",
+                    "last_name": "DOE",
+                    "npi": "1912301953",
+                    "state_license_number": "SC12345"
+                },
+                "procedure_code": "T4529",
+                "provider_control_number": "900001",
+                "service_date": "2017-03-20",
+                "unit_count": "246",
                 "unit_type": "units"
             },
             {
-                "procedure_code": "87072",
-                "charge_amount": "15.0",
-                "unit_count": "1.0",
+                "adjudication": {
+                    "adjustments": [
+                        {
+                            "amount": "72",
+                            "group": "other_adjustments",
+                            "reason": "96"
+                        }
+                    ],
+                    "amount": "0",
+                    "amount_owed": "0",
+                    "claim_paid_date": "2017-04-04",
+                    "payer_id": "62308",
+                    "procedure_code": "A4554",
+                    "procedure_qualifier": "HC",
+                    "quantity": "120"
+                },
+                "charge_amount": "72",
                 "diagnosis_codes": [
-                    "J020"
+                    "N184"
                 ],
-                "service_date": "2015-10-03",
-                "unit_type": "units"
-            },
-            {
-                "procedure_code": "99214",
-                "charge_amount": "35.0",
-                "unit_count": "1.0",
-                "diagnosis_codes": [
-                    "Z1159"
-                ],
-                "service_date": "2015-10-10",
-                "unit_type": "units"
-            },
-            {
-                "procedure_code": "86663",
-                "charge_amount": "10.0",
-                "unit_count": "1.0",
-                "diagnosis_codes": [
-                    "Z1159"
-                ],
-                "service_date": "2015-10-10",
+                "is_emergency": false,
+                "ordering_provider": {
+                    "first_name": "STEVEN",
+                    "last_name": "DOE",
+                    "npi": "1912301953",
+                    "state_license_number": "SC12345"
+                },
+                "procedure_code": "A4554",
+                "provider_control_number": "900002",
+                "service_date": "2017-03-20",
+                "unit_count": "120",
                 "unit_type": "units"
             }
         ],
-        "prior_authorization_number": "0A02d"
+        "total_charge_amount": "167.67"
     },
     "coordination_of_benefits": {
-        "subscriber": {
-            "group_number": "000111000111",
-            "first_name": "JANE",
-            "last_name": "DOE",
-            "member_id": "111222111222",
-            "address": {
-                "address_lines": ["123 ABC LANE"],
-                "city": "CHARLESTON",
-                "state": "SC",
-                "zipcode": "29401"
-            },
-            "relationship": "self",
-            "payer_responsibility": "secondary"
-        },
         "payer": {
-            "organization_name": "MOCKPAYER B",
-            "id": "000002"
-        }
-    }
-
-})
-```
-
-```swift
-let data = [
-    "trading_partner_id": "MOCKPAYER",
-    "transaction_code": "chargeable",
-    "receiver": [
-        "organization_name": "MOCKRECEIVER",
-        "id": "MOCKRECEIVER"
-    ],
-    "billing_provider": [
-        "taxonomy_code": "207Q00000X",
-        "first_name": "Jerome",
-        "last_name": "Aya-Ay",
-        "npi": "1467560003",
-        "address": [
-            "address_lines": [
-                "8311 WARREN H ABERNATHY HWY"
-            ],
-            "city": "SPARTANBURG",
-            "state": "SC",
-            "zipcode": "29301"
-        ],
-        "tax_id": "123456789"
-    ],
-    "subscriber": [
-        "first_name": "Jane",
-        "last_name": "Doe",
-        "member_id": "W000000000",
-        "address": [
-            "address_lines": ["123 N MAIN ST"],
-            "city": "SPARTANBURG",
-            "state": "SC",
-            "zipcode": "29301"
-        ],
-        "birth_date": "1970-01-01",
-        "gender": "female",
-        "payer_responsibility": "primary"
-    ],
-    "claim": [
-        "direct_payment": "y",
-        "medical_record_number": "000000000",
-        "information_release": "informed_consent",
-        "patient_signature_on_file": True,
-        "provider_signature": True,
-        "plan_participation": "assigned",
-        "claim_frequency": "original",
-        "patient_control_number": "01010101010101",
-        "place_of_service": "office",
-        "total_charge_amount": "100.0",
-        "patient_paid_amount": "100.0",
-        "onset_date": "2015-10-03",
-        "service_lines": [
-            [
-                "procedure_code": "99213",
-                "charge_amount": "40.0",
-                "unit_count": "1.0",
-                "diagnosis_codes": [
-                    "J020"
+            "id": "777654",
+            "organization_name": "BCBSSC"
+        },
+        "payer_amount_paid": "40.66",
+        "subscriber": {
+            "address": {
+                "address_lines": [
+                    "100 CALHOUN"
                 ],
-                "service_date": "2015-10-03",
-                "unit_type": "units"
-            ],
-            [
-                "procedure_code": "87072",
-                "charge_amount": "15.0",
-                "unit_count": "1.0",
-                "diagnosis_codes": [
-                    "J020"
-                ],
-                "service_date": "2015-10-03",
-                "unit_type": "units"
-            ],
-            [
-                "procedure_code": "99214",
-                "charge_amount": "35.0",
-                "unit_count": "1.0",
-                "diagnosis_codes": [
-                    "Z1159"
-                ],
-                "service_date": "2015-10-10",
-                "unit_type": "units"
-            ],
-            [
-                "procedure_code": "86663",
-                "charge_amount": "10.0",
-                "unit_count": "1.0",
-                "diagnosis_codes": [
-                    "Z1159"
-                ],
-                "service_date": "2015-10-10",
-                "unit_type": "units"
-            ]
-        ],
-        "prior_authorization_number": "0A02d"
-    ],
-    "coordination_of_benefits": [
-        "subscriber": [
-            "group_number": "000111000111",
-            "first_name": "JANE",
-            "last_name": "DOE",
-            "member_id": "111222111222",
-            "address": [
-                "address_lines": ["123 ABC LANE"],
                 "city": "CHARLESTON",
                 "state": "SC",
-                "zipcode": "29401"
-            ],
-            "birth_date": "1990-01-01",
-            "gender": "female",
+                "zipcode": "29407"
+            },
+            "authorize_payment_to_billing_provider": "yes",
+            "claim_filing_code": "commercial_insurance_co",
+            "first_name": "EMMIE",
+            "group_number": "888754",
+            "last_name": "DOE",
+            "member_id": "987654321",
+            "payer_responsibility": "primary",
             "relationship": "self",
-            "payer_responsibility": "secondary"
+            "release_of_information_code": "signed_statement"
+        }
+    },
+    "payer": {
+        "address": {
+            "address_lines": [
+                "PO BOX 301404"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "29407"
+        },
+        "id": "12345",
+        "organization_name": "CHARLESTON HEALTH PLAN"
+    },
+    "receiver": {
+        "id": "EMPORIUM",
+        "organization_name": "X12 FLAT FILE EMPORIUM"
+    },
+    "submitter": {
+        "contacts": [
+            {
+                "contact_methods": [
+                    {
+                        "type": "phone",
+                        "value": "8431114444"
+                    }
+                ],
+                "name": "BOB DOE"
+            }
         ],
-        "payer": [
-            "organization_name": "MOCKPAYER B",
-            "id": "000002"
-        ]
-    ]
-] as [String:Any]
-try client.claims(params: data)
-```
+        "id": "55512",
+        "organization_name": "MEDCO MEDICAL INC"
+    },
+    "subscriber": {
+        "address": {
+            "address_lines": [
+                "100 CALHOUN"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "29407"
+        },
+        "birth_date": "2015-01-05",
+        "claim_filing_code": "commercial_insurance_co",
+        "first_name": "EMMIE",
+        "gender": "female",
+        "last_name": "DOE",
+        "member_id": "987654321",
+        "payer_responsibility": "secondary"
+    }
+}' https://platform.pokitdok.com/api/v4/claims/
 
-> Sample Claims request for sending COB (Coordination of Benefits) with adjustment information from the primary payer.
+```
 
 ```python
 client.claims({
-  "trading_partner_id": "MOCKPAYER",
-  "transaction_code": "chargeable",
-  "billing_provider": {
-        "taxonomy_code": "207Q00000X",
-        "first_name": "Jerome",
-        "last_name": "Aya-Ay",
-        "npi": "1467560003",
+    "correlation_id": "CLAIM1158654",
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": {
         "address": {
             "address_lines": [
-                "8311 WARREN H ABERNATHY HWY"
+                "25 RAINBOW ROW"
             ],
-            "city": "SPARTANBURG",
+            "city": "CHARLESTON",
             "state": "SC",
-            "zipcode": "29301"
+            "zipcode": "29407"
         },
-        "tax_id": "123456789"
+        "npi": "1487640231",
+        "organization_name": "MEDCO MEDICAL INC",
+        "payment_address": {
+            "address_lines": [
+                "PO BOX 123"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "29401"
+        },
+        "tax_id": "123456789",
+        "taxonomy_code": "777B12345X"
     },
-  "subscriber": {
-    "group_number": "000111000111",
-    "first_name": "JANE",
-    "last_name": "DOE",
-    "member_id": "111222111222",
-    "address": {
-      "address_lines": [
-        "123 ABC Lane"
-      ],
-      "city": "CHARLESTON",
-      "state": "SC",
-      "zipcode": "29401"
+    "claim": {
+        "claim_frequency": "original",
+        "direct_payment": "y",
+        "information_release": "signed_statement",
+        "patient_control_number": "CLAIM1158654",
+        "place_of_service": "home",
+        "plan_participation": "assigned",
+        "prior_authorization_number": "P00171408ABCDEF",
+        "provider_signature": True,
+        "service_facility": {
+            "address": {
+                "address_lines": [
+                    "300 RIVERS AVE"
+                ],
+                "city": "CHARLESTON",
+                "state": "SC",
+                "zipcode": "29412"
+            },
+            "organization_name": "MEDCITY"
+        },
+        "service_lines": [
+            {
+                "adjudication": {
+                    "adjustments": [
+                        {
+                            "amount": "28.22",
+                            "group": "patient_responsibility",
+                            "reason": "2"
+                        },
+                        {
+                            "amount": "26.79",
+                            "group": "contractual_obligations",
+                            "reason": "45"
+                        }
+                    ],
+                    "amount": "40.66",
+                    "amount_owed": "0",
+                    "claim_paid_date": "2017-04-04",
+                    "payer_id": "62308",
+                    "procedure_code": "T4529",
+                    "procedure_qualifier": "HC",
+                    "quantity": "246"
+                },
+                "charge_amount": "95.67",
+                "diagnosis_codes": [
+                    "N184"
+                ],
+                "is_emergency": False,
+                "ordering_provider": {
+                    "first_name": "STEVEN",
+                    "last_name": "DOE",
+                    "npi": "1912301953",
+                    "state_license_number": "SC12345"
+                },
+                "procedure_code": "T4529",
+                "provider_control_number": "900001",
+                "service_date": "2017-03-20",
+                "unit_count": "246",
+                "unit_type": "units"
+            },
+            {
+                "adjudication": {
+                    "adjustments": [
+                        {
+                            "amount": "72",
+                            "group": "other_adjustments",
+                            "reason": "96"
+                        }
+                    ],
+                    "amount": "0",
+                    "amount_owed": "0",
+                    "claim_paid_date": "2017-04-04",
+                    "payer_id": "62308",
+                    "procedure_code": "A4554",
+                    "procedure_qualifier": "HC",
+                    "quantity": "120"
+                },
+                "charge_amount": "72",
+                "diagnosis_codes": [
+                    "N184"
+                ],
+                "is_emergency": False,
+                "ordering_provider": {
+                    "first_name": "STEVEN",
+                    "last_name": "DOE",
+                    "npi": "1912301953",
+                    "state_license_number": "SC12345"
+                },
+                "procedure_code": "A4554",
+                "provider_control_number": "900002",
+                "service_date": "2017-03-20",
+                "unit_count": "120",
+                "unit_type": "units"
+            }
+        ],
+        "total_charge_amount": "167.67"
     },
-    "birth_date": "1990-01-01",
-    "gender": "female",
-    "payer_responsibility": "secondary"
-  },
-  "claim": {
-    "direct_payment": "y",
-    "medical_record_number": "000000000",
-    "information_release": "informed_consent",
-    "patient_signature_on_file": "True",
-    "provider_signature": "True",
-    "plan_participation": "assigned",
-    "claim_frequency": "original",
-    "patient_control_number": "01010101010101",
-    "place_of_service": "office",
-    "total_charge_amount": "50.0",
-    "patient_paid_amount": "50.0",
-    "onset_date": "2015-10-03",
-    "service_lines": [
-      {
-        "procedure_code": "99213",
-        "charge_amount": "40.0",
-        "unit_count": "1.0",
-        "diagnosis_codes": [
-          "J020"
-        ],
-        "service_date": "2015-10-03",
-        "unit_type": "units"
-      },
-      {
-        "procedure_code": "87072",
-        "charge_amount": "5",
-        "unit_count": "1.0",
-        "diagnosis_codes": [
-          "J020"
-        ],
-        "service_date": "2015-10-03",
-        "unit_type": "units"
-      },
-      {
-        "procedure_code": "99214",
-        "charge_amount": "3",
-        "unit_count": "1.0",
-        "diagnosis_codes": [
-          "Z1159"
-        ],
-        "service_date": "2015-10-10",
-        "unit_type": "units"
-      },
-      {
-        "procedure_code": "86663",
-        "charge_amount": "2",
-        "unit_count": "1.0",
-        "diagnosis_codes": [
-          "Z1159"
-        ],
-        "service_date": "2015-10-10",
-        "unit_type": "units"
-      }
-    ],
-    "prior_authorization_number": "0A02d"
-  },
-  "coordination_of_benefits": {
-   "subscriber": {
-        "first_name": "Jane",
-        "last_name": "Doe",
-        "member_id": "W000000000",
+    "coordination_of_benefits": {
+        "payer": {
+            "id": "777654",
+            "organization_name": "BCBSSC"
+        },
+        "payer_amount_paid": "40.66",
+        "subscriber": {
+            "address": {
+                "address_lines": [
+                    "100 CALHOUN"
+                ],
+                "city": "CHARLESTON",
+                "state": "SC",
+                "zipcode": "29407"
+            },
+            "authorize_payment_to_billing_provider": "yes",
+            "claim_filing_code": "commercial_insurance_co",
+            "first_name": "EMMIE",
+            "group_number": "888754",
+            "last_name": "DOE",
+            "member_id": "987654321",
+            "payer_responsibility": "primary",
+            "relationship": "self",
+            "release_of_information_code": "signed_statement"
+        }
+    },
+    "payer": {
         "address": {
-            "address_lines": ["123 N MAIN ST"],
-            "city": "SPARTANBURG",
+            "address_lines": [
+                "PO BOX 301404"
+            ],
+            "city": "CHARLESTON",
             "state": "SC",
-            "zipcode": "29301"
-            },
-      "relationship": "self",
-      "payer_responsibility": "primary",
-      "patient_signature_source": "patient",
-      "authorize_payment_to_billing_provider": "yes",
-      "release_of_information_code": "informed_consent"
-      },
-      "payer": {
-            "organization_name": "MOCKPAYER B",
-            "id": "000002"
-    },
-    "payer_amount_paid": "200.50",
-    "amount_owed": "150.50",
-    "claim_level_adjustments": {
-      "adjustments": [
-        {
-          "claim_adjustment_group_code": "other_adjustments",
-          "claim_adjustment_reason_code": "1",
-          "adjustment_amount": "2.00",
-          "adjustment_quantity": "3"
+            "zipcode": "29407"
         },
-        {
-          "claim_adjustment_group_code": "other_adjustments",
-          "claim_adjustment_reason_code": "4",
-          "adjustment_amount": "5.00",
-          "adjustment_quantity": "6"
-        }
-      ],
+        "id": "12345",
+        "organization_name": "CHARLESTON HEALTH PLAN"
     },
- "line_level_adjustments": {
-      "adjustments": [
-        {
-          "service_line_number": 1,
-          "service_line_paid_amount": 1000,
-          "paid_service_unit_count": 2,
-          "cpt_code": "83839",
-          "procedure_modifier_codes": ["A", "B", "C", "D"],
-          "procedure_code_description": "Testing Testing",
-          "adjustment_information": [
+    "receiver": {
+        "id": "EMPORIUM",
+        "organization_name": "X12 FLAT FILE EMPORIUM"
+    },
+    "submitter": {
+        "contacts": [
             {
-              "claim_adjustment_group_code": "patient_responsibility",
-              "claim_adjustment_reason_code": "1",
-              "adjustment_amount": "2.00",
-              "adjustment_quantity": "3"
-            },
-            {
-              "claim_adjustment_group_code": "contractual_obligations",
-              "claim_adjustment_reason_code": "4",
-              "adjustment_amount": "5.00",
-              "adjustment_quantity": "6"
+                "contact_methods": [
+                    {
+                        "type": "phone",
+                        "value": "8431114444"
+                    }
+                ],
+                "name": "BOB DOE"
             }
-          ],
-          "date_paid": "2015-10-10",
-          "remaining_patient_liability": "200"
+        ],
+        "id": "55512",
+        "organization_name": "MEDCO MEDICAL INC"
+    },
+    "subscriber": {
+        "address": {
+            "address_lines": [
+                "100 CALHOUN"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "29407"
         },
-        {
-          "service_line_number": 2,
-          "service_line_paid_amount": 300,
-          "paid_service_unit_count": 1,
-          "cpt_code": "83839",
-          "procedure_code_description": "Testing Testing",
-          "adjustment_information": [
-            {
-              "claim_adjustment_group_code": "patient_responsibility",
-              "claim_adjustment_reason_code": "1",
-              "adjustment_amount": "2.00",
-              "adjustment_quantity": "3"
-            },
-            {
-              "claim_adjustment_group_code": "contractual_obligations",
-              "claim_adjustment_reason_code": "4",
-              "adjustment_amount": "5.00",
-              "adjustment_quantity": "6"
-            }
-          ],
-          "date_paid": "2015-10-10",
-          "remaining_patient_liability": "200"
-        }
-      ]
+        "birth_date": "2015-01-05",
+        "claim_filing_code": "commercial_insurance_co",
+        "first_name": "EMMIE",
+        "gender": "female",
+        "last_name": "DOE",
+        "member_id": "987654321",
+        "payer_responsibility": "secondary"
     }
-  }
 })
- ```
-  
+```
+
+```ruby
+client.claims({
+    "correlation_id": "CLAIM1158654",
+    "transaction_code": "chargeable",
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": {
+        "address": {
+            "address_lines": [
+                "25 RAINBOW ROW"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "29407"
+        },
+        "npi": "1487640231",
+        "organization_name": "MEDCO MEDICAL INC",
+        "payment_address": {
+            "address_lines": [
+                "PO BOX 123"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "29401"
+        },
+        "tax_id": "123456789",
+        "taxonomy_code": "777B12345X"
+    },
+    "claim": {
+        "claim_frequency": "original",
+        "direct_payment": "y",
+        "information_release": "signed_statement",
+        "patient_control_number": "CLAIM1158654",
+        "place_of_service": "home",
+        "plan_participation": "assigned",
+        "prior_authorization_number": "P00171408ABCDEF",
+        "provider_signature": true,
+        "service_facility": {
+            "address": {
+                "address_lines": [
+                    "300 RIVERS AVE"
+                ],
+                "city": "CHARLESTON",
+                "state": "SC",
+                "zipcode": "29412"
+            },
+            "organization_name": "MEDCITY"
+        },
+        "service_lines": [
+            {
+                "adjudication": {
+                    "adjustments": [
+                        {
+                            "amount": "28.22",
+                            "group": "patient_responsibility",
+                            "reason": "2"
+                        },
+                        {
+                            "amount": "26.79",
+                            "group": "contractual_obligations",
+                            "reason": "45"
+                        }
+                    ],
+                    "amount": "40.66",
+                    "amount_owed": "0",
+                    "claim_paid_date": "2017-04-04",
+                    "payer_id": "62308",
+                    "procedure_code": "T4529",
+                    "procedure_qualifier": "HC",
+                    "quantity": "246"
+                },
+                "charge_amount": "95.67",
+                "diagnosis_codes": [
+                    "N184"
+                ],
+                "is_emergency": false,
+                "ordering_provider": {
+                    "first_name": "STEVEN",
+                    "last_name": "DOE",
+                    "npi": "1912301953",
+                    "state_license_number": "SC12345"
+                },
+                "procedure_code": "T4529",
+                "provider_control_number": "900001",
+                "service_date": "2017-03-20",
+                "unit_count": "246",
+                "unit_type": "units"
+            },
+            {
+                "adjudication": {
+                    "adjustments": [
+                        {
+                            "amount": "72",
+                            "group": "other_adjustments",
+                            "reason": "96"
+                        }
+                    ],
+                    "amount": "0",
+                    "amount_owed": "0",
+                    "claim_paid_date": "2017-04-04",
+                    "payer_id": "62308",
+                    "procedure_code": "A4554",
+                    "procedure_qualifier": "HC",
+                    "quantity": "120"
+                },
+                "charge_amount": "72",
+                "diagnosis_codes": [
+                    "N184"
+                ],
+                "is_emergency": false,
+                "ordering_provider": {
+                    "first_name": "STEVEN",
+                    "last_name": "DOE",
+                    "npi": "1912301953",
+                    "state_license_number": "SC12345"
+                },
+                "procedure_code": "A4554",
+                "provider_control_number": "900002",
+                "service_date": "2017-03-20",
+                "unit_count": "120",
+                "unit_type": "units"
+            }
+        ],
+        "total_charge_amount": "167.67"
+    },
+    "coordination_of_benefits": {
+        "payer": {
+            "id": "777654",
+            "organization_name": "BCBSSC"
+        },
+        "payer_amount_paid": "40.66",
+        "subscriber": {
+            "address": {
+                "address_lines": [
+                    "100 CALHOUN"
+                ],
+                "city": "CHARLESTON",
+                "state": "SC",
+                "zipcode": "29407"
+            },
+            "authorize_payment_to_billing_provider": "yes",
+            "claim_filing_code": "commercial_insurance_co",
+            "first_name": "EMMIE",
+            "group_number": "888754",
+            "last_name": "DOE",
+            "member_id": "987654321",
+            "payer_responsibility": "primary",
+            "relationship": "self",
+            "release_of_information_code": "signed_statement"
+        }
+    },
+    "payer": {
+        "address": {
+            "address_lines": [
+                "PO BOX 301404"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "29407"
+        },
+        "id": "12345",
+        "organization_name": "CHARLESTON HEALTH PLAN"
+    },
+    "receiver": {
+        "id": "EMPORIUM",
+        "organization_name": "X12 FLAT FILE EMPORIUM"
+    },
+    "submitter": {
+        "contacts": [
+            {
+                "contact_methods": [
+                    {
+                        "type": "phone",
+                        "value": "8431114444"
+                    }
+                ],
+                "name": "BOB DOE"
+            }
+        ],
+        "id": "55512",
+        "organization_name": "MEDCO MEDICAL INC"
+    },
+    "subscriber": {
+        "address": {
+            "address_lines": [
+                "100 CALHOUN"
+            ],
+            "city": "CHARLESTON",
+            "state": "SC",
+            "zipcode": "29407"
+        },
+        "birth_date": "2015-01-05",
+        "claim_filing_code": "commercial_insurance_co",
+        "first_name": "EMMIE",
+        "gender": "female",
+        "last_name": "DOE",
+        "member_id": "987654321",
+        "payer_responsibility": "secondary"
+    }})
+```
+
+```csharp
+		var cobClaimRequest = new Dictionary<string, object>();
+		cobClaimRequest.Add("correlation_id", "CLAIM1158654");
+		cobClaimRequest.Add("transaction_code", "chargeable");
+		cobClaimRequest.Add("trading_partner_id", "MOCKPAYER");
+
+		cobClaimRequest.Add("billing_provider", new Dictionary<string, object> {
+			{"address", new Dictionary<string, object> {
+				{"address_lines", new object[] {"25 RAINBOW ROW"}},
+        {"city", "CHARLESTON"},
+        {"state", "SC"},
+        {"zipcode", "29407"}}},
+        {"npi", "1487640231"},
+        {"organization_name", "MEDCO MEDICAL INC"},
+        {"payment_address", new Dictionary<string, object>{
+            {"address_lines", new object[] {"PO BOX 123"}},
+            {"city", "CHARLESTON"},
+            {"state", "SC"},
+            {"zipcode", "29401"}}},
+        {"tax_id", "123456789"},
+        {"taxonomy_code", "777B12345X"}});
+
+      cobClaimRequest.Add("claim", new Dictionary<string, object> {
+        {"claim_frequency", "original"},
+        {"direct_payment", "y"},
+        {"information_release", "signed_statement"},
+        {"patient_control_number", "CLAIM1158654"},
+        {"place_of_service", "home"},
+        {"plan_participation", "assigned"},
+        {"prior_authorization_number", "P00171408ABCDEF"},
+        {"provider_signature", true},
+        {"total_charge_amount", "167.67"}});
+
+      cobClaimRequest["service_facility"] = new Dictionary<string, object> {
+        {"address", new Dictionary<string, object>{
+			{"address_lines", new object[] {"300 RIVERS AVE"}},
+            {"city", "CHARLESTON"},
+            {"state", "SC"},
+            {"zipcode", "29412"}}},
+          {"organization_name", "MEDCITY"}};
+
+     cobClaimRequest["service_lines"] = new object[] {
+         new Dictionary<string, object>{
+                {"charge_amount", "95.67"},
+                {"diagnosis_codes", new string[] {"N184"}},
+                {"is_emergency", false},
+                {"ordering_provider", new Dictionary<string, object>{
+                    {"first_name", "STEVEN"},
+                    {"last_name", "DOE"},
+                    {"npi", "1912301953"},
+                    {"state_license_number", "SC12345"}}},
+                {"procedure_code", "T4529"},
+                {"provider_control_number", "900001"},
+                {"service_date", "2017-03-20"},
+                {"unit_count", "246"},
+                {"unit_type", "units"},
+                {"adjudication", new Dictionary<string, object>{
+                    {"amount", "40.66"},
+                    {"amount_owed", "0"},
+                    {"claim_paid_date", "2017-04-04"},
+                    {"payer_id", "62308"},
+                    {"procedure_code", "T4529"},
+                    {"procedure_qualifier", "HC"},
+                    {"quantity", "246"},
+                    {"adjustments", new object[]{
+                        new Dictionary<string, object>{
+                            {"amount", "28.22"},
+                            {"group", "patient_responsibility"},
+                            {"reason", "2"}},
+                        new Dictionary<string, object>{
+                        {"amount", "28.22"},
+                        {"group", "patient_responsibility"},
+                        {"reason", "2"}}
+                    }}
+                }}
+            },
+            new Dictionary<string, object>{
+                {"charge_amount", "72"},
+                {"diagnosis_codes", new string[] {"N184"}},
+                {"is_emergency", false},
+                {"ordering_provider", new Dictionary<string, object>{
+                    {"first_name", "STEVEN"},
+                    {"last_name", "DOE"},
+                    {"npi", "1912301953"},
+                    {"state_license_number", "SC12345"}}},
+                {"procedure_code", "A4554"},
+                {"provider_control_number", "900002"},
+                {"service_date", "2017-03-20"},
+                {"unit_count", "120"},
+                {"unit_type", "units"},
+                {"adjudication", new Dictionary<string, object>{
+                    {"amount", "0"},
+                    {"amount_owed", "0"},
+                    {"claim_paid_date", "2017-04-04"},
+                    {"payer_id", "62308"},
+                    {"procedure_code", "A4554"},
+                    {"procedure_qualifier", "HC"},
+                    {"quantity", "120"},
+                    {"adjustments", new object[]{
+                        new Dictionary<string, object>{
+                            {"amount", "72"},
+                            {"group", "other_adjustments"},
+                            {"reason", "96"}}
+                    }}
+                }}
+            }
+         };
+
+    cobClaimRequest.Add("coordination_of_benefits",  new Dictionary<string, object>{
+        {"payer_amount_paid", "40.66"},
+        {"authorize_payment_to_billing_provider", "yes"},
+        {"claim_filing_code", "commercial_insurance_co"},
+        {"first_name", "EMMIE"},
+        {"group_number", "888754"},
+        {"last_name", "DOE"},
+        {"member_id", "987654321"},
+        {"payer_responsibility", "primary"},
+        {"relationship", "self"},
+        {"release_of_information_code", "signed_statement"},
+        {"payer", new Dictionary<string, object>{
+            {"id", "777654"},
+            {"organization_name", "BCBSSC"}
+        }},
+        {"subscriber", new Dictionary<string, object>{
+            {"address", new Dictionary<string, object>{
+                {"address_lines", new string[] {"100 CALHOUN"}},
+                {"city", "CHARLESTON"},
+                {"state", "SC"},
+                {"zipcode", "29407"}
+            }}
+        }}
+    });
+
+    cobClaimRequest.Add("payer", new Dictionary<string, object>{
+        {"id", "12345"},
+        {"organization_name", "CHARLESTON HEALTH PLAN"},
+        {"address", new Dictionary<string, object>{
+            {"address_lines", new string[] {"PO BOX 301404"}},
+            {"city", "CHARLESTON"},
+            {"state", "SC"},
+            {"zipcode", "29407"}
+        }}
+    });
+
+    cobClaimRequest.Add("receiver", new Dictionary<string, object>{
+        {"id", "EMPORIUM"},
+        {"organization_name", "X12 FLAT FILE EMPORIUM"}
+    });
+
+    cobClaimRequest.Add("submitter", new Dictionary<string, object>{
+        {"id", "55512"},
+        {"organization_name", "MEDCO MEDICAL INC"},
+        {"contacts", new object[] {new Dictionary<string, object>{{"name", "BOB DOE"}}}}
+    });
+
+    cobClaimRequest.Add("subscriber", new Dictionary<string, object>{
+        {"birth_date", "2015-01-05"},
+        {"claim_filing_code", "commercial_insurance_co"},
+        {"first_name", "EMMIE"},
+        {"gender", "female"},
+        {"last_name", "DOE"},
+        {"member_id", "987654321"},
+        {"payer_responsibility", "secondary"},
+        {"address", new Dictionary<string, object>{
+            {"address_lines", new string[] {"100 CALHOUN"}},
+            {"city", "CHARLESTON"},
+            {"state", "SC"},
+            {"zipcode", "29407"}}}
+    });
+
+client.claims(cobClaimRequest);
+```
 
 ```swift
 let data = [
-  "trading_partner_id": "MOCKPAYER",
+  "correlation_id": "CLAIM1158654",
   "transaction_code": "chargeable",
+  "trading_partner_id": "MOCKPAYER"
   "billing_provider": [
-        "taxonomy_code": "207Q00000X",
-        "first_name": "Jerome",
-        "last_name": "Aya-Ay",
-        "npi": "1467560003",
-        "address": [
-            "address_lines": [
-                "8311 WARREN H ABERNATHY HWY"
-            ],
-            "city": "SPARTANBURG",
-            "state": "SC",
-            "zipcode": "29301"
-        ],
-        "tax_id": "123456789"
-    ],
-  "subscriber": [
-    "group_number": "000111000111",
-    "first_name": "JANE",
-    "last_name": "DOE",
-    "member_id": "111222111222",
-    "address": [
-      "address_lines": [
-        "123 ABC LANE"
+      "address": [
+          "address_lines": [
+              "25 RAINBOW ROW"
+          ],
+          "city": "CHARLESTON",
+          "state": "SC",
+          "zipcode": "29407"
       ],
-      "city": "CHARLESTON",
-      "state": "SC",
-      "zipcode": "29401"
-    ],
-    "birth_date": "1990-01-01",
-    "gender": "female",
-    "payer_responsibility": "secondary"
+      "npi": "1487640231",
+      "organization_name": "MEDCO MEDICAL INC",
+      "payment_address": [
+          "address_lines": [
+              "PO BOX 123"
+          ],
+          "city": "CHARLESTON",
+          "state": "SC",
+          "zipcode": "29401"
+      ],
+      "tax_id": "123456789",
+      "taxonomy_code": "777B12345X"
   ],
   "claim": [
-    "direct_payment": "y",
-    "medical_record_number": "000000000",
-    "information_release": "informed_consent",
-    "patient_signature_on_file": True,
-    "provider_signature": True,
-    "plan_participation": "assigned",
-    "claim_frequency": "original",
-    "patient_control_number": "01010101010101",
-    "place_of_service": "office",
-    "total_charge_amount": "50.0",
-    "patient_paid_amount": "50.0",
-    "onset_date": "2015-10-03",
-    "service_lines": [
-      [
-        "procedure_code": "99213",
-        "charge_amount": "40.0",
-        "unit_count": "1.0",
-        "diagnosis_codes": [
-          "J020"
-        ],
-        "service_date": "2015-10-03",
-        "unit_type": "units"
+      "claim_frequency": "original",
+      "direct_payment": "y",
+      "information_release": "signed_statement",
+      "patient_control_number": "CLAIM1158654",
+      "place_of_service": "home",
+      "plan_participation": "assigned",
+      "prior_authorization_number": "P00171408ABCDEF",
+      "provider_signature": true,
+      "service_facility": [
+          "address": [
+              "address_lines": [
+                  "300 RIVERS AVE"
+              ],
+              "city": "CHARLESTON",
+              "state": "SC",
+              "zipcode": "29412"
+          ],
+          "organization_name": "MEDCITY"
       ],
-      [
-        "procedure_code": "87072",
-        "charge_amount": "5",
-        "unit_count": "1.0",
-        "diagnosis_codes": [
-          "J020"
-        ],
-        "service_date": "2015-10-03",
-        "unit_type": "units"
+      "service_lines": [
+          [
+              "adjudication": [
+                  "adjustments": [
+                      [
+                          "amount": "28.22",
+                          "group": "patient_responsibility",
+                          "reason": "2"
+                      ],
+                      [
+                          "amount": "26.79",
+                          "group": "contractual_obligations",
+                          "reason": "45"
+                      ]
+                  ],
+                  "amount": "40.66",
+                  "amount_owed": "0",
+                  "claim_paid_date": "2017-04-04",
+                  "payer_id": "62308",
+                  "procedure_code": "T4529",
+                  "procedure_qualifier": "HC",
+                  "quantity": "246"
+              ],
+              "charge_amount": "95.67",
+              "diagnosis_codes": [
+                  "N184"
+              ],
+              "is_emergency": false,
+              "ordering_provider": [
+                  "first_name": "STEVEN",
+                  "last_name": "DOE",
+                  "npi": "1912301953",
+                  "state_license_number": "SC12345"
+              ],
+              "procedure_code": "T4529",
+              "provider_control_number": "900001",
+              "service_date": "2017-03-20",
+              "unit_count": "246",
+              "unit_type": "units"
+          ],
+          [
+              "adjudication": [
+                  "adjustments": [
+                      [
+                          "amount": "72",
+                          "group": "other_adjustments",
+                          "reason": "96"
+                      ]
+                  ],
+                  "amount": "0",
+                  "amount_owed": "0",
+                  "claim_paid_date": "2017-04-04",
+                  "payer_id": "62308",
+                  "procedure_code": "A4554",
+                  "procedure_qualifier": "HC",
+                  "quantity": "120"
+              ],
+              "charge_amount": "72",
+              "diagnosis_codes": [
+                  "N184"
+              ],
+              "is_emergency": false,
+              "ordering_provider": [
+                  "first_name": "STEVEN",
+                  "last_name": "DOE",
+                  "npi": "1912301953",
+                  "state_license_number": "SC12345"
+              ],
+              "procedure_code": "A4554",
+              "provider_control_number": "900002",
+              "service_date": "2017-03-20",
+              "unit_count": "120",
+              "unit_type": "units"
+          ]
       ],
-      [
-        "procedure_code": "99214",
-        "charge_amount": "3",
-        "unit_count": "1.0",
-        "diagnosis_codes": [
-          "Z1159"
-        ],
-        "service_date": "2015-10-10",
-        "unit_type": "units"
-      ],
-      [
-        "procedure_code": "86663",
-        "charge_amount": "2",
-        "unit_count": "1.0",
-        "diagnosis_codes": [
-          "Z1159"
-        ],
-        "service_date": "2015-10-10",
-        "unit_type": "units"
-      ]
-    ],
-    "prior_authorization_number": "0A02d"
+      "total_charge_amount": "167.67"
   ],
   "coordination_of_benefits": [
-   "subscriber": [
-        "first_name": "Jane",
-        "last_name": "Doe",
-        "member_id": "W000000000",
-        "address": [
-            "address_lines": ["123 N MAIN ST"],
-            "city": "SPARTANBURG",
-            "state": "SC",
-            "zipcode": "29301"
-        ],
-        "birth_date": "1970-01-01",
-        "gender": "female"
-        "relationship": "self",
-        "payer_responsibility": "primary",
-        "patient_signature_source": "patient",
-        "authorize_payment_to_billing_provider": "yes",
-        "release_of_information_code": "informed_consent"
-    ],
-    "payer_amount_paid": "200.50",
-    "amount_owed": "150.50",
-    "claim_level_adjustments": [
-      "adjustments": [
-        [
-          "claim_adjustment_group_code": "other_adjustments",
-          "claim_adjustment_reason_code": "1",
-          "adjustment_amount": "2.00",
-          "adjustment_quantity": "3"
-        ],
-        [
-          "claim_adjustment_group_code": "other_adjustments",
-          "claim_adjustment_reason_code": "4",
-          "adjustment_amount": "5.00",
-          "adjustment_quantity": "6"
-        ]
+      "payer": [
+          "id": "777654",
+          "organization_name": "BCBSSC"
       ],
-    ],
-    "line_level_adjustments": [
-      "adjustments": [
-        [
-          "service_line_number": 1,
-          "service_line_paid_amount": 1000,
-          "paid_service_unit_count": 2,
-          "cpt_code": "83839",
-          "procedure_modifier_codes": ["A", "B", "C", "D"],
-          "procedure_code_description": "Testing Testing",
-          "date_paid": "2015-10-10",
-          "remaining_patient_liability": "200",
-          "adjustment_information": [
-            [
-              "claim_adjustment_group_code": "patient_responsibility",
-              "claim_adjustment_reason_code": "1",
-              "adjustment_amount": "2.00",
-              "adjustment_quantity": "3"
-            ],
-            [
-              "claim_adjustment_group_code": "contractual_obligations",
-              "claim_adjustment_reason_code": "4",
-              "adjustment_amount": "5.00",
-              "adjustment_quantity": "6"
-            ],
-        [
-          "service_line_number": 2,
-          "service_line_paid_amount": 300,
-          "paid_service_unit_count": 1,
-          "cpt_code": "83839",
-          "procedure_code_description": "Testing Testing",
-          "adjustment_information": [
-            [
-              "claim_adjustment_group_code": "patient_responsibility",
-              "claim_adjustment_reason_code": "1",
-              "adjustment_amount": "2.00",
-              "adjustment_quantity": "3"
-            ],
-            [
-              "claim_adjustment_group_code": "contractual_obligations",
-              "claim_adjustment_reason_code": "4",
-              "adjustment_amount": "5.00",
-              "adjustment_quantity": "6"
-            ]
+      "payer_amount_paid": "40.66",
+      "subscriber": [
+          "address": [
+              "address_lines": [
+                  "100 CALHOUN"
+              ],
+              "city": "CHARLESTON",
+              "state": "SC",
+              "zipcode": "29407"
           ],
-          "date_paid": "2015-10-10",
-          "remaining_patient_liability": "200"
-             ]
-          ]
-        ]
+          "authorize_payment_to_billing_provider": "yes",
+          "claim_filing_code": "commercial_insurance_co",
+          "first_name": "EMMIE",
+          "group_number": "888754",
+          "last_name": "DOE",
+          "member_id": "987654321",
+          "payer_responsibility": "primary",
+          "relationship": "self",
+          "release_of_information_code": "signed_statement"
       ]
-    ]
+  ],
+  "payer": [
+      "address": [
+          "address_lines": [
+              "PO BOX 301404"
+          ],
+          "city": "CHARLESTON",
+          "state": "SC",
+          "zipcode": "29407"
+      ],
+      "id": "12345",
+      "organization_name": "CHARLESTON HEALTH PLAN"
+  ],
+  "receiver": [
+      "id": "EMPORIUM",
+      "organization_name": "X12 FLAT FILE EMPORIUM"
+  ],
+  "submitter": [
+      "contacts": [
+          [
+              "contact_methods": [
+                  [
+                      "type": "phone",
+                      "value": "8431114444"
+                  ]
+              ],
+              "name": "BOB DOE"
+          ]
+      ],
+      "id": "55512",
+      "organization_name": "MEDCO MEDICAL INC"
+  ],
+  "subscriber": [
+      "address": [
+          "address_lines": [
+              "100 CALHOUN"
+          ],
+          "city": "CHARLESTON",
+          "state": "SC",
+          "zipcode": "29407"
+      ],
+      "birth_date": "2015-01-05",
+      "claim_filing_code": "commercial_insurance_co",
+      "first_name": "EMMIE",
+      "gender": "female",
+      "last_name": "DOE",
+      "member_id": "987654321",
+      "payer_responsibility": "secondary"
   ]
 ] as [String:Any]
 try client.claims(params: data)
 ```
+
+
 
 
 *Available modes of operation: batch/async*
@@ -4479,6 +4845,7 @@ The /claims/ endpoint accepts the following parameters:
 | claim.service_lines.forms.questions.date_response  | The date response to the question                                                                                                                                                                                                                                                |                                                    |
 | claim.service_lines.forms.questions.percent_decimal_response| The percent decimal response to the question                                                                                                                                                                                                                            |                                                    |
 | claim.service_lines.referral_number           | The referral number for the service line claim                    |                                                    |
+| claim.service_line.adjudication               | Provides previous payer adjudication information for the claim service line. [below](#claim-adjudication) |
 | claim.paperwork                               | Supplemental claim information (paperwork traveling separate from the claim transaction).                                                                                                                                                                                             |                                                    |
 | claim.paperwork.report_type                   | The report type associated with the paperwork.                                                                                                                                                                                                                                        |                                                    |
 | claim.paperwork.transmission_method           | The transmission method of the paperwork (e.g. email, fax).                                                                                                                                                                                                                           |                                                    |
@@ -4597,11 +4964,11 @@ The /claims/ response contains an activity and thus returns the same object as t
 | provider_commercial_number        | A proprietary number assigned to a provider by the destination payer.                                                                                                            |                                                    |
 | upin                              | A unique physician identification number which was replaced by the use of NPI.                                                                                                  |                                                    |
 | location_number                   | A location number assigned to a provider.                                                                                                                                        |                                                    |
-| address                           | The provider's address. Uses an adress [object](#claims-address).                                                                                                               |                                                    |
+| address                           | The provider's address. Uses an address [object](#claims-address).                                                                                                               |                                                    |
 | payment_address                   | The provider's payment address to be used when the address for payment is different than that of the billing provider.  Parameter is placed under the billing provider and uses an address [object](#claims-address).                                                                                                      |                                                    |
 |contacts                          | A list of contacts associated with the provider.                                                                                                                                |                                                    |
 | contacts.name                     | The name of the contact.                                                                                                                                                        |                                                    |
-| contacts.contact_methods          | A list of contact methods assoicated with the contact.                                                                                                                          |                                                    |
+| contacts.contact_methods          | A list of contact methods associated with the contact.                                                                                                                          |                                                    |
 | contacts.contact_methods.type     | The type of contact method. Possibilities are email, fax, phone, phone_extensions, and url.                                                                                     |                                                    |
 | contacts.contact_methods.value    | The value assoicated with a contact type (e.g. a phone number).                                                                                                                 |                                                    |
 
@@ -4622,56 +4989,45 @@ The /claims/ response contains an activity and thus returns the same object as t
 | Field                                 | Description                                                                                                       |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
 | subscriber                            | Required: The subscriber of the policy for the additional payer. May be the same as the original payer with some additional field requirements. Uses the Subscriber [object](#claims-subscriber-object). |
-| claim_level_adjustments               | Used to communicate information about claim level adjustments received in a remittance to a secondary payer. Uses the Claim Level Adjustments [object](#claims-claim-level-adjustments-object). |
-| line_level_adjustments                | Used to communicate information about service line level adjustments received in a remittance to a secondary payer. Uses the Line Level Adjustments [object](#claims-line-level-adjustments-object). |
+| adjustments                           | List of claim adjustments (maximum of five). Support varies by trading partner. Uses the adjustment [below](#claim-adjustment). |
 | payer_amount_paid                | Amount paid on the claim after claim has been adjudicated by the primary payer. |
 | amount_owed                | Remaining liability amount to be paid after adjudication by the primary payer. |
-| payer                | Required: The payer information to communicate to the top level payer for coordination of benefits.  Uses the payer [object](#coordination-of-benefits-payer). |
+| payer                | Required: The payer information to communicate to the top level payer for coordination of benefits.  Uses the payer [object](#claim-adjustment). |
 
+<a name="claim-adjustment"></a>
+###Claim Adjustment object:
+Adjustments are used to balance the original submitted billing amounts, monetary and service units, against the primary payer, secondary payer, and patient's payment amounts and responsibility.
 
-<a name="claims-claim-level-adjustments-object"></a>
-###Claim Level Adjustments object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| adjustments                        | List of claim level adjustments with group code, reason code, amount, and quantity. [object](#claims-claim-level-adjustment-items) |
+| Field                              | Description                                                              |
+| :----------------------------------|:-------------------------------------------------------------------------|
+| group                              | Required: The adjustment group code. Identifies the payment adjustment category. [object](#claim-adjustment-group-codes) |
+| reason                             | Required: The adjustment reason code as defined in HCFA CPCS 139 (Claim Adjustment Reason Codes). Identifies the reason the adjustment was made. |
+| amount                             | Required: Adjusts a claim total or service line monetary amount. |
+| quantity                           | Adjusts the number of service units used in the claim or on within a specific service line. |
 
-<a name="claims-claim-level-adjustment-items"></a>
-###Claim Level Adjustment Items object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| claim_adjustment_group_code        | Code which defines the reason for the adjustments. [object](#claim-adjustment-group-codes) |
-| claim_adjustment_reason_code       | Reason code as provided in the 835 response from the primary payer. |
-| adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Adjustment quantity as specified for the secondary payer. |
+Full list of possible values that can be used in the adjustment.group field:
 
-<a name="claims-line-level-adjustments-object"></a>
-###Line Level Adjustments object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| adjustments                        | List of line level adjustments that outlines items specific to adjustments for service lines. [object](#claims-line-level-adjustment-items) |
+<a name="claim-adjustment-group-codes"></a>
+| adjustment.group Values                       |
+|:---------------------------------- |
+| 'contractual_obligations' |
+| 'other_adjustments' |
+| 'payor_initiated_reductions' |
+| 'patient_responsibility' |
+| 'corrections_and_reversals' |
 
-
-<a name="claims-line-level-adjustment-items"></a>
-###Line Level Adjustment Items object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| service_line_paid_amount           | Monetary amount paid for this service line. |
-| paid_service_unit_count            | ￼Number of paid units from the remittance advice. If paid units are not present on the ERA, use the original billed units. |
-| service_line_number                | Used to specify to which service_line the adjustments will be applied. Required if more than one service line and more than one line level adjustment are provided. |
-| cpt_code                           | The CPT code indicating the type of service that was performed. |
-| procedure_modifier_codes           | A list of procedure modifier codes for the claim.  If procedure modifier codes are included, a cpt_code must also be provided. |
-| procedure_code_description         | Description relating to the procedure code. |
-| adjustment_information             | List of line level adjustments with group code, reason code, amount, and quantity. [object](#claims-line-level-adjustment-information-items) |
-
-
-<a name="claims-line-level-adjustment-information-items"></a>
-###Line Level Adjustment Information Items object:
-| Field                              | Description                                                                                                                                                                                                                                                                           |
-|:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| claim_adjustment_group_code        | Group code describing the type of adjustment [object](#claim-adjustment-group-codes) |
-| claim_adjustment_reason_code       | Reason code as provided in the 835 response from the primary payer. |
-| adjustment_amount                  | Adjustment amount as specified for the secondary payer. |
-| adjustment_quantity                | Adjustment quantity as specified for the secondary payer. |
+<a name="claim-adjudication"></a>
+###Claim Adjudication object:
+Tracks previous payments and adjustments made to a service line within a Coordination of Benefits transaction.
+| Field                              | Description                                                              |
+| :----------------------------------|:-------------------------------------------------------------------------|
+| amount                             | Required: The amount paid for the service line.                          |
+| procedure_code                     | Required: The service line  procedure code (HCPCS/CPT).                              |
+| procedure_modifiers                | List of modifier codes for the service line procedure (maximum of 4)     |
+| quantity                           | The service line quantity                                                |
+| adjustments                        | List of claim service line adjustments (maximum of 5). Uses the adjustment [object](#claim-adjustment) |
+| claim_paid_date                    | Required: The date the service line was paid. In ISO8601 format (YYYY-MM-DD). |
+| amount_owed                        | The remaining patient liability amount for the service line. |
 
 <a name="coordination-of-benefits-payer"></a>
 ###Payer object:
@@ -4680,17 +5036,6 @@ The /claims/ response contains an activity and thus returns the same object as t
 | organization_name               | Name information for the coordination of benefits payer. |
 | id                              | Numerical payer id value associated with coordination of benefits payer. |
 | address                         | Address information for the coordination of benefits payer.  Uses an address [object](#claims-address).  |
-
-<a name="claim-adjustment-group-codes"></a>
-Full list of possible values that can be used in the claim_adjusment_group_code fields:
-
-| claim_adjustment_group_code Values                       |
-|:---------------------------------- |
-| 'contractual_obligations' |
-| 'other_adjustments' |
-| 'payor_initiated_reductions' |
-| 'patient_responsibility' |
-| 'corrections_and_reversals' |
 
 
 <a name="claim-frequency"></a>
