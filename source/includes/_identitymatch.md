@@ -739,9 +739,9 @@ Users interact with the identity match system through an interface called a `mat
 |:--------------|:------------|:-------------------------------------------------------------|
 | /identity/match_config/ | GET        | List all of the MatchConfigs |
 | /identity/match_config/ | POST        | Update or create a single MatchConfig |
-| /identity/match_config/_uuid_or_algorithm_id | GET        | Retrieve a single MatchConfig by uuid or algorithm_id |
-| /identity/match_config/_uuid_or_algorithm_id | DELETE        | Removes a single MatchConfig by uuid or algorithm_id |
-| /identity/match_config/_uuid_or_algorithm_id | PUT        | Modify a single MatchConfig by uuid or algorithm_id |
+| /identity/match_config/uuid_or_algorithm_id | GET        | Retrieve a single MatchConfig by uuid or algorithm_id |
+| /identity/match_config/uuid_or_algorithm_id | DELETE        | Removes a single MatchConfig by uuid or algorithm_id |
+| /identity/match_config/uuid_or_algorithm_id | PUT        | Modify a single MatchConfig by uuid or algorithm_id |
 
 
 The following endpoints provide basic CRUD operations for an platform app's `MatchConfigs`. Each `MatchConfig` has two fields:
@@ -758,12 +758,12 @@ The matching endpoints are how MatchConfig operations are exposed to the end use
 
 | Endpoint      | HTTP Method | Description                                                  |
 |:--------------|:------------|:-------------------------------------------------------------|
-| /identity/match/_algorithm_id/find | POST        | Request for a specific canonical_id document from the MatchConfig specified by `<algorithm_id>` |
-| /identity/match/_algorithm_id | POST        | Submits a new IdentityMatchRequest to the MatchConfig specified by `<algorithm_id>`. |
-| /identity/match/_algorithm_id/_canonical_id | GET        | Request for a specific canonical_id document from the MatchConfig specified by `<algorithm_id>` |
-| /identity/match/_algorithm_id/_canonical_id/sources | GET        | Requests the `source_id` documents associated with a specified `canonical_id` document within the given MatchConfig, using a direct `uuid` lookups |
-| /identity/match/_algorithm_id/source/_source_id| GET        | Retrieves a source id by uuid |
-| /identity/match/_algorithm_id/source/_source_id/_canonical_id | GET        | Retrieves the canonical\_ids which the source\_id has been associated with by the specified MatchConfig |
+| /identity/match/algorithm_id/find | POST        | Request for a specific canonical_id document from the MatchConfig specified by `<algorithm_id>` |
+| /identity/match/algorithm_id | POST        | Submits a new IdentityMatchRequest to the MatchConfig specified by `<algorithm_id>`. |
+| /identity/match/algorithm_id/canonical_id | GET        | Request for a specific canonical_id document from the MatchConfig specified by `<algorithm_id>` |
+| /identity/match/algorithm_id/canonical_id/sources | GET        | Requests the `source_id` documents associated with a specified `canonical_id` document within the given MatchConfig, using a direct `uuid` lookups |
+| /identity/match/algorithm_id/source/source_id| GET        | Retrieves a source id by uuid |
+| /identity/match/algorithm_id/source/source_id/canonical_id | GET        | Retrieves the canonical\_ids which the source\_id has been associated with by the specified MatchConfig |
 
 When submiting a `POST` to `/identity/match/<algorithm_id>`, if the IdentityMatchRequest fails validation the endpoint will respond with a 422 status code and the response body will contain relevant error messages. Otherwise the response will contain the `source_id` assigned to the IdentityMatchRequest document by the match system. This uuid can then later be used to look up the canonical_id that the IdentityMatchRequest was matched to. It is also useful to note that `/<algorithm_id>/<canonical_id>` via a `GET` is much more efficient than a `/<algorithm_id>/find` via a `POST` query, but returns the same response format.
 
