@@ -196,7 +196,7 @@ The /tradingpartners/ response contains the following fields:
 <a name="search-options"></a>
 Full list of possible search options that may be available for use with a trading partner on eligibility requests.
 These constants align with Section 1.4.8 (Search Options) of the X12 270/271 specification around the use of available
-member information to locate the member in the trading partner's system.
+member information to locate the member in the trading partner's system. Please note that supported search options are subject to change and are dictated by the trading partner. For best results, include as much information as possible and note that primary_search is most effective.
 
 
 | Search Option                               | Description
