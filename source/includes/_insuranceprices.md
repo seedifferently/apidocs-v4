@@ -40,22 +40,22 @@ try client.insurancePrices(cptCode: "90658", zipCode: "94401")
 {
   "amounts": [
     {
-      "high_price": 24.38,
-      "standard_deviation": 3.409736666884995,
-      "average_price": 18.491500000000002,
+      "high_price": 40.34,
+      "standard_deviation": 6.362073336381782,
+      "average_price": 20.896499999999996,
       "payer_type": "insurance",
       "payment_type": "allowed",
-      "low_price": 13.57,
-      "median_price": 19.27
+      "low_price": 14.8,
+      "median_price": 20.33
     },
     {
-      "high_price": 51.71,
-      "standard_deviation": 8.675179825225527,
-      "average_price": 32.05,
+      "high_price": 54.62,
+      "standard_deviation": 10.572772826345037,
+      "average_price": 32.0905,
       "payer_type": "insurance",
       "payment_type": "submitted",
-      "low_price": 24.32,
-      "median_price": 31.02
+      "low_price": 22.42,
+      "median_price": 31.2
     }
   ],
   "cpt_code": "90658",
@@ -94,11 +94,10 @@ The /prices/insurance response contains the following fields:
 |:----------------------------|:----------|:----------------------------------------------------------------|:---------|
 | cpt_code      	    	  | {string}  | The CPT code of the procedure                                   | Required |
 | geo_zip_area  			  | {string}  | The three character zip code tabulation area code               | Required |
-| description    			  | {string}  | Description of the returned insurance prices.               	| Required |
 | amounts.high_price    	  | {decimal} | The maximum price for the procedure                             | Required |
 | amounts.standard_deviation  | {decimal} | Standard deviation of the insurance price amounts.              | Required |
 | amounts.average_price 	  | {decimal} | The weighted average price based on the number of procedures    | Required |
 | amounts.low_price     	  | {decimal} | The lowest price for the procedure                              | Required |
 | amounts.median_price  	  | {decimal} | The median price for the procedure                              | Required |
 | amounts.payer_type    	  | {string}  | The insurance payer type: insurance or medicare                 | Required |
-| amounts.payment_type  	  | {string}  | Possible values are "allowed", "submitted", or "paid". The allowed amount is the dollar amount typically considered payment-in-full by a payer and an associated network of healthcare providers. For Medicare, the allowed amount is the average of the Medicare allowed amount for the service; this figure is the sum of the amount Medicare pays, the deductible and coinsurance amounts, and any amounts that a third party is responsible for paying. The submitted amount is the dollar amount the provider submitted to the payer in the insurance claim. The paid amount is the dollar amount that was reimbursed to the provider. | Required |
+| amounts.payment_type  	  | {string}  | Possible values are "allowed", "submitted", "paid", or "standardized". The allowed amount when payer_type:insurance is the dollar amount typically considered payment-in-full by a payer and an associated network of healthcare providers. For Medicare (when payer_type:medicare) the allowed amount is the average of the Medicare allowed amount for the service; this figure is the sum of the amount Medicare pays, the deductible and coinsurance amounts, and any amounts that a third party is responsible for paying. The submitted amount is the dollar amount the provider submitted to the payer in the insurance claim. The paid amount is the dollar amount that was reimbursed to the provider.  The standardized amount removes geographic differences in payment rates for individual services. | Required |
