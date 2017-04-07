@@ -94,12 +94,8 @@ try client.insurancePrices(cptCode: "99203", zipCode: "94401")
       "standard_deviation": 8.986004924696134
     }
   ],
-  "location": {
-    "geo_zip_area": "944"
-  },
-  "procedure": {
-    "cpt_code": "99203"
-  }
+  "geo_zip_area": "944",
+  "cpt_code": "99203"
 }
 ```
 
