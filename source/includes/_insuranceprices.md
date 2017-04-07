@@ -3,35 +3,35 @@
 > example fetching insurance price information
 
 ```shell
-curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/prices/insurance?cpt_code=90658&zip_code=94401
+curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/prices/insurance?cpt_code=99203&zip_code=94401
 ```
 
 ```python
-client.insurance_prices(zip_code='94401', cpt_code='90658')
+client.insurance_prices(zip_code='94401', cpt_code='99203')
 ```
 
 ```csharp
 client.pricesInsurance(
 			new Dictionary<string, string> {
 				{ "zip_code", "94401" },
-				{ "cpt_code", "90658" }
+				{ "cpt_code", "99203" }
 			});
 ```
 
 ```ruby
-client.insurance_prices({zip_code: '94401', cpt_code: '90658'})
+client.insurance_prices({zip_code: '94401', cpt_code: '99203'})
 ```
 
 ```java
 HashMap<String, String>() query = new HashMap<String, String>();
 query.put("zip_code", "94401");
-query.put("cpt_code", "90658");
+query.put("cpt_code", "99203");
 
 client.insurancePrices(query);
 ```
 
 ```swift
-try client.insurancePrices(cptCode: "90658", zipCode: "94401")
+try client.insurancePrices(cptCode: "99203", zipCode: "94401")
 ```
 
 >Example Response:
@@ -40,26 +40,66 @@ try client.insurancePrices(cptCode: "90658", zipCode: "94401")
 {
   "amounts": [
     {
-      "high_price": 40.34,
-      "standard_deviation": 6.362073336381782,
-      "average_price": 20.896499999999996,
+      "average": 123.3645,
+      "high": 161.73,
+      "low": 108.08,
+      "median": 133.73,
       "payer_type": "insurance",
       "payment_type": "allowed",
-      "low_price": 14.8,
-      "median_price": 20.33
+      "standard_deviation": 15.85575484603303
     },
     {
-      "high_price": 54.62,
-      "standard_deviation": 10.572772826345037,
-      "average_price": 32.0905,
+      "average": 208.80499999999998,
+      "high": 280.73,
+      "low": 182.45,
+      "median": 208.21,
       "payer_type": "insurance",
       "payment_type": "submitted",
-      "low_price": 22.42,
-      "median_price": 31.2
+      "standard_deviation": 34.80339356657624
+    },
+    {
+      "average": 74.22024823703075,
+      "high": 83.913333333,
+      "low": 17.922,
+      "median": 75.92828482041077,
+      "payer_type": "medicare",
+      "payment_type": "standardized",
+      "standard_deviation": 7.521841261411875
+    },
+    {
+      "average": 87.68441466859153,
+      "high": 97.162777778,
+      "low": 14.5365,
+      "median": 90.50126353946429,
+      "payer_type": "medicare",
+      "payment_type": "paid",
+      "standard_deviation": 9.672560546364663
+    },
+    {
+      "average": 238.48777715084063,
+      "high": 525,
+      "low": 125,
+      "median": 234,
+      "payer_type": "medicare",
+      "payment_type": "submitted",
+      "standard_deviation": 59.51082623548598
+    },
+    {
+      "average": 126.08792947814867,
+      "high": 128.68,
+      "low": 73.27,
+      "median": 128.68,
+      "payer_type": "medicare",
+      "payment_type": "allowed",
+      "standard_deviation": 8.986004924696134
     }
   ],
-  "cpt_code": "90658",
-  "geo_zip_area": "944"
+  "location": {
+    "geo_zip_area": "944"
+  },
+  "procedure": {
+    "cpt_code": "99203"
+  }
 }
 ```
 
