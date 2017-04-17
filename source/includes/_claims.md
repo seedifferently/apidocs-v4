@@ -3766,7 +3766,7 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
             "state": "SC",
             "zipcode": "29407"
         },
-        "npi": "1487640231",
+        "npi": "1234567890",
         "organization_name": "MEDCO MEDICAL INC",
         "payment_address": {
             "address_lines": [
@@ -3830,7 +3830,7 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
                 "ordering_provider": {
                     "first_name": "STEVEN",
                     "last_name": "DOE",
-                    "npi": "1912301953",
+                    "npi": "1234567890",
                     "state_license_number": "SC12345"
                 },
                 "procedure_code": "T4529",
@@ -3902,37 +3902,6 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
             "release_of_information_code": "signed_statement"
         }
     },
-    "payer": {
-        "address": {
-            "address_lines": [
-                "PO BOX 301404"
-            ],
-            "city": "CHARLESTON",
-            "state": "SC",
-            "zipcode": "29407"
-        },
-        "id": "12345",
-        "organization_name": "CHARLESTON HEALTH PLAN"
-    },
-    "receiver": {
-        "id": "EMPORIUM",
-        "organization_name": "X12 FLAT FILE EMPORIUM"
-    },
-    "submitter": {
-        "contacts": [
-            {
-                "contact_methods": [
-                    {
-                        "type": "phone",
-                        "value": "8431114444"
-                    }
-                ],
-                "name": "BOB DOE"
-            }
-        ],
-        "id": "55512",
-        "organization_name": "MEDCO MEDICAL INC"
-    },
     "subscriber": {
         "address": {
             "address_lines": [
@@ -3968,7 +3937,7 @@ client.claims({
             "state": "SC",
             "zipcode": "29407"
         },
-        "npi": "1487640231",
+        "npi": "1234567890",
         "organization_name": "MEDCO MEDICAL INC",
         "payment_address": {
             "address_lines": [
@@ -4032,7 +4001,7 @@ client.claims({
                 "ordering_provider": {
                     "first_name": "STEVEN",
                     "last_name": "DOE",
-                    "npi": "1912301953",
+                    "npi": "1234567890",
                     "state_license_number": "SC12345"
                 },
                 "procedure_code": "T4529",
@@ -4104,37 +4073,6 @@ client.claims({
             "release_of_information_code": "signed_statement"
         }
     },
-    "payer": {
-        "address": {
-            "address_lines": [
-                "PO BOX 301404"
-            ],
-            "city": "CHARLESTON",
-            "state": "SC",
-            "zipcode": "29407"
-        },
-        "id": "12345",
-        "organization_name": "CHARLESTON HEALTH PLAN"
-    },
-    "receiver": {
-        "id": "EMPORIUM",
-        "organization_name": "X12 FLAT FILE EMPORIUM"
-    },
-    "submitter": {
-        "contacts": [
-            {
-                "contact_methods": [
-                    {
-                        "type": "phone",
-                        "value": "8431114444"
-                    }
-                ],
-                "name": "BOB DOE"
-            }
-        ],
-        "id": "55512",
-        "organization_name": "MEDCO MEDICAL INC"
-    },
     "subscriber": {
         "address": {
             "address_lines": [
@@ -4169,7 +4107,7 @@ client.claims({
             "state": "SC",
             "zipcode": "29407"
         },
-        "npi": "1487640231",
+        "npi": "1234567890",
         "organization_name": "MEDCO MEDICAL INC",
         "payment_address": {
             "address_lines": [
@@ -4233,7 +4171,7 @@ client.claims({
                 "ordering_provider": {
                     "first_name": "STEVEN",
                     "last_name": "DOE",
-                    "npi": "1912301953",
+                    "npi": "1234567890",
                     "state_license_number": "SC12345"
                 },
                 "procedure_code": "T4529",
@@ -4305,37 +4243,6 @@ client.claims({
             "release_of_information_code": "signed_statement"
         }
     },
-    "payer": {
-        "address": {
-            "address_lines": [
-                "PO BOX 301404"
-            ],
-            "city": "CHARLESTON",
-            "state": "SC",
-            "zipcode": "29407"
-        },
-        "id": "12345",
-        "organization_name": "CHARLESTON HEALTH PLAN"
-    },
-    "receiver": {
-        "id": "EMPORIUM",
-        "organization_name": "X12 FLAT FILE EMPORIUM"
-    },
-    "submitter": {
-        "contacts": [
-            {
-                "contact_methods": [
-                    {
-                        "type": "phone",
-                        "value": "8431114444"
-                    }
-                ],
-                "name": "BOB DOE"
-            }
-        ],
-        "id": "55512",
-        "organization_name": "MEDCO MEDICAL INC"
-    },
     "subscriber": {
         "address": {
             "address_lines": [
@@ -4367,7 +4274,7 @@ client.claims({
         {"city", "CHARLESTON"},
         {"state", "SC"},
         {"zipcode", "29407"}}},
-        {"npi", "1487640231"},
+        {"npi", "1234567890"},
         {"organization_name", "MEDCO MEDICAL INC"},
         {"payment_address", new Dictionary<string, object>{
             {"address_lines", new object[] {"PO BOX 123"}},
@@ -4404,7 +4311,7 @@ client.claims({
                 {"ordering_provider", new Dictionary<string, object>{
                     {"first_name", "STEVEN"},
                     {"last_name", "DOE"},
-                    {"npi", "1912301953"},
+                    {"npi", "1234567890"},
                     {"state_license_number", "SC12345"}}},
                 {"procedure_code", "T4529"},
                 {"provider_control_number", "900001"},
@@ -4438,7 +4345,7 @@ client.claims({
                 {"ordering_provider", new Dictionary<string, object>{
                     {"first_name", "STEVEN"},
                     {"last_name", "DOE"},
-                    {"npi", "1912301953"},
+                    {"npi", "1234567890"},
                     {"state_license_number", "SC12345"}}},
                 {"procedure_code", "A4554"},
                 {"provider_control_number", "900002"},
@@ -4488,28 +4395,6 @@ client.claims({
         }}
     });
 
-    cobClaimRequest.Add("payer", new Dictionary<string, object>{
-        {"id", "12345"},
-        {"organization_name", "CHARLESTON HEALTH PLAN"},
-        {"address", new Dictionary<string, object>{
-            {"address_lines", new string[] {"PO BOX 301404"}},
-            {"city", "CHARLESTON"},
-            {"state", "SC"},
-            {"zipcode", "29407"}
-        }}
-    });
-
-    cobClaimRequest.Add("receiver", new Dictionary<string, object>{
-        {"id", "EMPORIUM"},
-        {"organization_name", "X12 FLAT FILE EMPORIUM"}
-    });
-
-    cobClaimRequest.Add("submitter", new Dictionary<string, object>{
-        {"id", "55512"},
-        {"organization_name", "MEDCO MEDICAL INC"},
-        {"contacts", new object[] {new Dictionary<string, object>{{"name", "BOB DOE"}}}}
-    });
-
     cobClaimRequest.Add("subscriber", new Dictionary<string, object>{
         {"birth_date", "2015-01-05"},
         {"claim_filing_code", "commercial_insurance_co"},
@@ -4542,7 +4427,7 @@ let data = [
           "state": "SC",
           "zipcode": "29407"
       ],
-      "npi": "1487640231",
+      "npi": "1234567890",
       "organization_name": "MEDCO MEDICAL INC",
       "payment_address": [
           "address_lines": [
@@ -4606,7 +4491,7 @@ let data = [
               "ordering_provider": [
                   "first_name": "STEVEN",
                   "last_name": "DOE",
-                  "npi": "1912301953",
+                  "npi": "1234567890",
                   "state_license_number": "SC12345"
               ],
               "procedure_code": "T4529",
@@ -4640,7 +4525,7 @@ let data = [
               "ordering_provider": [
                   "first_name": "STEVEN",
                   "last_name": "DOE",
-                  "npi": "1912301953",
+                  "npi": "1234567890",
                   "state_license_number": "SC12345"
               ],
               "procedure_code": "A4554",
@@ -4678,37 +4563,6 @@ let data = [
           "release_of_information_code": "signed_statement"
       ]
   ],
-  "payer": [
-      "address": [
-          "address_lines": [
-              "PO BOX 301404"
-          ],
-          "city": "CHARLESTON",
-          "state": "SC",
-          "zipcode": "29407"
-      ],
-      "id": "12345",
-      "organization_name": "CHARLESTON HEALTH PLAN"
-  ],
-  "receiver": [
-      "id": "EMPORIUM",
-      "organization_name": "X12 FLAT FILE EMPORIUM"
-  ],
-  "submitter": [
-      "contacts": [
-          [
-              "contact_methods": [
-                  [
-                      "type": "phone",
-                      "value": "8431114444"
-                  ]
-              ],
-              "name": "BOB DOE"
-          ]
-      ],
-      "id": "55512",
-      "organization_name": "MEDCO MEDICAL INC"
-  ],
   "subscriber": [
       "address": [
           "address_lines": [
@@ -4745,7 +4599,7 @@ client.claims({
             "state": "SC", 
             "zipcode": "29407"
         }, 
-        "npi": "1487640231", 
+        "npi": "1234567890", 
         "organization_name": "MEDICO MEDICAL INC", 
         "payment_address": {
             "address_lines": [
@@ -4776,7 +4630,7 @@ client.claims({
                 "ordering_provider": {
                     "first_name": "STEVEN", 
                     "last_name": "DOE", 
-                    "npi": "1912301953"
+                    "npi": "1234567890"
                 }, 
                 "procedure_code": "A4605", 
                 "provider_control_number": "992443", 
@@ -4839,37 +4693,6 @@ client.claims({
             }
         }
     ], 
-    "correlation_id": "C0200000000001150965", 
-    "payer": {
-        "address": {
-            "address_lines": [
-                "PO BOX 301404"
-            ], 
-            "city": "CHARLESTON", 
-            "state": "SC", 
-            "zipcode": "29407"
-        }, 
-        "id": "12345", 
-        "organization_name": "CHARLESTON MEDICARE PLAN"
-    }, 
-    "receiver": {
-        "id": "EMPORIUM", 
-        "organization_name": "X12 FLAT FILE EMPORIUM"
-    }, 
-    "submitter": {
-        "contacts": [
-            {
-                "contact_methods": [
-                    {
-                        "type": "phone", 
-                        "value": "8431114444"
-                    }
-                ]
-            }
-        ], 
-        "id": "55512", 
-        "organization_name": "MEDICO MEDICAL INC"
-    }, 
     "subscriber": {
         "address": {
             "address_lines": [
