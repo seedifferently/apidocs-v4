@@ -4585,7 +4585,7 @@ try client.claims(params: data)
 ```
 
 
-> Sample Coordination of Benefits Claim Request (example includes 3 payers, with COB as a list).
+> Sample Coordination of Benefits Claim Request (example includes 3 payers, with COB as a list) Can support up to 11 payers. For list of payer_responsibility Values, see here: #payer-responsibility.
 
 ```python
 client.claims({
