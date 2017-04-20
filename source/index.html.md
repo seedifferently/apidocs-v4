@@ -45,6 +45,6 @@ includes:
   - dropin
   # - raw_x12_support
 
-search: true
+search: false
 
 ---
