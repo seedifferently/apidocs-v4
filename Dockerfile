@@ -1,6 +1,9 @@
-FROM ruby:2.1.5
+FROM ruby:2.2.6-onbuild
+MAINTAINER Adrian Perez <adrian@adrianperez.org>
+VOLUME /usr/src/app/source
+EXPOSE 4567
 
-RUN apt-get update
-WORKDIR /app
-ADD Gemfile* /app/
-RUN bundle install
+RUN apt-get update && apt-get install -y nodejs \
+&& apt-get clean && rm -rf /var/lib/apt/lists/*
+
+CMD ["bundle", "exec", "middleman", "server", "--watcher-force-polling"]

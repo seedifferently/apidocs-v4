@@ -5,11 +5,8 @@ language_tabs:
   - shell: cURL
   - python: Python
   - ruby: Ruby
-  #- javascript: NodeJS
   - csharp: C#
   - java: Java
-  #- haskell: Haskell
-  #- lua: Lua
   - swift: Swift
 
 toc_footers:
@@ -21,20 +18,20 @@ includes:
   - clientlibraries
   - endpoints
   - activities
-  - authorizations
+  # - authorizations
   - cashprices
   - claims
   - claimsconvert
   - claimstatus
   - eligibility
   - icdconvert
-  - identityproof
+  # - identityproof
   - identitymatch
   - insuranceprices
   - mpc
   - oop_insurance
   - pharmacy_formulary
-  - pharmacy_network
+  # - pharmacy_network
   - pharmacy_plans
   - plans
   - providers
@@ -46,7 +43,7 @@ includes:
   - apicallbacks
   - apidashboard
   - dropin
-  - raw_x12_support
+  # - raw_x12_support
 
 search: true
 
