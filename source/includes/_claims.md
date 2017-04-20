@@ -3750,7 +3750,7 @@ try client.claims(params: data)
 ```
 
 
-> Sample Coordination of Benefits Claim Request.
+> Sample Coordination of Benefits Claim Request (example includes 2 payers, with COB as a dict).
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json" -XPOST -d '{
@@ -4731,6 +4731,166 @@ try client.claims(params: data)
 ```
 
 
+> Sample Coordination of Benefits Claim Request (example includes 3 payers, with COB as a list).
+
+```python
+client.claims({
+    "trading_partner_id": "MOCKPAYER",
+    "billing_provider": {
+        "address": {
+            "address_lines": [
+                "25 RAINBOW ROW"
+            ], 
+            "city": "CHARLESTON", 
+            "state": "SC", 
+            "zipcode": "29407"
+        }, 
+        "npi": "1487640231", 
+        "organization_name": "MEDICO MEDICAL INC", 
+        "payment_address": {
+            "address_lines": [
+                "PO BOX 123"
+            ], 
+            "city": "CHARLESTON", 
+            "state": "SC", 
+            "zipcode": "29401"
+        }, 
+        "tax_id": "123456789", 
+        "taxonomy_code": "777B12345X"
+    }, 
+    "claim": {
+        "claim_frequency": "original", 
+        "direct_payment": "y", 
+        "information_release": "signed_statement", 
+        "patient_control_number": "C0200000000001150965", 
+        "place_of_service": "home", 
+        "plan_participation": "assigned", 
+        "provider_signature": true, 
+        "service_lines": [
+            {
+                "charge_amount": "570", 
+                "diagnosis_codes": [
+                    "Z930"
+                ], 
+                "is_emergency": false, 
+                "ordering_provider": {
+                    "first_name": "STEVEN", 
+                    "last_name": "DOE", 
+                    "npi": "1912301953"
+                }, 
+                "procedure_code": "A4605", 
+                "provider_control_number": "992443", 
+                "service_date": "2017-01-24", 
+                "unit_count": "30", 
+                "unit_type": "units"
+            }
+        ], 
+        "total_charge_amount": "570"
+    }, 
+    "coordination_of_benefits": [
+        {
+            "payer": {
+                "id": "123456", 
+                "organization_name": "AETNA HEALTH PLANS"
+            }, 
+            "subscriber": {
+                "address": {
+                    "address_lines": [
+                        "100 Calhoun Street"
+                    ], 
+	
+                    "city": "CHARLESTON", 
+                    "state": "SC", 
+                    "zipcode": "29407"
+                }, 
+                "authorize_payment_to_billing_provider": "yes", 
+                "claim_filing_code": "commercial_insurance_co", 
+                "first_name": "EMMIE", 
+                "group_number": "47672912001", 
+                "last_name": "DOE", 
+                "member_id": "W128675309", 
+                "payer_responsibility": "secondary", 
+                "relationship": "self", 
+                "release_of_information_code": "signed_statement"
+            }
+        }, 
+        {
+            "payer": {
+                "id": "MCAIDSC", 
+                "organization_name": "MEDICAID SC"
+            }, 
+            "subscriber": {
+                "address": {
+                    "address_lines": [
+                        "100 Calhoun Street"
+                    ], 
+                    "city": "CHARLESTON", 
+                    "state": "SC", 
+                    "zipcode": "29407"
+                }, 
+                "authorize_payment_to_billing_provider": "yes", 
+                "claim_filing_code": "medicaid", 
+                "first_name": "EMMIE", 
+                "last_name": "DOE", 
+                "member_id": "519108745", 
+                "payer_responsibility": "tertiary", 
+                "relationship": "self", 
+                "release_of_information_code": "signed_statement"
+            }
+        }
+    ], 
+    "correlation_id": "C0200000000001150965", 
+    "payer": {
+        "address": {
+            "address_lines": [
+                "PO BOX 301404"
+            ], 
+            "city": "CHARLESTON", 
+            "state": "SC", 
+            "zipcode": "29407"
+        }, 
+        "id": "12345", 
+        "organization_name": "CHARLESTON MEDICARE PLAN"
+    }, 
+    "receiver": {
+        "id": "EMPORIUM", 
+        "organization_name": "X12 FLAT FILE EMPORIUM"
+    }, 
+    "submitter": {
+        "contacts": [
+            {
+                "contact_methods": [
+                    {
+                        "type": "phone", 
+                        "value": "8431114444"
+                    }
+                ]
+            }
+        ], 
+        "id": "55512", 
+        "organization_name": "MEDICO MEDICAL INC"
+    }, 
+    "subscriber": {
+        "address": {
+            "address_lines": [
+                "100 Calhoun Street"
+            ], 
+            "city": "CHARLESTON", 
+            "state": "SC", 
+            "zipcode": "29403"
+        }, 
+        "birth_date": "1930-11-26", 
+        "claim_filing_code": "medicare_part_b", 
+        "first_name": "EMMIE", 
+        "gender": "male", 
+        "last_name": "DOE", 
+        "member_id": "86753090020", 
+        "payer_responsibility": "primary"
+    }, 
+    "transaction_code": "chargeable"
+})
+```
+
 
 
 *Available modes of operation: batch/async*
@@ -4986,9 +5146,10 @@ The /claims/ response contains an activity and thus returns the same object as t
 
 <a name="claims-coordination-of-benefits-object"></a>
 ###Coordination of Benefits object:
+The coordination of benefits object can be either a list or a dict. If two payers are included in the claim (one payer in COB), COB will be a dict. If three or more payers are included (two+ payers in COB), COB will be a list.
 | Field                                 | Description                                                                                                       |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-| subscriber                            | Required: The subscriber of the policy for the additional payer. May be the same as the original payer with some additional field requirements. Uses the Subscriber [object](#claims-subscriber-object). |
+| subscriber                            | Required: The subscriber of the policy for the additional payer(s). May be the same as the original payer with some additional field requirements. Uses the Subscriber [object](#claims-subscriber-object). |
 | adjustments                           | List of claim adjustments (maximum of five). Support varies by trading partner. Uses the adjustment [below](#claim-adjustment). |
 | payer_amount_paid                | Amount paid on the claim after claim has been adjudicated by the primary payer. |
 | amount_owed                | Remaining liability amount to be paid after adjudication by the primary payer. |
@@ -5033,8 +5194,8 @@ Tracks previous payments and adjustments made to a service line within a Coordin
 ###Payer object:
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| organization_name               | Name information for the coordination of benefits payer. |
-| id                              | Numerical payer id value associated with coordination of benefits payer. |
+| organization_name               | Required: Name information for the coordination of benefits payer. |
+| id                              | Required: Numerical payer id value associated with coordination of benefits payer. |
 | address                         | Address information for the coordination of benefits payer.  Uses an address [object](#claims-address).  |
 
 
