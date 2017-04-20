@@ -65,19 +65,19 @@ with their types. Credit and rate limiting information is only included in the
 meta information for APIs that are billable and/or rate limited. Processing
 time is always included in the meta information.
 
-| Key               | Type     | Description                                                            |
-|:------------------|:---------|:-----------------------------------------------------------------------|
-| activity_id       | {uuid}   | The id of the activity used to process the API request                 |
-| application_mode  | {string} | Indicates if the application is configured for test or production use  |
-| credits_billed    | {int}    | The amount of credits billed for this request                          |
-| credits_remaining | {int}    | The amount of credits remaining on your API account                    |
-| message           | {string} | Additional API response message                                        |
-| next              | {int}    | A url pointing to the next page of results                             |
-| previous          | {int}    | A url pointing to the previous page of results                         |
-| processing_time   | {int}    | The time to process the request in milliseconds                        |
-| rate_limit_amount | {int}    | The amount of requests made during the current rate limit period       |
-| rate_limit_cap    | {int}    | The amount of requests available per hour                              |
-| rate_limit_reset  | {int}    | The time (Unix Timestamp) when the rate limit amount resets            |
+| Key               | Type     | Description                                                             |
+|:------------------|:---------|:------------------------------------------------------------------------|
+| activity_id       | {uuid}   | The id of the activity used to process the API request                  |
+| application_mode  | {string} | Indicates if the application is configured for test or production use   |
+| credits_billed    | {int}    | The amount of credits billed for this request                           |
+| credits_remaining | {int}    | The amount of credits remaining on your API account                     |
+| message           | {string} | Additional API response message                                         |
+| next              | {int}    | A url pointing to the next page of results                              |
+| previous          | {int}    | A url pointing to the previous page of results                          |
+| processing_time   | {int}    | The time to process the request in milliseconds                         |
+| rate_limit_amount | {int}    | The amount of requests made during the current rate limit period        |
+| rate_limit_cap    | {int}    | The amount of requests available within a rate limit period (per minute)|
+| rate_limit_reset  | {int}    | The time (Unix Timestamp) when the rate limit amount resets             |
 
 ## Errors
 > Unauthorized access
@@ -271,8 +271,8 @@ their billing tier.
 
 ### Rate limit exceeded
 This may be encountered when too many API calls are made within a period of
-time for a rate limited endpoint. Rate limits are currently enforced on an
-hourly basis. If your application receives a 403, you can wait for the rate
+time for a rate limited endpoint. Rate limits are currently enforced on a
+per minute basis. If your application receives a 403, you can wait for the rate
 limit period to renew and then make the API call again.
 
 ### Required information missing or invalid
