@@ -271,7 +271,7 @@ their billing tier.
 
 ### Rate limit exceeded
 This may be encountered when too many API calls are made within a period of
-time for a rate limited endpoint. Rate limits are currently enforced on an
+time for a rate limited endpoint. Rate limits are currently enforced on a
 per minute basis. If your application receives a 403, you can wait for the rate
 limit period to renew and then make the API call again.
 
