@@ -667,7 +667,7 @@ built-in scheduling system for providers without a PM. The API provides consumer
 schedule appointments in a manner independent of the provider's PM system. OAuth scopes are used to
 restrict access to provider's PM systems and user's personal information.
 
-The scheduling API is an integration API, designed to integrate with an exiting EMR or Patient Management system. Please contact PokitDok on enabling this API for your application.
+The scheduling API is an integration API, designed to integrate with an existing EMR or Patient Management system. Please contact PokitDok on enabling this API for your application.
 
 Available Scheduling Endpoints:
 
