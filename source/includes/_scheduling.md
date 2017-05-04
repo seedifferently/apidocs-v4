@@ -667,6 +667,8 @@ built-in scheduling system for providers without a PM. The API provides consumer
 schedule appointments in a manner independent of the provider's PM system. OAuth scopes are used to
 restrict access to provider's PM systems and user's personal information.
 
+This API requires a live integration and PokitDok development work to initiate.
+
 Available Scheduling Endpoints:
 
 | Endpoint                            | HTTP Method | Description                                                                  | Scope                             | 
