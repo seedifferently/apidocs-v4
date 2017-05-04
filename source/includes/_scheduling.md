@@ -259,7 +259,7 @@ client.schedule_slots({
 ```
 
 ```csharp
-client.createSlot(
+client.scheduleSlots(
     new Dictionary<string, object> {
         {"pd_provider_uuid", "b691b7f9-bfa8-486d-a689-214ae47ea6f8"},
         {"location", new Object[] {32.78811, -79.932364}},
