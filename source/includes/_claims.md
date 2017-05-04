@@ -3425,7 +3425,7 @@ let data = [
 try client.claims(params: data)
 ```
 
-> Sample Claims request for sending service date range, using service date and service end date:
+> Sample Claims request for sending service date range, using service date and service end date with a claim note:
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json" -XPOST -d '{
@@ -3461,6 +3461,10 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
     },
     "claim": {
         "total_charge_amount": 60.0,
+	"note": {
+            "reference_code": "additional_information",
+            "note": "this is a note"
+            },
         "service_lines": [
             {
                 "procedure_code": "99213",
@@ -4947,9 +4951,9 @@ The /claims/ endpoint accepts the following parameters:
 | claim.attending_provider.npi                  | (_Institutional claim specific_) The National Provider Identifier for the attending provider.                                                                                                                                                                                         |                                                    |
 | claim.attending_provider.taxonomy_code        | (_Institutional claim specific_) The taxonomy code for the attending provider.                                                                                                                                                                                                        |                                                    |
 | claim.attending_provider.organization_name    | (_Institutional claim specific_) The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                                                                                 |                                                    |
-| claim.note                                    | Claim Note/Special Instruction.                                                                                                                                                                                                                                                       |                                                    |
+| claim.note                                    | Claim Note object.                                                                                                                                                                                                                                                       |                                                    |
 | claim.note.reference_code                     | Reference codes associated with claim note. Possibilities are additional_information (ADD), goals_rehab_discharge (DCP), certification_narrative (CER), diagnosis_description (DGN), third_party_organization_notes (TPO).                                                            |                                                    |
-| claim.note.note                               | Claim note text.                                                                                                                                                                                                                                                                      |                                                    |
+| claim.note.note                 		| Message text for claim note.                                                            |                                                    |
 | claim.occurrence_information                  | (_Institutional claim specific_) A dictionary of information related to the occurrence/frequency of the claim.                                                                                                                                                                        |                                                    |
 | claim.occurrence_information.occurrence_type  | (_Institutional claim specific_) The type of claim-related occurrence for specifc dates. A full list of possible values can be found [below](#occtype). UB-04 field: *31. Occurrence Code*                                                                                            |                                                    |
 | claim.occurrence_information.occurrence_dates | (_Institutional claim specific_) The specific dates for the claim-related occurrence type. UB-04 field: *31. Occurrence Date* In ISO8601 format (YYYY-MM-DD).                                                                                                                         |                                                    |
