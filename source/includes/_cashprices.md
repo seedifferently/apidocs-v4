@@ -14,7 +14,7 @@ client.cash_prices({ zip_code: '29412', cpt_code: '99385'})
 ```
 
 ```csharp
-client.pricesCash(
+client.cashPrices(
     new Dictionary<string, string> {
         { "zip_code", "29412" },
         { "cpt_code", "99385" }

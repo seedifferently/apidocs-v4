@@ -11,11 +11,12 @@ client.insurance_prices(zip_code='94401', cpt_code='99203')
 ```
 
 ```csharp
-client.pricesInsurance(
+client.insurancePrices(
 			new Dictionary<string, string> {
 				{ "zip_code", "94401" },
 				{ "cpt_code", "99203" }
 			});
+```
 ```
 
 ```ruby
