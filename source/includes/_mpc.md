@@ -49,7 +49,7 @@ client.mpc(name='office')
 ```
 
 ```csharp
-client.medicalProcedureCode(
+client.mpc(
     new Dictionary<string, string> {
         {"name", "Established patient office or other outpatient visit, typically 15 minutes"}
     });
