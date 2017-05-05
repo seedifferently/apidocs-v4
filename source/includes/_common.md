@@ -160,7 +160,7 @@ Date: Tue, 25 Feb 2014 16:04:50 GMT
 Content-Type: application/json
 Content-Length: 28
 {
-    "message": "Forbidden"
+    "message": "Forbidden (Rate Limited)"
 }
 ```
 
