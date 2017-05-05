@@ -17,7 +17,6 @@ client.insurancePrices(
 				{ "cpt_code", "99203" }
 			});
 ```
-```
 
 ```ruby
 client.insurance_prices({zip_code: '94401', cpt_code: '99203'})
