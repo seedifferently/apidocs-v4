@@ -75,9 +75,12 @@ time is always included in the meta information.
 | next              | {int}    | A url pointing to the next page of results                              |
 | previous          | {int}    | A url pointing to the previous page of results                          |
 | processing_time   | {int}    | The time to process the request in milliseconds                         |
-| rate_limit_amount | {int}    | The amount of requests made during the current rate limit period        |
+| rate_limit_amount | {int}    | The amount of requests made during the current rate limit period (default: 84 requests per minute)       |
 | rate_limit_cap    | {int}    | The amount of requests available within a rate limit period (per minute)|
 | rate_limit_reset  | {int}    | The time (Unix Timestamp) when the rate limit amount resets             |
+
+#### Rate Limiting
+The number of requests an application can make by default for rate limited resources is 84 per minute. API client applications may request higher throttle limit values based on their specific needs and level of support. If a `403` http status code is received, the API client application should replay that request after the rate limit period resets.
 
 ## Errors
 > Unauthorized access
