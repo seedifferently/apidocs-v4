@@ -3425,7 +3425,7 @@ let data = [
 try client.claims(params: data)
 ```
 
-> Sample Claims request for sending service date range, using service date and service end date:
+> Sample Claims request for sending service date range, using service date and service end date with a claim note:
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/json" -XPOST -d '{
@@ -3461,6 +3461,10 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
     },
     "claim": {
         "total_charge_amount": 60.0,
+	"note": {
+            "reference_code": "additional_information",
+            "note": "this is a note"
+            },
         "service_lines": [
             {
                 "procedure_code": "99213",
@@ -4947,9 +4951,9 @@ The /claims/ endpoint accepts the following parameters:
 | claim.attending_provider.npi                  | (_Institutional claim specific_) The National Provider Identifier for the attending provider.                                                                                                                                                                                         |                                                    |
 | claim.attending_provider.taxonomy_code        | (_Institutional claim specific_) The taxonomy code for the attending provider.                                                                                                                                                                                                        |                                                    |
 | claim.attending_provider.organization_name    | (_Institutional claim specific_) The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                                                                                 |                                                    |
-| claim.note                                    | Claim Note/Special Instruction.                                                                                                                                                                                                                                                       |                                                    |
+| claim.note                                    | Claim Note object.                                                                                                                                                                                                                                                       |                                                    |
 | claim.note.reference_code                     | Reference codes associated with claim note. Possibilities are additional_information (ADD), goals_rehab_discharge (DCP), certification_narrative (CER), diagnosis_description (DGN), third_party_organization_notes (TPO).                                                            |                                                    |
-| claim.note.note                               | Claim note text.                                                                                                                                                                                                                                                                      |                                                    |
+| claim.note.note                 		| Message text for claim note.                                                            |                                                    |
 | claim.occurrence_information                  | (_Institutional claim specific_) A dictionary of information related to the occurrence/frequency of the claim.                                                                                                                                                                        |                                                    |
 | claim.occurrence_information.occurrence_type  | (_Institutional claim specific_) The type of claim-related occurrence for specifc dates. A full list of possible values can be found [below](#occtype). UB-04 field: *31. Occurrence Code*                                                                                            |                                                    |
 | claim.occurrence_information.occurrence_dates | (_Institutional claim specific_) The specific dates for the claim-related occurrence type. UB-04 field: *31. Occurrence Date* In ISO8601 format (YYYY-MM-DD).                                                                                                                         |                                                    |
@@ -4959,6 +4963,9 @@ The /claims/ endpoint accepts the following parameters:
 | claim.service_lines.procedure_code            | The CPT code for the service that was performed                                                                                                                                                                                                                                       | 24d: Procedures, Services, or Supplies             |
 | claim.service_lines.procedure_modifier_codes  | Optional: List of modifier codes for the specified procedure. (e.g. ["GT"])                                                                                                                                                                                                           | 24d: Procedures, Services, or Supplies             |
 | claim.service_lines.provider_control_number   | The provider's control number.                                                                                                                                                                                                                                                        |                                                    |
+| claim.service_lines.note              | Service Line Note object.                                                                                                                                                                                                              							     |						  |
+| claim.service_lines.note.reference_code              | Reference codes associated with service line note. Possibilities are additional_information (ADD), goals_rehab_discharge (DCP), certification_narrative (CER), diagnosis_description (DGN), third_party_organization_notes (TPO).                                                                                                                                                                                                      |                     |
+| claim.service_lines.note.note              | Message text for service line note.				                                                                                                  | 				                     |
 | claim.service_lines.revenue_code              | (_Institutional claim specific_) The revenue code related to this service. UB-04 field: *42. Revenue Code*                                                                                                                                                                            |                                                    |
 | claim.service_lines.service_date              | The date the service was performed. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                                                                                   | 24a: Date(s) of service (from)                     |
 | claim.service_lines.service_end_date          | Optional: The end date for the service. Use this to utilize a date range for the service date. In ISO8601 format (YYYY-MM-DD).                                                                                                                                                        | 24a: Date(s) of service (to)                       |
