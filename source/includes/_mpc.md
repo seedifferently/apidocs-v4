@@ -10,7 +10,7 @@ client.mpc(code='99213')
 ```
 
 ```csharp
-client.medicalProcedureCode("99211");
+client.mpc("99211");
 ```
 
 ```ruby
