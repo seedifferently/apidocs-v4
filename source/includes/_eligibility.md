@@ -2825,8 +2825,7 @@ Full list of possible service_type values with the associated code (from X12 spe
 | private_duty_nursing_home                             | CB              |
 | private_duty_nursing_inpatient                        | CA              |
 | professional_cardiac_rehabilitation_services_component| E30             |
-| professional_intensive_cardiac_rehabilitation_
-services_component                                      | E31             |
+| professional_intensive_cardiac_rehabilitation_services_component  | E31             |
 | professional_physician                                | 96              |
 | professional_physician_visit_home                     | A3              |
 | professional_physician_visit_inpatient                | 99              |
