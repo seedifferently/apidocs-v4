@@ -318,11 +318,13 @@ Field | Type | Description
 ----- | ---- | -----------
 callback_url | {string} | The URL that will be invoked to notify the client application that this Activity has completed. You must use https for callback URLs used by your application. For added security, a callback URL can be defined in the application.
 callback_error | {string} | Displays the error information associated with a failed callback attempt.
+created_date | {string} | The date/time that the activity was created on the platform.
 history | {object array} | Historical status of the progress of this Activity.
 history.record_dt | {datetime} | The date time associated with the history. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).
 history.name | {string} | State name associated with the history.
 history.title | {string} | State title associated with the history.
 id | {string} | ID of this Activity.
+last_updated_date | {string} | The date/time that the activity was last updated by the platform.
 name | {string} | Activity name.
 trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.
 parent_id | {string} | Id only present on sub-activities that were initiated via a batch file upload of activities.
