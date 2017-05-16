@@ -335,3 +335,4 @@ result_history.record_dt | {datetime} | The date time associated with the result
 state | {dict} | Current state of this Activity.
 transition_path | {array} | The list of state transitions that will be used for this Activity.
 units_of_work | {int} | The number of 'units of work' that the activity is operating on. This will typically be 1 for real-time requests like /eligibility/.
+tracking_description | {string} | A value that summarizes the tracking/outcome of long running transactions like claims.  It's currently only supported on claims activities.  Possible values that may be present on claims activities include: submitting, waiting, acknowledged, rejected, denied, adjudicated, paid and paid_in_full.
