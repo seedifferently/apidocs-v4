@@ -4394,7 +4394,7 @@ client.claims({
 
 Following the standard X12 837 format, the Claims endpoint allows applications to easily submit claims to designated trading partners. A Claim is submitted to the trading partner to report services completed and request compensation.  To understand how the Claims endpoint works, reference our <a href="https://pokitdok.com/developers/api/#api-claim-submission">Claims workflow</a>.
 
-The Claims endpoint gives clients the ability to submit either Professional (837P) claims. Professional format claims are submitted using the CMS-1500 parameters by physicians, suppliers and other non-institutional providers. To review which trading partners support claim transactions, visit our <a href="https://platform.pokitdok.com/tradingpartners#/">trading partners list</a>.
+The Claims endpoint gives clients the ability to submit Professional (837P) claims. Professional format claims are submitted using the CMS-1500 parameters by physicians, suppliers and other non-institutional providers. To review which trading partners support claim transactions, visit our <a href="https://platform.pokitdok.com/tradingpartners#/">trading partners list</a>.
 
 Once a claim has been submitted, status can be tracked through PokitDok's system using the Activities endpoint.  There is also an option to supply a callback_url in the claim request which indicates that your application should be notified when the asynchronous processing is complete and a claim acknowledgement has been received from the trading partner.  In order to track status in the trading partner's adjudication system, please utilize the Claim Status endpoint.
 
