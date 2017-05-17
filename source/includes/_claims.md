@@ -4907,6 +4907,9 @@ Once a claim has been submitted, status can be tracked through PokitDok's system
 
 A trading partner's first response lets you know if the request has been accepted (or rejected) by their claims validation system. Once your claim submission is accepted by the trading partner, it will enter their adjudication system. A tracking id or claim control number will be assigned after passing the validation stage, which can then be used in claims status requests to track the claim. A claim can be monitored via a Claims Status request once the claim has been accepted in the trading partner’s adjudication system. The speed at which a claim is adjudicated is dependent on the trading partner. On average it takes 5-7 days for a claim to enter a payer’s adjudication system, thus it is recommended to wait at least a week after submitting a claim to check its status. Once adjudication is complete, the trading partner will return an electronic remittance advice or ERA (if registered to receive ERAs), otherwise a paper remittance advice is sent with final adjudication information.  Review our [claim payments reference](claim_payments.html) for additional information.
 
+A special `trading_partner_id` called `MOCKPAYER` is available for use to test different claims scenarios.
+See [MOCKPAYER claims testing](#mockpayer-claims-testing) for details.
+
 
 Parameters that are specific to Institutional claims only have (_Insitutional claim specific_) in the Description column in the below endpoint parameter table.
 
@@ -5485,3 +5488,31 @@ Full list of possible values that can be returned in the `subscriber.payer_respo
 | ten                         | eleven             |
 | primary                     | secondary          |
 | tertiary                    | unknown            |
+
+
+<a name="mockpayer-claims-testing"></a>
+
+The `MOCKPAYER` trading partner id supports a few different testing scenarios to help API client applications
+verify their handling of different `claims` activity results.  Similar to some payment processors, special
+member id values and diagnosis code values may be used in a MOCKPAYER claims API request to simulate a rejection
+for that claim.
+
+The `00001234` member id value may be used to simulate a claim being rejected due to an invalid date of service.
+This will often happen when a claim is submitted for a date of service prior to the date that member became
+active for coverage.
+
+The `00009999` member id value may be used to simulate a claim being rejected due to an invalid date of birth
+for the subscriber/patient.  This can often happen if the eligiblity API is not utilized prior to submitting
+a claims API request to verify the member's information with the trading partner.
+
+The `I69.91` diagnosis code may be used to simulate a claim being rejected due to not enough specificity
+on the diagnosis code.   This happens sometimes when a diagnosis code is submitted that's not to be used
+for billing purporses.
+
+The `I11.945` diagnosis code may be used to simulate a claim being rejected for an invalid date of service.
+Some diagnosis codes are only approved for use prior to or after a specific date.
+
+When `MOCKPAYER` claims requests are submitted for processing, they'll enter a `scheduled` state if they're
+valid claims requests.   About 5 minutes or so after submission, those `MOCKPAYER` claims will be processed.
+If any of the above values are included in the claims request data, it will be rejected.   Otherwise, it
+will be accepted for further processing.
