@@ -354,12 +354,12 @@ curl -s -H "Authorization: Bearer $ACCESS_TOKEN" "https://platform.pokitdok.com/
 ```
 
 ```python
-client.appointments(appointment_type='SS1', start_date='2015-01-25T08:00:00',
+client.get_appointments(appointment_type='SS1', start_date='2015-01-25T08:00:00',
     end_date='2015-01-25T17:00:00', patient_uuid='8ae236ff-9ccc-44b0-8717-42653cd719d0')
 ```
 
 ```csharp
-client.appointments(
+client.getAppointments(
     new Dictionary<string, string> {
         {"appointment_type", "SS1"},
         {"start_date", "2015-01-25T08:00:00"},
@@ -369,7 +369,7 @@ client.appointments(
 ```
 
 ```ruby
-client.appointments({appointment_type: 'SS1', start_date: '2015-01-25T08:00:00',
+client.get_appointments({appointment_type: 'SS1', start_date: '2015-01-25T08:00:00',
     end_date: '2015-01-25T17:00:00', patient_uuid: '8ae236ff-9ccc-44b0-8717-42653cd719d0'})
 ```
 
@@ -425,15 +425,15 @@ curl -s -H "Authorization: Bearer $ACCESS_TOKEN" "https://platform.pokitdok.com/
 ```
 
 ```python
-client.appointments(appointment_uuid='ef987691-0a19-447f-814d-f8f3abbf4859')
+client.get_appointments(appointment_uuid='ef987691-0a19-447f-814d-f8f3abbf4859')
 ```
 
 ```csharp
-client.appointments("bf8440b1-fd20-4994-bb28-e3981833e796");
+client.getAppointments("bf8440b1-fd20-4994-bb28-e3981833e796");
 ```
 
 ```ruby
-client.appointments({appointment_uuid: 'ef987691-0a19-447f-814d-f8f3abbf4859'})
+client.get_appointments({appointment_uuid: 'ef987691-0a19-447f-814d-f8f3abbf4859'})
 ```
 
 ```java
