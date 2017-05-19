@@ -237,7 +237,7 @@ be comprised of other objects.
 | description   | {string} | The claim payment remark provided by the trading partner to clarify the adjudication message for a given service line  |Yes       |
 | code   | {string} | The numerical value associated with the remark | Yes       |
 
-(<a href="#claim_payment">Back to Claim Payment Result</a>)
+(<a href="#service_object">Back to Service Object</a>)
 
 # Codes
 Many of the values above are limited to a set of codes or constants.
