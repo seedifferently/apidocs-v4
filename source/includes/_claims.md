@@ -618,7 +618,7 @@ try client.claims(params: data)
         "id": "W000000000"
     },
     "production_date": "2016-12-05",
-    "transaction_type": "remittance_information_only"
+    "transaction_type": "remittance_information_only",
     "meta": {
        "transaction_created_date": "2016-12-08"
     }
