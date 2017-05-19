@@ -537,6 +537,12 @@ try client.claims(params: data)
                     "service_units_submitted": 1,
                     "service_date": "2016-11-01",
                     "control_number": "20161205123456789"
+		    "remarks": [
+                       {
+                          "description": "Service denied because payment already made for same/similar procedure within set time frame.",
+                          "code": "M86"
+                        }
+                    ]
                 }
             ],
             "status": "processed_as_primary",
@@ -613,6 +619,9 @@ try client.claims(params: data)
     },
     "production_date": "2016-12-05",
     "transaction_type": "remittance_information_only"
+    "meta": {
+       "transaction_created_date": "2016-12-08"
+    }
 }
 ```
 
