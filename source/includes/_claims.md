@@ -537,7 +537,7 @@ try client.claims(params: data)
                     "service_units_submitted": 1,
                     "service_date": "2016-11-01",
                     "control_number": "20161205123456789",
-		    "remarks": [
+                    "remarks": [
                        {
                           "description": "Service denied because payment already made for same/similar procedure within set time frame.",
                           "code": "M86"
