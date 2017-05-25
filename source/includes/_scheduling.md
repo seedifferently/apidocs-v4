@@ -197,7 +197,8 @@ client.request('/schedule/patient/', "POST", nil, {
     pd_patient_uuid: "2773f6ff-00cb-460f-823f-5ff2208511e7",
     pd_provider_uuid: "b691b7f9-bfa8-486d-a689-214ae47ea6f8",
     location: [32.788110, -79.932364]
-})```
+})
+```
 
 ```csharp
 string endpoint = "/schedule/patient/";
