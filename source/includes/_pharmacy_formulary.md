@@ -489,9 +489,15 @@ A formulary is a list of medications that are approved for coverage by an insura
 
 This endpoint returns tier level and restrictions such as prior authorization, step therapy, and quantity limit. Only Medicare Part C and D plans are currently available.
 
+### Endpoint Description
+
+<!--- beginning of table -->
+
 | Endpoint            | HTTP Method | Description                        |
 |:--------------------|:------------|:-----------------------------------|
 | /pharmacy/formulary | GET         | Determine drug coverage for member |
+
+<!--- end of table -->
 
 To use the Pharmacy Formulary Endpoint with a Medicare member, you will need the plan number. This is the contract ID (ex. S1234) + Plan's Plan Benefit Package (PBP) Number (ex. 001) concatenated together in that order. There are several ways to get this number. The plan number may be on the member’s insurance card. If not, you can use an NCPDP E1 eligibility check or PokitDok’s Eligibility Endpoint. With the Eligibility Endpoint, Medicare members with Part D coverage will have pharmacy.is_eligible set to true and the pharmacy.plan_number will contain their Medicare Part D plan_number. Note: Your NPI must be registered with Medicare to check eligibility.
 
@@ -509,7 +515,11 @@ In some cases, the member’s copay will be more than the total cost of the drug
 
 The field include_plans may be used if you would like to include an overview of the pharmacy plan information. This will add a new field to each drug document in the response.
 
-The /pharmacy/formulary endpoint accepts the following parameters:
+### Request Payload Parameters
+
+The `/pharmacy/formulary` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter          | Type      | Description                                                                                                                                                    | Presence |
 |:-------------------|:----------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|
@@ -522,7 +532,13 @@ The /pharmacy/formulary endpoint accepts the following parameters:
 | rxcui              | {string}  | An RxNorm concept unique identifier for a drug                                           | Either drug, drug_class, ndc, or rxcui must be present |
 | include_plans      | {boolean} | If set to true, will return pharmacy plan info in response                               | Optional                                        |
 
-The /pharmacy/formulary response contains the following fields:
+<!--- end of table -->
+
+### Response Payload Parameters
+
+The `/pharmacy/formulary` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                    | Type      | Description                                                                                                                                   | Presence |
 |:-------------------------|:----------|:----------------------------------------------------------------------------------------------------------------------------------------------|:---------|
@@ -541,3 +557,5 @@ The /pharmacy/formulary response contains the following fields:
 | mail.oop_90_day          | {string}  | Estimated out of pocket cost for 90 day supply of drug at an in-network mail order pharmacy                                                   | Optional |
 | mail.total_cost_90_day   | {string}  | Estimated total cost of drug for 90 day supply of drug at an in-network mail order pharmacy (average insurance negotiated rate with pharmacy) | Optional |
 | mail.ins_pay_90_day      | {string}  | Estimated amount insurance covers for 90 day supply of drug at an in-network mail order pharmacy                                              | Optional |
+
+<!--- end of table -->

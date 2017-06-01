@@ -632,7 +632,11 @@ try client.oopEstimate(params: data)
 The Out-of-Pokit (OOP) Insurance Estimate endpoint takes advantage of industry standard calculation methods
 and our eligibility endpoint to provide an estimate of what consumers may expect to pay out of pocket for a set of services.
 
+### Endpoint Description
+
 Available OOP Insurance Endpoints:
+
+<!--- beginning of table -->
 
 | Endpoint                                  | HTTP Method | Description                                                                                     |
 |:------------------------------------------|:------------|:------------------------------------------------------------------------------------------------|
@@ -640,11 +644,18 @@ Available OOP Insurance Endpoints:
 | /oop/insurance-load-price/{price_uuid}    | DELETE      | Removes a previously loaded procedure price from the system                                     |
 | /oop/insurance-estimate                   | POST        | Returns estimated out of pocket cost and eligibility information for a given procedure          |
 
-The /oop/insurance-load-price POST endpoint is used to load pricing data that is used in the /oop-insurance-estimate endpoint's calculations.
-The /oop/insurance-load-price endpoint may also be used to retrieve pricing data, specific to the client that loaded it.
+<!--- end of table -->
+
+The `/oop/insurance-load-price` POST endpoint is used to load pricing data that is used in the `/oop-insurance-estimate` endpoint's calculations.
+The `/oop/insurance-load-price` endpoint may also be used to retrieve pricing data, specific to the client that loaded it.
 Sending a request that includes only the trading_partner_id and cpt_bundle parameters will either return the currently loaded price or, if no price has been loaded, return an error response.
 
-The /oop/insurance-load-price POST endpoint accepts the following parameters:
+
+### Request Payload Parameters
+
+The `/oop/insurance-load-price` POST endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter          | Type     | Description                                                                                   | Presence |
 |:-------------------|:---------|:----------------------------------------------------------------------------------------------|:------------------|
@@ -653,11 +664,15 @@ The /oop/insurance-load-price POST endpoint accepts the following parameters:
 | price.amount       | {string} | The price of the bundle of procedures in the cpt_bundle                                       | Optional (include to load price, do not include to retrieve price) |
 | price.currency     | {string} | Optional: The denomination of the currency of the price.amount. Defaults to 'USD'             | Optional (include to load price, do not include to retrieve price) |
 
-The /oop/insurance-load-price POST response contains the aforementioned fields and activity tracking meta data.
-The /oop/insurance-load-price POST response also contains a "uuid" field that can be passed to the The /oop/insurance-load-price/{price_uuid} DELETE endpoint as the {price_uuid} in order to remove that loaded pricing data.
-The /oop/insurance-load-price/{price_uuid} DELETE endpoint may be used to delete previously loaded pricing data.
+<!--- end of table -->
 
-The /oop/insurance-estimate endpoint accepts the following parameters:
+The `/oop/insurance-load-price` POST response contains the aforementioned fields and activity tracking meta data.
+The `/oop/insurance-load-price` POST response also contains a "uuid" field that can be passed to the `/oop/insurance-load-price/{price_uuid}` DELETE endpoint as the {price_uuid} in order to remove that loaded pricing data.
+The `/oop/insurance-load-price/{price_uuid}` DELETE endpoint may be used to delete previously loaded pricing data.
+
+The `/oop/insurance-estimate` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter                             | Type     | Description                                                                                                                                                                        | Presence |
 |:--------------------------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|
@@ -671,6 +686,8 @@ The /oop/insurance-estimate endpoint accepts the following parameters:
 | eligibility.member.id                 | {string} | The named insured’s member identifier. May be omitted if member.birth_date is provided.                                                                                            | Optional |
 | zip_code                              | {string} | Optional: Used as a back up price data source if the trading partner has not loaded data for the chosen cpt_bundle. Hits the Insurance Prices endpoint to get prices based on area | Optional |
 
+<!--- end of table -->
+
 If eligibility information is not provided, generated eligibility data will be used, and a less accurate out of pocket estimate may be generated.
 
 While the endpoint accepts a five-digit zip code, only the first three digits
@@ -679,7 +696,11 @@ digits of the zip code, commonly called a "geozip" or a "ZIP Code Prefix". These
 three digits refer to the geographical regions surrounding major cities or
 metropolitan areas. There are approximately 900 "geozips" in the United States.
 
-The /oop/insurance-estimate response contains the following fields:
+### Response Payload Parameters
+
+The `/oop/insurance-estimate` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                                                 | Description                                                                                                                                                                     | Presence |
 |:------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------|
@@ -699,3 +720,4 @@ The /oop/insurance-estimate response contains the following fields:
 | calculation.upper_estimate                            | Collection of out of pocket cost estimates based on high_price.amount                                                                                                           | Required |
 | eligibility                                           | Full eligibility response from eligibility endpoint. See [eligibility documentation](#eligibility) above for more information                                                                   | Required |
 
+<!--- end of table -->

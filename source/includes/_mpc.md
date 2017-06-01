@@ -119,24 +119,42 @@ friendly information related to medical procedures. It's useful for identifying
 the procedure code (or codes) that match search queries. It can also be used
 for determining the official descriptions for a specific procedure code.
 
+### Endpoint Description
+
 Available Medical Procedure Code Endpoints:
+
+<!--- beginning of table -->
 
 | Endpoint    | HTTP Method | Description                                                                 |
 |:------------|:------------|:----------------------------------------------------------------------------|
 | /mpc/       | GET         | Get a list of medical procedure information meeting certain search criteria |
 | /mpc/{code} | GET         | Retrieve the data for a specific procedure code                             |
 
-The /mpc/ endpoint accepts the following parameters:
+<!--- end of table -->
+
+### Request Payload Parameters
+
+The `/mpc/` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter   | Type     | Description                                                                      | Presence |
 |:------------|:---------|:---------------------------------------------------------------------------------|:---------|
 | name        | {string} | Search medical procedure information by consumer friendly name                   | Optional |
 | description | {string} | A partial or full description to be used to locate medical procedure information | Optional |
 
-The /mpc/ response contains the following fields:
+<!--- end of table -->
+
+### Response Payload Parameters
+
+The `/mpc/` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field       | Type     | Description                                        | Presence |
 |:------------|:---------|:---------------------------------------------------|:---------|
 | code        | {string} | The procedure code                                 | Required |
 | name        | {string} | A consumer friendly name for the medical procedure | Required |
 | description | {string} | The medical procedure's clinical description       | Optional |
+
+<!--- end of table -->

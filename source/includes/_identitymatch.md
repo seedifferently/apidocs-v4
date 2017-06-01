@@ -730,10 +730,11 @@ try client.request(path: path, method: "GET")
 
 The identity match is an identity validation service that serves to collect source identity documents (`source_ids`) into canonical identities (`canonical_ids`). Ideally, a `canonical_id` is a unique digital representation of an individual.
 
-### MatchConfig Endpoints
+### Endpoint Descriptions
 
 Users interact with the identity match system through an interface called a `match configuration`, which consists of a matching algorithm (designed and deployed by PokitDok) and an input topic, which defines a collection of identity documents that incoming requests will be written to. It's possible, and expected, for different `MatchConfigs` to share an input topic, as this allows the same raw data to be processed according to a variety of matching schemes in parallel.
 
+<!--- beginning of table -->
 
 | Endpoint      | HTTP Method | Description                                                  |
 |:--------------|:------------|:-------------------------------------------------------------|
@@ -743,18 +744,11 @@ Users interact with the identity match system through an interface called a `mat
 | /identity/match_config/uuid_or_algorithm_id | DELETE        | Removes a single MatchConfig by uuid or algorithm_id |
 | /identity/match_config/uuid_or_algorithm_id | PUT        | Modify a single MatchConfig by uuid or algorithm_id |
 
-
-The following endpoints provide basic CRUD operations for an platform app's `MatchConfigs`. Each `MatchConfig` has two fields:
-
-| Parameter    | Type   | Description                                                                    | Unique | Required |
-|:-------------|:-------|:-------------------------------------------------------------------------------|:-------|:---------|
-| algorithm_id | string | The name of the PokitDok match algorithm to be applied.                        | Yes    | Yes      |
-| input_topic  | string | The collection of identity data that the match algorithm should be applied to. | No     | Yes      |
-
-
-### Match Endpoints
+<!--- end of table -->
 
 The matching endpoints are how MatchConfig operations are exposed to the end user. Each matching endpoint starts with `/identity/match/<algorithm_id>`, designating which of MatchConfig will process the requests. Many of the match operations pass all of their parameters as part of the url; those that don't all accept a standardized document called an `IdentityMatchRequest`.
+
+<!--- beginning of table -->
 
 | Endpoint      | HTTP Method | Description                                                  |
 |:--------------|:------------|:-------------------------------------------------------------|
@@ -765,11 +759,24 @@ The matching endpoints are how MatchConfig operations are exposed to the end use
 | /identity/match/algorithm_id/source/source_id| GET        | Retrieves a source id by uuid |
 | /identity/match/algorithm_id/source/source_id/canonical_id | GET        | Retrieves the canonical\_ids which the source\_id has been associated with by the specified MatchConfig |
 
-When submiting a `POST` to `/identity/match/<algorithm_id>`, if the IdentityMatchRequest fails validation the endpoint will respond with a 422 status code and the response body will contain relevant error messages. Otherwise the response will contain the `source_id` assigned to the IdentityMatchRequest document by the match system. This uuid can then later be used to look up the canonical_id that the IdentityMatchRequest was matched to. It is also useful to note that `/<algorithm_id>/<canonical_id>` via a `GET` is much more efficient than a `/<algorithm_id>/find` via a `POST` query, but returns the same response format.
+<!--- end of table -->
 
-The `source_id` endpoints are the `source_id` equivalents of the above `canonical_id` endpoints. The former retrieves a source id by `uuid`, and the latter retrieves the `canonical_id`s which the `source_id` has been associated with by the specified `MatchConfig`. It's worth mentioning that the `/<algorithm_id>/source/<source_id>/canonical [GET]` endpoint will return a list of documents, (usually just a single document), not just a list of `uuid`s.
+### Request Payload Parameters
 
-The `IdentityMatchRequest` object is defined as follows:
+Each `MatchConfig` endpoint accepts two fields:
+
+<!--- beginning of table -->
+
+| Parameter    | Type   | Description                                                                    | Unique | Required |
+|:-------------|:-------|:-------------------------------------------------------------------------------|:-------|:---------|
+| algorithm_id | string | The name of the PokitDok match algorithm to be applied.                        | Yes    | Yes      |
+| input_topic  | string | The collection of identity data that the match algorithm should be applied to. | No     | Yes      |
+
+<!--- end of table -->
+
+The `IdentityMatchRequest` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Field 	| Type 	| Description 	| Example Inputs 	|
 |:---------------------------	|:--------	|:-----------------------------------------------------	|:---------------------------------	|
@@ -793,4 +800,12 @@ The `IdentityMatchRequest` object is defined as follows:
 | address.country_code 	| string 	| Two character country code (defaults to 'US') 	| 'US' 	|
 | id | string | External identifier | '123asdf123'
 
+<!--- end of table -->
+
 **Note: while no fields are required, birth_date must be included in its entirety or not at all. **
+
+### Response Payloads
+
+When submiting a `POST` to `/identity/match/<algorithm_id>`, if the IdentityMatchRequest fails validation the endpoint will respond with a 422 status code and the response body will contain relevant error messages. Otherwise the response will contain the `source_id` assigned to the IdentityMatchRequest document by the match system. This uuid can then later be used to look up the canonical_id that the IdentityMatchRequest was matched to. It is also useful to note that `/<algorithm_id>/<canonical_id>` via a `GET` is much more efficient than a `/<algorithm_id>/find` via a `POST` query, but returns the same response format.
+
+The `source_id` endpoints are the `source_id` equivalents of the above `canonical_id` endpoints. The former retrieves a source id by `uuid`, and the latter retrieves the `canonical_id`s which the `source_id` has been associated with by the specified `MatchConfig`. It's worth mentioning that the `/<algorithm_id>/source/<source_id>/canonical [GET]` endpoint will return a list of documents, (usually just a single document), not just a list of `uuid`s.

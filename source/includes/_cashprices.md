@@ -76,18 +76,34 @@ digits of the zip code, commonly called a "geozip" or a "ZIP Code Prefix". These
 three digits refer to the geographical regions surrounding major cities or
 metropolitan areas. There are approximately 900 "geozips" in the United States.
 
+### Endpoint Description
+
+<!--- beginning of table -->
+
 | Endpoint     | HTTP Method | Description                                                                                 |
 |:-------------|:------------|:--------------------------------------------------------------------------------------------|
 | /prices/cash | GET         | Return a list of prices for a given procedure (by CPT Code) in a given region (by ZIP Code) |
 
-The /prices/cash endpoint accepts the following parameters:
+<!--- end of table -->
+
+### Request Payload Parameters
+
+The `/prices/cash` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter| Type     | Description                                | Presence |
 |:---------|:---------|:-------------------------------------------|:---------|
 | cpt_code | {string} | The CPT code of the procedure in question  | Required |
 | zip_code | {string} | Zip code in which to search for procedures | Required |
 
-The /prices/cash response contains the following fields:
+<!--- end of table -->
+
+### Response Payload Parameters
+
+The `/prices/cash` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                  | Type      | Description                                                               | Presence |
 |:-----------------------|:----------|:--------------------------------------------------------------------------|:---------|
@@ -100,6 +116,10 @@ The /prices/cash response contains the following fields:
 | low_price              | {decimal} | The lowest price for the procedure                                        | Required |
 | median_price           | {decimal} | The median price for the procedure                                        | Required |
 | standard_deviation     | {decimal} | The standard deviation, or variation measure, of prices for the procedure | Required |
+
+<!--- end of table -->
+
+### Additional Object Tables
 
 Currently the Cash Prices endpoint only supports the top fifty procedures. A list of these procedures and their corresponding cpt_codes can be seen below.
 

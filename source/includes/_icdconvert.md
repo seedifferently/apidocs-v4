@@ -70,20 +70,33 @@ try client.icdConvert(code: "250.12")
 The ICD Convert endpoint allows a client application to request ICD-9 to ICD-10 mapping information for the
 specified ICD-9 code.
 
+### Endpoint Description
+
+<!--- beginning of table -->
 
 | Endpoint     | HTTP Method | Description                                  |
 |:-------------|:------------|:---------------------------------------------|
 | /icd/convert | GET         | retrieve ICD-9 to ICD-10 mapping information |
 
+<!--- end of table -->
 
-The /icd/convert endpoint accepts the following parameters:
+### Request Payload Parameters
+
+The `/icd/convert` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter | Description |
 |:----------|:------------|
 | code      | ICD-9 code  |
 
+<!--- end of table -->
 
-The /icd/convert response contains the following fields:
+### Response Payload Parameters
+
+The `/icd/convert` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                                                     | Description                                                                                                       |
 |:----------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|
@@ -98,3 +111,5 @@ The /icd/convert response contains the following fields:
 | destination_scenarios.choice_lists.description            | a string representing a description of the source ICD-9 code                                                      |
 | destination_scenarios.choice_lists.system                 | a string representing the code system (icd9)                                                                      |
 | destination_scenarios.choice_lists.value                  | a string containing the ICD-9 code value                                                                          |
+
+<!--- end of table -->

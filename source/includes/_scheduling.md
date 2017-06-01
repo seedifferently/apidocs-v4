@@ -670,14 +670,103 @@ restrict access to provider's PM systems and user's personal information.
 
 The scheduling API is an integration API, designed to integrate with an existing EMR or Patient Management system. Please contact PokitDok on enabling this API for your application.
 
+### Endpoint Description
+
 Available Scheduling Endpoints:
+
+<!--- beginning of table -->
 
 | Endpoint                            | HTTP Method | Description                                                                  | Scope                             | 
 |:------------------------------------|:------------|:-----------------------------------------------------------------------------|:----------------------------------|
 | /schedule/schedulers/               | GET         | Get a list of supported scheduling systems and their UUIDs and descriptions. |                                   |
 | /schedule/schedulers/{uuid}         | GET         | Retrieve the data for a specified scheduling system.                         |                                   |
+| /schedule/appointmenttypes/         | GET         | Get a list of appointment types, their UUIDs, and descriptions. |                                   |
+| /schedule/appointmenttypes/{uuid}   | GET         | Retrieve the data for a specified appointment type.             |                                   |
+| /schedule/patient/                  | POST        | Registers an existing PokitDok user as a patient within a provider's scheduling system.           | user_schedule             |
+| /schedule/slots/                      | POST        | Creates an open scheduling slot. | business_schedule                                                                 |
+| /schedule/slots/{pd_appointment_uuid} | DELETE      | Deletes an open scheduling slot. | business_schedule                                                                 |
+| /schedule/appointments/                       | GET         | Query for appointments. business_schedule scope requests include pd_provider_uuid and location. user_schedule requests include  patient_uuid      | user_schedule or business_schedule  |
+| /schedule/appointments/{pd_appointment_uuid}  | GET         | Query for an open appointment slot or a booked appointment given a specific {pd_appointment_uuid}, the (PokitDok unique appointment identifier).  | user_schedule                       |
+| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Book appointment for an open slot. Post data contains patient attributes and description.                                                         | user_schedule                       |
+| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Update appointment description.                                                                                                                   | user_schedule                       |
+| /schedule/appointments/{pd_appointment_uuid}  | DELETE      | Cancel appointment given its {pd_appointment_uuid}.                                                                                               | user_schedule                       |
 
-The /schedule/schedulers response includes the following fields:
+<!--- end of table -->
+
+### Request Payload Parameters
+
+The `/schedule/patient/` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
+
+| Parameter        | Type           | Description                                                                           |
+|:-----------------|:---------------|:--------------------------------------------------------------------------------------|
+| pd_patient_uuid  | {uuid}         | The PokitDok unique identifier for the user record.                                   |
+| pd_provider_uuid | {uuid}         | The PokitDok unique identifier for the provider record.                               |
+| location         | {geo-location} | The geo-location of the provider's physical address, formatted [latitude, longitude]. |
+
+<!--- end of table -->
+
+The `/schedule/slots/` POST endpoint accepts the following parameters:
+
+<!--- beginning of table -->
+
+| Parameter        | Type           | Description                                                                                                 |
+|:-----------------|:---------------|:------------------------------------------------------------------------------------------------------------|
+| pd_provider_uuid | {uuid}         | The PokitDok unique identifier for the provider record.                                                     |
+| location         | {geo-location} | The geo-location of the provider's physical address, formatted [latitude, longitude].                       |
+| appointment_type | {string}       | The "appointment_type" used to identify a specific appointment procedure/category.                          |
+| start_date       | {datetime}     | The beginning date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).       |
+| end_date         | {datetime}     | The ending date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).          |
+
+<!--- end of table -->
+
+The `/schedule/appointments/` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
+
+| Field            | Type           | Description                                                                                                                     |
+|:-----------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------|
+| appointment_type | {string}       | The "appointment_type" used to identify a specific appointment procedure/category.                                              |
+| start_date       | {datetime}     | The beginning date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).                           |
+| end_date         | {datetime}     | The ending date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).                              |
+| patient_uuid     | {uuid}         | The PokitDok unique identifier for the patient that has booked an appointment.                                                  |
+| pd_provider_uuid | {uuid}         | The PokitDok unique identifier for the provider that has an open appointment slot.                                              |
+| location         | {geo-location} | The geo-location of the physical address where the provider that has an open appointment slot, formatted [latitude, longitude]. |
+
+<!--- end of table -->
+
+The `/schedule/appointments/{pd_appointment_uuid}` endpoint for booking an appointment accepts the following parameters:
+
+<!--- beginning of table -->
+
+| Field                   | Type           | Description                                                                                    |
+|:------------------------|:---------------|:-----------------------------------------------------------------------------------------------|
+| pd_appointment_uuid     | {uuid}         | The PokitDok unique identifier for the appointment.                                            |
+| status                  | {string}       | The appointment status: open, booked, or completed.                                            |
+| patient                 | {object}       | Patient associated with the appointment. Uses the patient [object](#scheduling_patient_object).|
+| description             | {string}       | Brief description of the appointment.                                                          |
+
+<!--- end of table -->
+
+The `/schedule/appointments/{pd_appointment_uuid}` endpoint is for either updating an appointment description or marking a booked appointment as completed.
+The endpoint accepts the following parameters:
+
+<!--- beginning of table -->
+
+| Field                   | Type           | Description                                                                                    |
+|:------------------------|:---------------|:-----------------------------------------------------------------------------------------------|
+| pd_appointment_uuid     | {uuid}         | The PokitDok unique identifier for the appointment.                                            |
+| description             | {string}       | Brief description of the appointment.                                                          |
+| mark_completed          | {string}       | Marks a booked appointment as completed.                                                       |
+
+<!--- end of table -->
+
+### Response Payload Parameters
+
+The `/schedule/schedulers` endpoint response includes the following fields:
+
+<!--- beginning of table -->
 
 | Field            | Type           | Description                                                                                                            |
 |:-----------------|:---------------|:-----------------------------------------------------------------------------------------------------------------------|
@@ -686,13 +775,11 @@ The /schedule/schedulers response includes the following fields:
 | description      | {string}       | Brief description of the scheduling system.                                                                            |
 | methods_payloads | {object}       | Conveys messaging information utilized by the Scheduling system, such as SOAP envelopes, message headers/footers, etc. |
 
+<!--- end of table -->
 
-| Endpoint                            | HTTP Method | Description                                                     | Scope                             | 
-|:------------------------------------|:------------|:--------------------------------------------------------------- |:----------------------------------|
-| /schedule/appointmenttypes/         | GET         | Get a list of appointment types, their UUIDs, and descriptions. |                                   |
-| /schedule/appointmenttypes/{uuid}   | GET         | Retrieve the data for a specified appointment type.             |                                   |
+The `/schedule/appointmenttypes/` endpoint response includes the following fields:
 
-The /schedule/appointmenttypes/ response includes the following fields:
+<!--- beginning of table -->
 
 | Field                   | Type           | Description                                                                        |
 |:------------------------|:---------------|:-----------------------------------------------------------------------------------|
@@ -704,74 +791,27 @@ The /schedule/appointmenttypes/ response includes the following fields:
 | duration                | {int}          | Duration of the appointment in minutes.                                            |
 | owner_id                | {string}       | The Platform application associated with the appointment type.                     |
 
+<!--- end of table -->
 
-| Endpoint                            | HTTP Method | Description                                                                                       | Scope                     | 
-|:------------------------------------|:------------|:--------------------------------------------------------------------------------------------------|:--------------------------|
-| /schedule/patient/                  | POST        | Registers an existing PokitDok user as a patient within a provider's scheduling system.           | user_schedule             |
+The `/schedule/appointments/` endpoint response returns a patient object.
 
-The /schedule/patient/ endpoint accepts the following parameters:
+<!--- beginning of table -->
 
-| Parameter        | Type           | Description                                                                           |
-|:-----------------|:---------------|:--------------------------------------------------------------------------------------|
-| pd_patient_uuid  | {uuid}         | The PokitDok unique identifier for the user record.                                   |
-| pd_provider_uuid | {uuid}         | The PokitDok unique identifier for the provider record.                               |
-| location         | {geo-location} | The geo-location of the provider's physical address, formatted [latitude, longitude]. |
+| Field            | Type           | Description                                                 |
+|:-----------------|:---------------|:------------------------------------------------------------|
+| uuid             | {uuid}         | The patient's unique identifier.                            |
+| email            | {email}        | The patient's email.                                        |
+| phone            | {string}       | The patient's phone number.                                 |
+| birth_date       | {date}         | The patient's date of birth. In ISO8601 format (YYYY-MM-DD).|
+| first_name       | {string}       | The patient's first name.                                   |
+| last_name        | {string}       | The patient's last name.                                    |
+| member_id        | {string}       | The patient's member id.                                    |
 
-The /schedule/patient/ endpoint response returns a patient [object](#scheduling_patient_object).
+<!--- end of table -->
 
-| Endpoint                              | HTTP Method | Description                      | Scope                                                                             |
-|:--------------------------------------|:------------|:---------------------------------|:----------------------------------------------------------------------------------|
-| /schedule/slots/                      | POST        | Creates an open scheduling slot. | business_schedule                                                                 |
-| /schedule/slots/{pd_appointment_uuid} | DELETE      | Deletes an open scheduling slot. | business_schedule                                                                 |
+Both the `/schedule/slots/` (POST) and `/schedule/appointments` (GET/PUT) endpoint response includes the following fields:
 
-The /schedule/slots/ POST endpoint accepts the following parameters:
-
-| Parameter        | Type           | Description                                                                                                 |
-|:-----------------|:---------------|:------------------------------------------------------------------------------------------------------------|
-| pd_provider_uuid | {uuid}         | The PokitDok unique identifier for the provider record.                                                     |
-| location         | {geo-location} | The geo-location of the provider's physical address, formatted [latitude, longitude].                       |
-| appointment_type | {string}       | The "appointment_type" used to identify a specific appointment procedure/category.                          |
-| start_date       | {datetime}     | The beginning date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).       |
-| end_date         | {datetime}     | The ending date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).          |
-
-| Endpoint                                      | HTTP Method | Description                                                                                                                                       | Scope                               |
-|:----------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------|
-| /schedule/appointments/                       | GET         | Query for appointments. business_schedule scope requests include pd_provider_uuid and location. user_schedule requests include  patient_uuid      | user_schedule or business_schedule  |
-| /schedule/appointments/{pd_appointment_uuid}  | GET         | Query for an open appointment slot or a booked appointment given a specific {pd_appointment_uuid}, the (PokitDok unique appointment identifier).  | user_schedule                       |
-| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Book appointment for an open slot. Post data contains patient attributes and description.                                                         | user_schedule                       |
-| /schedule/appointments/{pd_appointment_uuid}  | PUT         | Update appointment description.                                                                                                                   | user_schedule                       |
-| /schedule/appointments/{pd_appointment_uuid}  | DELETE      | Cancel appointment given its {pd_appointment_uuid}.                                                                                               | user_schedule                       |
-
-The /schedule/appointments/ endpoint accepts the following parameters:
-
-| Field            | Type           | Description                                                                                                                     |
-|:-----------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------|
-| appointment_type | {string}       | The "appointment_type" used to identify a specific appointment procedure/category.                                              |
-| start_date       | {datetime}     | The beginning date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).                           |
-| end_date         | {datetime}     | The ending date and UTC time of the appointment query. In ISO8601 format (YYYY-MM-DDThh:mm:ss.ssssss).                              |
-| patient_uuid     | {uuid}         | The PokitDok unique identifier for the patient that has booked an appointment.                                                  |
-| pd_provider_uuid | {uuid}         | The PokitDok unique identifier for the provider that has an open appointment slot.                                              |
-| location         | {geo-location} | The geo-location of the physical address where the provider that has an open appointment slot, formatted [latitude, longitude]. |
-
-The /schedule/appointments/{pd_appointment_uuid} endpoint for booking an appointment accepts the following parameters:
-
-| Field                   | Type           | Description                                                                                    |
-|:------------------------|:---------------|:-----------------------------------------------------------------------------------------------|
-| pd_appointment_uuid     | {uuid}         | The PokitDok unique identifier for the appointment.                                            |
-| status                  | {string}       | The appointment status: open, booked, or completed.                                            |
-| patient                 | {object}       | Patient associated with the appointment. Uses the patient [object](#scheduling_patient_object).| 
-| description             | {string}       | Brief description of the appointment.                                                          |
-
-The /schedule/appointments/{pd_appointment_uuid} endpoint for either updating an appointment description or marking a booked appointment as completed.
-The endpoint accepts the following parameters:
-
-| Field                   | Type           | Description                                                                                    |
-|:------------------------|:---------------|:-----------------------------------------------------------------------------------------------|
-| pd_appointment_uuid     | {uuid}         | The PokitDok unique identifier for the appointment.                                            |
-| description             | {string}       | Brief description of the appointment.                                                          |
-| mark_completed          | {string}       | Marks a booked appointment as completed.                                                       |                                           
-
-Both the /schedule/slots/ (POST) and /schedule/appointments (GET/PUT) endpoints' response includes the following fields:
+<!--- beginning of table -->
 
 | Field                   | Type           | Description                                                                                                |
 |:------------------------|:---------------|:-----------------------------------------------------------------------------------------------------------|
@@ -785,17 +825,4 @@ Both the /schedule/slots/ (POST) and /schedule/appointments (GET/PUT) endpoints'
 | patient                 | {object}       | Patient associated with the appointment. Uses the patient [object](#scheduling_patient_object).            |  
 | description             | {string}       | Brief description of the appointment.                                                                      |
 
-
-<a name="scheduling_patient_object"></a>
-###Patient object:
-
-| Field            | Type           | Description                                                 |
-|:-----------------|:---------------|:------------------------------------------------------------|
-| uuid             | {uuid}         | The patient's unique identifier.                            |
-| email            | {email}        | The patient's email.                                        |
-| phone            | {string}       | The patient's phone number.                                 |
-| birth_date       | {date}         | The patient's date of birth. In ISO8601 format (YYYY-MM-DD).|
-| first_name       | {string}       | The patient's first name.                                   |
-| last_name        | {string}       | The patient's last name.                                    |
-| member_id        | {string}       | The patient's member id.                                    |
-
+<!--- end of table -->

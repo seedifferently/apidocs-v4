@@ -111,20 +111,36 @@ digits of the zip code, commonly called a "geozip" or a "ZIP Code Prefix". These
 three digits refer to the geographical regions surrounding major cities or
 metropolitan areas. There are approximately 900 "geozips" in the United States.
 
+### Endpoint Description
+
 Available Insurance Prices Endpoints:
+
+<!--- beginning of table -->
 
 | Endpoint          | HTTP Method | Description                                                                                 |
 |:------------------|:------------|:--------------------------------------------------------------------------------------------|
 | /prices/insurance | GET         | Return a list of prices for a given procedure (by CPT Code) in a given region (by ZIP Code) |
 
-The /prices/insurance endpoint accepts the following parameters:
+<!--- end of table -->
+
+### Request Payload Parameters
+
+The `/prices/insurance` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter  | Type     | Description                                | Presence |
 |:-----------|:---------|:-------------------------------------------|:---------|
 | cpt_code   | {string} | The CPT code of the procedure in question  | Required |
 | zip_code   | {string} | Zip code in which to search for procedures | Required |
 
-The /prices/insurance response contains the following fields:
+<!--- end of table -->
+
+### Response Payload Parameters
+
+The `/prices/insurance` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                 	  | Type      | Description                                                     | Presence |
 |:----------------------------|:----------|:----------------------------------------------------------------|:---------|
@@ -137,3 +153,5 @@ The /prices/insurance response contains the following fields:
 | amounts.median_price  	  | {decimal} | The median price for the procedure                              | Required |
 | amounts.payer_type    	  | {string}  | The insurance payer type: insurance or medicare                 | Required |
 | amounts.payment_type  	  | {string}  | Possible values are "allowed", "submitted", "paid", or "standardized". The allowed amount when payer_type:insurance is the dollar amount typically considered payment-in-full by a payer and an associated network of healthcare providers. For Medicare (when payer_type:medicare) the allowed amount is the average of the Medicare allowed amount for the service; this figure is the sum of the amount Medicare pays, the deductible and coinsurance amounts, and any amounts that a third party is responsible for paying. The submitted amount is the dollar amount the provider submitted to the payer in the insurance claim. The paid amount is the dollar amount that was reimbursed to the provider.  The standardized amount removes geographic differences in payment rates for individual services. | Required |
+
+<!--- end of table -->

@@ -113,11 +113,21 @@ The Plans endpoint provides access to information about insurance plans.
 The plans returned are those currently available through the federal exchange.
 Additional plans may be added later.
 
+### Endpoint Description
+
+<!--- beginning of table -->
+
 | Endpoint | HTTP Method | Description                       |
 |:---------|:------------|:----------------------------------|
 | /plans/  | GET         | Search insurance plan information |
 
-The /plans/ endpoint accepts the following parameters:
+<!--- end of table -->
+
+### Response Payload Parameters
+
+The `/plans/` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter          | Description                                           										 | Presence |
 |:-------------------|:----------------------------------------------------------------------------------------------|:---------|
@@ -130,7 +140,13 @@ The /plans/ endpoint accepts the following parameters:
 | plan_name          | The name of the plan                                  										 | Optional |
 | metallic_level     | The metal level of the plan. A list of possible values can be found [below](#metallic_level). | Optional |
 
-The /plans/ response contains the following fields:
+<!--- end of table -->
+
+### Request Payload Parameters
+
+The `/plans/` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                        | Type     | Description                                                                           | Presence |
 |:-----------------------------|:---------|:--------------------------------------------------------------------------------------|:---------|
@@ -165,9 +181,15 @@ The /plans/ response contains the following fields:
 | specialist                   | {object} | Specialist cost-sharing object [below](#cost-sharing-object)                          | Optional |
 | specialty_drugs              | {object} | Specialty drugs cost-sharing object [below](#cost-sharing-object)                     | Optional |
 
+<!--- end of table -->
+
+
+### Additional Object Tables
+
 <a name="cost-sharing-object"></a>
-### Cost sharing object
 (The silver plan variants below differ from the standard plan by the percentage of health care expenses covered by the plan for a typical group of enrollees (i.e., actuarial value))
+
+<!--- beginning of table -->
 
 | Field           | Description                                |
 |:----------------|:-------------------------------------------|
@@ -176,11 +198,17 @@ The /plans/ response contains the following fields:
 | percent_87      | 87 percent silver plan variant             |
 | percent_94      | 94 percent silver plan variant             |
 
+<!--- end of table -->
+
 <a name="metallic_level"></a>
-Possible values that can be used in the metallic_level parameter:
+Possible values that can be used in the `metallic_level` parameter:
+
+<!--- beginning of table -->
 
 | metallic_level     |                 |
 |:-------------------|:----------------|
 | bronze   	         | silver          |
 | gold               | platinum        |
 | catastrophic       |                 |
+
+<!--- end of table -->

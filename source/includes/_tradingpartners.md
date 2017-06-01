@@ -165,6 +165,7 @@ partners. Available Trading Partner endpoints and the descriptions of their requ
 
 ### Endpoint Description
 
+<!--- beginning of table -->
 
 | Endpoint              | HTTP Method | Description                                                                                   |
 |:----------------------|:------------|:----------------------------------------------------------------------------------------------|
@@ -176,6 +177,8 @@ partners. Available Trading Partner endpoints and the descriptions of their requ
 ### Response Payload Parameters
 
 The `/tradingpartners/` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                                  | Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         															|
 |:---------------------------------------|:----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -198,12 +201,14 @@ The `/tradingpartners/` response contains the following fields:
 
 <!--- end of table -->
 
+### Additional Object Tables
 
 <a name="search-options"></a>
 Full list of possible search options that may be available for use with a trading partner on eligibility requests.
 These constants align with Section 1.4.8 (Search Options) of the X12 270/271 specification around the use of available
 member information to locate the member in the trading partner's system. Please note that supported search options are subject to change and are dictated by the trading partner. For best results, include as much information as possible and note that primary_search is most effective.
 
+<!--- beginning of table -->
 
 | Search Option                               | Description
 |:--------------------------------------------|:----------------|
@@ -213,3 +218,5 @@ member information to locate the member in the trading partner's system. Please 
 | no_birth_date_search                        | first_name, last_name, and id are provided to locate a member.               |
 | no_name_search                              | id and birth_date are provided to locate a member.               |
 | no_id_search                                | first_name, last_name and birth_date are provided to locate a member.               |
+
+<!--- end of table -->

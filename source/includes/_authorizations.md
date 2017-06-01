@@ -455,13 +455,23 @@ Learn more about our Authorization API workflow.
 
 Interested in requesting approval for a referral to a specialist? See PokitDok’s [Referrals](#referrals) endpoint.
 
+### Endpoint Description
+
 Available Authorizations endpoints:
+
+<!--- beginning of table -->
 
 | Endpoint         | HTTP Method | Description                                                                                             |
 |:-----------------|:------------|:--------------------------------------------------------------------------------------------------------|
 | /authorizations/ | POST        | Submit a request for the review of healthcare services in order to obtain an authorization for that service. |
 
-The /authorizations/ endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
+<!--- end of table -->
+
+### Request and Response Payload Parameters
+
+The `/authorizations/` endpoint uses the same object for both its request parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
+
+<!--- beginning of table -->
 
 | Field                             | Description                                                                                                                                                                                  |
 |:----------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -519,10 +529,16 @@ The /authorizations/ endpoint uses the same object for both its parameters and r
 | trading_partner_id                | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.                                                                              |
 | valid_request                     | A boolean of whether or not the request was valid.                                                                              |
 
+<!--- end of table -->
+
 If the authorization request is sent using a real-time interface, an authorization response may be returned depending on trading partner ability. Trading partner responses may vary or additional information may be requested via phone, email or fax.                                         
 
+### Additional Object Tables
+
 <a name="service_review_member_object"></a>
-###Patient object:
+Patient object:
+
+<!--- beginning of table -->
 
 | Field                             | Description                                                                           |
 |:----------------------------------|:--------------------------------------------------------------------------------------|
@@ -540,8 +556,12 @@ If the authorization request is sent using a real-time interface, an authorizati
 | illness_date                      | The date the member became ill. In ISO8601 format (YYYY-MM-DD).                       |
 | accident_date                     | The date of the member's accident. In ISO8601 format (YYYY-MM-DD).                                                                                                                                    |
 
+<!--- end of table -->
+
 <a name="service_review_provider_object"></a>
-###Provider object:
+Provider object:
+
+<!--- beginning of table -->
 
 | Field                             | Description                                                           |
 |:----------------------------------|:----------------------------------------------------------------------|
@@ -558,8 +578,12 @@ If the authorization request is sent using a real-time interface, an authorizati
 | npi                               | The NPI for the provider.                                                                                                                                                              |
 | organization_name                 | The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                   |
 
+<!--- end of table -->
+
 <a name="certaction"></a>
-Possible values that can be returned in the event.review.certification_action parameter on the authorization response:
+Possible values that can be returned in the `event.review.certification_action` parameter on the authorization response:
+
+<!--- beginning of table -->
 
 | certification_action Values |                    |
 |:----------------------------|:-------------------|
@@ -568,8 +592,12 @@ Possible values that can be returned in the event.review.certification_action pa
 | certified_partial           | not_certified      |
 | contact_payer               | pended             |
 
+<!--- end of table -->
+
 <a name="follow_up_action"></a>
-Possible values that can be returned in the follow_up_action field on the authorization response:
+Possible values that can be returned in the `follow_up_action` field on the authorization response:
+
+<!--- beginning of table -->
 
 | follow_up_action Values               |                                   |
 |:--------------------------------------|:----------------------------------|
@@ -578,8 +606,12 @@ Possible values that can be returned in the follow_up_action field on the author
 | wait_10_days_and_resubmit             | wait_30_days_and_resubmit         |
 | resubmission_allowed                  | resubmission_not_allowed          |
 
+<!--- end of table -->
+
 <a name="decision"></a>
-List of possible values that can be returned in the event.review.decision_reason parameter on the authorization response:
+List of possible values that can be returned in the `event.review.decision_reason` parameter on the authorization response:
+
+<!--- beginning of table -->
 
 | decision_reason Values                                    |                                                      |
 |:----------------------------------------------------------|:-----------------------------------------------------|
@@ -611,20 +643,30 @@ List of possible values that can be returned in the event.review.decision_reason
 | out_of_network                                            | unit_resale_higher_than_authorized                   |
 | patient_in_premium_payment_grace_period_first_month       |                                                      |
 
-<a name="certification_type"></a>
-Possible values that can be returned in the event.certification_type parameter on the authorization response:
+<!--- end of table -->
 
-| certification_type |                 |
+<a name="certification_type"></a>
+Possible values that can be returned in the `event.certification_type` parameter on the authorization response:
+
+<!--- beginning of table -->
+
+| certification_type Values |                 |
 |:-------------------|:----------------|
 | appeal_immediate   | initial         |
 | appeal_standard    | reconsideration |
 | cancel             | renewal         |
 | extension          | revised         |
 
-<a name="category"></a>
-Possible values that can be returned in the event.category parameter on the authorization response:
+<!--- end of table -->
 
-| category               |                       |
+<a name="category"></a>
+Possible values that can be returned in the `event.category parameter` on the authorization response:
+
+<!--- beginning of table -->
+
+| category Values        |                       |
 |:-----------------------|:----------------------|
 | admission_review       | individual            |
 | health_services_review | specialty_care_review |
+
+<!--- end of table -->

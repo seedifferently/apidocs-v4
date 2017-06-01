@@ -298,13 +298,24 @@ Primary Care Physicians can enable their patients to receive the consult and ser
 of a specialist or specialist entity. This request will be sent to the reviewing
 entity (e.g. Utilization Management Organization) for approval.
 
+
+### Endpoint Description:
+
 Available Referrals endpoints:
+
+<!--- beginning of table -->
 
 | Endpoint    | HTTP Method | Description                                                                |
 |:------------|:------------|:---------------------------------------------------------------------------|
 | /referrals/ | POST        | Submit a specialty care referral request to a trading partner for approval |
 
-The /referrals/ endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
+<!--- end of table -->
+
+### Request Payload Parameters
+
+The `/referrals/` endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
+
+<!--- beginning of table -->
 
 | Parameter                                     | Description                                                                                                                                                                                                                           |
 |:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -347,14 +358,19 @@ The /referrals/ endpoint uses the same object for both its parameters and respon
 | trading_partner_id                            | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.                                                                                                                       |
 | valid_request                                 | A boolean of whether or not the request was valid.                                                                                                                                                                                    |
 
+<!--- end of table -->
 
 If the referral request is sent using a real-time interface, a referral response will be returned.
 
 Interested in requesting authorization for a particular service for a patient? See PokitDok’s
 [Authorizations](#authorizations) endpoint.
 
+### Additional Object Tables
+
 <a name="referral_service_review_member_object"></a>
-###Member object:
+Member object:
+
+<!--- beginning of table -->
 
 | Field                             | Description                                                                           |
 |:----------------------------------|:--------------------------------------------------------------------------------------|
@@ -372,8 +388,12 @@ Interested in requesting authorization for a particular service for a patient? S
 | illness_date                      | The date the member became ill. In ISO8601 format (YYYY-MM-DD).                       |
 | accident_date                     | The date of the member's accident. In ISO8601 format (YYYY-MM-DD).                     |
 
+<!--- end of table -->
+
 <a name="referral_service_review_provider_object"></a>
-###Provider object:
+Provider object:
+
+<!--- beginning of table -->
 
 | Field                             | Description                                                                                                                                                                            |
 |:----------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -387,9 +407,13 @@ Interested in requesting authorization for a particular service for a patient? S
 | npi                               | The NPI for the provider.                                                                                                                                                              |
 | organization_name                 | The provider’s name when the provider is an organization. first_name and last_name should be omitted when sending organization_name.                                                   |
 
+<!--- end of table -->
+
 <a name="referral_certaction"></a>
-Full list of possible values that can be returned in the event.review.certification_action parameter
+Full list of possible values that can be returned in the `event.review.certification_action` parameter
 on the referral response:
+
+<!--- beginning of table -->
 
 | certification_action Values |                    |
 |:----------------------------|:-------------------|
@@ -398,8 +422,12 @@ on the referral response:
 | certified_partial           | not_certified      |
 | contact_payer               | pended             |
 
+<!--- end of table -->
+
 <a name="referral_follow_up_action"></a>
-Possible values that can be returned in the follow_up_action field on the referral response:
+Possible values that can be returned in the `follow_up_action` field on the referral response:
+
+<!--- beginning of table -->
 
 | follow_up_action Values               |                                   |
 |:--------------------------------------|:----------------------------------|
@@ -408,9 +436,12 @@ Possible values that can be returned in the follow_up_action field on the referr
 | wait_10_days_and_resubmit             | wait_30_days_and_resubmit         |
 | resubmission_allowed                  | resubmission_not_allowed          |
 
+<!--- end of table -->
 
 <a name="referral_decision"></a>
-Full list of possible values that can be returned in the event.review.decision_reason parameter on the referrals response:
+Full list of possible values that can be returned in the `event.review.decision_reason` parameter on the referrals response:
+
+<!--- beginning of table -->
 
 | decision_reason Values                                    |                                                      |
 |:----------------------------------------------------------|:-----------------------------------------------------|
@@ -442,8 +473,12 @@ Full list of possible values that can be returned in the event.review.decision_r
 | out_of_network                                            | unit_resale_higher_than_authorized                   |
 | patient_in_premium_payment_grace_period_first_month       |                                                      |
 
+<!--- end of table -->
+
 <a name="certification_r_type"></a>
-Full list of possible values that can be returned in the event.certification_type parameter on the referral response:
+Full list of possible values that can be returned in the `event.certification_type` parameter on the referral response:
+
+<!--- beginning of table -->
 
 | certification_type |                 |
 |:-------------------|:----------------|
@@ -452,11 +487,16 @@ Full list of possible values that can be returned in the event.certification_typ
 | cancel             | renewal         |
 | extension          | revised         |
 
+<!--- end of table -->
 
 <a name="r_category"></a>
-Full list of possible values that can be returned in the event.category parameter on the referral response:
+Full list of possible values that can be returned in the `event.category` parameter on the referral response:
+
+<!--- beginning of table -->
 
 | category               |                       |
 |:-----------------------|:----------------------|
 | admission_review       | individual            |
 | health_services_review | specialty_care_review |
+
+<!--- end of table -->
