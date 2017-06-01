@@ -161,17 +161,21 @@ try client.tradingPartners(tradingPartnerId: "aetna")
 *Available modes of operation: real-time*
 
 The Trading Partners endpoint provides access to the collection of PokitDok's trading
-partners.
+partners. Available Trading Partner endpoints and the descriptions of their request and response parameters are as follows.
 
-Available Trading Partner endpoints:
+### Endpoint Description
+
 
 | Endpoint              | HTTP Method | Description                                                                                   |
 |:----------------------|:------------|:----------------------------------------------------------------------------------------------|
 | /tradingpartners/     | GET         | Get a list of trading partners.                                                               |
-| /tradingpartners/{id} | GET         | Retreive the data for a specified trading partner; the ID is the PokitDok trading partner id. |
+| /tradingpartners/{id} | GET         | Retrieve the data for a specified trading partner; the ID is the PokitDok trading partner id. |
 
+<!--- end of table -->
 
-The /tradingpartners/ response contains the following fields:
+### Response Payload Parameters
+
+The `/tradingpartners/` response contains the following fields:
 
 | Field                                  | Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         															|
 |:---------------------------------------|:----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -191,6 +195,8 @@ The /tradingpartners/ response contains the following fields:
 | pass_through_fees{transaction_set}.currency     | {string}   | Identifies the currency associated with the pass through fee amount. Field returned only for /tradingpartners/{id} request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | restricted_transactions                | {array}   | Identifies the X12 transaction sets (270, 278, 837) that require NPI submission in the client dashboard prior to use. Field returned only for /tradingpartners/{id} request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             	|
 | supported_search_options               | {array}   | A list of member search options that are supported by the trading partner for eligibility requests.  A complete listing of possible [search options](#search-options) is included below. Field returned only for /tradingpartners/{id} request.																																																																																																																																																																																														|
+
+<!--- end of table -->
 
 
 <a name="search-options"></a>
