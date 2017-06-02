@@ -400,7 +400,7 @@ Available Provider Endpoints:
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/providers/` endpoint accepts the following search parameters:
 
@@ -425,7 +425,7 @@ The `/providers/` endpoint accepts the following search parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The response from the `/providers/` endpoints contain the following fields:
 

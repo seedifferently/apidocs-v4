@@ -174,7 +174,7 @@ partners. Available Trading Partner endpoints and the descriptions of their requ
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/tradingpartners/` response contains the following fields:
 

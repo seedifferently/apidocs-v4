@@ -123,7 +123,7 @@ Available Insurance Prices Endpoints:
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/prices/insurance` endpoint accepts the following parameters:
 
@@ -136,7 +136,7 @@ The `/prices/insurance` endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/prices/insurance` response contains the following fields:
 

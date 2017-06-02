@@ -4422,7 +4422,7 @@ See [MOCKPAYER claims testing](#mockpayer-claims-testing) for details.
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/claims/` endpoint accepts the following parameters:
 
@@ -4560,7 +4560,7 @@ A claim goes through an entire lifecycle after its transmission to a payer.
 For details on this process, and how the [Claims Status](#claims-status)
 Endpoint ties in, see our [claims API workflow](https://pokitdok.com/developers/api/#api-claim-submission).
 
-### Response Payload Parameters
+### Response
 
 The `/claims/` response contains an activity and thus returns the same object as the activity endpoint. This object can be seen under the activities endpoint documentation [above](#activities_response). The only difference between the activities and claims response is the data returned via the 'parameters' field. The following objects/fields are attached internally and can be accessed via the parameters object:
 

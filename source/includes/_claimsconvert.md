@@ -167,7 +167,7 @@ map ICD-9 to ICD-10.
 <!--- end of table -->
 
 
-### Request Payload Parameters
+### Parameters
 
 The `/claims/convert` endpoint accepts the following parameters:
 
@@ -179,7 +179,7 @@ The `/claims/convert` endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/claims/convert` response contains the following fields:
 

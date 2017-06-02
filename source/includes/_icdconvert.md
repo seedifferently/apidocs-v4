@@ -80,7 +80,7 @@ specified ICD-9 code.
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/icd/convert` endpoint accepts the following parameters:
 
@@ -92,7 +92,7 @@ The `/icd/convert` endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/icd/convert` response contains the following fields:
 

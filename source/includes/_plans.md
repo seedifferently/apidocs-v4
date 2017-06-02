@@ -123,7 +123,7 @@ Additional plans may be added later.
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/plans/` endpoint accepts the following parameters:
 
@@ -142,7 +142,7 @@ The `/plans/` endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/plans/` response contains the following fields:
 

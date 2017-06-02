@@ -201,7 +201,7 @@ A list of pharmacies will be returned for a given location and radius. The in-ne
 
 The response will include details about the pharmacy such as name, address, phone number, etc.
 
-### Request Payload Parameters
+### Parameters
 
 The `/pharmacy/network` endpoint accepts the following parameters:
 
@@ -220,7 +220,7 @@ The `/pharmacy/network` endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/pharmacy/network` response contains the following fields:
 

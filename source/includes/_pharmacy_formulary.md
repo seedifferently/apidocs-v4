@@ -515,7 +515,7 @@ In some cases, the member’s copay will be more than the total cost of the drug
 
 The field include_plans may be used if you would like to include an overview of the pharmacy plan information. This will add a new field to each drug document in the response.
 
-### Request Payload Parameters
+### Parameters
 
 The `/pharmacy/formulary` endpoint accepts the following parameters:
 
@@ -534,7 +534,7 @@ The `/pharmacy/formulary` endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/pharmacy/formulary` response contains the following fields:
 

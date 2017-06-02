@@ -1173,7 +1173,7 @@ see the [claims API workflow](https://pokitdok.com/developers/api/#api-claims-st
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/claims/status` endpoint accepts the following parameters:
 
@@ -1210,7 +1210,7 @@ The `/claims/status` endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/claim/status` response contains the following fields:
 

@@ -2188,7 +2188,7 @@ request will be made for general benefit coverage (health_benefit_plan_coverage)
 
 Some trading partners allow combinations of the below parameters to return a successful eligibility response.  PokitDok now only requires those specific parameters required by the trading partner being called. Details on available search options per trading partner can be found by using the [Trading Partners](#trading-partners) endpoint.  There are example eligibility requests for each of the search option combinations to the right as well.
 
-### Request Payload Parameters
+### Parameters
 
 The `/eligibility/` endpoint accepts the following parameters:
 
@@ -2227,7 +2227,7 @@ Eligibility and benefit responses vary depending on the trading partner and the 
 
 PokitDok adds a Summary section in the eligibility response for convenience as a quick overview of a member's deductible and out-of-pocket information.  This should not be seen as a total replacement for the detailed deductible and out-of-pocket information in the coverage section of the eligibility response.  The Summary section contains deductible and out-of-pocket values for overall health benefit plan coverage as well as any additional service types for which deductible and out-of-pocket information is received.  When a value of $0 is returned in the Summary section, users should reference the Coverage section to determine if the trading partner returned a zero value or if the information was not provided in the response.
 
-### Response Payload Parameters
+### Response
 
 The `/eligibility/` response contains the following fields:
 

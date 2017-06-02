@@ -651,7 +651,7 @@ The `/oop/insurance-load-price` endpoint may also be used to retrieve pricing da
 Sending a request that includes only the trading_partner_id and cpt_bundle parameters will either return the currently loaded price or, if no price has been loaded, return an error response.
 
 
-### Request Payload Parameters
+### Parameters
 
 The `/oop/insurance-load-price` POST endpoint accepts the following parameters:
 
@@ -696,7 +696,7 @@ digits of the zip code, commonly called a "geozip" or a "ZIP Code Prefix". These
 three digits refer to the geographical regions surrounding major cities or
 metropolitan areas. There are approximately 900 "geozips" in the United States.
 
-### Response Payload Parameters
+### Response
 
 The `/oop/insurance-estimate` response contains the following fields:
 

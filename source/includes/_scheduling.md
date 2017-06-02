@@ -693,7 +693,7 @@ Available Scheduling Endpoints:
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/schedule/patient/` endpoint accepts the following parameters:
 
@@ -762,7 +762,7 @@ The endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/schedule/schedulers` endpoint response includes the following fields:
 

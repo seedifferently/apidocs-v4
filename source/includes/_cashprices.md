@@ -86,7 +86,7 @@ metropolitan areas. There are approximately 900 "geozips" in the United States.
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/prices/cash` endpoint accepts the following parameters:
 
@@ -99,7 +99,7 @@ The `/prices/cash` endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/prices/cash` response contains the following fields:
 

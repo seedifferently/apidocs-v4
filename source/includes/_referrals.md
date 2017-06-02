@@ -311,7 +311,7 @@ Available Referrals endpoints:
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/referrals/` endpoint uses the same object for both its parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
 

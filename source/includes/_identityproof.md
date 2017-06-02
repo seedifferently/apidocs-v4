@@ -236,7 +236,7 @@ protected while still allowing them convenient access to their own healthcare in
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/identity/proof/questions/generate/` and `/identity/proof/valid/` endpoints both accept the same Identity Proof
 Request (IPR) json document defined below.
@@ -281,7 +281,7 @@ the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 
 The `/identity/proof/questions/generate/` endpoint can return several types of responses. Only a VERIFIABLE response will include the first

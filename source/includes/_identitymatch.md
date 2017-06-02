@@ -761,7 +761,7 @@ The matching endpoints are how MatchConfig operations are exposed to the end use
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 Each `MatchConfig` endpoint accepts two fields:
 

@@ -291,7 +291,7 @@ Available Activity Endpoints:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/activities/` response includes the following fields:
 

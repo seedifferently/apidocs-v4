@@ -132,7 +132,7 @@ Available Medical Procedure Code Endpoints:
 
 <!--- end of table -->
 
-### Request Payload Parameters
+### Parameters
 
 The `/mpc/` endpoint accepts the following parameters:
 
@@ -145,7 +145,7 @@ The `/mpc/` endpoint accepts the following parameters:
 
 <!--- end of table -->
 
-### Response Payload Parameters
+### Response
 
 The `/mpc/` response contains the following fields:
 
