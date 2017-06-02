@@ -10,7 +10,7 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/a
 ```json
 [
     {
-        "effective_date": "2010-09-23", 
+        "effective_date": "2017-06-02", 
         "id": "5930819201a3af0082bc3dfb", 
         "linked_activity_count": 0, 
         "payment_type": "claim_payment", 
@@ -123,6 +123,8 @@ Applications that receive payments on the PokitDok platform are able to search a
 Applications receiving claim payments are able to fetch the Raw X12 835 data for those payments 
 should they have a need for it.
 
+### Endpoint Description
+
 Available Payments Endpoints:
 
 
@@ -133,7 +135,9 @@ Endpoint | HTTP Method | Description
 /payments/{id}/data | GET | Return the full data associated with the payment.  By default, it returns a list of claim payment objects as described in the [claim payments reference](claim_payments.html).  The `Accept` header may be used with a value of `application/edi-x12` to access the Raw X12 835 data when the payment type is `claim_payment` 
 
 
-The /payments/ endpoint accepts the following search parameters:
+### Parameters
+
+The `GET /payments/` endpoint accepts the following search parameters:
 
 | Parameter              | Type     | Description                                                                                                                                                                            |
 |:-----------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -141,5 +145,40 @@ The /payments/ endpoint accepts the following search parameters:
 | payment_type           | {string} | The type of payment that's been received.  This is currently limited to the `claim_payment` type.                                                                                      |
 | check_eft_trace_number | {string} | The Check or EFT trace number that is associated with the payment.                                                                                                                     |
 | amount                 | {string} | The amount of the payment (e.g. 14123.75 )                                                                                                                                             |
-| effective_date         | {string} | The effective date for the payment                                                                                                                                                     |
+| effective_date         | {string} | The effective date for the payment (e.g. 2017-06-02)                                                                                                                                   |
 
+
+### Response
+
+The `GET /payments/` response contains the following fields for objects returned in the listing:
+
+
+| Field                  | Type     | Description                                                                                                                                                                                                |
+|:-----------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| effective_date         | {string} | The effective date for the payment (e.g. 2017-06-02).  Payments may be received prior to their effective date.                                                                                             |
+| id                     | {string} | The unique id for the payment.  This id may be used with the other Payments endpoints to retrieve additional information related to the payment                                                            |
+| linked_activity_count  | {int}    | The number of activities that were identified within the payment data.  This value may be `0` when payment information is returned to the platform but transactions were submitted outside of the platform |
+| payment_type           | {string} | The type of payment that's been received.  This is currently limited to the `claim_payment` type.                                                                                                          |
+| received_date          | {string} | The date and time that the payment was received by the platform.                                                                                                                                           |
+| total.amount           | {string} | The total amount for the payment.  The payment currency is in `total.currency` and will typically be `USD`                                                                                                 |
+| trading_partner_id     | {string} | The trading partner associated with the payment.  This will match the `trading_partner_id` of linked claims activities when payments are returned for claims submitted on the platform                     |
+| transaction_count      | {int}    | The total number of transactions found within the payment data.                                                                                                                                            |
+
+
+The `GET /payments/<id>` response contains the following fields:
+
+| Field                  | Type     | Description                                                                                                                                                                                                |
+|:-----------------------|:---------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| financial_information  | {object} | See the [claim payments reference](claim_payments.html#financial_information_object) for more information on the `financial_information` object                                                            |
+| id                     | {string} | The unique id for the payment.  This id may be used with the other Payments endpoints to retrieve additional information related to the payment                                                            |
+| linked_activity_count  | {int}    | The number of activities that were identified within the payment data.  This value may be `0` when payment information is returned to the platform but transactions were submitted outside of the platform |
+| payee                  | {object} | See the [claim payments reference](claim_payments.html#payee_object) for more information on the `payee` object                                                                                            |
+| payer                  | {object} | See the [claim payments reference](claim_payments.html#payer_object) for more information on the `payer` object                                                                                            |
+| payment_type           | {string} | The type of payment that's been received.  This is currently limited to the `claim_payment` type.                                                                                                          |
+| trading_partner_id     | {string} | The trading partner associated with the payment.  This will match the `trading_partner_id` of linked claims activities when payments are returned for claims submitted on the platform                     |
+| transaction_count      | {int}    | The total number of transactions found within the payment data.                                                                                                                                            |
+
+
+The `GET /payments/<id>/data` response will vary depending upon the type of payment and the `Accept` header value that is included with the request.
+By default, payments of type `claim_payment` will return a list of claim payment objects as described in the [claim payments reference](claim_payments.html).
+When the `Accept` header is set to `application/edi-x12`, these payments will return the raw X12 835 data associated with the payment.
