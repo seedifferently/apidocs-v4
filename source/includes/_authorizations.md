@@ -467,7 +467,7 @@ Available Authorizations endpoints:
 
 <!--- end of table -->
 
-### Request and Response Payload Parameters
+### Request and Response
 
 The `/authorizations/` endpoint uses the same object for both its request parameters and response. Most of the fields below can be passed in via the request object. Some of the fields will be assigned internally and can be seen in the response object.
 
