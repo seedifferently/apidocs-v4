@@ -33,6 +33,7 @@ includes:
   - insuranceprices
   - mpc
   - oop_insurance
+  - payments
   - pharmacy_formulary
   - pharmacy_network
   - pharmacy_plans
