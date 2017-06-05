@@ -4412,6 +4412,12 @@ A trading partner's first response lets you know if the request has been accepte
 A special `trading_partner_id` called `MOCKPAYER` is available for use to test different claims scenarios.
 See [MOCKPAYER claims testing](#mockpayer-claims-testing) for details.
 
+The [Payments](#payments) endpoints may be used as a companion to the Claims endpoint to search and retrieve 
+claim payment information including the raw X12 835 data.  Individual claim payment objects will be assigned 
+to the matching claims activity's result.  The Payments endpoints are useful when the application has a need 
+to review a summary of payment information or match deposits back up with the claims activities that were 
+bundled in a single payment.
+
 ### Endpoint Description
 
 <!--- beginning of table -->
