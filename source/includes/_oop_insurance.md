@@ -671,7 +671,13 @@ The /oop/insurance-estimate endpoint accepts the following parameters:
 | eligibility.member.id                 | {string} | The named insured’s member identifier. May be omitted if member.birth_date is provided.                                                                                            | Optional |
 | zip_code                              | {string} | Optional: Used as a back up price data source if the trading partner has not loaded data for the chosen cpt_bundle. Hits the Insurance Prices endpoint to get prices based on area | Optional |
 
-If eligibility information is not provided, generated eligibility data will be used, and a less accurate out of pocket estimate may be generated.
+If either `eligibility.member` or `eligibility.provider` data is omitted, 
+generic eligibility data will be used, and the generated out 
+of pocket estimate will be less accurate. However, by including both 
+`eligibility.member` and `eligibility.provider` data on your request you 
+enable the Pokitdok API to perform a real-time eligibility check for the 
+patient. Always include both fields whenever possible to ensure your 
+customers receive the best possible estimate of out of pocket costs.
 
 While the endpoint accepts a five-digit zip code, only the first three digits
 are significant. This is because the index is only granular to the first three
