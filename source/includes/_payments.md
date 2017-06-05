@@ -118,10 +118,11 @@ IEA*1*006000600~
 ```
 
 
-The Payments endpoint provides access to payment information that's been associated with the application.
-Applications that receive payments on the PokitDok platform are able to search and retrieve payment information.  
-Applications receiving claim payments are able to fetch the Raw X12 835 data for those payments 
-should they have a need for it.
+The Payments endpoint provides access to payment information associated with your application.
+Applications receiving claim payments (ERA’s) through PokitDok Platform may review details for claims submitted
+through PokitDok Platform as well as payment information received for claims originating outside of
+PokitDok Platform.  Applications receiving claim payments may also fetch raw ERA (X12 835) data if
+more detail is needed.
 
 ### Endpoint Description
 
