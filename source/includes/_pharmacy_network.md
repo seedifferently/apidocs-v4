@@ -105,6 +105,7 @@ try client.pharmacyNetwork(params: data)
             "mail": false,
             "npi": "1427382266",
             "pharmacy_name": "HOBOKEN DRUGS",
+            "plan_id": "H0755036",
             "retail": true
         }
     ]
@@ -135,6 +136,7 @@ try client.pharmacyNetwork(params: data)
             "mail": false,
             "npi": "1578655056",
             "pharmacy_name": "New Jersey Cvs Pharmacy Llc",
+            "plan_id": "H0755035",
             "retail": true
         },
         {
@@ -155,6 +157,7 @@ try client.pharmacyNetwork(params: data)
             "mail": false,
             "npi": "1801919907",
             "pharmacy_name": "New Jersey Cvs Pharmacy Llc",
+            "plan_id": "H0755035",
             "retail": true
         },
         {
@@ -176,6 +179,7 @@ try client.pharmacyNetwork(params: data)
             "mail": false,
             "npi": "1295845972",
             "pharmacy_name": "Rite Aid Of New Jersey Inc",
+            "plan_id": "H0913013",
             "retail": true
         }
     ]
@@ -200,8 +204,7 @@ The /pharmacy/network endpoint accepts the following parameters:
 | Parameter          | Type     | Description                                                                                                                                                    | Presence |
 |:-------------------|:---------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------|
 | trading_partner_id | {string} | Unique id for the intended trading partner, as specified by the [Trading Partners](https://platform.pokitdok.com/documentation/v4/#trading-partners) endpoint. | Required |
-| plan_number        | {string} | Member’s plan identification number. Note: If unknown can use X12 270/271 eligibility                                                                          | Either plan_number or plan_name must be present |
-| plan_name          | {string} | Name of prescription drug plan                                                                                                                                 | Either plan_number or plan_name must be present |
+| plan_number        | {string} | Member’s plan identification number. Note: If unknown can use X12 270/271 eligibility                                                                          | Optional |
 | zipcode            | {string} | Zip code for location                                                                                                                                          | Optional |
 | radius             | {string} | Radius of area (miles)                                                                                                                                         | Optional |
 | pharmacy_name      | {string} | Name of pharmacy                                                                                                                                               | Optional |
@@ -223,5 +226,5 @@ The /pharmacy/network response contains the following fields:
 | pharmacy.locations.state         | {string}  | State                                  | Optional |
 | pharmacy.locations.zipcode       | {string}  | Zip code                               | Optional |
 | pharmacy.mail                    | {boolean} | Is location a mail order pharmacy?     | Optional |
+| pharmacy.plan_number             | {string}  | Plan number                            | Required |
 | pharmacy.retail                  | {boolean} | Is location a retail order pharmacy?   | Optional |
-
