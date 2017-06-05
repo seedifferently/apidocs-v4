@@ -5,6 +5,19 @@
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/payments/
 ```
 
+```python
+client.get('/payments/')
+```
+
+```ruby
+client.request('/payments/')
+```
+
+```csharp
+client.request("/payments", "GET");
+```
+
+
 > Example response:
 
 ```json
@@ -30,6 +43,19 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/a
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/api/v4/payments/5930819201a3af0082bc3dfb
+```
+
+
+```python
+client.get('/payments/5930819201a3af0082bc3dfb')
+```
+
+```ruby
+client.request('/payments/5930819201a3af0082bc3dfb')
+```
+
+```csharp
+client.request("/payments/5930819201a3af0082bc3dfb", "GET");
 ```
 
 
@@ -99,6 +125,21 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" https://platform.pokitdok.com/a
 
 ```shell
 curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Accept: application/edi-x12" https://platform.pokitdok.com/api/v4/payments/5930819201a3af0082bc3dfb/data
+```
+
+```python
+import requests
+
+response = requests.get('https://platform.pokitdok.com/api/v4/payments/5930819201a3af0082bc3dfb/data', 
+                        headers={'Authorization': 'Bearer {}'.format(access_token), 'Accept': 'application/edi-x12'})
+```
+
+```ruby
+See cURL example.
+```
+
+```csharp
+See cURL example.
 ```
 
 
