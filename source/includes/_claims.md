@@ -4418,13 +4418,21 @@ to the matching claims activity's result.  The Payments endpoints are useful whe
 to review a summary of payment information or match deposits back up with the claims activities that were 
 bundled in a single payment.
 
+### Endpoint Description
+
+<!--- beginning of table -->
 
 | Endpoint | HTTP Method | Description                                      |
 |:---------|:------------|:-------------------------------------------------|
 | /claims/ | POST        | Submit a claim to the specified trading partner. |
 
+<!--- end of table -->
 
-The /claims/ endpoint accepts the following parameters:
+### Parameters
+
+The `/claims/` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter                                     | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
 |:----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------|
@@ -4551,11 +4559,18 @@ The /claims/ endpoint accepts the following parameters:
 | trading_partner_id                            | Required: Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.                                                                                                                                                             |                                                    |
 | transaction_code                              | Required: The type of claim transaction that is being submitted (e.g. "chargeable"). A full list of possible values is included [below](#transaction-code).                                                                                                                           |                                                    |
 | coordination_of_benefits                      | Required for Secondary Claims: Information related to the coordination of benefits for additional payers. [object](#claims-coordination-of-benefits-object) |
+
+<!--- end of table -->
+
 A claim goes through an entire lifecycle after its transmission to a payer.
 For details on this process, and how the [Claims Status](#claims-status)
 Endpoint ties in, see our [claims API workflow](https://pokitdok.com/developers/api/#api-claim-submission).
 
-The /claims/ response contains an activity and thus returns the same object as the activity endpoint. This object can be seen under the activities endpoint documentation [above](#activities_response). The only difference between the activities and claims response is the data returned via the 'parameters' field. The following objects/fields are attached internally and can be accessed via the parameters object:
+### Response
+
+The `/claims/` response contains an activity and thus returns the same object as the activity endpoint. This object can be seen under the activities endpoint documentation [above](#activities_response). The only difference between the activities and claims response is the data returned via the 'parameters' field. The following objects/fields are attached internally and can be accessed via the parameters object:
+
+<!--- beginning of table -->
 
 | Field                                           | Description                                                                                                       |
 |:------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|
@@ -4576,8 +4591,14 @@ The /claims/ response contains an activity and thus returns the same object as t
 | receiver.organization_name                      | The organization name of the receiver.                                                                            |
 | receiver.email                                  | The email of the receiver.                                                                                        |
 
+<!--- end of table -->
+
+### Additional Object Tables
+
 <a name="claims-subscriber-object"></a>
-###Subscriber object:
+Subscriber object:
+
+<!--- beginning of table -->
 
 | Field                              | Description                                                                                                                                                                                                                                                                           | CMS 1500                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
@@ -4600,8 +4621,12 @@ The /claims/ response contains an activity and thus returns the same object as t
 | patient_signature_source           | Used for coordination of benefits subscriber only. Values: [other, default: patient] |
 | release_of_information_code        | Used for coordination of benefits subscriber only. Values: [signed_statement, default: informed_consent] |
 
+<!--- end of table -->
+
 <a name="claims-provider-object"></a>
-###Provider object:
+Provider object:
+
+<!--- beginning of table -->
 
 | Field                             | Description                                                                                                                                                                     | CMS 1500                                           |
 |:----------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
@@ -4625,9 +4650,13 @@ The /claims/ response contains an activity and thus returns the same object as t
 | contacts.contact_methods.type     | The type of contact method. Possibilities are email, fax, phone, phone_extensions, and url.                                                                                     |                                                    |
 | contacts.contact_methods.value    | The value assoicated with a contact type (e.g. a phone number).                                                                                                                 |                                                    |
 
+<!--- end of table -->
+
 
 <a name="claims-address"></a>
-###Address object:
+Address object:
+
+<!--- beginning of table -->
 
 | Field                                 | Description                                                                                                       |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
@@ -4637,9 +4666,13 @@ The /claims/ response contains an activity and thus returns the same object as t
 | zipcode                               | The zip/postal code. (e.g. "94401")                                                                               |
 | country                               | The country component of a address.                                                                               |
 
+<!--- end of table -->
+
 <a name="claims-coordination-of-benefits-object"></a>
-###Coordination of Benefits object:
+Coordination of Benefits object:
 The coordination of benefits object can be either a list or a dict. If two payers are included in the claim (one payer in COB), COB will be a dict. If three or more payers are included (two+ payers in COB), COB will be a list.
+
+<!--- beginning of table -->
 
 | Field                                 | Description                                                                                                       |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
@@ -4649,9 +4682,13 @@ The coordination of benefits object can be either a list or a dict. If two payer
 | amount_owed                | Remaining liability amount to be paid after adjudication by the primary payer. |
 | payer                | Required: The payer information to communicate to the top level payer for coordination of benefits.  Uses the payer [object](#claim-adjustment). |
 
+<!--- end of table -->
+
 <a name="claim-adjustment"></a>
-###Claim Adjustment object:
+Claim Adjustment object:
 Adjustments are used to balance the original submitted billing amounts, monetary and service units, against the primary payer, secondary payer, and patient's payment amounts and responsibility.
+
+<!--- beginning of table -->
 
 | Field                              | Description                                                              |
 | :----------------------------------|:-------------------------------------------------------------------------|
@@ -4660,8 +4697,12 @@ Adjustments are used to balance the original submitted billing amounts, monetary
 | amount                             | Required: Adjusts a claim total or service line monetary amount. |
 | quantity                           | Adjusts the number of service units used in the claim or on within a specific service line. |
 
+<!--- end of table -->
+
 <a name="claim-adjustment-group-codes"></a>
 Full list of possible values that can be used in the `adjustment.group` field:
+
+<!--- beginning of table -->
 
 | adjustment.group Values                       |
 |:---------------------------------- |
@@ -4671,9 +4712,13 @@ Full list of possible values that can be used in the `adjustment.group` field:
 | 'patient_responsibility' |
 | 'corrections_and_reversals' |
 
+<!--- end of table -->
+
 <a name="claim-adjudication"></a>
-###Claim Adjudication object:
+Claim Adjudication object:
 Tracks previous payments and adjustments made to a service line within a Coordination of Benefits transaction.
+
+<!--- beginning of table -->
 
 | Field                              | Description                                                              |
 | :----------------------------------|:-------------------------------------------------------------------------|
@@ -4685,8 +4730,12 @@ Tracks previous payments and adjustments made to a service line within a Coordin
 | claim_paid_date                    | Required: The date the service line was paid. In ISO8601 format (YYYY-MM-DD). |
 | amount_owed                        | The remaining patient liability amount for the service line. |
 
+<!--- end of table -->
+
 <a name="coordination-of-benefits-payer"></a>
-###Payer object:
+Payer object:
+
+<!--- beginning of table -->
 
 | Field                              | Description                                                                                                                                                                                                                                                                           |
 |:---------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
@@ -4694,9 +4743,13 @@ Tracks previous payments and adjustments made to a service line within a Coordin
 | id                              | Required: Numerical payer id value associated with coordination of benefits payer. |
 | address                         | Address information for the coordination of benefits payer.  Uses an address [object](#claims-address).  |
 
+<!--- end of table -->
+
 
 <a name="claim-frequency"></a>
 Full list of possible values that can be used in the `claim.claim_frequency` parameter on the claim:
+
+<!--- beginning of table -->
 
 | claim_frequency Values             |                           |
 |:-----------------------------------|:--------------------------|
@@ -4706,8 +4759,12 @@ Full list of possible values that can be used in the `claim.claim_frequency` par
 | adjustment                         | corrected                 |
 | cancel                             | final_claim_home_health   |
 
+<!--- end of table -->
+
 <a name="drug-units"></a>
 Full list of possible values that can be used in the `claim.service_lines.drug.unit_type` parameter on the claim:
+
+<!--- beginning of table -->
 
 | unit_type Values                   |                           |
 |:-----------------------------------|:--------------------------|
@@ -4715,8 +4772,12 @@ Full list of possible values that can be used in the `claim.service_lines.drug.u
 | milligram                          | milliliter                |
 | unit                               |                           |
 
+<!--- end of table -->
+
 <a name="ambulance-reason-codes"></a>
 Full list of possible values that can be used in the `claim.ambulance.reason_code` parameter on the claim:
+
+<!--- beginning of table -->
 
 | reason_code Values                 |                           |
 |:-----------------------------------|:--------------------------|
@@ -4724,8 +4785,12 @@ Full list of possible values that can be used in the `claim.ambulance.reason_cod
 | family_proximity (C)               | specialist (D)            |
 | rehab_facility (E)                 |                           |
 
+<!--- end of table -->
+
 <a name="ambulance-applicable-conditions"></a>
 Full list of possible values that can be used in the `claim.ambulance.applicable_conditions` and `claim.ambulance.not_applicable_conditions` parameter on the claim:
+
+<!--- beginning of table -->
 
 | condition Values                   |                           |
 |:-----------------------------------|:--------------------------|
@@ -4734,8 +4799,12 @@ Full list of possible values that can be used in the `claim.ambulance.applicable
 | physically_restrained              | visible_hemorrhaging      |
 | ambulance_medically_necessary      | patient_confined_bed_chair|
 
+<!--- end of table -->
+
 <a name="chiropractic-conditions"></a>
 Full list of possible values that can be used in the `claim.chiropractic.spinal_condition` parameter on the claim:
+
+<!--- beginning of table -->
 
 | spinal_condition Values              |                           |
 |:-------------------------------------|:--------------------------|
@@ -4744,8 +4813,13 @@ Full list of possible values that can be used in the `claim.chiropractic.spinal_
 | routine                              | symptomatic               |
 | acute_manifestation_chronic_condition|                           |                    
 
+<!--- end of table -->
+
+
 <a name="place-of-service"></a>
 Full list of possible values that can be used in the `claim.place_of_service` parameter on the claim:
+
+<!--- beginning of table -->
 
 | place_of_service Values |                             |
 |:------------------------|:----------------------------|
@@ -4772,9 +4846,13 @@ Full list of possible values that can be used in the `claim.place_of_service` pa
 | mentally_retarded       | walkin_clinic               |
 | military                | worksite                    |
 
+<!--- end of table -->
+
 
 <a name="relationships"></a>
 Full list of possible values that can be used in the `patient.relationships` parameter on the claim:
+
+<!--- beginning of table -->
 
 | relationship Values |                    |
 |:--------------------|:-------------------|
@@ -4783,9 +4861,13 @@ Full list of possible values that can be used in the `patient.relationships` par
 | employee            | spouse             |
 | life_partner        | unknown            |
 
+<!--- end of table -->
+
 
 <a name="filing"></a>
 Full list of possible values that can be used in the `subscriber.filing_code` parameter on the claim:
+
+<!--- beginning of table -->
 
 | filing_code Values              |                                   |
 |:--------------------------------|:----------------------------------|
@@ -4802,9 +4884,13 @@ Full list of possible values that can be used in the `subscriber.filing_code` pa
 | indemnity_insurance             | workers_compensation_health_claim |
 | liability_medical               |                                   |
 
+<!--- end of table -->
+
 
 <a name="transaction-code"></a>
 Full list of possible values that can be used in the `transaction_code` parameter on the claim:
+
+<!--- beginning of table -->
 
 | transaction_code Values |
 |:------------------------|
@@ -4812,9 +4898,13 @@ Full list of possible values that can be used in the `transaction_code` paramete
 | chargeable              |
 | reporting               |
 
+<!--- end of table -->
+
 
 <a name="admitsource"></a>
 Full list of possible values that can be used in the `claim.admission_source` parameter on the claim:
+
+<!--- beginning of table -->
 
 | admission_source Values |                         |
 |:------------------------|:------------------------|
@@ -4824,9 +4914,13 @@ Full list of possible values that can be used in the `claim.admission_source` pa
 | hospice_transfer        | physician_referral      |
 | hospital_transfer       | surgery_center          |
 
+<!--- end of table -->
+
 
 <a name="admittype"></a>
 Full list of possible values that can be used in the `claim.admission_type` parameter on the claim:
+
+<!--- beginning of table -->
 
 | admission_type Values     |               |
 |:--------------------------|:--------------|
@@ -4834,9 +4928,13 @@ Full list of possible values that can be used in the `claim.admission_type` para
 | emergency                 | trauma_center |
 | information_not_available | urgent        |
 
+<!--- end of table -->
+
 
 <a name="faciltype"></a>
 Full list of possible values that can be used in the `claim.facility_type` parameter on the claim:
+
+<!--- beginning of table -->
 
 | facility_type Values              |                                  |
 |:----------------------------------|:---------------------------------|
@@ -4852,9 +4950,13 @@ Full list of possible values that can be used in the `claim.facility_type` param
 | hospital_based_hospice            | skilled_nursing_outpatient       |
 | hospital_inpatient_part_a         | skilled_nursing_swing_bed        |
 
+<!--- end of table -->
+
 
 <a name="patstatus"></a>
 Full list of possible values that can be used in the `claim.patient_status` parameter on the claim:
+
+<!--- beginning of table -->
 
 | patient_status Values                        |                                                        |
 |:---------------------------------------------|:-------------------------------------------------------|
@@ -4871,9 +4973,13 @@ Full list of possible values that can be used in the `claim.patient_status` para
 | transferred_to_federal_hospital              | transferred_to_swing_bed                               |
 | transferred_to_home_with_home_health_service |                                                        |
 
+<!--- end of table -->
+
 
 <a name="occtype"></a>
 Full list of possible values that can be used in the `claim.occurrence_information.occurrence_type` parameter on the claim:
+
+<!--- beginning of table -->
 
 | occurrence_type Values                               |                                                             |
 |:-----------------------------------------------------|:------------------------------------------------------------|
@@ -4904,9 +5010,13 @@ Full list of possible values that can be used in the `claim.occurrence_informati
 | effective_date_insured_c                             | ur_notice_received                                          |
 | election_of_extended_care_facilities                 |                                                             |
 
+<!--- end of table -->
+
 
 <a name="valuecode"></a>
 Full list of possible values that can be used in the `claim.value_information.value_type` parameter on the claim:
+
+<!--- beginning of table -->
 
 | value_information.value_type                                  |                                                      |
 |:--------------------------------------------------------------|:-----------------------------------------------------|
@@ -4963,8 +5073,12 @@ Full list of possible values that can be used in the `claim.value_information.va
 | medicaid_rate_code                                            | working_age_beneficiary_spouse_with_eghp             |
 | medicaid_rate_code                                            | working_age_beneficiary_spouse_with_eghp             |
 
+<!--- end of table -->
+
 <a name="payer-responsibility"></a>
 Full list of possible values that can be returned in the `subscriber.payer_responsibility` field on the claim:
+
+<!--- beginning of table -->
 
 | payer_responsibility Values |                    |
 |:----------------------------|:-------------------|
@@ -4975,8 +5089,10 @@ Full list of possible values that can be returned in the `subscriber.payer_respo
 | primary                     | secondary          |
 | tertiary                    | unknown            |
 
+<!--- end of table -->
 
 <a name="mockpayer-claims-testing"></a>
+### MOCKPAYER Additional Details
 
 The `MOCKPAYER` trading partner id supports a few different testing scenarios to help API client applications
 verify their handling of different `claims` activity results.  Similar to some payment processors, special

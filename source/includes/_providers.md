@@ -387,14 +387,24 @@ The Providers endpoints can be used to search for Providers, view biographical,
 education, credential, and license information. For a complete reference to all possible 
 provider specialties, see our [provider specialties reference](provider_specialties.html).
 
+### Endpoint Description
+
 Available Provider Endpoints:
+
+<!--- beginning of table -->
 
 | Endpoint        | HTTP Method | Description                                                              |
 |:----------------|:------------|:-------------------------------------------------------------------------|
 | /providers/     | GET         | Get a list of providers meeting certain search criteria                  |
 | /providers/{id} | GET         | Retrieve the data for a specified provider; the ID is the provider's NPI |
 
-The /providers/ endpoint accepts the following search parameters:
+<!--- end of table -->
+
+### Parameters
+
+The `/providers/` endpoint accepts the following search parameters:
+
+<!--- beginning of table -->
 
 | Parameter         | Type     | Description                                                                                                                                         |
 |:------------------|:---------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -413,7 +423,13 @@ The /providers/ endpoint accepts the following search parameters:
 | sort              | {string} | Accepted values include 'distance' (default) or 'rank'.  'distance' sort requires city & state or zipcode parameters otherwise sort will be 'rank'. |
 | entity_types      | {string} | The desired provider entity type(s), as a comma-separated string.  Possibilities are 'individual', 'organization', and 'individual,organization'.   |
 
-The response from the /providers/ endpoints contain the following fields:
+<!--- end of table -->
+
+### Response
+
+The response from the `/providers/` endpoints contain the following fields:
+
+<!--- beginning of table -->
 
 | Field                                 | Type      | Description                                                                                                    | Presence |
 |:--------------------------------------|:----------|:---------------------------------------------------------------------------------------------------------------|:------------------|
@@ -471,4 +487,6 @@ The response from the /providers/ endpoints contain the following fields:
 | provider.uuid                         | {uuid}    | The provider's unique PokitDok Platform identifier                                                             | Required |
 | provider.website_url                  | {string}  | (verified providers only) Provider website URL                                                                 | Optional (when entity_type is 'organization') |
 | distance                              | {string}  | When sort is 'distance' (default) this is the distance from the city & state or zipcode centroid               | Optional (when sort is 'distance') |
+
+<!--- end of table -->
 

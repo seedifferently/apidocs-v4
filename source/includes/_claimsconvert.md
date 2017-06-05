@@ -156,19 +156,34 @@ included so that the client application may review the scenarios and choices tha
 map ICD-9 to ICD-10.
 
 
+### Endpoint Description
+
+<!--- beginning of table -->
+
 | Endpoint        | HTTP Method | Description                          |
 |:----------------|:------------|:-------------------------------------|
 | /claims/convert | POST        | Submit a X12 837 file for conversion |
 
+<!--- end of table -->
 
-The /claims/convert endpoint accepts the following parameters:
+
+### Parameters
+
+The `/claims/convert` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter | Description    |
 |:----------|:---------------|
 | file      | a X12 837 file |
 
+<!--- end of table -->
 
-The /claims/convert response contains the following fields:
+### Response
+
+The `/claims/convert` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                                                              | Description                                                                                                                                                         |
 |:-------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -185,3 +200,5 @@ The /claims/convert response contains the following fields:
 | diagnosis_mappings.source_code.value                               | a string containing the ICD-9 code value                                                                                                                            |
 | diagnosis_mappings.approximate                                     | a boolean of whether or not the mapping from ICD-9 to ICD-10 was direct or more of an approximation.                                                                |
 | diagnosis_mappings.combination                                     | a boolean of whether or not multiple ICD-9 values were combined and mapped to fewer ICD-10 values.                                                                                                  |
+
+<!--- end of table -->

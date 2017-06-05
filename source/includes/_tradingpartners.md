@@ -161,17 +161,24 @@ try client.tradingPartners(tradingPartnerId: "aetna")
 *Available modes of operation: real-time*
 
 The Trading Partners endpoint provides access to the collection of PokitDok's trading
-partners.
+partners. Available Trading Partner endpoints and the descriptions of their request and response parameters are as follows.
 
-Available Trading Partner endpoints:
+### Endpoint Description
+
+<!--- beginning of table -->
 
 | Endpoint              | HTTP Method | Description                                                                                   |
 |:----------------------|:------------|:----------------------------------------------------------------------------------------------|
 | /tradingpartners/     | GET         | Get a list of trading partners.                                                               |
-| /tradingpartners/{id} | GET         | Retreive the data for a specified trading partner; the ID is the PokitDok trading partner id. |
+| /tradingpartners/{id} | GET         | Retrieve the data for a specified trading partner; the ID is the PokitDok trading partner id. |
 
+<!--- end of table -->
 
-The /tradingpartners/ response contains the following fields:
+### Response
+
+The `/tradingpartners/` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                                  | Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         															|
 |:---------------------------------------|:----------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -192,12 +199,16 @@ The /tradingpartners/ response contains the following fields:
 | restricted_transactions                | {array}   | Identifies the X12 transaction sets (270, 278, 837) that require NPI submission in the client dashboard prior to use. Field returned only for /tradingpartners/{id} request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             	|
 | supported_search_options               | {array}   | A list of member search options that are supported by the trading partner for eligibility requests.  A complete listing of possible [search options](#search-options) is included below. Field returned only for /tradingpartners/{id} request.																																																																																																																																																																																														|
 
+<!--- end of table -->
+
+### Additional Object Tables
 
 <a name="search-options"></a>
 Full list of possible search options that may be available for use with a trading partner on eligibility requests.
 These constants align with Section 1.4.8 (Search Options) of the X12 270/271 specification around the use of available
 member information to locate the member in the trading partner's system. Please note that supported search options are subject to change and are dictated by the trading partner. For best results, include as much information as possible and note that primary_search is most effective.
 
+<!--- beginning of table -->
 
 | Search Option                               | Description
 |:--------------------------------------------|:----------------|
@@ -207,3 +218,5 @@ member information to locate the member in the trading partner's system. Please 
 | no_birth_date_search                        | first_name, last_name, and id are provided to locate a member.               |
 | no_name_search                              | id and birth_date are provided to locate a member.               |
 | no_id_search                                | first_name, last_name and birth_date are provided to locate a member.               |
+
+<!--- end of table -->

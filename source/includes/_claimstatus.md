@@ -1162,13 +1162,22 @@ The speed at which a claim is adjudicated is dependent on the trading partner. O
 To understand how the [Claims](#claims) and [Claims Status](#claims_status) Endpoints work together,
 see the [claims API workflow](https://pokitdok.com/developers/api/#api-claims-status).
 
+### Endpoint Description
+
+
+<!--- beginning of table -->
 
 | Endpoint       | HTTP Method | Description                                                     |
 |:---------------|:------------|:----------------------------------------------------------------|
 | /claims/status | POST        | Submit a claim status request to the specified trading partner. |
 
+<!--- end of table -->
 
-The /claims/status endpoint accepts the following parameters:
+### Parameters
+
+The `/claims/status` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter                                | Description                                                                                                                                                                                                                                                                                          |
 |:-----------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1199,8 +1208,13 @@ The /claims/status endpoint accepts the following parameters:
 | receiver.organization_name               | The receiver’s name when the receiver is an organization. first_name and last_name should be omitted when sending organization_name.                                                                                                                                                                 |
 | pharmacy_prescription_number             | The pharmacy prescription number associated with the claim                                                                                                                                                                                                                                           |
 
+<!--- end of table -->
 
-The /claim/status response contains the following fields:
+### Response
+
+The `/claim/status` response contains the following fields:
+
+<!--- beginning of table -->
 
 | Field                                                 | Description                                                                                                                                                                                                                                                                                                                                        |
 |:------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1272,8 +1286,14 @@ The /claim/status response contains the following fields:
 | patient.last_name                                     | The patient’s last name as specified on their policy.                                                                                                                                                                                                                                                                                              |
 | patient.suffix                                        | The patient’s suffix.                                                                                                                                                                                                                                                                                                                              |
 
+<!--- end of table -->
+
+### Additional Object Tables
+
 <a name="claims_status_member_object"></a>
-###Member object:
+Member object:
+
+<!--- beginning of table -->
 
 | Field                             | Description                                                                                           |
 |:----------------------------------|:------------------------------------------------------------------------------------------------------|
@@ -1285,8 +1305,12 @@ The /claim/status response contains the following fields:
 | suffix                            | The suffix for the member                                                                             |
 | id                                | The member identifier.                                                                                |
 
+<!--- end of table -->
+
 <a name="claims_status_status_information"></a>
-###Status Information object:
+Status Information object:
+
+<!--- beginning of table -->
 
 | Field                             | Description                                                                                                                                                                                                                                                                                                                                        |
 |:----------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1307,10 +1331,16 @@ The /claim/status response contains the following fields:
 | claim_payment_amount              | The amount that's been paid on the claim. Uses the monetary amount [object](#claims-status-monetary-amount).                                                                                                                                                                                                                                       |
 | check_number                      | The check or EFT trace number for a claim payment.                                                                                                                                                                                                                                                                                                 |
 
+<!--- end of table -->
+
 <a name="claims-status-monetary-amount"></a>
-###Monetary amount object:
+Monetary amount object:
+
+<!--- beginning of table -->
 
 | Field                                 | Description                                                                                                                                                                               |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | amount                                | The value amount for this item.                                                                                                                                                           |
 | currency                              | The currency used in the amount.                                                                                                                                                          |
+
+<!--- end of table -->

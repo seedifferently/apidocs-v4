@@ -2167,9 +2167,16 @@ co-insurance, copay, deductible and out of pocket amounts for a member along wit
 Use the [Trading Partners](#trading-partners) endpoint to determine available trading_partner_id values for use with the
 Eligibility API.
 
+### Endpoint Description
+
+
+<!--- beginning of table -->
+
 | Endpoint      | HTTP Method | Description                                                  |
 |:--------------|:------------|:-------------------------------------------------------------|
 | /eligibility/ | POST        | Determine eligibility via an X12 270 Request For Eligibility |
+
+<!--- end of table -->
 
 
 All eligibility requests must include a valid Provider NPI. Some trading partners require that the submitting provider’s
@@ -2181,7 +2188,11 @@ request will be made for general benefit coverage (health_benefit_plan_coverage)
 
 Some trading partners allow combinations of the below parameters to return a successful eligibility response.  PokitDok now only requires those specific parameters required by the trading partner being called. Details on available search options per trading partner can be found by using the [Trading Partners](#trading-partners) endpoint.  There are example eligibility requests for each of the search option combinations to the right as well.
 
-The /eligibility/ endpoint accepts the following parameters:
+### Parameters
+
+The `/eligibility/` endpoint accepts the following parameters:
+
+<!--- beginning of table -->
 
 | Parameter                  | Description                                                                                                                                                                                                     |
 |:---------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2209,12 +2220,19 @@ The /eligibility/ endpoint accepts the following parameters:
 | transaction_code           | The purpose of the eligibility transaction. Defaults to request. Other possibility is cancellation.                                                                                                             |
 | trading_partner_id         | Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) Endpoint.                                                                                                 |
 
+<!--- end of table -->
+
 
 Eligibility and benefit responses vary depending on the trading partner and the plan in which a member is enrolled. Some trading partners may not provide deductible, out-of-pocket, copayment, coinsurance or other specific plan information. PokitDok will return all information received from the trading partner in the eligibility response.
 
 PokitDok adds a Summary section in the eligibility response for convenience as a quick overview of a member's deductible and out-of-pocket information.  This should not be seen as a total replacement for the detailed deductible and out-of-pocket information in the coverage section of the eligibility response.  The Summary section contains deductible and out-of-pocket values for overall health benefit plan coverage as well as any additional service types for which deductible and out-of-pocket information is received.  When a value of $0 is returned in the Summary section, users should reference the Coverage section to determine if the trading partner returned a zero value or if the information was not provided in the response.
 
-The /eligibility/ response contains the following fields:
+### Response
+
+The `/eligibility/` response contains the following fields:
+
+
+<!--- beginning of table -->
 
 | Field                                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |:----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2478,8 +2496,15 @@ The /eligibility/ response contains the following fields:
 | summary.out_of_pocket.family                        | Family out-of-pocket information.  The subproperties can be seen [below](#deductible-outofpocket).                                                                                                                                                                                                                                                                                                                                                                                       |
 | summary.out_of_pocket.individual                    | Individual out-of-pocket information. The subproperties can be seen [below](#deductible-outofpocket).                                                                                                                                                                                                                                                                                                                                                                                    |
 
+<!--- end of table -->
+
+### Additional Object Tables
+
 <a name="eligibility-payer"></a>
-###Payer Object
+Payer Object
+
+<!--- beginning of table -->
+
 
 | Parameter                  | Description                                                                           |
 |:---------------------------|:--------------------------------------------------------------------------------------|
@@ -2491,8 +2516,12 @@ The /eligibility/ response contains the following fields:
 | url                        | The the url associacted with the payer                                                |
 | fax                        | The fax of the payer.                                                                 |
 
+<!--- end of table -->
+
 <a name="eligibility-address"></a>
-###Address Object:
+Address Object:
+
+<!--- beginning of table -->
 
 | Field                                 | Description                                                                                                       |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------|
@@ -2502,8 +2531,12 @@ The /eligibility/ response contains the following fields:
 | zipcode                               | The zip/postal code. (e.g. "94401")                                                                               |
 | country                               | The country component of a address.                                                                               |
 
+<!--- end of table -->
+
 <a name="eligibility-subscriber"></a>
-###Subscriber Object
+Subscriber Object
+
+<!--- beginning of table -->
 
 | Parameter                  | Description                                                                                                                                                                                                                                                                                      |
 |:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2518,8 +2551,14 @@ The /eligibility/ response contains the following fields:
 | group_number               | Group number for the subscriber.                                                                                                                                                                                                                                                                 |
 | military_personnel_information | Information pertaining to the subscriber's military service.  This information may be returned for dependents as well.  Uses the military personnel information [object](#eligibility-military).
 										|
+
+<!--- end of table -->
+
+
 <a name="eligibility-military"></a>
-###Military Personnel Information Object
+Military Personnel Information Object
+
+<!--- beginning of table -->
 
 | Parameter                  | Description                                                                                                                                                                                                                                                                                      |
 |:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2531,9 +2570,13 @@ The /eligibility/ response contains the following fields:
 | start_date                 | The start date defined for military service.                                                                                                                                                                                                                                                       |
 | end_date                   | The end date defined for military service.                                                                                                                                                                                                                                                         |
 
+<!--- end of table -->
+
 
 <a name="eligibility-delivery"></a>
-###Delivery Object:
+Delivery Object:
+
+<!--- beginning of table -->
 
 | Field                                 | Description                                                                                                                                                                               |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2546,16 +2589,24 @@ The /eligibility/ response contains the following fields:
 | quantity                              | The quantity of services being requested.                                                                                                                                                 |
 | quantity_qualifier                    | The qualifier used to indicate the quantity type. A full list of possible values is included [below](#quantity-qualifier). |   
 
+<!--- end of table -->
+
 <a name="eligibility-monetary-amount"></a>
-###Monetary Amount Object:
+Monetary Amount Object:
+
+<!--- beginning of table -->
 
 | Field                                 | Description                                                                                                                                                                               |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | amount                                | The value amount for this item.                                                                                                                                                           |
 | currency                              | The currency used in the amount.                                                                                                                                                          |
 
+<!--- end of table -->
+
 <a name="deductible-outofpocket"></a>
-###Object base that is used both by the deductible summary and out of pocket summary:
+Object base that is used both by the deductible summary and out of pocket summary:
+
+<!--- beginning of table -->
 
 | Field                                 | Description                                                                                                                                                                               |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2563,9 +2614,13 @@ The /eligibility/ response contains the following fields:
 | applied                               | Monetary value applied to a deductible. Uses the monetary amount [object](#eligibility-monetary-amount).                                                                                  |
 | remaining                             | Monetary value remaining related to a deductible. Uses the monetary amount [object](#eligibility-monetary-amount).                                                                        |
 
+<!--- end of table -->
+
 
 <a name="benefit-related-entities"></a>
-###Benefit Related Entities Object:
+Benefit Related Entities Object:
+
+<!--- beginning of table -->
 
 | Field                                 | Description                                                                                                                                                                               |
 |:--------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2598,9 +2653,13 @@ The /eligibility/ response contains the following fields:
 | benefit_amount			| The monetary amount associated with the eligibility_or_benefit_information and service_types provided. Uses the monetary amount [object](#eligibility-monetary-amount).
                                                             						          |
 
+<!--- end of table -->
+
 
 <a name="procedure-id-qualifier"></a>
-Full list of possible procedure_id_qualifier values that may be used in the eligiblity request or returned in an eligibility response:
+Full list of possible `procedure_id_qualifier` values that may be used in the eligiblity request or returned in an eligibility response:
+
+<!--- beginning of table -->
 
 | procedure_id_qualifier                |                 |
 |:--------------------------------------|:----------------|
@@ -2609,8 +2668,12 @@ Full list of possible procedure_id_qualifier values that may be used in the elig
 | hiec_product_service_code             | ndc_5_4_2_format|
 | mutually_defined                      |                 |
 
+<!--- end of table -->
+
 <a name="coverage-level"></a>
-Full list of possible coverage level values that may be returned in an eligibility response:
+Full list of possible `coverage_level` values that may be returned in an eligibility response:
+
+<!--- beginning of table -->
 
 | coverage_level                        |                           |
 |:--------------------------------------|:--------------------------|
@@ -2620,8 +2683,12 @@ Full list of possible coverage level values that may be returned in an eligibili
 | individual                            | spouse_and_children       |
 | spouse_only                           |                           |
 
+<!--- end of table -->
+
 <a name="eligibility_time_period_qualifier"></a>
-Possible values that can be used in the delivery.time_period_qualifier parameter:
+Possible values that can be used in the `delivery.time_period_qualifier` parameter:
+
+<!--- beginning of table -->
 
 | time_period_qualifier Values |                    |
 |:-----------------------------|:-------------------|
@@ -2636,8 +2703,12 @@ Possible values that can be used in the delivery.time_period_qualifier parameter
 | week                         | year_to_date       |
 | years                        |                    |
 
+<!--- end of table -->
+
 <a name="quantity-qualifier"></a>
-Possible values that can be used as quantity_qualifier parameter:
+Possible values that can be used as `quantity_qualifier` parameter:
+
+<!--- beginning of table -->
 
 | quantity_qualifier Values |                            |
 |:--------------------------|:---------------------------|
@@ -2651,8 +2722,12 @@ Possible values that can be used as quantity_qualifier parameter:
 | age_high_value | age_low_value |
 | visits | years |
 
+<!--- end of table -->
+
 <a name="service-type"></a>
-Full list of possible service_type values with the associated code (from X12 specification) that may be used in the eligiblity request or returned in an eligibility response:
+Full list of possible `service_type` values with the associated code (from X12 specification) that may be used in the eligiblity request or returned in an eligibility response:
+
+<!--- beginning of table -->
 
 | service_type                                          | Code (X12 Spec) |
 |:------------------------------------------------------|:----------------|
@@ -2901,9 +2976,13 @@ Full list of possible service_type values with the associated code (from X12 spe
 | vision_optometry                                      | AL              |
 | well_baby_care                                        | 68              |
 
+<!--- end of table -->
+
 
 <a name="authz-req"></a>
-Full list of possible authorization_required values returned (or not) in an eligibility response:
+Full list of possible `authorization_required` values returned (or not) in an eligibility response:
+
+<!--- beginning of table -->
 
 | value   | Meaning                                                                                            |
 |:--------|:---------------------------------------------------------------------------------------------------|
@@ -2911,11 +2990,15 @@ Full list of possible authorization_required values returned (or not) in an elig
 | no      | indicates that an authorization or certification is not required per plan provisions               |
 | unknown | indicates that it is unknown whether the plan provisions require an authorization or certification |
 
+<!--- end of table -->
+
 **NOTE:** authorization_required is situational, so it could also be empty
 
 
 <a name="reject-reason"></a>
-Most common reject_reasons on the eligibility response with description:
+Most common `reject_reasons` on the eligibility response with description:
+
+<!--- beginning of table -->
 
 | reject_reason                   | Description                                                                                                                                            |
 |:--------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2929,3 +3012,5 @@ Most common reject_reasons on the eligibility response with description:
 | subscriber_insured_not_found    | subscriber not found                                                                                                                                   |
 | patient_birth_date_mismatch     | birth date does not match subscriber found                                                                                                             |
 | unable_to_respond_now           | trading partner is experiencing downtime and not able to complete request.  if this is a known outage the response meta section and PokitDok [status page](https://pokitdok.com/status/) will have more details.|
+
+<!--- end of table -->
