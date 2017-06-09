@@ -35,6 +35,7 @@ be comprised of other objects.
 | financial_information           | <a href="#financial_information_object">Financial Information object</a>                  | Financial institution information related to the claim payment.                                                           | Yes       |
 | insurance_policy_number         | {string}                                                                                  | The insurance policy number associated with the claim.                                                                    | No        |
 | insured                         | <a href="#insured_object">Insured object</a>                                              | The insured information related to the claim.  This will be set when the patient is not also the insured.                | No        |
+| interest_amount                 | <a href="#monetary_object">Monetary Amount object</a>                                     | Monetary amount representing interest applied to the claim.                       | No        |
 | medical_record_number           | {string}                                                                                  | The medical record number associated with the claim.                                                                      | No        |
 | meta          | <a href="#meta_object">Meta object</a>                                                                      | Additional information related to the transaction.                                                                      | No        |
 | patient                         | <a href="#patient_object">Patient object</a>                                              | The patient information related to the claim.                                                                            | Yes       |
@@ -53,6 +54,7 @@ be comprised of other objects.
 ## Claim Payments object
 | Parameters                 | Type                                                             | Description                       | Required? |
 |:---------------------------|:-----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:----------|
+| adjudication                | <a href="#outpatient_object">Outpatient object</a> or <a href="#inpatient_object">Inpatient object</a>        | Object outlining either outpatient or inpatient adjudication information                                                                               | No        |
 | adjustments                | List of <a href="#adjustment_object">Adjustment objects</a>      | A list of adjustments that apply to the claim payment.                                                                                | No        |
 | assigned_number            | {int}                                                            | Number assigned to the claim payment.                                                                                                  | No        |
 | control_number             | {string}                                                         | Control number assigned to the claim payment.                                                                                          | Yes       |
@@ -89,14 +91,15 @@ be comprised of other objects.
 | adjudicated_procedure_code_qualifier       | {string}                                                        | The qualifier for the procedure code that was adjudicated for the service.  Possible values included in <a href="#procedure_code_qualifiers">Procedure Code Qualifiers</a>.              | Yes       |
 | adjudicated_procedure_modifier_codes       | {string}                                                        | The modifiers for the procedure code that was adjudicated for the service.          | No        |
 | charge_amount                    | <a href="#monetary_object">Monetary Amount object</a>           | The amount charged for the service on the claim.                      | Yes       |
-| provider_payment_amount          | <a href="#monetary_object">Monetaty Amount object</a>           | The amount the provider was paid for the service.                     | Yes       |
+| late_filing_amount                    | <a href="#monetary_object">Monetary Amount object</a>           | The deduction amount for the late filing reduction for the service on the claim.                      | No       |
+| provider_payment_amount          | <a href="#monetary_object">Monetary Amount object</a>           | The amount the provider was paid for the service.                     | Yes       |
 | submitted_procedure_code         | {string}                                                        | The procedure code that was submitted in the claim for the service.   | No        |
 | service_units_paid               | {int}                                                           | The number of service units that were paid.                           | No        |
 | service_units_submitted          | {int}                                                           | The number of service units that were submitted on the claim.         | No        |
 | control_number                    | {string}                                                           | The control number assigned to the service line.  This is the line item control number submitted on the original claim and is required to be returned if submitted.                    | No        |
 | service_date                    | {string}                                                         | The service date assigned to this service line.                    | No        |
 | adjustments                      | {list}                                                        | Adjustments applicable to the service line.  Uses the <a href="#adjustment_object">Adjustment object</a>                              | No       |
-| remarks                      | {list}                                                        | A list of health care remark codes applicable to the claim payment  Uses the <a href="#remarks_object">Remarks object</a>                              | No       |
+| remarks                      | {list}                                                        | A list of health care remark codes applicable to the claim payment.  Uses the <a href="#remarks_object">Remarks object</a>                              | No       |
 
 (<a href="#claim_payment_object">Back to Claim Payment Object</a>)
 
@@ -238,6 +241,69 @@ be comprised of other objects.
 | code   | {string} | The numerical value associated with the remark | Yes       |
 
 (<a href="#service_object">Back to Service Object</a>)
+
+<a name="outpatient_object"></a>
+## Outpatient object
+| Parameters | Type     | Description                       | Required? |
+|:-----------|:---------|:----------------------------------|:----------|
+| remarks   | {list} | A list of health care remark codes applicable to the claim payment.  Uses the <a href="#remarks_object">Remarks object</a>  | No       |
+| reimbursement_rate   | {float} | The percentage for reimbursement rate applied to the claim payment | No       |
+| claim_hcpcs_payable   | <a href="#monetary_object">Monetary Amount object</a>   | The claim Health Care Financing Administration Common Procedural Coding System (HCPCS) payable amount | No       |
+| claim_esrd_payment   | <a href="#monetary_object">Monetary Amount object</a>   | The End Stage Renal Disease (ESRD) payment amount | No       |
+| nonpayable_professional_component   | <a href="#monetary_object">Monetary Amount object</a>  | The professional component amount billed but not payable | No       |
+
+(<a href="#claim_payment_object">Back to Claim Payment Object</a>)
+
+<a name="inpatient_object"></a>
+## Inpatient object
+| Parameters | Type     | Description                       | Required? |
+|:-----------|:---------|:----------------------------------|:----------|
+| remarks   | {list} | A list of health care remark codes applicable to the claim payment.  Uses the <a href="#remarks_object">Remarks object</a>  | No       |
+| covered_days_or_visits   | {int} | The covered days or visits | No       |
+| lifetime_psychiatric_days   | {int}   | The lifetime psychiatric days | No       |
+| old_capital   | <a href="#monetary_object">Monetary Amount object</a>  | The old capital amount | No       |
+| cost_report_days   | {int}   | The count of cost report days | No       |
+| nonpayable_professional_component   | <a href="#monetary_object">Monetary Amount object</a>   | The professional component amount billed but not payable | No       |
+| prospective_payment_system   | <a href="#pps_object">Prospective Payment System object</a>   | Information related to the prospective payment system (PPS) | No       |
+| claim   | <a href="#claim_object">Claim object</a>   | Items related to the inpatient claim adjudication | No       |
+
+(<a href="#claim_payment_object">Back to Claim Payment Object</a>)
+
+<a name="pps_object"></a>
+## Prospective Payment System object
+| Parameters | Type     | Description                       | Required? |
+|:-----------|:---------|:----------------------------------|:----------|
+| capital   | <a href="#capital_object">Capital object</a> | Items related to capital  | No       |
+| operating_outlier   | <a href="#monetary_object">Monetary Amount object</a>  | The Prospective Payment System (PPS) Operating Outlier amount | No       |
+| operating_hospital_specific_drg   | <a href="#monetary_object">Monetary Amount object</a>   | The hospital specific Diagnosis Related Group (DRG) amount | No       |
+| operating_federal_specific_drg   | <a href="#monetary_object">Monetary Amount object</a>  | The federal specific Diagnosis Related Group (DRG) amount | No       |
+
+(<a href="#inpatient_object">Back to Inpatient Object</a>)
+
+<a name="claim_object"></a>
+## Claim object
+| Parameters | Type     | Description                       | Required? |
+|:-----------|:---------|:----------------------------------|:----------|
+| diagnosis_related_group   | <a href="#monetary_object">Monetary Amount object</a>  | The Diagnosis Related Group (DRG) amount  | No       |
+| disproportionate_share   | <a href="#monetary_object">Monetary Amount object</a>  | The disproportionate share amount | No       |
+| medicare_secondary_payer_pass_through   | <a href="#monetary_object">Monetary Amount object</a>   | The Medicare Secondary Payer (MSP) pass-through amount | No       |
+| prospective_payment_system_capital   | <a href="#monetary_object">Monetary Amount object</a>  | The total Prospective Payment System (PPS) capital amount | No       |
+| prospective_payment_system_capital_outlier   | <a href="#monetary_object">Monetary Amount object</a>   | The Prospective Payment System (PPS) Capital Outlier amount | No       |
+| indirect_teaching   | <a href="#monetary_object">Monetary Amount object</a>  | The indirect teaching amount | No       |
+
+(<a href="#inpatient_object">Back to Inpatient Object</a>)
+
+<a name="capital_object"></a>
+## Capital object
+| Parameters | Type     | Description                       | Required? |
+|:-----------|:---------|:----------------------------------|:----------|
+| federal_specific_portion_drg   | <a href="#monetary_object">Monetary Amount object</a> | The Prospective Payment System (PPS) capital, federal specific portion, Diagnosis Related Group (DRG) amount  | No       |
+| hospital_specific_portion_drg   | <a href="#monetary_object">Monetary Amount object</a>  | The Prospective Payment System (PPS) capital, hospital specific portion, Diagnosis Related Group (DRG) amount | No       |
+| disproportionate_share_hospital_specific_drg   | <a href="#monetary_object">Monetary Amount object</a>   | The Prospective Payment System (PPS) capital, disproportionate share, hospital Diagnosis Related Group (DRG) amount | No       |
+| indirect_medical_education   | <a href="#monetary_object">Monetary Amount object</a>  | The Prospective Payment System (PPS) capital indirect medical education claim amount | No       |
+| exception   | <a href="#monetary_object">Monetary Amount object</a>  | The capital exception amount | No       |
+
+(<a href="#pps_object">Back to Prospective Payment System object</a>)
 
 # Codes
 Many of the values above are limited to a set of codes or constants.
