@@ -54,7 +54,7 @@ be comprised of other objects.
 ## Claim Payments object
 | Parameters                 | Type                                                             | Description                       | Required? |
 |:---------------------------|:-----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:----------|
-| adjudication                | {string}        | Object outlining either outpatient or inpatient adjudication information.  Uses <a href="#outpatient_object">Outpatient object</a> or <a href="#inpatient_object">Inpatient object</a>                                                                                | No        |
+| adjudication                | <a href="#outpatient_object">Outpatient object</a> or <a href="#inpatient_object">Inpatient object</a>        | Object outlining either outpatient or inpatient adjudication information                                                                               | No        |
 | adjustments                | List of <a href="#adjustment_object">Adjustment objects</a>      | A list of adjustments that apply to the claim payment.                                                                                | No        |
 | assigned_number            | {int}                                                            | Number assigned to the claim payment.                                                                                                  | No        |
 | control_number             | {string}                                                         | Control number assigned to the claim payment.                                                                                          | Yes       |
@@ -99,7 +99,7 @@ be comprised of other objects.
 | control_number                    | {string}                                                           | The control number assigned to the service line.  This is the line item control number submitted on the original claim and is required to be returned if submitted.                    | No        |
 | service_date                    | {string}                                                         | The service date assigned to this service line.                    | No        |
 | adjustments                      | {list}                                                        | Adjustments applicable to the service line.  Uses the <a href="#adjustment_object">Adjustment object</a>                              | No       |
-| remarks                      | {list}                                                        | A list of health care remark codes applicable to the claim payment  Uses the <a href="#remarks_object">Remarks object</a>                              | No       |
+| remarks                      | {list}                                                        | A list of health care remark codes applicable to the claim payment.  Uses the <a href="#remarks_object">Remarks object</a>                              | No       |
 
 (<a href="#claim_payment_object">Back to Claim Payment Object</a>)
 
@@ -264,7 +264,7 @@ be comprised of other objects.
 | old_capital   | <a href="#monetary_object">Monetary Amount object</a>  | The old capital amount | No       |
 | cost_report_days   | {int}   | The count of cost report days | No       |
 | nonpayable_professional_component   | <a href="#monetary_object">Monetary Amount object</a>   | The professional component amount billed but not payable | No       |
-| prospective_payment_system   | <a href="#monetary_object">Monetary Amount object</a>   | The prospective payment system.  Uses the <a href="#pps_object">Prospective Payment System object</a> | No       |
+| prospective_payment_system   | <a href="#pps_object">Prospective Payment System object</a>   | Information related to the prospective payment system (PPS) | No       |
 | claim   | <a href="#claim_object">Claim object</a>   | Items related to the inpatient claim adjudication | No       |
 
 (<a href="#claim_payment_object">Back to Claim Payment Object</a>)
