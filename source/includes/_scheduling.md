@@ -682,7 +682,7 @@ Available Scheduling Endpoints:
 | /schedule/schedulers/{uuid}         | GET         | Retrieve the data for a specified scheduling system.                         |                                   |
 | /schedule/appointmenttypes/         | GET         | Get a list of appointment types, their UUIDs, and descriptions. |                                   |
 | /schedule/appointmenttypes/{uuid}   | GET         | Retrieve the data for a specified appointment type.             |                                   |
-| /schedule/patient/                  | POST        | Registers an existing PokitDok user as a patient within a provider's scheduling system.           | user_schedule             |
+| /schedule/patient/                  | POST        | Registers an existing PokitDok user within a provider's scheduling system as a new or existing patient.           | user_schedule             |
 | /schedule/slots/                      | POST        | Creates an open scheduling slot. | business_schedule                                                                 |
 | /schedule/slots/{pd_appointment_uuid} | DELETE      | Deletes an open scheduling slot. | business_schedule                                                                 |
 | /schedule/appointments/                       | GET         | Query for appointments. business_schedule scope requests include pd_provider_uuid and location. user_schedule requests include  patient_uuid      | user_schedule or business_schedule  |
