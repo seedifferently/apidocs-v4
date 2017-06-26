@@ -144,7 +144,7 @@ pokitdok.dropin('INSERT YOUR DROP-IN TOKEN HERE', {
         "first_name": "Jane",
         "last_name": "Doe",
         "id": "123456789",
-        "birth_date": "1970-01-01"
+        "birth_date": "01-25-1970"
     },
     "trading_partner_id": "MOCKPAYER",
     "procedure": "xxxxx",
