@@ -188,7 +188,14 @@ The `GET /payments/` endpoint accepts the following search parameters:
 | check_eft_trace_number | {string} | The Check or EFT trace number that is associated with the payment.                                                                                                                     |
 | amount                 | {string} | The amount of the payment (e.g. 14123.75 )                                                                                                                                             |
 | effective_date         | {string} | The effective date for the payment (e.g. 2017-06-02)                                                                                                                                   |
+| effective_date_start   | {string} | The start date for an effective date range search (e.g. 2017-06-02)                                                                                                                    |
+| effective_date_end     | {string} | The end date for an effective date range search (e.g. 2017-06-15)                                                                                                                      |
+| received_date_start    | {string} | The start date for a received date range search (e.g. 2017-06-01)                                                                                                                      |
+| received_date_end      | {string} | The end date for a received date range search (e.g. 2017-06-30)                                                                                                                        |
 
+The range search parameters for effective date and received date may be used individually or together
+to limit payment results to the specified time period.  Date range searches may be useful when balancing
+payments with a bank statement or when reviewing a quarterly or annual accounting period.
 
 ### Response
 
