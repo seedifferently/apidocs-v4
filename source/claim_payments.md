@@ -31,6 +31,7 @@ be comprised of other objects.
 | claim_payments                  | List of <a href="#claim_payment_object">Claim Payment objects</a>                         | A list of payments that were processed as part of this claim.                                                            | Yes       |
 | coverage_amount                 | <a href="#monetary_object">Monetary Amount object</a>                                     | Monetary amount to report the total covered charges for the claim.                                                       | No        |
 | coverage_expiration_date        | {string}                                                                                  | The coverage expiration date.                                                                                             | No        |
+| crossover_carrier               | <a href="#crossover_carrier_object">Crossover Carrier object</a>                          | The crossover carrier may be populated when the claim is transferred to another payer for processing after being finalized by the current payer.    | No        |
 | discount_amount                 | <a href="#monetary_object">Monetary Amount object</a>                                     | Monetary amount representing discounts applied to the claim based on contractual obligations, etc.                       | No        |
 | financial_information           | <a href="#financial_information_object">Financial Information object</a>                  | Financial institution information related to the claim payment.                                                           | Yes       |
 | insurance_policy_number         | {string}                                                                                  | The insurance policy number associated with the claim.                                                                    | No        |
@@ -91,15 +92,17 @@ be comprised of other objects.
 | adjudicated_procedure_code_qualifier       | {string}                                                        | The qualifier for the procedure code that was adjudicated for the service.  Possible values included in <a href="#procedure_code_qualifiers">Procedure Code Qualifiers</a>.              | Yes       |
 | adjudicated_procedure_modifier_codes       | {string}                                                        | The modifiers for the procedure code that was adjudicated for the service.          | No        |
 | charge_amount                    | <a href="#monetary_object">Monetary Amount object</a>           | The amount charged for the service on the claim.                      | Yes       |
-| late_filing_amount                    | <a href="#monetary_object">Monetary Amount object</a>           | The deduction amount for the late filing reduction for the service on the claim.                      | No       |
+| allowed_amount                   | <a href="#monetary_object">Monetary Amount object</a>           | The allowed amount is the amount the payer deems payable prior to considering patient responsibility for the service on the claim.     | No       |
+| late_filing_amount               | <a href="#monetary_object">Monetary Amount object</a>           | The deduction amount for the late filing reduction for the service on the claim.                      | No       |
 | provider_payment_amount          | <a href="#monetary_object">Monetary Amount object</a>           | The amount the provider was paid for the service.                     | Yes       |
 | submitted_procedure_code         | {string}                                                        | The procedure code that was submitted in the claim for the service.   | No        |
 | service_units_paid               | {int}                                                           | The number of service units that were paid.                           | No        |
 | service_units_submitted          | {int}                                                           | The number of service units that were submitted on the claim.         | No        |
-| control_number                    | {string}                                                           | The control number assigned to the service line.  This is the line item control number submitted on the original claim and is required to be returned if submitted.                    | No        |
-| service_date                    | {string}                                                         | The service date assigned to this service line.                    | No        |
+| control_number                   | {string}                                                        | The control number assigned to the service line.  This is the line item control number submitted on the original claim and is required to be returned if submitted.                    | No        |
+| location_number                  | {string}                                                        | The location number assigned to the service line.  This is the payer’s identification value for the provider location associated with a claim. This should be populated by the payer when the location affected the payment of the claim.                    | No        |
+| service_date                     | {string}                                                         | The service date assigned to this service line.                    | No        |
 | adjustments                      | {list}                                                        | Adjustments applicable to the service line.  Uses the <a href="#adjustment_object">Adjustment object</a>                              | No       |
-| remarks                      | {list}                                                        | A list of health care remark codes applicable to the claim payment.  Uses the <a href="#remarks_object">Remarks object</a>                              | No       |
+| remarks                          | {list}                                                        | A list of health care remark codes applicable to the claim payment.  Uses the <a href="#remarks_object">Remarks object</a>                              | No       |
 
 (<a href="#claim_payment_object">Back to Claim Payment Object</a>)
 
@@ -138,10 +141,11 @@ be comprised of other objects.
 ## Insured object
 | Parameters    | Type     | Description                            | Required? |
 |:--------------|:---------|:---------------------------------------|:----------|
-| first_name    | {string} | The insured's first name.               | Yes       |
-| middle_name   | {string} | The insured's middle name.              |           |
-| last_name     | {string} | The insured's last name.                | Yes       |
-| id            | {string} | The member ID assigned to the insured.  |           |
+| first_name    | {string} | The insured's first name.              | Yes       |
+| middle_name   | {string} | The insured's middle name.             |           |
+| last_name     | {string} | The insured's last name.               | Yes       |
+| id            | {string} | The member ID assigned to the insured. |           |
+| hic_number    | {string} | The health insurance claim number      |           |
 
 (<a href="#claim_payment">Back to Claim Payment Result</a>)
 
@@ -150,10 +154,11 @@ be comprised of other objects.
 ## Patient object
 | Parameters    | Type     | Description                            | Required? |
 |:--------------|:---------|:---------------------------------------|:----------|
-| first_name    | {string} | The patient's first name.               | Yes       |
-| middle_name   | {string} | The patient's middle name.              |           |
-| last_name     | {string} | The patient's last name.                | Yes       |
-| id            | {string} | The member ID assigned to the patient.  |           |
+| first_name    | {string} | The patient's first name.              | Yes       |
+| middle_name   | {string} | The patient's middle name.             |           |
+| last_name     | {string} | The patient's last name.               | Yes       |
+| id            | {string} | The member ID assigned to the patient. |           |
+| hic_number    | {string} | The health insurance claim number      |           |
 
 (<a href="#claim_payment">Back to Claim Payment Result</a>)
 
@@ -176,9 +181,24 @@ be comprised of other objects.
 | Parameters | Type                                                                | Description                       | Required? |
 |:-----------|:--------------------------------------------------------------------|:----------------------------------|:----------|
 | name       | {string}                                                            | The name of the payer.            | Yes       |
-| address    | <a href="#address_object">Address object</a>                        | The address of the payer.          | No        |
+| address    | <a href="#address_object">Address object</a>                        | The address of the payer.         | No        |
 | contacts   | List of <a href="#contact_object">Contact objects</a>               | A list of contacts for the payer. | No        |
+| id         | {string}                                                            | The id of the payer.              | No        |
 
+(<a href="#claim_payment">Back to Claim Payment Result</a>)
+
+
+<a name="crossover_carrier_object"></a>
+## Crossover Carrier object
+| Parameters | Type                                                                | Description                       | Required? |
+|:-----------|:--------------------------------------------------------------------|:----------------------------------|:----------|
+| name       | {string}                                                            | The name of the payer.            | Yes       |
+| bcbs_plan_code   | {string}                                                      | The Blue Cross Blue Shield Association Plan Code of the payer.              | No        |
+| tax_id     | {string}                                                            | The tax id of the payer.              | No        |
+| naic_id    | {string}                                                            | The National Association of Insurance Commissioners identification of the payer.              | No        |
+| payor_id   | {string}                                                            | The id of the payer.              | No        |
+| pharmacy_processor_number   | {string}                                           | The Pharmacy Processor Number of the payer.              | No        |
+| plan_id   | {string}                                                             | The Centers for Medicare and Medicaid Services PlanID of the payer.              | No        |
 
 (<a href="#claim_payment">Back to Claim Payment Result</a>)
 
