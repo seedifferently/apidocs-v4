@@ -3289,7 +3289,6 @@ curl -i -H "Authorization: Bearer $ACCESS_TOKEN" -H "Content-Type: application/j
         "claim_frequency": "original",
         "direct_payment": "y",
         "information_release": "signed_statement",
-        "patient_control_number": "CLAIM1158654",
         "place_of_service": "home",
         "plan_participation": "assigned",
         "prior_authorization_number": "P00171408ABCDEF",
@@ -3491,7 +3490,6 @@ client.claims({
         "claim_frequency": "original",
         "direct_payment": "y",
         "information_release": "signed_statement",
-        "patient_control_number": "CLAIM1158654",
         "place_of_service": "home",
         "plan_participation": "assigned",
         "prior_authorization_number": "P00171408ABCDEF",
@@ -3692,7 +3690,6 @@ client.claims({
         "claim_frequency": "original",
         "direct_payment": "y",
         "information_release": "signed_statement",
-        "patient_control_number": "CLAIM1158654",
         "place_of_service": "home",
         "plan_participation": "assigned",
         "prior_authorization_number": "P00171408ABCDEF",
@@ -3887,7 +3884,6 @@ client.claims({
         {"claim_frequency", "original"},
         {"direct_payment", "y"},
         {"information_release", "signed_statement"},
-        {"patient_control_number", "CLAIM1158654"},
         {"place_of_service", "home"},
         {"plan_participation", "assigned"},
         {"prior_authorization_number", "P00171408ABCDEF"},
@@ -4065,7 +4061,6 @@ let data = [
       "claim_frequency": "original",
       "direct_payment": "y",
       "information_release": "signed_statement",
-      "patient_control_number": "CLAIM1158654",
       "place_of_service": "home",
       "plan_participation": "assigned",
       "prior_authorization_number": "P00171408ABCDEF",
@@ -4268,7 +4263,6 @@ client.claims({
         "claim_frequency": "original", 
         "direct_payment": "y", 
         "information_release": "signed_statement", 
-        "patient_control_number": "C0200000000001150965", 
         "place_of_service": "home", 
         "plan_participation": "assigned", 
         "provider_signature": true, 
@@ -4521,7 +4515,6 @@ The `/claims/` endpoint accepts the following parameters:
 | claim.supervising_provider                    | The supervising provider associated with this claim.  Used if the claim's rendering provider is supervised by a physician.  The supervising provider must be an individual, not an organization. Uses certain parameters available in the provider object [below](#claims-provider-object).  Tax id, taxonomy code and address are not to be submitted for a supervising provider.                                                                                                                                                          |                                                    |
 | claim.related_causes_code                     | Codes specifying a cause associated with the claim. Possibilities are auto_accident (AA), employment (EM), and other_accident (OA). Used if the top level billing provider is not the health care provider that provided services.                                                    |                                                    |
 | claim.original_reference_number               | The original reference number of the claim. Required if claim.claim_frequency is "corrected".                                                                                                                                            |                                                    |
-| claim.patient_control_number                  | The patient control number associated with the claim. Used if the top level billing provider is not the health care provider that provided services.                                                                                                                                  |                                                    |
 | claim.ambulance                               | Ambulance information associated with the claim.                                                                                                                                                                                                                                      |                                                    |
 | claim.patient_weight                          | The weight of the patient.                                                                                                                                                                                                                                                             |                                                    |                                          
 | claim.ambulance.reason_code                   | The reason for ambulance transportation. Possibilities can be seen [below](#ambulance-reason-codes).                                                                                                                                                                                  |                                                    |
