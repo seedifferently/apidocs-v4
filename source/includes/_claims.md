@@ -4814,31 +4814,32 @@ Full list of possible values that can be used in the `claim.place_of_service` pa
 
 <!--- beginning of table -->
 
-| place_of_service Values |                             |
-|:------------------------|:----------------------------|
-| ambulance_air_or_water  | mobile_unit                 |
-| ambulance_land          | nursing                     |
-| assisted_living         | office                      |
-| birthing_center         | other                       |
-| custodial               | outpatient_hospital         |
-| end_stage_renal         | outpatient_rehab            |
-| er_hospital             | pharmacy                    |
-| federal_qualified       | prison                      |
-| group_home              | psych_partial_hospital      |
-| home                    | public_clinic               |
-| hospice                 | residential_substance_abuse |
-| ihs_freestanding        | rural_clinic                |
-| ihs_provider            | school                      |
-| immunization            | shelter                     |
-| independent_clinic      | skilled_nursing             |
-| independent_lab         | surgical_center             |
-| inpatient_hospital      | temp_lodging                |
-| inpatient_psych         | tribal_638_freestanding     |
-| inpatient_rehab         | tribal_638_provider         |
-| mental_health_center    | urgent_care                 |
-| mentally_retarded       | walkin_clinic               |
-| military                | worksite                    |
-
+| place_of_service Values   |                               |
+|:--------------------------|:------------------------------|
+| ambulance_air_or_water    | nursing	                    |
+| ambulance_land            | off_campus_outpatient_hospital|
+| ambulatory_substance_abuse| office			    |
+| assisted_living	    | other                         |
+| birthing_center           | outpatient_hospital           |
+| custodial                 | outpatient_rehab              |
+| end_stage_renal           | pharmacy                      |
+| er_hospital               | prison                        |
+| federal_qualified         | psych_partial_hospital        |
+| group_home                | psych_residential             |
+| home                      | public_clinic                 |
+| hospice                   | residential_substance_abuse   |
+| ihs_freestanding          | rural_clinic                  |
+| ihs_provider              | school                        |
+| immunization              | shelter                       |
+| independent_clinic        | skilled_nursing               |
+| independent_lab           | surgical_center               |
+| inpatient_hospital        | telehealth                    |
+| inpatient_psych           | temp_lodging     		    |
+| inpatient_rehab           | tribal_638_freestanding       |
+| mental_health_center      | tribal_638_provider           |
+| mentally_retarded         | urgent_care                   |
+| military                  | walkin_clinic                 |
+| mobile_unit		    | worksite			    |
 <!--- end of table -->
 
 
