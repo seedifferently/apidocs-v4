@@ -4552,6 +4552,7 @@ The `/claims/` endpoint accepts the following parameters:
 | trading_partner_id                            | Required: Unique id for the intended trading partner, as specified by the [Trading Partners](#trading-partners) endpoint.                                                                                                                                                             |                                                    |
 | transaction_code                              | Required: The type of claim transaction that is being submitted (e.g. "chargeable"). A full list of possible values is included [below](#transaction-code).                                                                                                                           |                                                    |
 | coordination_of_benefits                      | Required for Secondary Claims: Information related to the coordination of benefits for additional payers. [object](#claims-coordination-of-benefits-object) |
+| generate_pdf                     | Use of this parameter will not generate a PDF version of a claims submission. This paramater will default to a value of false, and is for PokitDok's internal use. |
 
 <!--- end of table -->
 
