@@ -345,49 +345,49 @@ These values are transformed from the corresponding EDI X12 code values that wer
 
 <a name="payment_adjustment_reason_codes"></a>
 ## Payment Adjustment ReasonCodes
-|                                          |
-|:-----------------------------------------|
-| 50 | late_charge    |
-| 51 | interest_penalty_charge                       |
-| 72 | authorized_return                       |
-| 90 | early_payment_allowance             |
-| AH | origination_fee      |
-| AM | applied_to_borrowers_account             |
-| AP | acceleration_of_benefits   |
-| B2 | rebate    |
-| B3 | recovery_allowance                        |
-| BD | bad_debt_adjustment                       |
-| BN | bonus             |
-| C5 | temporary_allowance     |
-| CR | capitation_interest            |
-| CS | adjustment   |
-| CT | capitation_payment    |
-| CV | capital_passthru                        |
-| CW | certified_registered_nurse_anesthetist_passthru                      |
-| DM | direct_medical_education_passthru            |
-| E3 | withholding                       |
-| FB | forwarding_balance                       |
-| FC | fund_allocation                       |
-| GO | graduate_medical_education_passthru                       |
-| HM | hemophilia_clotting_factor_supplement                       |
-| IP | incentive_premium_payment                       |
-| IR | internal_revenue_service_withholding                       |
-| IS | interim_settlement                       |
-| J1 | nonreimbursable                       |
-| L3 | penalty                       |
-| L6 | interest_owed                       |
-| LE | levy                       |
-| LS | lump_sum                       |
-| OA | organ_acquisition_passthru                       |
-| OB | offset_for_affiliated_providers                       |
-| PI | periodic_interim_payment                       |
-| PL | payment_final                       |
-| RA | retro_activity_adjustment                       |
-| RE | return_on_equity                       |
-| SL | student_loan_repayment                       |
-| TL | third_party_liability                       |
-| WO | overpayment_recovery                       |
-| WU | unspecified_recovery                       |
+| service_type                                          | Code (X12 Spec) |
+|:------------------------------------------------------|:----------------|
+| late_charge                                           | 50              |
+| interest_penalty_charge                               | 51              |
+| authorized_return                                     | 72              | 
+| early_payment_allowance                               | 90              |
+| origination_fee                                       | AH              |
+| applied_to_borrowers_account                          | AM              |
+| acceleration_of_benefits                              | AP              |
+| rebate                                                | B2              |
+| recovery_allowance                                    | B3              |
+| bad_debt_adjustment                                   | BD              |
+| bonus                                                 | BN              |
+| temporary_allowance                                   | C5              |
+| capitation_interest                                   | CR              |
+| adjustment                                            | CS              |
+| capitation_payment                                    | CT              |
+| capital_passthru                                      | CV              |
+| certified_registered_nurse_anesthetist_passthru       | CW              |
+| direct_medical_education_passthru                     | DM              |
+| withholding                                           | E3              |
+| forwarding_balance                                    | FB              |
+| fund_allocation                                       | FC              |
+|  graduate_medical_education_passthru                  | GO              |
+| hemophilia_clotting_factor_supplement                 | HM              |
+| incentive_premium_payment                             | IP              |
+| internal_revenue_service_withholding                  | IR              |
+| interim_settlement                                    | IS              |
+| nonreimbursable                                       | J1              |
+| penalty                                               | L3              |
+| interest_owed                                         | L6              |
+| levy                                                  | LE              |
+| lump_sum                                              | LS              |
+| organ_acquisition_passthru                            | OA              |
+| offset_for_affiliated_providers                       | OB              |
+| periodic_interim_payment                              | PI              |
+| payment_final                                         | PL              |
+| retro_activity_adjustment                             | RA              |
+| return_on_equity                                      | RE              |
+| student_loan_repayment                                | SL              |
+| third_party_liability                                 | TL              |
+| overpayment_recovery                                  | WO              |
+|  unspecified_recovery                                 | WU              |
 
 
 
