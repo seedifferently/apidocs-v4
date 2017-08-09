@@ -47,6 +47,7 @@ be comprised of other objects.
 | received_date                   | {string}                                                                                  | The date the claim was received.                                                                                         | No        |
 | statement_period_start_date     | {string}                                                                                  | The claim statement period start date.                                                                                    | No        |
 | statement_period_end_date       | {string}                                                                                  | The claim statement period end date.                                                                                      | No        |
+| payment_adjustments           | <a href="#payment_adjustment_reasons">Payment Adjustment object</a>                       | Payment adjustments related to the claim payment.                                                                          | No       |
 | transaction_type                | {string}                                                                                  | The transaction type.  See <a href="#transaction_type_codes">Transaction Type Codes</a> for possible values.             | Yes       |
 
 
@@ -327,6 +328,70 @@ be comprised of other objects.
 # Codes
 Many of the values above are limited to a set of codes or constants.
 These values are transformed from the corresponding EDI X12 code values that were received from a trading partner.
+
+<a name="payment_adjustment_object"></a>
+## object
+| Parameters                   | Type                                                                     | Description                                                                                                              | Required?|
+|:-----------------------------|:-------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------|:---------|
+| reason_code       | <a href="#payment_adjustment_reason_codes">Reason Code object</a> | The adjustment reason code, is the code indicating reason for debit or credit memo or adjustment to invoice, debit or credit memo, or payment.                                                                     | Yes      |
+| reason             | {string}                                                                 | The transaction type.  See <a href="#transaction_type_codes">Transaction Type Codes</a> for possible values.             | Yes      |
+| identifier               | {string}                                                                 | To assist the receiver in identifying,tracking or reconcilling the adjustment.                                               | Yes       |
+| adjustment                     | {string}                                                                 | The adjustment amount will be listed below in amount.                                                          | No       |
+| amount       | {string}                                                                 | This is the adjustment amount for the preceding adjustment reason.                                                   | No       |
+| currency               | {string}                                         | The type of currency. (e. g. USD) | Yes      |
+
+
+(<a href="#claim_payment">Back to Claim Payment Result</a>)
+
+<a name="payment_adjustment_reason_codes"></a>
+## Payment Adjustment ReasonCodes
+|                                          |
+|:-----------------------------------------|
+| 50: late_charge    |
+| 51: interest_penalty_charge                       |
+| 72: authorized_return                       |
+| 90: early_payment_allowance             |
+| AH: origination_fee      |
+| AM: applied_to_borrowers_account             |
+| AP: acceleration_of_benefits   |
+| B2: rebate    |
+| B3: recovery_allowance                        |
+| BD: bad_debt_adjustment                       |
+| BN: bonus             |
+| C5: temporary_allowance     |
+| CR: capitation_interest            |
+| CS: adjustment   |
+| CT: capitation_payment    |
+| CV: capital_passthru                        |
+| CW: certified_registered_nurse_anesthetist_passthru                      |
+| DM: direct_medical_education_passthru            |
+| E3: withholding                       |
+| FB: forwarding_balance                       |
+| FC: fund_allocation                       |
+| GO: graduate_medical_education_passthru                       |
+| HM: hemophilia_clotting_factor_supplement                       |
+| IP: incentive_premium_payment                       |
+| IR: internal_revenue_service_withholding                       |
+| IS: interim_settlement                       |
+| J1: nonreimbursable                       |
+| L3: penalty                       |
+| L6: interest_owed                       |
+| LE: levy                       |
+| LS: lump_sum                       |
+| OA: organ_acquisition_passthru                       |
+| OB: offset_for_affiliated_providers                       |
+| PI: periodic_interim_payment                       |
+| PL: payment_final                       |
+| RA: retro_activity_adjustment                       |
+| RE: return_on_equity                       |
+| SL: student_loan_repayment                       |
+| TL: third_party_liability                       |
+| WO: overpayment_recovery                       |
+| WU: unspecified_recovery                       |
+
+
+
+(<a href="#payment_adjustment_reason_object">Back to Payment Adjustment Reason object</a>)
 
 <a name="transaction_type_codes"></a>
 ## Transaction Type Codes
