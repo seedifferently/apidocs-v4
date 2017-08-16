@@ -47,7 +47,7 @@ be comprised of other objects.
 | received_date                   | {string}                                                                                  | The date the claim was received.                                                                                         | No        |
 | statement_period_start_date     | {string}                                                                                  | The claim statement period start date.                                                                                    | No        |
 | statement_period_end_date       | {string}                                                                                  | The claim statement period end date.                                                                                      | No        |
-| payment_adjustments           | <a href="#payment_adjustment_reasons">Payment Adjustment object</a>                       | A list of payment adjustments related to the claim payment.                                                                          | No       |
+| payment_adjustments           | <a href="#payment_adjustment_reason_codes">Payment Adjustment Reason Codes</a>             | A list of payment adjustments related to the claim payment.                                                              | No       |
 | transaction_type                | {string}                                                                                  | The transaction type.  See <a href="#transaction_type_codes">Transaction Type Codes</a> for possible values.             | Yes       |
 
 
@@ -344,7 +344,7 @@ These values are transformed from the corresponding EDI X12 code values that wer
 (<a href="#claim_payment">Back to Claim Payment Result</a>)
 
 <a name="payment_adjustment_reason_codes"></a>
-## Payment Adjustment ReasonCodes
+## Payment Adjustment Reason Codes
 | service_type                                          | Code (X12 Spec) |
 |:------------------------------------------------------|:----------------|
 | late_charge                                           | 50              |
