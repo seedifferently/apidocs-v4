@@ -47,7 +47,7 @@ be comprised of other objects.
 | received_date                   | {string}                                                                                  | The date the claim was received.                                                                                         | No        |
 | statement_period_start_date     | {string}                                                                                  | The claim statement period start date.                                                                                    | No        |
 | statement_period_end_date       | {string}                                                                                  | The claim statement period end date.                                                                                      | No        |
-| payment_adjustments           | <a href="#payment_adjustment_reason_codes">Payment Adjustment Reason Codes</a>             | A list of payment adjustments related to the claim payment.                                                              | No       |
+| payment_adjustments           | <a href="#payment_adjustment_object">Payment Adjustment Object</a>             | A list of payment adjustments related to the claim payment.                                                              | No       |
 | transaction_type                | {string}                                                                                  | The transaction type.  See <a href="#transaction_type_codes">Transaction Type Codes</a> for possible values.             | Yes       |
 
 
@@ -330,10 +330,10 @@ Many of the values above are limited to a set of codes or constants.
 These values are transformed from the corresponding EDI X12 code values that were received from a trading partner.
 
 <a name="payment_adjustment_object"></a>
-## object
+## Payment Adjustment Object
 | Parameters                   | Type                                                                     | Description                                                                                                              | Required?|
 |:-----------------------------|:-------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------|:---------|
-| reason_code       | <a href="#payment_adjustment_reason_codes">Reason Code object</a> | The adjustment reason code, is the code indicating reason for debit or credit memo or adjustment to invoice, debit or credit memo, or payment.                                                                     | Yes      |
+| reason_code       | <a href="#payment_adjustment_reason_codes">Payment Adjustment Reason Codes</a> | The adjustment reason code, is the code indicating reason for debit or credit memo or adjustment to invoice, debit or credit memo, or payment.                                                                     | Yes      |
 | reason             | {string}                                                                 | The transaction type.  See <a href="#transaction_type_codes">Transaction Type Codes</a> for possible values.             | Yes      |
 | identifier               | {string}                                                                 | To assist the receiver in identifying,tracking or reconcilling the adjustment.                                               | Yes       |
 | adjustment                     | {string}                                                                 | The adjustment amount will be listed below in amount.                                                          | No       |
