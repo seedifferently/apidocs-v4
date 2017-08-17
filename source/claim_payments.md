@@ -345,7 +345,7 @@ These values are transformed from the corresponding EDI X12 code values that wer
 
 <a name="payment_adjustment_reason_codes"></a>
 ## Payment Adjustment Reason Codes
-| service_type                                          | Code (X12 Spec) |
+| Reason                                          | Code (X12 Spec) |
 |:------------------------------------------------------|:----------------|
 | late_charge                                           | 50              |
 | interest_penalty_charge                               | 51              |
