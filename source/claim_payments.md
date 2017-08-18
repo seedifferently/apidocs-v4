@@ -334,7 +334,7 @@ These values are transformed from the corresponding EDI X12 code values that wer
 | Parameters                   | Type                                                                     | Description                                                                                                              | Required?|
 |:-----------------------------|:-------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------|:---------|
 | reason_code       | <a href="#payment_adjustment_reason_codes">Payment Adjustment Reason Codes</a> | The adjustment reason code, is the code indicating reason for debit or credit memo or adjustment to invoice, debit or credit memo, or payment.                                                                     | Yes      |
-| reason             | {string}                                                                 | The transaction type.  See <a href="#transaction_type_codes">Transaction Type Codes</a> for possible values.             | Yes      |
+| reason             | {string}                                                                 | The transaction type.  See  <a href="#payment_adjustment_reason_codes">Payment Adjustment Reason Codes</a>              | Yes      |
 | identifier               | {string}                                                                 | To assist the receiver in identifying,tracking or reconcilling the adjustment.                                               | Yes       |
 | adjustment                     | <a href="#monetary_object">Monetary Amount object</a>  | The adjustment amount | No       |
 
