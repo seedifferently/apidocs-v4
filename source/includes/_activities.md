@@ -1,4 +1,4 @@
-## Activities
+## Activities is dope yo
 > Example fetching activities for the current application:
 
 ```shell
